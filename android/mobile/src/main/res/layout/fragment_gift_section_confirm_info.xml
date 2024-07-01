@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.gifts.ui.GiftSheetDialogView" />
+        <variable
+            name="viewModel" type="com.theathletic.gifts.ui.GiftSheetDialogViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/confirm_info_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_confirm_info_title"
+            style="@style/TA.Ath.Gifts.Title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/confirm_info_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_confirm_info_description"
+            android:textColor="@color/gray"
+            style="@style/TA.Ath.Gifts.Description"
+            app:layout_constraintTop_toBottomOf="@id/confirm_info_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- TT Name -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/name_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@{viewModel.valiSenderName.value}"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_gifts_item_unselected"
+                tools:text="John Smith"
+                style="@style/TA.Ath.Gifts.Description"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/red"
+                android:text="@string/gifts_recipient_delivery_date_edit_button"
+                style="@style/TA.Ath.Body3"
+                app:layout_constraintBaseline_toBaselineOf="@id/name"
+                app:layout_constraintEnd_toEndOf="@id/name" />
+
+            <View
+                android:id="@+id/name_overlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> view.onEditSenderNameClick()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiSenderName.error}"
+            app:layout_constraintTop_toBottomOf="@id/confirm_info_description">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:maxLines="1"
+                android:text="@={viewModel.valiSenderName.value}"
+                android:hint="@string/gifts_confirm_info_your_name_hint"
+                android:inputType="textPersonName"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TT Email -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/email_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:padding="16dp"
+                android:text="@{viewModel.valiSenderEmail.value}"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_gifts_item_unselected"
+                tools:text="johnsmith@gmail.com"
+                style="@style/TA.Ath.Gifts.Description"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/email_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/red"
+                android:text="@string/gifts_recipient_delivery_date_edit_button"
+                style="@style/TA.Ath.Body3"
+                app:layout_constraintBaseline_toBaselineOf="@id/email"
+                app:layout_constraintEnd_toEndOf="@id/email" />
+
+            <View
+                android:id="@+id/email_overlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> view.onEditSenderEmailClick()}"
+                app:layout_constraintTop_toTopOf="@id/email"
+                app:layout_constraintBottom_toBottomOf="@id/email"
+                app:layout_constraintStart_toStartOf="@id/email"
+                app:layout_constraintEnd_toEndOf="@id/email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiSenderEmail.error}"
+            app:layout_constraintTop_toBottomOf="@id/name">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:maxLines="1"
+                android:text="@={viewModel.valiSenderEmail.value}"
+                android:hint="@string/gifts_confirm_info_your_email_hint"
+                android:inputType="textEmailAddress"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%*+-/=?^_`{|}~.@&amp;"
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</layout>

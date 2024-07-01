@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.LiveRoomUiModel"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.LiveRoomUiModel.Interactor"
+            />
+    </data>
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        >
+
+        <include
+            layout="@layout/layout_live_audio_room"
+            app:data="@{data}"
+            app:interactor="@{interactor}"
+            app:isInCarousel="@{true}"
+            />
+
+    </FrameLayout>
+
+</layout>

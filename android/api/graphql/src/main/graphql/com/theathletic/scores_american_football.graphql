@@ -1,0 +1,258 @@
+# QUERIES
+
+query GetAmericanFootballGame($id: ID!) {
+    game(id: $id) {
+        ... AmericanFootballGameFragment
+    }
+}
+
+query GetAmericanFootballPlayByPlays($id: ID!) {
+    game(id: $id) {
+        ... AmericanFootballPlayByPlays
+    }
+}
+
+query GetAmericanFootballPlayerGrades($id: ID!) {
+    game(id: $id) {
+        ... AmericanFootballPlayerGradesGame
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription AllGameUpdatesForAmericanFootball($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... AmericanFootballGameFragment
+    }
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription AmericanFootballPlayUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... AmericanFootballPlayByPlays
+    }
+}
+
+subscription AmericanFootballPlayerGradesUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... AmericanFootballPlayerGradesGame
+    }
+}
+
+# FRAGMENTS
+
+fragment AmericanFootballGameFragment on AmericanFootballGame {
+    id
+    status
+    scheduled_at
+    time_tbd
+    away_team {
+        ... AmericanFootballGameTeamFragment
+    }
+    home_team {
+        ... AmericanFootballGameTeamFragment
+    }
+    league {
+        ... League
+    }
+    recent_plays(size:4) {
+        ... AmericanFootballPlay
+    }
+    venue {
+        name
+        city
+    }
+    sport
+    clock
+    period_id
+    scoring_plays {
+        ... ScoringPlayFragment
+    }
+    permalink
+    coverage {
+        available_data
+    }
+    possession {
+        ... PossessionFragment
+    }
+    american_football_last_play : last_play
+    broadcast_network
+    odds_pregame {
+        ... GameOddsMarketFragment
+    }
+    weather {
+        ... WeatherFragment
+    }
+    grade_status
+    tickets {
+        ... GameTicket
+    }
+    season_stats {
+        ... SeasonStats
+    }
+    top_comments {
+        ... ScoresTopComment
+    }
+    is_comments_discoverable
+}
+
+fragment AmericanFootballGameTeamFragment on AmericanFootballGameTeam {
+    id
+    team {
+        ... Team
+    }
+    score
+    scoring {
+        ... PeriodScoreFragment
+    }
+    current_ranking
+    current_record
+    last_games(size: 5) {
+        ... RecentGameFragment
+    }
+    stats {
+        ... GameStat
+    }
+    season_stats {
+        ... RankedStat
+    }
+    stat_leaders {
+        ... TeamLeader
+    }
+    top_performers {
+        ... TopPerformer
+    }
+    remaining_timeouts
+    used_timeouts
+    line_up {
+        players (grades: true) {
+            ... GradablePlayer
+        }
+    }
+}
+
+fragment AmericanFootballGameSummary on AmericanFootballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    clock
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    permalink
+    away_team {
+        ... AmericanFootballGameSummaryTeam
+    }
+    home_team {
+        ... AmericanFootballGameSummaryTeam
+    }
+    possession {
+        ... PossessionFragment
+    }
+    is_comments_discoverable
+    comments_on
+    grade_status
+    game_status {
+        ... GameState
+    }
+    game_title
+}
+
+fragment AmericanFootballGameSummaryTeam on AmericanFootballGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+    current_ranking
+    remaining_timeouts
+    used_timeouts
+}
+
+fragment AmericanFootballPlayByPlays on AmericanFootballGame {
+    id
+    away_team {
+        ... AmericanFootballPlayByPlaysTeam
+    }
+    home_team {
+        ... AmericanFootballPlayByPlaysTeam
+    }
+    status
+    play_by_play {
+        ... AmericanFootballDrive
+    }
+}
+
+fragment AmericanFootballPlayByPlaysTeam on AmericanFootballGameTeam {
+    team {
+        ... TeamLite
+    }
+    scoring {
+        ... PeriodScoreFragment
+    }
+}
+
+fragment AmericanFootballDrive on AmericanFootballDrive {
+    id
+    away_score
+    home_score
+    description
+    duration
+    header
+    occurred_at
+    period_id
+    play_count
+    team {
+        ... TeamLite
+    }
+    yards
+    plays {
+        ... AmericanFootballPlay
+    }
+}
+
+fragment AmericanFootballPlay on AmericanFootballPlay {
+    id
+    away_score
+    home_score
+    clock
+    description
+    header
+    occurred_at
+    period_id
+    possession {
+        ... PossessionFragment
+    }
+    play_type
+    scoring_play
+    team {
+        ... TeamLite
+    }
+}
+
+fragment AmericanFootballPlayerGradesGame on AmericanFootballGame {
+    id
+    status
+    period_id
+    clock
+    scheduled_at
+    grade_status
+    away_team {
+        ... PlayerGradesTeam
+    }
+    home_team {
+        ... PlayerGradesTeam
+    }
+    game_status {
+        ... GameState
+    }
+}

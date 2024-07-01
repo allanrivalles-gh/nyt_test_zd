@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.ui.main.SearchView" />
+        <variable
+            name="data" type="com.theathletic.search.data.local.SearchTitleItem" />
+    </data>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:maxLines="1"
+        android:parameterizedString="@{data.title}"
+        android:textColor="@color/ath_grey_45"
+        tools:text="Most Popular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</layout>

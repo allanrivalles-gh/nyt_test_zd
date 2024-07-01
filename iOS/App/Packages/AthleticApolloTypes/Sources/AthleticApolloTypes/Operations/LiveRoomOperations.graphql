@@ -1,0 +1,123 @@
+query LiveRoomById($id: ID!) {
+    liveRoom(id: $id) {
+        ...LiveRoomDetails
+    }
+}
+
+query LiveRooms(
+    $filter: NodeFilterInput
+    $page: Int
+    $perPage: Int
+) {
+    liveRooms(
+        filter: $filter
+        page: $page
+        perPage: $perPage
+    ) {
+        items {
+            ...LiveRoomDetails
+        }
+        pageInfo {
+            ...PagingPageInfo
+        }
+        total
+    }
+}
+
+query TagsByType($types: [TagType!]!) {
+    getTagsByType(types: $types) {
+        ...TagDetailWrapper
+    }
+}
+
+query UserByHashId($hashId: ID!) {
+    userByHashId(hash_id: $hashId) {
+        ...UserDetailWrapper
+    }
+}
+
+query LiveRoomHosts {
+    liveRoomHosts {
+        hosts {
+            ...AuthorDetail
+        }
+    }
+}
+
+subscription LiveRoomUpdates($liveRoomId: ID!) {
+    updatedLiveRoom(id: $liveRoomId) {
+        ...LiveRoomDetails
+    }
+}
+
+mutation GenerateLiveRoomToken($input: LiveRoomTokenInput!) {
+    generateLiveRoomToken(input: $input) {
+        token
+    }
+}
+
+mutation CreateSpeakingRequest($liveRoomId: ID!, $userId: ID!, $type: SpeakingRequestType!) {
+    createSpeakingRequest(live_room_id: $liveRoomId, user_id: $userId, type: $type) {
+        ...LiveRoomDetails
+    }
+}
+
+mutation UpdateSpeakingRequest($liveRoomId: ID!, $userId: ID!, $type: SpeakingRequestType!, $approved: Boolean!) {
+    updateSpeakingRequest(live_room_id: $liveRoomId, user_id: $userId, type: $type, approved: $approved) {
+        ...LiveRoomDetails
+    }
+}
+
+mutation DeleteSpeakingRequest($liveRoomId: ID!, $userId: ID!, $type: SpeakingRequestType) {
+    deleteSpeakingRequest(live_room_id: $liveRoomId, user_id: $userId, type: $type)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation StartLiveRoomById($id: ID!) {
+    startLiveRoom(id: $id)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation EndLiveRoomById($id: ID!) {
+    endLiveRoom(id: $id)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation SyncLiveRoomById($id: ID!) {
+    syncLiveRoomWithAgora(id: $id)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation CreateLiveRoom($input: CreateLiveRoomInput!) {
+    createLiveRoom(input: $input)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation UpdateLiveRoom($input: UpdateLiveRoomInput!) {
+    updateLiveRoom(input: $input)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation KickLiveRoomUserFromRoom($liveRoomId: ID!, $userId: ID!, $minutes: Int!) {
+    banUser(live_room_id: $liveRoomId, user_id: $userId, minutes: $minutes)  {
+        ...LiveRoomDetails
+    }
+}
+
+mutation KickLiveRoomUserFromStage($liveRoomId: ID!, $userId: ID!, $minutes: Int!) {
+    kickFromStage(live_room_id: $liveRoomId, user_id: $userId, minutes: $minutes) {
+        ...LiveRoomDetails
+    }
+}
+
+mutation LockLiveRoomUser($liveRoomId: ID!, $userId: ID!) {
+    lockUser(live_room_id: $liveRoomId, user_id: $userId) {
+        ...LiveRoomDetails
+    }
+}

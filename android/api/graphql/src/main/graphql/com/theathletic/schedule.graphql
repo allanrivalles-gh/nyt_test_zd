@@ -1,0 +1,65 @@
+# QUERIES
+
+query GetTeamSchedule($timeZone: String!, $teamId: ID!) {
+    scheduleFeed(time_zone: $timeZone, team_id: $teamId) {
+        id
+        groupings {
+            ... ScoresFeedGrouping
+        }
+    }
+}
+
+query GetLeagueSchedule($timeZone: String!, $leagueCode: LeagueCode!) {
+    scheduleFeed(time_zone: $timeZone, league_code: $leagueCode) {
+        id
+        groupings {
+            ... ScoresFeedGrouping
+        }
+        filters {
+            ... ScoresFeedFilter
+        }
+    }
+}
+
+query GetScheduleFeedGroup($timeZone: String!, $groupId: ID!, $filterId: [ID!]) {
+    scoresFeedGroups(filter_ids: $filterId, time_zone: $timeZone, grouping_id: $groupId) {
+        ... ScoresFeedGroup
+    }
+}
+
+# SUBSCRIPTIONS - TODO
+
+# FRAGMENTS
+
+fragment ScoresFeedGrouping on ScoresFeedGrouping {
+    ... ScoresFeedDayGrouping
+    ... ScoresFeedDefaultGrouping
+}
+
+fragment ScoresFeedDayGrouping on ScoresFeedDayGrouping {
+    id
+    default_grouping
+    day
+    groups {
+        ... ScoresFeedGroup
+    }
+}
+
+fragment ScoresFeedDefaultGrouping on ScoresFeedDefaultGrouping {
+    id
+    default_grouping
+    title
+    subtitle
+    groups {
+        ... ScoresFeedGroup
+    }
+}
+
+fragment ScoresFeedFilter on ScoresFeedFilter {
+    id
+    values {
+        id
+        is_default
+        label
+    }
+}

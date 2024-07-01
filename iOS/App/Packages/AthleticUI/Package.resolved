@@ -1,0 +1,68 @@
+{
+  "pins" : [
+    {
+      "identity" : "apollo-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apollographql/apollo-ios.git",
+      "state" : {
+        "revision" : "42646f765d22dac0f22bfff48590102195c76da4",
+        "version" : "0.53.0"
+      }
+    },
+    {
+      "identity" : "dd-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Datadog/dd-sdk-ios.git",
+      "state" : {
+        "revision" : "1a86cdd7d2cd9de4011324e11744100575ad9281",
+        "version" : "1.14.0"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "state" : {
+        "revision" : "e2b52071483eec7b18c521d6cc74e24983804722",
+        "version" : "17.0.0"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "2e9337168d08acccf72c039bf9324be24a1cf7d7",
+        "version" : "11.5.3"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/plcrashreporter.git",
+      "state" : {
+        "revision" : "b1a342da19ed9b3af61ea2efa7656c2af30aeb7c",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "sqlite.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stephencelis/SQLite.swift.git",
+      "state" : {
+        "revision" : "4d543d811ee644fa4cc4bfa0be996b4dd6ba0f54",
+        "version" : "0.13.3"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "9564d61b08a5335ae0a36f789a7d71493eacadfc",
+        "version" : "0.3.2"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="data" type="com.theathletic.ui.list.ListSectionTitleItem" />
+    </data>
+
+    <TextView
+        android:id="@+id/section_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@{data.title}"
+        android:textColor="@color/ath_grey_30"
+        style="@style/TextAppearance.Ath.Slab.Small"
+        tools:text="@tools:sample/cities"
+        />
+
+</layout>

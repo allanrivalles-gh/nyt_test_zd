@@ -1,0 +1,69 @@
+query GetComments($input: QueryCommentsInput, $teamId: ID) {
+    getComments(input: $input) {
+        ...CommentsResponse
+    }
+}
+
+query GetCommentsCache1($input: QueryCommentsInput, $teamId: ID) {
+    getComments(input: $input) {
+        ...CommentsResponse
+    }
+}
+
+query DiscussionDetails($id: ID!) {
+    articleById(id: $id) {
+        ...ArticleContentLite
+    }
+}
+
+query QandADateInfo($id: ID!) {
+    qandaById(id: $id) {
+        ...QandADateInfo
+    }
+}
+
+query TeamSpecificThreads($gameId: ID!) {
+    teamSpecificThreads(game_id: $gameId) {
+        ...TeamSpecificResponse
+    }
+}
+
+mutation AddComment($commentInput: AddCommentInput!) {
+    addComment(input: $commentInput)
+}
+
+mutation AddNewComment($commentInput: CommentInput!, $teamId: ID) {
+    addNewComment(input: $commentInput) {
+        ...Comment
+    }
+}
+
+mutation DeleteComment($commentId: ID!) {
+    deleteComment(id: $commentId)
+}
+
+mutation EditComment($commentId: ID!, $comment: String!) {
+    editComment(id: $commentId, comment: $comment)
+}
+
+mutation FlagComment($commentId: ID!, $reason: FlagReason!) {
+    flagComment(id: $commentId, reason: $reason)
+}
+
+mutation LikeComment($commentId: ID!) {
+    likeComment(id: $commentId)
+}
+
+mutation UnlikeComment($commentId: ID!) {
+    unlikeComment(id: $commentId)
+}
+
+mutation AddPlayComment($input: PlayCommentInput!, $teamId: ID) {
+    addPlayComment(input: $input) {
+        ...PlayCommentResponse
+    }
+}
+
+mutation UpdateCurrentSpecificThread($gameId: ID!, $teamId: ID!) {
+    updateCurrentSpecificThread(game_id: $gameId, team_id: $teamId)
+}

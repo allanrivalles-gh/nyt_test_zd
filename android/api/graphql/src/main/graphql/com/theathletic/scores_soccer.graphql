@@ -1,0 +1,353 @@
+# QUERIES
+
+query GetSoccerGame($id: ID!) {
+    game(id: $id) {
+        ... SoccerGameFragment
+    }
+}
+
+query GetSoccerPlayByPlays($id: ID!) {
+    game(id: $id) {
+        ... SoccerPlayByPlays
+    }
+}
+
+query GetSoccerPlayerGrades($id: ID!) {
+    game(id: $id) {
+        ... SoccerPlayerGradesGame
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription AllGameUpdatesForSoccer($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... SoccerGameFragment
+        feed {
+            ... GameFeedItemFragment
+        }
+    }
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription SoccerPlayUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... SoccerPlayByPlays
+    }
+}
+
+subscription SoccerPlayerGradesUpdates($id: ID!) {
+    liveScoreUpdates(game_ids:[$id]) {
+        ... SoccerPlayerGradesGame
+    }
+}
+
+# FRAGMENTS
+
+fragment SoccerGameFragment on SoccerGame {
+    id
+    status
+    scheduled_at
+    time_tbd
+    away_team {
+        ... SoccerGameTeamFragment
+    }
+    home_team {
+        ... SoccerGameTeamFragment
+    }
+    league {
+        ... League
+    }
+    key_events {
+        ... KeyEvent
+    }
+    timeline {
+        ... TimelineEvent
+    }
+    venue {
+        name
+        city
+    }
+    sport
+    clock
+    period_id
+    permalink
+    coverage {
+        available_data
+    }
+    odds_pregame {
+        ... GameOddsMarketFragment
+    }
+    officials {
+        name
+        type
+    }
+    key_plays {
+        ...SoccerPlaysFragment
+    }
+    recent_plays(size: 3) {
+        ...SoccerPlaysFragment
+    }
+    season_stats {
+        ... SeasonStats
+    }
+    grade_status
+    tickets {
+        ... GameTicket
+    }
+    top_comments {
+        ... ScoresTopComment
+    }
+    is_comments_discoverable
+}
+
+fragment SoccerGameTeamFragment on SoccerGameTeam {
+    id
+    team {
+        ... Team
+    }
+    score
+    penalty_score
+    line_up {
+        ... LineUp
+        gradable_players: players (grades: true) {
+            ... GradablePlayer
+        }
+    }
+    stats {
+        ... GameStat
+    }
+    last_games(size: 5, game_league_only: true) {
+        ... RecentGameFragment
+    }
+    current_record
+    season_stats {
+        ... RankedStat
+    }
+    stat_leaders {
+        ... TeamLeader
+    }
+    top_performers {
+        ... TopPerformer
+    }
+    expected_goals {
+        ... GameStat
+    }
+}
+
+fragment SoccerPlayByPlays on SoccerGame {
+    id
+    away_team {
+        ... SoccerPlayByPlaysTeam
+    }
+    home_team {
+        ... SoccerPlayByPlaysTeam
+    }
+    status
+    play_by_play {
+        ... SoccerPlaysFragment
+    }
+}
+
+
+fragment SoccerPlayByPlaysTeam on SoccerGameTeam {
+    team {
+        ... TeamLite
+    }
+    score
+}
+
+fragment SoccerGameSummary on SoccerGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    clock
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    permalink
+    away_team {
+        ... SoccerGameSummaryTeam
+    }
+    home_team {
+        ... SoccerGameSummaryTeam
+    }
+    game_title
+    related_game {
+        scheduled_at
+    }
+    aggregate_winner {
+        display_name
+    }
+    is_comments_discoverable
+    comments_on
+    grade_status
+    game_status {
+        ... GameState
+    }
+}
+
+fragment SoccerGameSummaryTeam on SoccerGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+    current_standing(short: true)
+    aggregate_score
+    last_six
+    expected_goals {
+        ... GameStat
+    }
+    penalty_score
+}
+
+fragment KeyEvent on KeyEvent {
+    ... CardEvent
+    ... GoalEvent
+    ... SubstitutionEvent
+}
+
+fragment TimelineEvent on TimelineEvent {
+    ... CardEvent
+    ... GoalEvent
+    ... SubstitutionEvent
+    ... PenaltyShotEvent
+    ... PeriodEvent
+}
+
+fragment CardEvent on CardEvent{
+    id
+    team {
+        ... Team
+    }
+    occurred_at
+    match_time_display
+    period_id
+    carded_player {
+        ... TeamMember
+    }
+    card_type
+}
+
+fragment GoalEvent on GoalEvent {
+    id
+    team {
+        ... Team
+    }
+    occurred_at
+    match_time_display
+    period_id
+    goal_scorer {
+        ... TeamMember
+    }
+    goal_type
+}
+
+fragment SubstitutionEvent on SubstitutionEvent {
+    id
+    team {
+        ... Team
+    }
+    occurred_at
+    match_time_display
+    period_id
+    player_on {
+        ... TeamMember
+    }
+    player_off {
+        ... TeamMember
+    }
+}
+
+fragment PenaltyShotEvent on PenaltyShotEvent {
+    id
+    team {
+        ... TeamLite
+    }
+    occurred_at
+    match_time_display
+    period_id
+    outcome
+    penalty_taker {
+        ... TeamMember
+    }
+}
+
+fragment SoccerPlaysFragment on Play {
+    ...SoccerPlayFragment
+    ...SoccerShootoutPlayFragment
+
+}
+
+fragment SoccerPlayFragment on SoccerPlay {
+    id
+    header
+    description
+    away_score
+    home_score
+    game_time
+    occurred_at
+    type
+    key_play
+    away_chances_created
+    home_chances_created
+    period_id
+    team {
+        ... TeamLite
+    }
+}
+
+fragment SoccerShootoutPlayFragment on SoccerShootoutPlay {
+    id
+    header
+    description
+    away_score
+    home_score
+    game_time
+    occurred_at
+    type
+    period_id
+    away_shootout_goals
+    home_shootout_goals
+    team {
+        ... TeamLite
+    }
+    shooter {
+        ... TeamMember
+    }
+}
+
+fragment PeriodEvent on PeriodEvent {
+    id
+    occurred_at
+    period_id
+}
+
+fragment SoccerPlayerGradesGame on SoccerGame {
+    id
+    status
+    period_id
+    clock
+    match_time_display
+    scheduled_at
+    grade_status
+    away_team {
+        ... PlayerGradesTeam
+    }
+    home_team {
+        ... PlayerGradesTeam
+    }
+    game_status {
+        ... GameState
+    }
+}

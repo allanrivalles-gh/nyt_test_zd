@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsContract.Presenter" />
+        <variable
+            name="data"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsContract.ViewState" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/view_standings_header"
+            layout="@layout/fragment_scores_standings_mvp_header_item"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:interactor="@{interactor}"
+            bind:data="@{data}"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_standings"
+            android:background="@color/ath_grey_70"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:tabMode="fixed"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabTextColor="@color/ath_grey_50"
+            app:tabSelectedTextColor="@color/ath_grey_20"
+            app:tabIndicatorHeight="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/view_standings_header"
+            app:tabIndicatorColor="@color/ath_grey_20" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_standings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_standings"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_scores_standings_relegation_legend"
+            />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{data.showSpinner}"
+            app:layout_constraintTop_toBottomOf="@+id/view_standings_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/image_empty_standings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_feed"
+            android:tint="?attr/colorOnBackgroundVariant2"
+            android:visibility="@{!data.showSpinner &amp;&amp; data.standingsGroupList.empty}"
+            app:layout_constraintTop_toBottomOf="@+id/view_standings_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/global_empty_placeholder"
+            android:layout_marginTop="16dp"
+            android:textColor="?attr/colorOnBackgroundVariant2"
+            android:visibility="@{!data.showSpinner &amp;&amp; data.standingsGroupList.empty}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_empty_standings"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_scores_standings_relegation_legend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{!data.relegationLegendItems.empty}"
+            android:background="@color/ath_grey_70"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

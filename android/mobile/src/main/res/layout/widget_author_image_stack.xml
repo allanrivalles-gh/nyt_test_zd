@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.ui.widgets.AuthorImageStackModel"
+            />
+        <variable
+            name="darkerTint"
+            type="Boolean"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="24dp">
+
+        <ImageView
+            android:id="@+id/image_1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@{darkerTint ? @color/ath_grey_65 : @color/ath_grey_60}"
+            android:padding="2dp"
+            android:visibility="@{1 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage1}"
+            imageCircular="@{true}"
+            tools:src="@tools:sample/avatars"
+            />
+
+        <ImageView
+            android:id="@+id/image_2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@{darkerTint ? @color/ath_grey_65 : @color/ath_grey_60}"
+            android:padding="2dp"
+            android:visibility="@{2 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="@id/image_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage2}"
+            imageCircular="@{true}"
+            tools:src="@tools:sample/avatars"
+            />
+
+        <ImageView
+            android:id="@+id/image_3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@{darkerTint ? @color/ath_grey_65 : @color/ath_grey_60}"
+            android:padding="2dp"
+            android:visibility="@{3 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="@id/image_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage3}"
+            imageCircular="@{true}"
+            tools:src="@tools:sample/avatars"
+            />
+
+        <ImageView
+            android:id="@+id/image_4"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@{darkerTint ? @color/ath_grey_65 : @color/ath_grey_60}"
+            android:padding="2dp"
+            android:visibility="@{data.displayImageCount == 4}"
+            app:layout_constraintStart_toStartOf="@id/image_3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage4}"
+            imageCircular="@{true}"
+            tools:src="@tools:sample/avatars"
+            tools:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/excess_count"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:visibility="@{data.excessCount != null &amp;&amp; data.excessCount > 0}"
+            android:src="@drawable/widget_author_image_excess_bg"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@{darkerTint ? @color/ath_grey_65 : @color/ath_grey_60}"
+            android:padding="2dp"
+            app:layout_constraintStart_toStartOf="@id/image_4"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+                android:background="@drawable/widget_author_image_excess_bg"
+                android:textColor="@color/ath_grey_60"
+                android:text="@{@string/realtime_author_reaction_excess(data.excessCount)}"
+                android:gravity="center"
+                tools:text="+1"
+                />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

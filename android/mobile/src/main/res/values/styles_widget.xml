@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Athletic Design System Widget Styles:
+    These are the approved, reusable styles for all non-text widgets.
+    -->
+    <style name="ShapeAppearance.Ath.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">2dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Ath.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">2dp</item>
+    </style>
+
+    <style name="Widget.Ath.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary" />
+
+    <style name="Widget.Ath.TabLayout" parent="Widget.MaterialComponents.TabLayout.Colored" />
+
+    <style name="Widget.Ath.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Ath.TextInputLayout</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeColor">@color/selector_box_stroke_color</item>
+        <item name="height">80dp</item>
+    </style>
+
+    <style name="ThemeOverlay.Ath.TextInputLayout" parent="">
+        <item name="colorPrimary">?attr/colorOnSurface</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Ath.Utility.Sans.Regular.Large</item>
+        <item name="colorControlActivated">?attr/colorOnSurface</item>
+        <item name="editTextStyle">@style/Widget.Ath.TextInputEditText</item>
+    </style>
+
+    <style name="ThemeOverlay.Ath.ToolbarColorControl" parent="ThemeOverlay.AppCompat">
+        <item name="colorControlNormal">@color/ath_grey_10</item>
+    </style>
+
+    <style name="Widget.Ath.TextInputEditText" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Ath.Utility.Sans.Regular.Large</item>
+    </style>
+
+    <style name="Widget.Ath.Slider" parent="Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Slider</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Slider" parent="">
+        <item name="colorPrimary">@color/ath_grey_10</item>
+        <item name="colorOnPrimary">@color/ath_grey_60</item>
+        <item name="colorOnSurface">@color/ath_grey_10</item>
+    </style>
+
+    <style name="ThemeOverlay.Ath.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">?attr/colorOnSurface</item>
+        <item name="colorSecondary">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Ath.MenuSheet" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="colorSurface">@color/ath_grey_65</item>
+    </style>
+
+    <!-- Base Theme for BottomSheets with custom UI -->
+    <style name="Widget.Ath.BottomSheetDialogCustom" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="colorSurface">@color/ath_grey_65</item>
+        <item name="drawerArrowStyle">@style/Widget.Athletic.Drawer</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateHidden</item>
+        <item name="bottomSheetStyle">@style/Widget.Ath.BottomSheetDialogCustom.Modal</item>
+        <item name="colorControlHighlight">@color/ath_grey_50</item>
+    </style>
+
+    <style name="Widget.Ath.BottomSheetDialogCustom.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_bottom_sheet_custom_bg</item>
+    </style>
+
+    <!-- One-off Widget Styles:
+    The Section below may contain a limited number of one-off widgets.
+    -->
+
+    <style name="Widget.Ath.ManageAccountTextInputLayout" parent="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingStart">6sp</item>
+        <item name="android:textColorHint">@color/ath_grey_40</item>
+    </style>
+
+    <style name="Widget.Ath.ManageAccountEditText" parent="@style/TextAppearance.Ath.Navigation">
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/ath_grey_20</item>
+    </style>
+
+    <style name="Widget.Ath.BigPodcastPlayerSeekBar" parent="">
+        <item name="colorAccent">@color/ath_grey_10</item>
+        <item name="android:progressBackgroundTint">@color/ath_grey_60</item>
+        <item name="android:progressTint">@color/ath_grey_10</item>
+    </style>
+
+
+    <style name="Widget.Ath.BigPodcastPlayerSeekBarBuffer" parent="">
+        <item name="colorAccent">@color/ath_grey_50</item>
+        <item name="android:progressBackgroundTint">@color/ath_grey_60</item>
+    </style>
+
+    <style name="Widget.Ath.Podcast.SleepTimer.Item" parent="TextAppearance.Ath.Navigation">
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:textColor">@color/ath_grey_10</item>
+        <item name="android:background">@drawable/selector_clickable_item_bg</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+</resources>

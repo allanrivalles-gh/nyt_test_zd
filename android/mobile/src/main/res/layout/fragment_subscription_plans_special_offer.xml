@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.subscriptionplans.SubscriptionPlansContract.SubscriptionPlansViewState" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.subscriptionplans.SubscriptionPlansContract.Presenter" />
+    </data>
+
+    <com.theathletic.widget.StatefulLayout
+        android:theme="@style/Theme.Ath.Rebrand.Desert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor"
+        app:state="@{data.state}"
+        app:emptyLayout="@layout/placeholder_empty"
+        app:progressLayout="@layout/placeholder_progress"
+        app:offlineLayout="@layout/placeholder_offline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/exit_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"
+                android:contentDescription="@null"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:tint="?attr/colorOnSurface"
+                android:onClick="@{() -> interactor.onCloseClick()}"
+                app:srcCompat="@drawable/ic_close"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/dash"
+                android:layout_width="24dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:background="?attr/colorOnSurface"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/special_text"
+                app:layout_constraintTop_toBottomOf="@id/exit_button"/>
+
+            <TextView
+                android:id="@+id/special_text"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/plans_special_today_only"
+                app:layout_constraintStart_toEndOf="@id/dash"
+                app:layout_constraintTop_toTopOf="@id/dash"
+                app:layout_constraintBottom_toBottomOf="@id/dash"/>
+
+            <!-- TT Title -->
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.Ath.Slab.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:parameterizedString="@{data.annualPlanSpecial}"
+                android:textSize="61sp"
+                app:autoSizeMaxTextSize="61sp"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/special_text"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle"
+                tools:text="Save 40%\non all access." />
+
+            <!-- TT Title Note -->
+            <TextView
+                android:id="@+id/subtitle"
+                style="@style/TextAppearance.Ath.ContentBody.Regular.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/plans_special_subtitle"
+                app:autoSizeMaxTextSize="18sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/center_lines"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <View
+                android:id="@+id/center_lines"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:background="@drawable/shape_onboarding_lines_black_grey"
+                app:layout_constraintVertical_bias=".55"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- TT Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/subscribe_button"
+                android:theme="@style/Theme.Ath.Rebrand"
+                style="@style/Widget.Ath.Button.Branded.Large"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/plans_button_subscribe"
+                android:onClick="@{() -> interactor.onContinueClick()}"
+                app:layout_constraintTop_toBottomOf="@id/center_lines"
+                app:layout_constraintBottom_toTopOf="@id/price_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="400dp"
+                tools:text="@string/onboarding_subscribe_button_text" />
+
+            <TextView
+                android:id="@+id/strikethrough_price"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large.Variant1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{data.strikethroughPrice}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/price_text"
+                app:layout_constraintBottom_toBottomOf="@id/price_text"
+                app:layout_constraintTop_toTopOf="@id/price_text"
+                tools:text="$59.99"/>
+
+            <View
+                android:id="@+id/strikethrough"
+                android:layout_width="0dp"
+                android:layout_height="1.5dp"
+                android:background="?attr/colorOnBackgroundVariant1"
+                app:layout_constraintStart_toStartOf="@id/strikethrough_price"
+                app:layout_constraintEnd_toEndOf="@id/strikethrough_price"
+                app:layout_constraintTop_toTopOf="@id/strikethrough_price"
+                app:layout_constraintBottom_toBottomOf="@id/strikethrough_price"/>
+
+            <!-- TT Price text -->
+            <TextView
+                android:id="@+id/price_text"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="start"
+                android:parameterizedString="@{data.annualPlanPrice}"
+                android:lineSpacingMultiplier="1.2"
+                app:layout_goneMarginTop="56dp"
+                app:layout_goneMarginBottom="56dp"
+                app:layout_constraintTop_toBottomOf="@id/subscribe_button"
+                app:layout_constraintStart_toEndOf="@id/strikethrough_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="$35.99/year" />
+
+            <!-- TT Privacy Policy -->
+            <TextView
+                android:id="@+id/privacy_policy"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:padding="4dp"
+                android:text="@string/dialog_gdpr_privacy_title"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> interactor.onPrivacyPolicyClick()}"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vertical_div"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <View
+                android:id="@+id/vertical_div"
+                android:layout_width="1dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/colorOnBackgroundVariant1"
+                app:layout_constraintStart_toEndOf="@id/terms_of_service"
+                app:layout_constraintEnd_toStartOf="@id/privacy_policy"
+                app:layout_constraintTop_toTopOf="@id/privacy_policy"
+                app:layout_constraintBottom_toBottomOf="@id/privacy_policy"/>
+
+            <!-- TT Terms of Service -->
+            <TextView
+                android:id="@+id/terms_of_service"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_gdpr_terms_title"
+                android:padding="4dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> interactor.onTermsOfServiceClick()}"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintBaseline_toBaselineOf="@id/privacy_policy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vertical_div"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.theathletic.widget.StatefulLayout>
+</layout>

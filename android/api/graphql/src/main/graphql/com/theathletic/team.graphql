@@ -1,0 +1,11 @@
+query RecommendedTeamsQuery {
+    onboardingRecommendedTeams {
+        id
+        name
+        shortname
+        short_display_name
+        league_id
+        url
+        search_text
+    }
+}

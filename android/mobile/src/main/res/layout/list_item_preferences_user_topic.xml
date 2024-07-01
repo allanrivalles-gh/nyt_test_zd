@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.search.ui.UserTopicListItem.Interactor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.feed.search.ui.UserTopicListItem" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/ath_grey_70"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> interactor.onTopicItemClicked(data)}"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@null"
+                app:imageUrl="@{data.logoUri}"
+                app:imageError="@{data.logoPlaceholder == null ? null : context.getDrawable(data.logoPlaceholder)}"
+                app:imageCircular="@{data.circularLogo}"
+                tools:src="@drawable/ic_questionmark_empty_placeholder" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@{data.name}"
+                android:textColor="@color/ath_grey_30"
+                tools:text="Indians"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@null"
+            android:tint="@color/ath_grey_10"
+            app:srcCompat="@{data.selectedIcon}"
+            tools:src="@drawable/ic_check_2_padded" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:visibility="@{data.showDivider}"
+            android:background="@color/ath_grey_60"
+            />
+    </FrameLayout>
+</layout>

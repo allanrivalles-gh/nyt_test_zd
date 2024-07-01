@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+            name="view"
+            type="com.theathletic.profile.ui.ProfileListItem.Interactor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.profile.ui.ProfileListItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:onClick="@{() -> view.onProfileListItemClick(data)}"
+        android:background="@color/ath_grey_70"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:visibility="@{data.primaryItemShowsIcon}"
+            android:tint="@{ContextCompat.getColor(context, data.tintColor)}"
+            app:srcCompat="@{data.icon}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_gift" />
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="18dp"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Ath.Navigation"
+                android:text="@{data.text}"
+                android:textColor="@color/ath_grey_20"
+                tools:text="Saved Stories" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+                android:text="@{data.text}"
+                android:textColor="@color/ath_grey_40"
+                android:layout_marginTop="4dp"
+                android:visibility="@{data.subtext != null}"
+                android:parameterizedString="@{data.subtext}"
+                tools:text="1 of 5 Redeemed" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{data.text}"
+            android:textColor="@color/ath_grey_80"
+            android:background="@drawable/background_profile_badge"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:parameterizedString="@{data.badgeText}"
+            android:visibility="@{data.badgeText != null}"
+            android:singleLine="true"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintStart_toEndOf="@id/text_container"
+            app:layout_constraintTop_toTopOf="@id/text_container"
+            app:layout_constraintBottom_toBottomOf="@id/text_container"
+            tools:text="2 New Episodes"
+            />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="24dp"
+            android:tint="@color/ath_grey_10"
+            android:src="@drawable/ic_chevron_right"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

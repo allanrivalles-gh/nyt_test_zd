@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:bind="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+        <import type="com.theathletic.ui.LoadingState" />
+        <import type="android.view.View" />
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+            name="interactor"
+            type="com.theathletic.ui.list.AthleticListInteractor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.ui.list.ListViewState" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/toolbar_brand"
+            layout="@layout/toolbar_brand"
+            android:visibility="@{data.showToolbar ? View.VISIBLE : View.GONE}"
+            />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:enabled="@{data.refreshable}"
+            app:refreshing="@{data.showSpinner}"
+            app:onRefreshListener="@{() -> interactor.onRefresh()}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@{ContextCompat.getColor(context, data.backgroundColorRes)}"
+                    android:orientation="vertical"
+                    app:supportsChangeAnimations="@{false}"
+                    tools:listitem="@layout/list_item_profile_row"
+                    />
+
+                <include
+                    layout="@layout/feed_item_notification"
+                    android:visibility="@{data.showListUpdateNotification ? View.VISIBLE : View.GONE}"
+                    bind:data="@{data}"
+                    bind:interactor="@{interactor}"
+                    />
+
+            </FrameLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

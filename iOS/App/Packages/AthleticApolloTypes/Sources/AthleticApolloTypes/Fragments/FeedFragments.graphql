@@ -1,0 +1,561 @@
+fragment Announcement on Announcement {
+    __typename
+    id
+    title
+    excerpt
+    image_url
+    deeplink_url
+    cta_text
+    end_date
+}
+
+fragment BasicHeadline on News {
+    __typename
+    id
+    type
+    headline
+    permalink
+}
+
+fragment Consumable on FeedConsumable {
+    __typename
+    consumable {
+        __typename
+        id
+        ...ArticleLiteAuthor
+        ...Qanda
+        ...DiscussionDetail
+        ...Announcement
+        ...BasicHeadline
+        ...NewsHeadline
+        ...FeedGame
+        ...PodcastDetail
+        ...PodcastEpisodeDetail
+        ...Spotlight
+        ...TopicDetails
+        ...LiveBlogContent
+        ...LiveRoomDetails
+        ...FeaturedGameContainer
+    }
+    description
+    id
+    consumable_id
+    type
+}
+
+fragment CuratedItem on CuratedItem {
+    id
+    title
+    description
+    content {
+        ...ArticleDetails
+        ...PodcastEpisodeDetail
+        ...DiscussionDetail
+        ...Qanda
+        ...TopicDetails
+    }
+}
+
+fragment DiscussionDetail on Discussion {
+    __typename
+    author {
+        ...UserDetailWrapper
+    }
+    comment_count
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    published_at
+    title
+    excerpt
+    excerpt_plaintext
+}
+
+fragment FeaturedGameContainer on FeaturedGame {
+    __typename
+    id
+    game_title_parts
+    game {
+        ...FeaturedGameGame
+    }
+    series_title
+    featured_content {
+        ...FeaturedGameFeaturedContent
+    }
+    links {
+        ...FeaturedGameLink
+    }
+}
+
+fragment FeaturedGameGame on Gamev2 {
+    ... on AmericanFootballGame {
+        ...FeaturedGameV2
+    }
+    ... on BasketballGame {
+        ...FeaturedGameV2
+    }
+    ... on SoccerGame {
+        ...FeaturedGameV2
+    }
+    ... on HockeyGame {
+        ...FeaturedGameV2
+    }
+    ... on BaseballGame {
+        ...FeaturedGameV2
+    }
+}
+
+fragment FeaturedGameFeaturedContent on Consumable {
+    ...ArticleLiteAuthor
+    ...LiveBlogContent
+    ...FeaturedComment
+}
+
+fragment FeaturedGameLink on LinkableString {
+    app_linked_string
+    raw_string
+}
+
+fragment FeaturedGameTeam on GameTeam {
+    id
+    team {
+        ...TeamV2
+    }
+    score
+    penalty_score
+    current_record
+}
+
+fragment FeedGame on FeedGame {
+    __typename
+    index
+    ...ScoresBannerGame
+}
+
+fragment Insight on Insight {
+    __typename
+    id
+    type
+    created_at
+    updated_at
+    audio_uri
+    status
+    text
+    images {
+        ...NewsImage
+    }
+    user {
+        ...UserDetailWrapper
+    }
+}
+
+fragment NewsBrief on Brief {
+    __typename
+    created_at
+    id
+    type
+    status
+    audio_uri
+    images {
+        ...NewsImage
+    }
+    text
+    html
+    updated_at
+    user {
+        ...UserDetailWrapper
+    }
+}
+
+fragment NewsHeadline on News {
+    __typename
+    byline
+    disable_comments
+    lock_comments
+    permalink
+    byline_linkable {
+        app_linked_string
+        raw_string
+    }
+    comment_count
+    created_at
+    headline
+    id
+    images {
+        ...NewsImage
+    }
+    importance
+    last_activity_at
+    primary_tag {
+        ...TagDetailWrapper
+    }
+}
+
+fragment NewsImage on Image {
+    __typename
+    id
+    image_height
+    image_width
+    image_uri
+    thumbnail_height
+    thumbnail_width
+    thumbnail_uri
+}
+
+fragment NewsItemLite on News {
+    permalink
+    created_at
+    updated_at
+    headline
+    id
+    images {
+        ...NewsImage
+    }
+    primary_tag {
+        ...TagDetailWrapper
+    }
+    byline_linkable {
+        app_linked_string
+    }
+}
+
+fragment PagingPageInfo on PageInfo {
+    __typename
+    id
+    currentPage
+    hasNextPage
+    hasPreviousPage
+}
+
+fragment Qanda on Qanda {
+    __typename
+    author {
+        ...UserDetailWrapper
+    }
+    comment_count
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    published_at
+    title
+    started_at
+    ended_at
+    excerpt
+    excerpt_plaintext
+}
+
+fragment SpotlightDetails on Spotlight {
+    __typename
+    id
+    article_id
+    article {
+        __typename
+        comment_count
+        disable_comments
+        lock_comments
+        excerpt
+        excerpt_plaintext
+        id
+        image_uri
+        permalink
+        primary_tag_string: primary_tag
+        published_at
+        title
+        author {
+            name
+        }
+        article_authors: authors {
+            id
+            author {
+                name
+                ... on Staff {
+                    avatar_uri
+                }
+            }
+            display_order
+        }
+    }
+    created_at
+    quote
+    quotee
+    region
+    updated_at
+}
+
+fragment Spotlight on Spotlight {
+    __typename
+    id
+    spotlight_scheduled_at: scheduled_at
+    article {
+        ...SpotlightArticle
+    }
+}
+
+fragment SpotlightArticle on Article {
+    __typename
+    comment_count
+    disable_comments
+    lock_comments
+    excerpt
+    excerpt_plaintext
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    title
+    author {
+        name
+    }
+    article_authors: authors {
+        id
+        author {
+            name
+            ... on Staff {
+                avatar_uri
+            }
+        }
+        display_order
+    }
+}
+
+fragment TagDetail on Tag {
+    id
+    title
+    league
+    leagueCode
+    leagueShortname
+    leagueTitle
+    name
+    shortname
+    type
+    deeplink_url
+    image_url
+}
+
+fragment TagDetailWrapper on Tag {
+    ... on DisplayTag {
+        ...TagDetail
+    }
+    ... on GameTag {
+        ...TagDetail
+    }
+    ... on LeagueTag {
+        ...TagDetail
+    }
+    ... on PlayerTag {
+        ...TagDetail
+    }
+    ... on AuthorTag {
+        ...TagDetail
+    }
+    ... on TeamTag {
+        ...TagDetail
+    }
+    ... on TopicTag {
+        ...TagDetail
+    }
+}
+
+fragment TopicDetails on Topic {
+    __typename
+    id
+    title
+    type
+    articles_count
+    image_url
+}
+
+fragment GameConsumable on GameConsumable {
+    __typename
+    index
+    game {
+        ...ScoresBannerGame
+    }
+}
+
+fragment ScoresBannerGame on Gamev2 {
+    id
+    sport
+    status
+    period_id
+    scheduled_at
+    is_scheduled_time_tbd: time_tbd
+    started_at
+    game_status {
+        ...GameStatusDisplay
+    }
+    group
+    league {
+        __typename
+        id
+        name
+        display_name
+    }
+    home_team {
+        __typename
+        ...GameV2LiteTeam
+    }
+    away_team {
+        __typename
+        ...GameV2LiteTeam
+    }
+    coverage {
+        available_data
+    }
+    permalinkString: permalink
+}
+
+fragment AnnouncementConsumable on AnnouncementConsumable {
+    __typename
+    consumable_id
+    title
+    excerpt
+    image_url
+    deeplink_url
+    cta_text
+    end_date
+}
+
+fragment LiveRoomConsumable on LiveRoomConsumable {
+    __typename
+    consumable_id
+    audience_total
+    hosts {
+        ...LiveRoomHost
+    }
+    contentImages: images {
+        image_uri
+    }
+    permalink
+    title
+    subtitle
+}
+
+fragment FeaturedGameConsumable on FeaturedGameConsumable {
+    __typename
+    id
+    game_title_parts
+    game {
+        ...FeaturedGameGame
+    }
+    series_title
+    featured_content {
+        ...FeaturedGameFeaturedContent
+    }
+    links {
+        ...FeaturedGameLink
+    }
+}
+
+fragment ArticleConsumable on ArticleConsumable {
+    __typename
+    consumable_id
+    title
+    post_type_id
+    image_uri
+    description
+    comment_count
+    permalink
+    excerpt
+    disable_comments
+    started_at
+    ended_at
+    author {
+        first_name
+        last_name
+    }
+}
+
+fragment NewsConsumable on NewsConsumable {
+    __typename
+    title
+    consumable_id
+    type
+    permalink
+    image_uri
+}
+
+fragment LiveBlogConsumable on LiveBlogConsumable {
+    __typename
+    consumable_id
+    type
+    title
+    short_title
+    description
+    permalink
+    permalink_for_embed
+    last_activity_at
+    image_uri
+    live_blog_status: status
+    liveBlogTags: tags {
+        id
+        type
+    }
+}
+
+fragment PodcastEpisodeConsumable on PodcastEpisodeConsumable {
+    __typename
+    id
+    description
+    duration
+    finished
+    image_url
+    mp3_url
+    number
+    permalink
+    published_at
+    title
+    disable_comments
+    podcast_comment_count: comment_count
+    podcast_episode_id
+    parent_podcast {
+        ...PodcastDetail
+    }
+    clips {
+        id
+        start_position
+        end_position
+        title
+    }
+}
+
+fragment RecommendedPodcastConsumable on RecommendedPodcastConsumable {
+    __typename
+    podcast_id
+    title
+    image_url
+    metadata_string
+}
+
+fragment SpotlightConsumable on SpotlightConsumable {
+    __typename
+    id
+    spotlight_scheduled_at: scheduled_at
+    article {
+        ...SpotlightArticle
+    }
+}
+
+fragment FeaturedComment on FeaturedComment{
+   id
+   type
+   comment {
+       id
+       comment
+       commented_at
+       author_id
+       author_name
+       author_initials
+       author_game_flairs {
+           id
+           name
+           icon_contrast_color
+       }
+       author_user_level
+       author_color
+       avatar_url
+       likes_count
+    }
+}

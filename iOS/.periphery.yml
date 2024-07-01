@@ -1,0 +1,5 @@
+project: theathletic-ios.xcodeproj
+schemes:
+- Production
+targets:
+- Production

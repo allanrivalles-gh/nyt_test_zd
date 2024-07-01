@@ -1,0 +1,71 @@
+# QUERIES
+
+query ListenFeedData {
+    podcastFeed {
+        has_live_rooms
+        user_live_rooms {
+            ... on LiveRoom {
+                ...LiveRoomFragment
+            }
+        }
+        discover_live_rooms {
+            ... on LiveRoom {
+                ...LiveRoomFragment
+            }
+        }
+        discover {
+            id
+            image_url
+            name
+            type
+            url
+        }
+        recommended_podcasts {
+            ...Podcast
+        }
+        user_podcast_episodes {
+            ... on PodcastEpisode {
+                ...PodcastEpisode
+            }
+        }
+        user_podcasts {
+            ...Podcast
+        }
+    }
+}
+
+query LiveRoomAvailable {
+    podcastFeed {
+        has_live_rooms
+        user_live_rooms {
+            id
+        }
+        discover_live_rooms {
+            id
+        }
+    }
+}
+
+# Mutations
+
+mutation FollowPodcast($followPodcastId: ID!) {
+    followPodcast(id: $followPodcastId) {
+        success
+    }
+}
+
+mutation UnfollowPodcast($unfollowPodcastId: ID!) {
+    unfollowPodcast(id: $unfollowPodcastId) {
+        success
+    }
+}
+
+fragment Podcast on Podcast {
+    __typename
+    id
+    title
+    description
+    metadata_string
+    image_url
+    notif_episodes_on
+}

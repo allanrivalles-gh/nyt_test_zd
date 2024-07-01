@@ -1,0 +1,603 @@
+format_version: "8"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: android
+trigger_map:
+- push_branch: stable/*
+  workflow: deploy-beta
+- pull_request_source_branch: '*'
+  workflow: dev-validation
+workflows:
+  build-adhoc-beta:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        - destination: $HOME/keystores/my_keystore.jks
+    - android-build@0.10:
+        inputs:
+        - variant: $RELEASE_VARIANT
+        - module: mobile
+        title: Application Build
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  build-adhoc-nightly:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        - destination: $HOME/keystores/my_keystore.jks
+    - android-build@0.10:
+        inputs:
+        - variant: $NIGHTLY_VARIANT
+        - module: mobile
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  build-adhoc-testRelease:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        - destination: $HOME/keystores/my_keystore.jks
+    - android-build@0.10:
+        inputs:
+        - variant: $TEST_RELEASE_VARIANT
+        - module: mobile
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  deploy-beta:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - destination: $HOME/keystores/my_keystore.jks
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        title: Keystore Download
+    - script@1:
+        title: Build
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            ./gradlew mobile:assembleProdRelease instrumentation:assembleInstrumentation
+            find instrumentation -name "*.apk" -exec mv {} $BITRISE_DEPLOY_DIR/smoke-test.apk \;
+            find mobile -name "*.apk" -exec mv {} $BITRISE_DEPLOY_DIR/the-athletic-release.apk \;
+            find mobile -name "mapping.txt" -exec mv {} $BITRISE_DEPLOY_DIR/mapping.txt \;
+    - file-downloader@1:
+        title: Cloud API Key Download
+        inputs:
+        - destination: $BITRISE_SOURCE_DIR/test-lab-key.json
+        - source: $BITRISEIO_FIREBASE_TEST_LAB_URL
+    - script@1:
+        title: Cloud Auth
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            gcloud auth activate-service-account android-test-lab@the-athletic.iam.gserviceaccount.com --key-file=$BITRISE_SOURCE_DIR/test-lab-key.json --project=the-athletic
+    - script@1:
+        title: Smoke Test
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            gcloud firebase test android run \
+              --type instrumentation \
+              --app $BITRISE_DEPLOY_DIR/the-athletic-release.apk \
+              --test $BITRISE_DEPLOY_DIR/smoke-test.apk \
+              --test-targets "class com.theathletic.instrumentation.test.SmokeTestSuite" \
+              --num-flaky-test-attempts=3 \
+              --device model=Nexus6,version=24 \
+              --device model=Pixel2.arm,version=33 \
+              --client-details matrixLabel="$BITRISE_BUILD_NUMBER"
+    - google-play-deploy@3.7:
+        inputs:
+        - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL
+        - track: beta
+        - user_fraction: ""
+        - app_path: $BITRISE_DEPLOY_DIR/the-athletic-release.apk
+        - mapping_file: $BITRISE_DEPLOY_DIR/mapping.txt
+        - package_name: com.theathletic
+    - deploy-to-bitrise-io@1: {}
+    - cache-push@2: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  deploy-nightly:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        - destination: $HOME/keystores/my_keystore.jks
+    - android-build@0.10:
+        inputs:
+        - variant: $NIGHTLY_VARIANT
+        - module: mobile
+    - google-play-deploy@3.7:
+        inputs:
+        - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL
+        - track: internal
+        - package_name: com.theathletic.dev
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5: {}
+    - script@1:
+        title: Send a Slack message
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+
+            get_fail_message() {
+              cat <<EOF
+            {
+               "username": "Sadroid",
+               "icon_url": "https://github.com/TheAthletic/android/assets/13192434/cad66753-1482-43c2-998a-f708408f2b57",
+               "channel": "CQ0E7JJ1Z",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "@android\n:fire:  *The nightly build has failed, fix it  :fire_engine:*\n\n:hammer:  *Build* <$BITRISE_BUILD_URL|$BITRISE_BUILD_NUMBER>"
+                    }
+                  }
+                ]
+            }
+            EOF
+            }
+
+            if [ "$BITRISE_BUILD_STATUS" -eq 1 ]; then
+              curl -X POST "https://slack.com/api/chat.postMessage" \
+                -H "Content-type: application/json" \
+                -H "Authorization: Bearer $SLACK_API_TOKEN" \
+                -d "$(get_fail_message)"
+            fi
+        is_always_run: true
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  deploy-prod-1-percent:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - destination: $HOME/keystores/my_keystore.jks
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - android-build@0.10:
+        inputs:
+        - variant: $RELEASE_VARIANT
+        - module: mobile
+    - google-play-deploy@3.3:
+        inputs:
+        - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL
+        - track: production
+        - user_fraction: "0.01"
+        - package_name: com.theathletic
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5: {}
+    description: This workflow deploys directly to our production stream at 1 percent, which is useful for shipping out emergency patches.
+  deploy-testRelease:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+          - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@2.4:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0.9:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: --continue ktlintCheck
+    - android-detekt@0: {}
+    - android-unit-test@1.0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - change-android-versioncode-and-versionname@1.2:
+        inputs:
+        - version_code_offset: $BASE_VERSION_CODE_VALUE
+        - build_gradle_path: $BITRISE_SOURCE_DIR/mobile/build.gradle.kts
+    - file-downloader@1:
+        inputs:
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+        - destination: $HOME/keystores/my_keystore.jks
+        title: Keystore Download
+    - script@1:
+        title: Build
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            ./gradlew mobile:assembleReleaseTestRelease instrumentation:assembleInstrumentation
+            find instrumentation -name "*.apk" -exec mv {} $BITRISE_DEPLOY_DIR/smoke-test.apk \;
+            find mobile -name "*.apk" -exec mv {} $BITRISE_DEPLOY_DIR/the-athletic-release.apk \;
+            find mobile -name "mapping.txt" -exec mv {} $BITRISE_DEPLOY_DIR/mapping.txt \;
+    - file-downloader@1:
+        title: Cloud API Key Download
+        inputs:
+        - destination: $BITRISE_SOURCE_DIR/test-lab-key.json
+        - source: $BITRISEIO_FIREBASE_TEST_LAB_URL
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            gcloud auth activate-service-account android-test-lab@the-athletic.iam.gserviceaccount.com --key-file=$BITRISE_SOURCE_DIR/test-lab-key.json --project=the-athletic
+        title: Cloud Auth
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
+            set -x
+
+            gcloud firebase test android run \
+              --type instrumentation \
+              --app $BITRISE_DEPLOY_DIR/the-athletic-release.apk \
+              --test $BITRISE_DEPLOY_DIR/smoke-test.apk \
+              --test-targets "class com.theathletic.instrumentation.test.SmokeTestSuite" \
+              --num-flaky-test-attempts=3 \
+              --device model=Nexus6,version=24 \
+              --device model=Pixel2.arm,version=33 \
+              --client-details matrixLabel="$BITRISE_BUILD_NUMBER"
+        title: Smoke Test
+    - google-play-deploy@3.7:
+        inputs:
+        - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL
+        - track: internal
+        - app_path: $BITRISE_DEPLOY_DIR/the-athletic-release.apk
+        - mapping_file: $BITRISE_DEPLOY_DIR/mapping.txt
+        - package_name: com.theathletic
+    - deploy-to-bitrise-io@1.13: {}
+    - cache-push@2.5:
+        is_always_run: true
+    - script@1:
+        title: Send Slack Message
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+
+            get_fail_message() {
+              cat <<EOF
+            {
+               "username": "Sadroid",
+               "icon_url": "https://github.com/TheAthletic/android/assets/13192434/cad66753-1482-43c2-998a-f708408f2b57",
+               "channel": "CQ0E7JJ1Z",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "@android\n:fire:  *The test release build has failed, fix it  :fire_engine:*\n\n:hammer:  *Build* <$BITRISE_BUILD_URL|$BITRISE_BUILD_NUMBER>"
+                    }
+                  }
+                ]
+            }
+            EOF
+            }
+
+            if [ "$BITRISE_BUILD_STATUS" -eq 1 ]; then
+              curl -X POST "https://slack.com/api/chat.postMessage" \
+                -H "Content-type: application/json" \
+                -H "Authorization: Bearer $SLACK_API_TOKEN" \
+                -d "$(get_fail_message)"
+            fi
+        is_always_run: true
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  dev-validation:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.1: {}
+    - set-java-version@1.1:
+        inputs:
+        - set_java_version: "17"
+    - cache-pull@2.5: {}
+    - install-missing-android-tools@3.1:
+        inputs:
+        - gradlew_path: ./gradlew
+    - android-lint@0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - report_path_pattern: '**/build/reports/lint-results*.html'
+        - arguments: -q
+        - variant: $VARIANT
+    - gradle-runner@2.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_options: --stacktrace --no-daemon --warning-mode none
+        - gradle_task: --continue ktlintCheck
+        title: Ktlint
+    - android-detekt@0: {}
+    - android-unit-test@1:
+        inputs:
+        - variant: devDebug
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            mv "$BITRISE_SOURCE_DIR/mobile/lint-baseline.xml" "$BITRISE_DEPLOY_DIR"
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+        title: Move files to deploy dir
+        is_always_run: true
+    - codecov@3:
+        inputs:
+        - OS: linux
+        - CODECOV_TOKEN: $CODECOV_TOKEN
+    - deploy-to-bitrise-io@2.6: {}
+    - cache-push@2.5: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+  version-cut:
+    steps:
+    - activate-ssh-key@4:
+        inputs:
+        - verbose: "true"
+    - set-git-credentials@1:
+        inputs:
+        - git_email_address: accounts@theathletic.com
+    - git-clone@4: {}
+    - cache-pull@2.1.0: {}
+    - gradle-runner@1.9.0:
+        inputs:
+        - gradle_file: ""
+        - gradlew_path: ./gradlew
+        - gradle_task: :automation:cutStableTest
+    - cache-push@2.2.0: {}
+    description: This is the standard workflow to validate development branches. It runs lint, ktlint, detekt and all unit tests.
+app:
+  envs:
+  - opts:
+      is_expand: false
+    PROJECT_LOCATION: .
+  - opts:
+      is_expand: false
+    MODULE: mobile
+  - opts:
+      is_expand: false
+    VARIANT: devRelease
+  - opts:
+      is_expand: false
+    RELEASE_VARIANT: prodRelease
+  - opts:
+      is_expand: false
+    NIGHTLY_VARIANT: devRelease
+  - opts:
+      is_expand: false
+    TEST_RELEASE_VARIANT: releaseTestRelease
+  - opts:
+      is_expand: false
+    BASE_VERSION_CODE_VALUE: "33600000"
+  - opts:
+      is_expand: false
+    JAVA_OPTS: -Xms512m -Xmx6144m
+  - opts:
+      is_expand: false
+    GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xms512m -Xmx6144m"
+  - opts:
+      is_expand: false
+    UNIT_TEST_VARIANT: devDebug
+  - opts:
+      is_expand: false
+    UNIT_TEST_AND_COVERAGE_GRADLE: jacocoTestDevDebugUnitTestReport
+  - opts:
+      is_expand: false
+    BUILD_ALERT_SLACK_CHANNEL: '#eng-android'
+meta:
+  bitrise.io:
+    machine_type: standard
+    machine_type_id: elite

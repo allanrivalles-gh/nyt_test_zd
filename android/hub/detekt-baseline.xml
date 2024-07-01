@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>LongMethod:HubUi.kt$@Composable private fun FollowMenu( isFollowed: Boolean, foregroundColor: Color, onManageFollowClicked: () -> Unit, onManageNotificationsClicked: () -> Unit, )</ID>
+    <ID>LongMethod:HubUi.kt$@Composable private fun TeamHubHeader( teamHeader: HubUi.Team.TeamHeader, foregroundColor: Color, backgroundColor: Color, height: Float, collapsedScale: Float, onBackButtonClicked: () -> Unit, onManageFollowClicked: () -> Unit, onManageNotificationsClicked: () -> Unit, )</ID>
+    <ID>LongMethod:SortablePlayerValuesTablePreviewData.kt$SortablePlayerValuesTablePreviewData$fun valueColumns()</ID>
+    <ID>MatchingDeclarationName:SortablePlayerValuesTable.kt$SortablePlayerValuesTableUi</ID>
+  </CurrentIssues>
+</SmellBaseline>

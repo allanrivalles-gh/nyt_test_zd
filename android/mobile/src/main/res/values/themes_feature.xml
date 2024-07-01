@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Themes specific to a feature to be added here -->
+
+    <style name="Theme.Ath.Rebrand.Feed" parent="Theme.Ath.Rebrand.NoActionBar">
+        <item name="colorPrimary">@color/ath_grey_70</item>
+        <item name="colorPrimaryDark">@color/ath_grey_70</item>
+        <item name="colorSurface">@color/ath_grey_65</item>
+        <item name="colorOnBackgroundVariant1">@color/ath_grey_45</item>
+    </style>
+
+    <style name="Theme.Ath.Rebrand.Onboarding" parent="Theme.Ath.Rebrand.NoActionBar">
+        <item name="colorPrimary">@color/ath_grey_65</item>
+        <item name="colorOnPrimary">@color/ath_grey_10</item>
+        <item name="android:colorBackground">@color/ath_grey_65</item>
+        <item name="android:actionMenuTextColor">@color/ath_grey_10</item>
+    </style>
+
+    <!-- Toaster Themes -->
+
+    <style name="Theme.Toaster" parent="Theme.MaterialComponents">
+        <item name="toasterBackground">@color/ath_grey_10</item>
+        <item name="toasterTextColor">@color/ath_grey_65</item>
+    </style>
+
+    <style name="Theme.Toaster.Green">
+        <item name="toasterBackground">@color/ath_bright_green</item>
+        <item name="toasterTextColor">@color/ath_grey_10_raw</item>
+    </style>
+
+    <style name="Theme.Toaster.Red">
+        <item name="toasterBackground">@color/ath_red</item>
+        <item name="toasterTextColor">@color/ath_grey_10_raw</item>
+    </style>
+</resources>

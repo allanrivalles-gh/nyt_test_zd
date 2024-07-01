@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticlePaywallCTAModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticlePaywallCTAModel.Interactor" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/ath_grey_10"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp"
+        tools:cardBackgroundColor="@color/ath_grey_10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:maxWidth="@dimen/article_content_width">
+
+            <TextView
+                android:id="@+id/paywall_title"
+                style="@style/TextAppearance.Ath.Slab.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center_horizontal"
+                android:text="@string/paywall_experiment_headline"
+                android:textColor="@color/ath_grey_70"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/paywall_subtitle"
+                style="@style/TextAppearance.Ath.ContentBody.Regular.Small.Variant1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="@string/paywall_experiment_subheader"
+                android:textColor="@color/ath_grey_50"
+                app:layout_constraintStart_toStartOf="@id/paywall_title"
+                app:layout_constraintEnd_toEndOf="@id/paywall_title"
+                app:layout_constraintTop_toBottomOf="@id/paywall_title"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_continue"
+                style="@style/Widget.Ath.Button.Branded.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/paywall_experiment_cta"
+                android:onClick="@{() -> interactor.onPaywallContinueClick()}"
+                android:backgroundTint="@color/ath_grey_70"
+                app:iconTint="@color/ath_grey_10"
+                android:textColor="@color/ath_grey_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/paywall_subtitle"
+                tools:text="Subscribe now"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

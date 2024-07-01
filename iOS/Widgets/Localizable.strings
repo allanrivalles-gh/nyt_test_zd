@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  theathletic-ios
+
+  Created by Leonardo da Silva on 24/05/23.
+  Copyright © 2023 The Athletic. All rights reserved.
+*/
+
+"noContentMessage" = "Unable to fetch headlines at the moment";
+"noNetworkMessage" = "Network connection unavailable";

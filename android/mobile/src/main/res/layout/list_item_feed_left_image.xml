@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedLeftImageItem" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedLeftImageItem.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:background="@color/ath_grey_65"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> interactor.onCuratedItemClicked(data.id, data.type, data.analyticsPayload, data.title)}"
+        android:onLongClick="@{() -> interactor.onCuratedItemLongClicked(data.id, data.type)}">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="@dimen/feed_horizontal_padding"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:invisibility="@{!data.isPodcast || data.squareImage}"
+            android:foreground="@{data.isRead ? @color/ath_grey_80_10 : @android:color/transparent}"
+            app:imageUrl="@{data.imageUrl}"
+            app:isBlackAndWhite="@{data.isRead}"
+            app:viewRatio="@{data.imageViewRatio}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bookmark_icon"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:imageError="@{@drawable/ic_placeholder_offline_large}"
+            tools:layout_width="90dp"
+            tools:src="@tools:sample/avatars"/>
+
+        <ImageView
+            android:id="@+id/read_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_feed_read"
+            android:visibility="@{data.isRead}"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"/>
+
+        <ImageView
+            android:id="@+id/podcast_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/feed_podcast_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:viewRatio="@{data.imageViewRatio}"
+            tools:src="@tools:sample/avatars"/>
+
+        <ImageView
+            android:id="@+id/podcast_image"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            app:imageUrl="@{data.podcastImageUrl}"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@id/image"/>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:maxLines="@{data.isPodcast ? 2 : 3}"
+            android:ellipsize="end"
+            android:textColor="@{data.isRead ? @color/ath_grey_45 : @color/ath_grey_30}"
+            android:text="@{data.title}"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintBottom_toTopOf="@id/byline"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Before North Carolina, Roy Williams left a legacy in Kansas"/>
+
+        <ImageView
+            android:id="@+id/bookmark_icon"
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_feed_bookmark"
+            android:visibility="@{data.isBookmarked}"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/byline"
+            app:layout_constraintBottom_toBottomOf="@id/byline"
+            app:layout_constraintEnd_toStartOf="@id/byline"/>
+
+        <TextView
+            android:id="@+id/byline"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{data.byline}"
+            android:visibility="@{data.isArticle || data.isQandA || data.isDiscussion || data.isHeadline}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/bookmark_icon"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@id/podcast_player"
+            app:layout_constraintEnd_toStartOf="@id/comments"
+            tools:text="@tools:sample/lorem[10]"/>
+
+        <TextView
+            android:id="@+id/comments"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:text="@{data.commentCount}"
+            android:drawableStart="@drawable/ic_comment"
+            android:drawablePadding="4dp"
+            android:drawableTint="@color/ath_grey_45"
+            android:visibility="@{data.showComments}"
+            app:layout_constraintStart_toEndOf="@id/byline"
+            app:layout_constraintTop_toTopOf="@id/byline"
+            app:layout_constraintBaseline_toBaselineOf="@id/byline"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="125"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/podcast_group"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{data.isPodcast &amp;&amp; !data.squareImage}"
+            app:constraint_referenced_ids="podcast_image,podcast_background"
+            tools:visibility="gone"/>
+
+        <com.theathletic.podcast.ui.widget.TinyPodcastPlayer
+            android:id="@+id/podcast_player"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:onClick="@{() -> interactor.onPodcastControlClicked(data.id, data.analyticsPayload)}"
+            android:visibility="@{data.isPodcast}"
+            app:viewState="@{data.podcastPlayerState}"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/byline"
+            app:layout_constraintBottom_toTopOf="@id/live_tag" />
+
+        <TextView
+            android:id="@+id/live_tag"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/feed_live"
+            android:textColor="@color/ath_red"
+            android:layout_marginStart="16dp"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_live_indicator"
+            android:visibility="@{data.isLive &amp;&amp; data.isLiveBlog}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/podcast_player"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintEnd_toStartOf="@id/updated_at"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/updated_at"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:parameterizedString="@{data.updatedAt}"
+            android:visibility="@{data.isLiveBlog}"
+            app:layout_constraintStart_toEndOf="@id/live_tag"
+            app:layout_constraintTop_toTopOf="@id/live_tag"
+            app:layout_constraintBaseline_toBaselineOf="@id/live_tag"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Updated 2m ago"/>
+
+        <View
+            android:id="@+id/list_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60"
+            android:visibility="@{data.showListDivider}"
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

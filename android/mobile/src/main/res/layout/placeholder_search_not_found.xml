@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:background="@color/ath_grey_70">
+
+    <TextView
+        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="76dp"
+        android:text="@string/search_header_no_results"
+        android:textColor="@color/ath_grey_45"
+        android:gravity="center_horizontal" />
+
+</FrameLayout>

@@ -1,0 +1,123 @@
+fragment SeasonStandings on Season {
+    __typename
+    id
+    name
+    standings(new_format: true) {
+        ...StandingsGrouping
+    }
+    league {
+        ...LeagueV2
+    }
+}
+
+fragment TeamStandings on Teamv2 {
+    league_standings(full_standings: true, primary_only: true, default_grouping_only: false) {
+        season {
+            name
+            league {
+                ...LeagueV2
+            }
+        }
+        standings {
+            ...StandingsGrouping
+        }
+    }
+}
+
+fragment StandingsGrouping on StandingsGrouping {
+    __typename
+    id
+    grouping_type
+    grouping_label
+    show_team_rank: show_rank
+    headers {
+        ...StandingsGroupHeader
+    }
+    groups {
+        ...StandingsGroup
+    }
+}
+
+fragment StandingsGroupHeader on StandingsGroupHeader {
+    __typename
+    id
+    header
+    group_ids
+}
+
+fragment StandingsGroup on StandingsGroup {
+    __typename
+    id
+    columns {
+        ...StandingsColumn
+    }
+    name
+    standings {
+        ...StandingDetail
+    }
+    segments {
+        ...StandingsRangeToSegment
+        ...StandingsRangeFromSegment
+        ...StandingsRangeClosedSegment
+    }
+}
+
+fragment StandingsColumn on StandingsColumn {
+    __typename
+    id
+    field
+    label
+}
+
+fragment StandingDetail on Standing {
+    __typename
+    id
+    team {
+        ...TeamV2Lite
+        current_ranking
+        legacy_team {
+            id
+        }
+    }
+    rank
+    rank_status
+    played
+    won
+    drawn
+    lost
+    lost_overtime
+    points
+    for
+    against
+    difference
+    win_pct
+    div_record
+    conf_record
+    streak
+    games_behind
+    last_ten_record
+    home_record
+    away_record
+    elimination_number
+    form: last_six
+    last_six
+}
+
+fragment StandingsRangeToSegment on StandingsRangeToSegment {
+    id
+    segment_type
+    to_rank
+}
+
+fragment StandingsRangeFromSegment on StandingsRangeFromSegment {
+    id
+    segment_type
+    from_rank
+}
+
+fragment StandingsRangeClosedSegment on StandingsRangeClosedSegment {
+    id
+    segment_type
+    from_rank
+    to_rank
+}

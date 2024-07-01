@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.entity.main.PodcastExtKt" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastStoryItemView" />
+        <variable
+            name="data" type="com.theathletic.entity.main.PodcastEpisodeDetailStoryItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_80"
+        android:animateLayoutChanges="true">
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="24dp"
+            android:text="@{data.heading}"
+            android:textColor="@{PodcastExtKt.getHeadingColor(data)}"
+            android:textAllCaps="true"
+            style="@style/TextAppearance.Ath.Headline.Tiny"
+            tools:text="Mentioned"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="36dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@{data.title}"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:fontFamily="@font/tiempos_headline_regular"
+            android:lineSpacingExtra="6dp"
+            tools:text="Why the Mavericks are shooting 4-pointers … in practice, anyway"
+            style="@style/TextAppearance.Ath.Headline.Medium"
+            app:layout_constraintTop_toBottomOf="@id/type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/selector_clickable_item_bg"
+            android:onClick="@{() -> view.onStoryItemClick(data)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

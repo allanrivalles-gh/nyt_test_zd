@@ -1,0 +1,319 @@
+# QUERIES
+
+query NewsById($id : ID!) {
+    newsById(id: $id) {
+        ... NewsItem
+    }
+}
+
+query HeadlineCommentCount($id: ID!) {
+    newsById(id: $id) {
+        comment_count
+    }
+}
+
+# MUTATIONS
+
+mutation DeleteComment($commentId: ID!) {
+    deleteComment(id: $commentId)
+}
+
+mutation EditComment($commentId: ID!, $comment: String!) {
+    editComment(id: $commentId, comment: $comment)
+}
+
+mutation FlagComment($commentId: ID!, $reason: FlagReason!) {
+    flagComment(id: $commentId, reason: $reason)
+}
+
+mutation LikeComment($commentId: ID!) {
+    likeComment(id: $commentId)
+}
+
+mutation UnlikeComment($commentId: ID!) {
+    unlikeComment(id: $commentId)
+}
+
+mutation MarkReactionAsRead($id: ID!) {
+    readReaction(id: $id)
+}
+
+# FRAGMENTS
+
+fragment NewsHeadline on News {
+    __typename
+    disable_comments
+    lock_comments
+    comment_count
+    headline
+    id
+    images {
+        ... NewsImage
+    }
+    importance
+    created_at
+    last_activity_at
+    byline_linkable {
+        raw_string
+    }
+}
+
+fragment NewsItem on News {
+    __typename
+    disable_comments
+    lock_comments
+    comment_count
+    created_at
+    lede
+    content {
+        ... on Insight {
+            ... Insight
+        }
+        ... on Brief {
+            ... NewsBrief
+        }
+    }
+    following
+    headline
+    id
+    images {
+        ...NewsImage
+    }
+    importance
+    permalink
+    smart_brevity
+    status
+    type
+    last_activity_at
+    user {
+        ... on User {
+            ... User
+        }
+    }
+    byline
+    byline_linkable {
+        app_linked_string
+    }
+}
+
+fragment Insight on Insight {
+    __typename
+    id
+    type
+    created_at
+    updated_at
+    audio_uri
+    status
+    text
+    images {
+        ... NewsImage
+    }
+    user {
+        ... on User {
+            ... User
+        }
+    }
+}
+
+fragment NewsBrief on Brief {
+    __typename
+    created_at
+    id
+    type
+    status
+    audio_uri
+    images {
+        ... NewsImage
+    }
+    text
+    updated_at
+    user {
+        ... User
+    }
+}
+
+
+fragment NewsImage on Image {
+    __typename
+    image_height
+    image_width
+    image_uri
+    thumbnail_height
+    thumbnail_width
+    thumbnail_uri
+}
+
+fragment Comment on Comment {
+    __typename
+    author_id
+    author_name
+    author_user_level
+    avatar_url
+    comment_as_markdown
+    comment_permalink
+    commented_at
+    id
+    is_flagged
+    is_pinned
+    is_deletable
+    likes_count
+    parent_id
+    replies {
+        __typename
+        author_id
+        author_name
+        author_user_level
+        avatar_url
+        comment
+        comment_permalink
+        commented_at
+        id
+        is_flagged
+        is_pinned
+        is_deletable
+        likes_count
+        parent_id
+        total_replies
+        comment_metadata
+    }
+    total_replies
+    comment_metadata
+}
+
+fragment User on User {
+    __typename
+    id
+    name
+    first_name
+    last_name
+    ... on Staff {
+        ... Staff
+    }
+}
+
+fragment Staff on Staff {
+    __typename
+    avatar_uri
+    insider_avatar_uri
+    description
+    full_description
+    id
+    league_id
+    league_avatar_uri
+    name
+    first_name
+    last_name
+    role
+    slack_user_id
+    team_id
+    team_avatar_uri
+    bio
+}
+
+fragment Article on Article {
+    __typename
+    comment_count
+    excerpt_plaintext
+    id
+    image_uri
+    permalink
+    primary_tag
+    published_at
+    title
+    post_type_id
+    is_teaser
+    lock_comments
+    disable_comments
+    subscriber_score
+    author {
+        ... User
+    }
+    authors {
+        author {
+            ... User
+        }
+        display_order
+    }
+}
+
+fragment PodcastEpisode on PodcastEpisode {
+    __typename
+    id
+    number
+    comment_count
+    description
+    duration
+    image_uri
+    is_teaser
+    mp3_uri
+    permalink
+    podcast_id
+    parent_podcast {
+        id
+    }
+    published_at
+    title
+    series_title
+}
+
+fragment Discussion on Discussion {
+    __typename
+    author {
+        ... User
+    }
+    comment_count
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    published_at
+    title
+}
+
+fragment Qanda on Qanda {
+    __typename
+    author {
+        ... User
+    }
+    comment_count
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    published_at
+    title
+    started_at
+    ended_at
+}
+
+fragment Topic on Topic {
+    __typename
+    id
+    title
+    type
+    articles_count
+    image_url
+}
+
+fragment Spotlight on Spotlight {
+    __typename
+    id
+    article_id
+    article {
+        ... Article
+    }
+    created_at
+    quote
+    quotee
+    region
+    updated_at
+    spotlight_scheduled_at:scheduled_at
+}
+
+fragment Tag on Tag {
+    id
+    title
+    league
+    type
+    shortname
+}

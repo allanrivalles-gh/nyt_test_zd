@@ -1,0 +1,475 @@
+# QUERIES
+
+query GetBaseballGame($id: ID!) {
+    game(id: $id) {
+        ... BaseballGameFragment
+    }
+}
+
+query GetBaseballStats($id: ID!, $isPostGame: Boolean!) {
+    game(id: $id) {
+        ... BaseballStatsFragment
+    }
+}
+
+query GetBaseballPlayByPlays($id: ID!) {
+    game(id: $id) {
+        ... BaseballPlayByPlays
+    }
+}
+
+query GetBaseballPlayerGrades($id: ID!) {
+    game(id: $id) {
+        ... BaseballPlayerGradesGame
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription AllGameUpdatesForBaseball($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BaseballGameFragment
+    }
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription BaseballPlayerStatsUpdates($id: ID!, $isPostGame: Boolean = false) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BaseballPlayerStats
+    }
+}
+
+subscription BaseballPlayUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BaseballPlayByPlays
+    }
+}
+
+subscription BaseballPlayerGradesUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BaseballPlayerGradesGame
+    }
+}
+
+# FRAGMENTS
+
+fragment BaseballGameFragment on BaseballGame {
+    id
+    status
+    scheduled_at
+    time_tbd
+    away_team {
+        ... BaseballGameTeamFragment
+    }
+    home_team {
+        ... BaseballGameTeamFragment
+    }
+    league {
+        ... League
+    }
+    venue {
+        name
+        city
+    }
+    scoring_plays {
+        ... BaseballTeamPlayFragment
+    }
+    inning_plays {
+        ... BaseballInningPlayFragment
+    }
+    current_inning_plays :
+        play_by_play(current_inning_only: true) {
+            ... BaseballGamePlay
+    }
+    sport
+    clock
+    period_id
+    permalink
+    inning
+    inning_half
+    coverage {
+        available_data
+    }
+    odds_pregame {
+        ... GameOddsMarketFragment
+    }
+    outcome {
+        ... BaseballOutcomeFragment
+    }
+    pitching {
+        ... BaseballPitchingFragment
+    }
+    grade_status
+    tickets {
+        ... GameTicket
+    }
+    season_stats {
+        ... SeasonStats
+    }
+    top_comments {
+        ... ScoresTopComment
+    }
+    is_comments_discoverable
+}
+
+fragment BaseballGameTeamFragment on BaseballGameTeam {
+    id
+    team {
+        ... Team
+    }
+    score
+    runs
+    hits
+    errors
+    last_games(size: 5) {
+        ... RecentGameFragment
+    }
+    current_record
+    starting_pitcher_confirmed
+    starting_pitcher {
+        id
+        player {
+            ... StartingPitcherFragment
+        }
+    }
+    scoring {
+        ... InningScoreFragment
+    }
+    stats {
+        ... GameStat
+    }
+    season_stats {
+        ... RankedStat
+    }
+    stat_leaders {
+        ... TeamLeader
+    }
+    top_performers {
+        ... TopPerformer
+    }
+    line_up {
+        players (grades: true) {
+            ... GradablePlayer
+        }
+    }
+}
+
+fragment BaseballGameSummary on BaseballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    permalink
+    away_team {
+        ... BaseballGameSummaryTeam
+    }
+    home_team {
+        ... BaseballGameSummaryTeam
+    }
+    outcome {
+        balls
+        inning
+        inning_half
+        outs
+        strikes
+        runners {
+            ending_base
+        }
+    }
+    is_comments_discoverable
+    comments_on
+    grade_status
+    game_title
+}
+
+fragment BaseballGameSummaryTeam on BaseballGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+}
+
+fragment BaseballOutcomeFragment on BaseballOutcome {
+    id
+    balls
+    batter {
+        ... BaseballBatterFragment
+    }
+    pitcher {
+        ... BaseballPitcherFragment
+    }
+    next_batter {
+        ... BaseballBatterFragment
+    }
+    inning
+    inning_half
+    outs
+    runners {
+        ending_base
+    }
+    strikes
+}
+
+fragment BaseballPitchingFragment on BaseballPitching {
+    win {
+        ... BaseballPitcherFragment
+    }
+    loss {
+        ... BaseballPitcherFragment
+    }
+    save {
+        ... BaseballPitcherFragment
+    }
+}
+
+fragment BaseballPitcherFragment on BaseballPitcher {
+    id
+    player {
+        ... TeamMemberBaseball
+    }
+    game_stats {
+        ... GameStat
+    }
+}
+
+fragment TeamMemberBaseball on TeamMember {
+    id
+    display_name
+    headshots {
+        ... Headshot
+    }
+    bat_hand
+    throw_hand
+    position
+    role {
+        team {
+            color_primary
+        }
+    }
+}
+
+fragment BaseballBatterFragment on BaseballBatter {
+    id
+    player {
+        ... TeamMemberBaseball
+    }
+    game_stats {
+        ... GameStat
+    }
+    season_avg {
+        ... GameStat
+    }
+}
+
+fragment StartingPitcherFragment on TeamMember {
+    id
+    display_name
+    headshots {
+        ... Headshot
+    }
+    bat_hand
+    throw_hand
+    season_stats {
+        ... GameStat
+    }
+}
+
+fragment InningScoreFragment on InningScore {
+    id
+    inning
+    runs
+    hits
+    errors
+}
+
+fragment BaseballTeamPlayFragment on BaseballTeamPlay {
+    id
+    away_score
+    home_score
+    description
+    header
+    inning
+    inning_half
+    occurred_at
+    team {
+        ... TeamLite
+    }
+    plays {
+        ... BaseballGameEmbeddedPlay
+    }
+}
+
+fragment BaseballTeamPlayWithoutPlays on BaseballTeamPlay {
+    id
+    away_score
+    home_score
+    description
+    header
+    inning
+    inning_half
+    occurred_at
+    team {
+        ... TeamLite
+    }
+}
+
+fragment BaseballLineupChangePlayFragment on BaseballLineupChangePlay {
+    id
+    description
+    header
+    inning
+    inning_half
+    occurred_at
+}
+
+fragment BaseballPlayFragment on BaseballPlay {
+    id
+    description
+    header
+    occurred_at
+    inning
+    inning_half
+    plays {
+        ... BaseballGameEmbeddedPlay
+    }
+}
+
+fragment BaseballPlayWithoutPlays on BaseballPlay {
+    id
+    description
+    header
+    occurred_at
+    inning
+    inning_half
+}
+
+fragment BaseballPitchPlay on BaseballPitchPlay {
+    id
+    bases
+    description
+    header
+    hit_zone
+    number
+    occurred_at
+    pitch_description
+    pitch_outcome
+    pitch_zone
+}
+
+fragment BaseballInningPlayFragment on Play {
+    ... BaseballLineupChangePlayFragment
+    ... BaseballPlayFragment
+    ... BaseballTeamPlayFragment
+}
+
+fragment BaseballGamePlay on Play {
+    ... BaseballLineupChangePlayFragment
+    ... BaseballPlayFragment
+    ... BaseballTeamPlayFragment
+}
+
+fragment BaseballGameEmbeddedPlay on Play {
+    ... BaseballPlayWithoutPlays
+    ... BaseballPitchPlay
+}
+
+fragment BaseballStatsFragment on BaseballGame {
+    away_team {
+        ... BaseballStatsGameTeamFragment
+    }
+    home_team {
+        ... BaseballStatsGameTeamFragment
+    }
+}
+
+fragment BaseballStatsGameTeamFragment on BaseballGameTeam {
+    stats {
+        ... GameStat
+    }
+    players {
+        ... BaseballPlayerFragment
+    }
+}
+
+fragment BaseballPlayerFragment on BaseballPlayer {
+    id
+    position
+    player {
+        ... TeamMember
+    }
+    order
+    display_name
+    stats {
+        ... GameStat
+    }
+    pitching_outcome @include(if: $isPostGame)
+}
+
+fragment BaseballPlayerStats on Gamev2 {
+    sport
+    away_team {
+        ... BaseballPlayerStatsPlayer
+    }
+    home_team {
+        ... BaseballPlayerStatsPlayer
+    }
+}
+
+fragment BaseballPlayerStatsPlayer on BaseballGameTeam {
+    players {
+        ... BaseballPlayerFragment
+    }
+}
+
+fragment BaseballPlayByPlays on BaseballGame {
+    id
+    away_team {
+        ... BaseballPlayByPlaysTeam
+    }
+    home_team {
+        ... BaseballPlayByPlaysTeam
+    }
+    status
+    play_by_play {
+        ... BaseballGamePlay
+    }
+}
+
+fragment BaseballPlayByPlaysTeam on BaseballGameTeam {
+    team {
+        ... TeamLite
+    }
+    scoring {
+        ... InningScoreFragment
+    }
+}
+
+fragment BaseballPlayerGradesGame on BaseballGame {
+    id
+    status
+    period_id
+    clock
+    scheduled_at
+    grade_status
+    away_team {
+        ... PlayerGradesTeam
+    }
+    home_team {
+        ... PlayerGradesTeam
+    }
+    game_status {
+        ... GameState
+    }
+}

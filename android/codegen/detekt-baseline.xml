@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexMethod:AutoKoinProcessor.kt$AutoKoinProcessor$override fun process(set: MutableSet&lt;out TypeElement>?, roundEnvironment: RoundEnvironment): Boolean</ID>
+    <ID>LongMethod:AutoKoinProcessor.kt$AutoKoinProcessor$override fun process(set: MutableSet&lt;out TypeElement>?, roundEnvironment: RoundEnvironment): Boolean</ID>
+    <ID>NestedBlockDepth:AutoKoinProcessor.kt$AutoKoinProcessor$override fun process(set: MutableSet&lt;out TypeElement>?, roundEnvironment: RoundEnvironment): Boolean</ID>
+    <ID>TooGenericExceptionThrown:AutoKoinProcessor.kt$throw Exception("Expected to get a MirroredTypeException")</ID>
+  </CurrentIssues>
+</SmellBaseline>

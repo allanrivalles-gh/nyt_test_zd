@@ -1,0 +1,331 @@
+/*
+  theathletic-ios
+
+  Created by Jan Remes on 01/09/2017.
+  Copyright © 2017 The Athletic. All rights reserved.
+*/
+
+// MARK: - General
+"theAthletic" = "Athlétique";
+
+// MARK: - Team Hubs
+
+"pushNotifications" = "Notifications Push";
+
+// MARK: - Scores
+"standingsTeamHeading" = "Équipe";
+
+// MARK: - Standings
+"standingsNameDefault" = "CLASSEMENTS";
+"standingsNameSoccerSingular" = "CLASSEMENT";
+"standingsNameSoccerPlural" = "CLASSEMENTS";
+
+// MARK: - Box score
+
+"loadingFailed" = "Le chargement a échoué";
+
+// MARK: - Game Live Blog
+
+"error" = "Erreur";
+"flag" = "Signalez";
+"cancel" = "Annulez";
+
+// MARK: - Comments
+
+"comment" = "commentaire";
+"comments" = "commentaires";
+"edit" = "Modifier";
+"areYouSure" = "Êtes-vous sûr?";
+"commentsReviewInfo" = "Athlétique va examiner ce commentaire et s'il viole le code de conduite de notre communauté, nous prendrons les mesures appropriées pour l’enlever.";
+
+// MARK: - Article
+
+"whatDidYouThinkOfThisStory" = "Qu’avez-vous pensé de cet article?";
+"purchaseError" = "Erreur à l'achat";
+"meh" = "BOF";
+"solid" = "SOLIDE";
+"awesome" = "GÉNIAL";
+"wereSorry" = "Désolé que vous n'ayez pas aimé ça. Nous allons travailler plus fort la prochaine fois.";
+"thanksForYourInputTryFree" = "Merci pour vos commentaires! Essayez Athlétique gratuitement pendant sept jours";
+"boomGladYouReallyEnjoyedIt" = "Boom! Heureux que vous l'ayez vraiment apprécié.";
+"thanksForYourInput" = "Merci pour vos commentaires, ils nous aideront à améliorer constamment notre produit.";
+"justNow" = "À l'instant";
+"yesterday" = "Hier";
+"earlierToday" = "Plus tôt aujourd'hui";
+
+// Feed
+
+"team" = "équipe";
+"feedToday" = "Aujourd'hui";
+
+"done" = "Terminé";
+"next" = "Suivant";
+"skip" = "Ignorer";
+
+// Login
+"privacyPolicy" = "Politique de la vie privée";
+
+"email" = "COURRIEL";
+"password" = "MOT DE PASSE";
+"logIn" = "Ouvrez une session";
+"firstName" = "Prénom";
+"lastName" = "Nom";
+
+"registrationFailed" = "L'inscription a échoué";
+"loginFailed" = "La connexion a échoué";
+
+// MARK: - Settings
+"deleteAccount" = "Supprimer le compte";
+"restorePurchases" = "Restaurez vos achats";
+"manageSubscriptions" = "Gérez les abonnements";
+"subscribe" = "Abonnez-vous";
+"termsOfService" = "Modalités de service";
+"logOut" = "Fermez la session";
+"search" = "Recherchez";
+"leagues" = "Ligues";
+"notificationsAreDisabled" = "Les notifications sont désactivées pour cette application. Veuillez les activer dans Paramètres pour continuer.";
+"goToSettings" = "Allez dans Paramètres";
+"changesToYourFacebookProfileWillAppearHere" = "Les modifications apportées à votre profil Facebook apparaîtront ici.";
+"deleteMessage" = "Une fois vos données supprimées, vous n'aurez plus accès à votre compte ni à aucun abonnement associé.";
+"medium" = "Moyen";
+"large" = "Grand";
+"extraLarge" = "Très grand";
+
+// underscore
+
+"dismiss" = "Annulez";
+"loginEmail" = "Inscrivez-vous par courriel";
+"loginWelcome" = "Bon retour";
+"loginTitleEmail" = "Ouvrez une session avec votre courriel";
+"loginTitleApple" = "Continuez avec Apple";
+"loginTitleGoogle" = "Continuez avec Google";
+
+"loginTitleFacebook" = "Connectez-vous avec Facebook";
+"loginForgotPass" = "Mot de passe oublié?";
+"subscriptionMonthly" = "Mensuel";
+"subscriptionAnnual" = "Annuel";
+"notificationStories" = "Articles";
+"notificationResults" = "Résultats de matchs";
+"notificationGameStart" = "Début du jeu";
+"noComments" = "Pas de commentaire";
+"markUnread" = "Marquer comme non lu";
+"tabTitleListen" = "Balado";
+"tabTitleScoresLanding" = "Résultats";
+"authors" = "Auteurs";
+"teams" = "Équipes";
+"markRead" = "Marquer comme lu";
+"myFeed" = "Ma page d'accueil";
+"results" = "Résultats";
+"mostPopular" = "Plus populaire";
+"follow" = "Suivez";
+"savedStoriesTitle" = "Articles sauvegardés";
+"savedStoriesEmpty" = "Les articles sauvegardés apparaîtront ici";
+"readStory" = "Lisez l'article";
+"listen" = "Écoutez";
+"speechRate" = "Débit de parole:";
+
+// article by
+"textSizeSettings" = "Paramètres de taille de texte";
+
+"clear" = "Supprimer";
+"clearAllSavedStories" = "Supprimer tous les articles sauvegardés?";
+"speakArticle" = "Article audio";
+"play" = "Lecture";
+"fastRewind" = "Retour rapide";
+"fastForward" = "Avance rapide";
+
+"restorePurchasesCompleted" = "Restauration d'achats complétée";
+"saveStory" = "Sauvegarder";
+"unsaveStory" = "Annuler la sauvegarde";
+"viewMoreComments" = "Voir plus de commentaires";
+
+"podcasts" = "Balados";
+
+"updateNow" = "Mettre à jour maintenant";
+"updateRequired" = "Mise à jour requise";
+"forceUpdateInfo" = "Il semble que vous ayez une version obsolète de l’application. Veuillez la mettre à jour pour continuer à utiliser Athlétique sans interruption.";
+
+"freetrialLongInfo" = "%@/an après l'essai, facturé annuellement. Annulez quand vous voulez pendant l'essai.";
+"freetrialLongInfoMonthly" = "%@/mois après l'essai, facturé mensuellement. Annulez n'importe quand durant l'essai.";
+
+"planTermsShort" = "Vous serez facturé %@ (forfait mensuel) ou %@ (forfait annuel) par le biais de votre compte iTunes. Votre abonnement se renouvellera automatiquement à moins que vous l’annuliez dans vos paramètres de compte plus de 24 heures avant la fin de la période de facturation. En devenant membre, vous acceptez notre politique de confidentialité et nos modalités de service.";
+"notifSaveStory" = "Sauvegarder l'article";
+"readMore" = "Lisez la suite";
+"share" = "Partager";
+
+"notrialLongInfo" = "%@/mois, facturé annuellement. Annulez à tout moment.";
+"timeLeft" = "Pour encore %@";
+"annualPrice" = "%@/année";
+
+"following" = "Abonné";
+"commentFlagReason1" = "Ce commentaire est injurieux ou nuisible";
+"commentFlagReason2" = "Ce commentaire est digne d'un troll";
+"commentFlagReason3" = "Ce commentaire est un pourriel";
+"createAnAccount" = "Créez un compte";
+"createAccount" = "Créez un compte";
+"updateLocation" = "Mise jour de la localisation";
+"onboardingLeaguesSubtitle" = "Obtenez dans votre fil de nouvelles les meilleurs articles sur vos ligues préférées";
+"followLeagues" = "Suivez des ligues";
+"followTeams" = "Suivez des équipes";
+"followingSectionPlaceholder" = "Choisissez au moins une équipe.";
+
+"registerInfoTitle1" = "Vous avez presque terminé!";
+"alreadyASubscriber" = "Déjà abonné?";
+
+// Podcasts
+
+"downloadedPodcasts" = "Sauvegardé hors connexion";
+"downloadedPodcasts2" = "Voir mes téléchargements";
+"titleEmptyPodcast" = "Encore aucune émission?";
+"infoEmptyPodcast" = "Utilisez l'onglet Découvrir pour trouver de nouvelles histoires percutantes dans le monde du sport et abonnez-vous aux émissions qui couvrent les équipes et les ligues que vous suivez.";
+"actionEmptyPodcast" = "Voir les émissions recommandées";
+
+"planTermsShortDiscounted" = "Vous serez débité %@ pour la première année par le biais de votre compte iTunes. Votre abonnement se renouvellera automatiquement pour %@ un an plus tard à moins que vous ne le désactiviez dans vos paramètres de compte plus de 24 heures avant la fin de la période de facturation. En devenant membre, vous acceptez notre politique de confidentialité et nos modalités de service.";
+
+"played" = "Écouté";
+"podcastUnknownAuthor" = "Athlétique";
+"downloadedPodcastsEmpty" = "Vous n'avez encore sauvegardé aucune balado";
+"signupTermsPrivacy" = "En m'abonnant, j'accepte les %@ et %@ d'Athlétique";
+
+"plansButtonContinue" = "Continuer";
+"freeTrialTitle" = "Essai gratuit de 7 jours";
+"chooseYourPlan" = "Choisissez votre forfait";
+"onboardingPodcastsSubtitle" = "Obtenez un accès exclusif à du contenu audio portant sur les équipes que vous aimez";
+"followPodcasts" = "Suivez des balados";
+"failureCheckSubscriptionOffer" = "L'application n'a pu vérifier l'admissibilité à l'offre d'abonnement (%@)";
+"subscriptionOfferNotEligible" = "Malheureusement vous n'êtes pas admissible à cette offre d'abonnement.";
+"retry" = "Réessayez";
+"home" = "Domicile";
+"offerIneligibleTitle" = "Offre invalide";
+"offerIneligibleSubtitle" = "Étant donné que vous vous êtes abonné auparavant, vous n'êtes pas admissible à cette offre. S'il-vous-plaît vérifiez le prix de votre abonnement au moment de confirmer l'achat.";
+"soccerLineupStarting" = "Partant";
+"soccerLineupSubstitutes" = "Substitutions";
+"soccerOwnGoalShortcut" = "PB";
+"close" = "Fermer";
+"oiInfoTextAnnual" = "%@, facturé annuellement";
+"oiInfoTextMonthly" = "%@, facturé mensuellement au moment de l'abonnement.";
+"oiStartTrial" = "Faites un essai gratuit";
+"oiPaymentInfoText" = "L'abonnement annuel coûte %@ et se renouvelle automatiquement à moins que le renouvellement automatique ne soit désactivé dans vos Paramètres de compte au moins 24 heures avant la fin de la période courante. Le paiement est facturé à votre compte iTunes.";
+"oiPaymentInfoTextMonthly" = "L'abonnement mensuel coûte %@ et se renouvelle automatiquement à moins que le renouvellement automatique ne soit désactivé dans vos Paramètres de compte au moins 24 heures avant la fin de la période courante. Le paiement est facturé à votre compte iTunes.";
+"oiPaymentInfoTextTrial" = "Après votre essai gratuit, l'abonnement annuel coûte %@ et se renouvelle automatiquement à moins que le renouvellement automatique ne soit désactivé dans vos Paramètres de compte au moins 24 heures avant la fin de la période courante. Le paiement est facturé à votre compte iTunes.";
+"oiPaymentInfoTextMonthlyTrial" = "Après votre essai gratuit, l'abonnement mensuel coûte %@ et se renouvelle automatiquement à moins que le renouvellement automatique ne soit désactivé dans vos Paramètres de compte au moins 24 heures avant la fin de la période courante. Le paiement est facturé à votre compte iTunes.";
+"oiHeadlineTextTrialRebrand" = "Lisez gratuitement pendant une semaine.";
+"oiSubheadline1" = "Accédez à The Athletic pendant une semaine et plongez au cœur des plus grandes histoires.";
+"oiSubheadline2" = "Découvrez les plus grandes histoires de votre équipe. Inscrivez-vous pour voir toutes les histoires sportives qui comptent.";
+"startScreenTitle" = "Toutes les histoires au coeur du sport.";
+
+"podcastSleepTimerTitle" = "Minuterie de sommeil";
+"podcastSleepTimerOff" = "Éteint";
+"podcastSleepTimerMinutes" = "Dans %@ minutes";
+"podcastSleepTimerHour" = "Dans une heure";
+"podcastSleepTimerEpisode" = "Quand l'épisode courant se termine";
+"podcastQueueNowPlaying" = "En cours de lecture";
+"podcastQueueUpNext" = "Prochain";
+"podcastQueueAdd" = "Écouter le prochain";
+"podcastMarkAsPlayed" = "Marquer comme écouté";
+"podcastMarkAsUnplayed" = "Marquer comme non écouté";
+"podcastEpisodeDownload" = "Télécharger l'épisode";
+"podcastQueueTitle" = "File d'attente du lecteur";
+
+"podcastsDeleteManually" = "Manuellement";
+"podcastsDeleteAfterCompletion" = "Après qu'il soit complété";
+"podcastDownloadOff" = "Éteint";
+"podcastDownloadWifi" = "Télécharger sur wifi";
+"podcastDownloadWifiCellular" = "Télécharger sur wifi ou cellulaire";
+
+// gift flow
+"thanksTitle" = "Merci";
+"chooseGift" = "Cadeau Athlétique.";
+"giftRecipientTitle" = "Destinataire";
+"confirmInfoTitle" = "Confirmez vos infos";
+"confirmNamePlaceholder" = "Votre nom";
+"confirmEmailPlaceholder" = "Votre courriel";
+"deliveryMethodTitle" = "Méthode de livraison:";
+"deliveryPrintTitle" = "Imprimez à la maison seulement";
+"deliveryPrintDetail" = "Nous vous enverrons par courriel un PDF à imprimer et à remettre en main propre au destinataire. Le PDF inclura un code de réduction à usage unique pour accéder à Athletique.com";
+"deliveryEmailTitle" = "Courriel et impression";
+"deliveryEmailDetail" = "Nous allons vous envoyer à la fois un PDF à imprimer à la maison en plus d'envoyer un courriel au destinataire à la date de votre choix";
+"recipientNamePlaceholder" = "Nom du destinataire";
+"recipientMsgPlaceholder" = "Ajoutez une note (facultatif)";
+"recipientEmailPlaceholder" = "Courriel du destinataire";
+"recipientEmailAction" = "Sélectionnez un destinataire dans vos contacts";
+"recipientDateTitle" = "Sélectionnez une date de livraison:";
+"giftActionPay" = "Terminer et payer";
+"giftPlanHeaderTitle" = "Donnez au fanatique de sports dans votre vie le cadeau d'une couverture intelligente de ses équipes favorites";
+"giftRecipientHeaderTitle" = "Faites-nous savoir où nous devrions acheminer votre abonnement";
+"giftSenderHeaderTitle" = "Nous vous enverrons votre confirmation d'achat et votre cadeau par PDF à l'adresse courriel liée à votre compte Athlétique, à moins d'avis contraire";
+"giftThankTitle" = "Merci de donner Athlétique en cadeau!";
+"giftThankRecipientTitle" = "Destinataire du cadeau";
+"giftThankPlanTitle" = "Forfait-cadeau";
+"giftThankDeliveryTitle" = "Livraison";
+"giftThankAnother" = "Donnez un autre cadeau";
+"giftFooterTerms" = "Vous serez débité d'une somme de %@ pour un abonnement-cadeau de %@. En cliquant le bouton ci-dessous, vous autorisez Athlétique à vous facturer. Pour plus d'informations sur nos modalités de paiement, [tapez ici](%@)";
+
+"removeDownload" = "Retirer le téléchargement";
+
+"details" = "Détails";
+
+"pushTitle" = "Vous devrez activer les Push";
+"pushSubtitle" = "De manière à pleinement profiter d'Athlétique, vous devrez activer les notifications.";
+"pushCancel" = "Pas maintenant";
+
+"welcomeTrialTitle" = "Essayez Athlétique gratuitement pour une semaine";
+
+"validatorErrorEmpty" = "est vide";
+"validatorErrorInvalid" = "est invalide";
+"validatorErrorMin" = "un minimum de %@ caractères";
+
+"downloadedWithColon" = "Téléchargé:";
+
+"visitWebSettings" = "Allez dans Paramètres";
+"manageSubscriptionWeb" = "Rendez-vous au athletique.com/settings pour gérer votre abonnement.";
+
+"profileEmptyAdd" = "AJOUTEZ";
+"profileSaveStory" = "Articles sauvegardés";
+"profilePreference" = "Préférences et alertes";
+"profileGiveGift" = "Offrez un cadeau";
+"profileRateApp" = "Évaluez l'application";
+"profileSupport" = "Soutien courriel";
+"profileLogout2" = "Fermez la session";
+"profileInfoText1" = "Membre inscrit";
+"profileCommentReplies" = "Réponses aux commentaires";
+
+"accountFbLinked" = "Compte lié par Facebook";
+"accountLabelEmail" = "Courriel";
+
+"noCurrentGame" = "Il n'y a pas d'information sur le match pour le moment.";
+
+"referralsTitle" = "Partagez une passe d'invité de 30 jours avec jusqu'à cinq amis";
+"referralsSubtitle" = "Offrez à un ami un accès illimité à Athlétique gratuitement pour 30 jours.";
+"referralsSubtitleRedeemed" = "Vous n'avez plus de passes d'invités. Demandez-en plus et nous vous ferons savoir quand elles seront disponibles.";
+"referralsShare" = "Je lis Athlétique pour suivre mes équipes favorites. Voici une passe d'invité pour que vous puissiez en profiter gratuitement pendant 30 jours:";
+"referralsGuestPass" = "Passe d'invité de 30 jours";
+"referralsPassesRedeemed" = "laissez-passer réclamés";
+"of" = " du ";
+"referralsCta" = "Envoyer une passe d'invité";
+"referralsRequestMore" = "Demandez plus de laissez-passer";
+"referralsRequestSent" = "Demande envoyée";
+"referralsEmailSubject" = "Un cadeau pour vous";
+
+"searchTeams" = "Recherchez des équipes";
+"searchLeagues" = "Recherchez des ligues";
+"discover" = "Découvrez";
+"podcastsBrowseCategories" = "Parcourir par catégorie";
+"podcastsLocal" = "Locale";
+
+// NEWS
+"comments" = "Commentaires";
+
+// Updated Article Paywall
+"billedAnnually" = "Facturé annuellement.";
+"billedAnnuallyTrial" = "Facturé annuellement après l'essai.";
+"billedMonthly" = "Facturé mensuellement.";
+"monthlyPeriodShort" = "/mois";
+"paywallHeroTitle" = "Économisez %@sur un accès complet.";
+"localExpertise" = "Une expertise locale. \nUne perspective nationale.";
+
+// Interstitial tests
+"getUnrivaledCoverage" = "Obtenez une couverture sans pareil de vos équipes, clubs et ligues.";
+
+// Advertisement
+"adSlug" = "PUBLICITÉ";

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.Ath.Rebrand.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ath_grey_10">
+
+    <ImageView
+        android:id="@+id/play_logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_force_update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.Ath.Slab.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:text="@string/force_update_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_logo"
+        app:layout_constraintBottom_toTopOf="@+id/body" />
+
+    <TextView
+        android:id="@+id/body"
+        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large.Variant1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/force_update_body"
+        app:layout_constraintWidth_max="480dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toTopOf="@+id/update_button" />
+
+    <Button
+        android:id="@+id/update_button"
+        style="@style/Widget.Ath.Button"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/force_update_button"
+        android:onClick="onGetNewVersionClick"
+        app:layout_constraintWidth_max="480dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/body" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

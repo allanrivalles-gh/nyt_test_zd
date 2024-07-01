@@ -1,0 +1,113 @@
+query UnifiedFeed($filter: FeedRequest) {
+    feed(filter: $filter) {
+        id
+        ad_unit_path
+        pageInfo {
+            ...PagingPageInfo
+        }
+        layouts {
+            __typename
+            id
+            type
+            ... on ShortFormLayout {
+                id
+                title {
+                    app_text
+                }
+                action {
+                    app_linked_string
+                    raw_string
+                }
+                contents {
+                    ...Consumable
+                }
+            }
+            ... on BasicSingleConsumableLayout {
+                __typename
+                title {
+                    app_text
+                }
+                content {
+                    ...Consumable
+                }
+            }
+            ... on BasicGroupConsumableLayout {
+                __typename
+                title {
+                    app_text
+                }
+                description {
+                    app_text
+                }
+                tag {
+                    ...TagDetail
+                }
+                action {
+                    app_linked_string
+                    raw_string
+                }
+                contents {
+                    ...Consumable
+                    title
+                    description
+                }
+                container_type
+            }
+            ... on DropzonePlaceholderLayout {
+                id
+                dropzone_id
+            }
+        }
+    }
+}
+
+query FeedV2($feed: String!, $feed_id: Int, $feed_url: String, $filter: FeedFilterV2, $locale: String, $page: Int!) {
+    feedMulligan(feed: $feed, feed_id: $feed_id, feed_url: $feed_url,filter: $filter, locale: $locale, page: $page) {
+        __typename
+        id
+        ad_unit_path
+        pageInfo {
+            ...PagingPageInfo
+        }
+        layouts {
+            __typename
+            id
+            type
+            typename
+            container_id
+            container_type
+            title {
+                app_text
+            }
+            description {
+                app_text
+            }
+            tag {
+                ...TagDetail
+            }
+            dropzone_id
+            contents {
+                __typename
+                ... on ConsumableV2 {
+                    __typename
+                    id
+                    type
+                    ...ArticleConsumable
+                    ...NewsConsumable
+                    ...LiveBlogConsumable
+                    ...PodcastEpisodeConsumable
+                    ...GameConsumable
+                    ...AnnouncementConsumable
+                    ...LiveRoomConsumable
+                    ...FeaturedGameConsumable
+                    ...RecommendedPodcastConsumable
+                    ...SpotlightConsumable
+                }
+            }
+        }
+    }
+}
+
+mutation SetArticleAsOutdated($id: ID!) {
+    setArticleAsOutdated(id: $id)
+}

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexCondition:SafeLet.kt$p1 != null &amp;&amp; p2 != null &amp;&amp; p3 != null &amp;&amp; p4 != null</ID>
+    <ID>ComplexCondition:SafeLet.kt$p1 != null &amp;&amp; p2 != null &amp;&amp; p3 != null &amp;&amp; p4 != null &amp;&amp; p5 != null</ID>
+    <ID>LongParameterList:IDHasher.kt$IDHasher$( numbers: List&lt;Long>, separators: CharArray, bufferSeed: String, currentIndex: Int, alphabet: String, currentReturnString: String )</ID>
+    <ID>LongParameterList:SafeLet.kt$( p1: T1?, p2: T2?, p3: T3?, p4: T4?, p5: T5?, block: (T1, T2, T3, T4, T5) -> R? )</ID>
+    <ID>VariableNaming:DisplayPreferences.kt$DisplayPreferencesImpl$private val PREF_DAY_NIGHT = "pref_display_day_night_mode"</ID>
+    <ID>VariableNaming:DisplayPreferences.kt$DisplayPreferencesImpl$private val PREF_TEXT_SIZE = "pref_display_content_text_size"</ID>
+  </CurrentIssues>
+</SmellBaseline>

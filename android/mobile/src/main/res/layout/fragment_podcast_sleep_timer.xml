@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.theathletic.viewmodel.main.PodcastBigPlayerViewModel.SleepTimerOptions" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastSleepTimerView" />
+        <variable
+            name="viewModel" type="com.theathletic.viewmodel.main.PodcastSleepTimerViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_dodgeInsetEdges="bottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_podcast_bottomsheet_background">
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="start"
+                android:background="@drawable/selector_clickable_item_circular_bg"
+                android:contentDescription="@null"
+                android:onClick="@{() -> view.onCloseClick()}"
+                android:padding="18dp"
+                android:tint="@color/ath_grey_10"
+                app:srcCompat="@drawable/ic_close"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingBottom="20dp"
+                android:text="@string/podcast_sleep_timer_title"
+                android:textColor="@color/ath_grey_10"
+                style="@style/TextAppearance.Ath.Navigation"
+                app:layout_constraintTop_toTopOf="@id/close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_title"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/text_off"
+                    android:visibility="@{viewModel.sleepTimerRunning}"
+                    android:text="@string/podcast_sleep_timer_turn_off"
+                    android:onClick="@{() -> view.onTurnTimerOffClick()}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_5_minutes"
+                    android:text="@string/podcast_delay_5_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_5_MINUTES)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_10_minutes"
+                    android:text="@string/podcast_delay_10_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_10_MINUTES)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_15_minutes"
+                    android:text="@string/podcast_delay_15_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_15_MINUTES)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_30_minutes"
+                    android:text="@string/podcast_delay_30_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_30_MINUTES)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_45_minutes"
+                    android:text="@string/podcast_delay_45_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_45_MINUTES)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_60_minutes"
+                    android:text="@string/podcast_delay_60_minutes"
+                    android:onClick="@{() -> view.onSleepDelayClick(SleepTimerOptions.SLEEP_OPTION_1_HOUR)}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+
+                <TextView
+                    android:id="@+id/text_delay_episode_end"
+                    android:text="@string/podcast_delay_episode_end"
+                    android:onClick="@{() -> view.onSleepAfterEpisodeClick()}"
+                    style="@style/Widget.Ath.Podcast.SleepTimer.Item" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

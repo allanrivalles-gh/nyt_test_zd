@@ -1,0 +1,7 @@
+query WidgetHeadlines($filter: NewsFilter) {
+  newsV2(filter: $filter) {
+    items {
+      ...NewsItemLite
+    }
+  }
+}

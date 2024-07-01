@@ -1,0 +1,36 @@
+
+@font-face {
+  font-family: "ACaslonPro";
+  src: url("ACaslonPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "ACaslonPro";
+  src: url("ACaslonPro-Bold.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "ACaslonPro";
+  src: url("ACaslonPro-Italic.otf") format("opentype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ACaslonPro";
+  src: url("ACaslonPro-BoldItalic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face
+{
+    font-family: "CalibreMedium";
+    src: url("Calibre-Medium.otf") format('opentype');
+}
+
+@font-face
+{
+    font-family: "Tiempos, Serif";
+    src: url("TiemposText-Regular.otf") format('opentype');
+}

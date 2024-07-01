@@ -1,0 +1,239 @@
+fragment GamePlayByPlay on Gamev2 {
+    status
+    sport
+    period_id
+    game_status {
+        ...GameStatusDisplay
+    }
+    scheduled_at
+    started_at
+    finished_at
+    home_team {
+        team {
+            ...GamePlayByPlayTeam
+        }
+    }
+    away_team {
+        team {
+            ...GamePlayByPlayTeam
+        }
+    }
+    ... on BaseballGame {
+        ...BaseballPlayByPlay
+    }
+    ... on BasketballGame {
+        ...BasketballPlayByPlay
+    }
+    ... on HockeyGame {
+        ...HockeyPlayByPlay
+    }
+    ... on AmericanFootballGame {
+        ...AmericanFootballPlayByPlay
+    }
+    ... on SoccerGame {
+        ...SoccerPlayByPlay
+    }
+}
+
+fragment GamePlayByPlayTeam on Teamv2 {
+    id
+    alias
+}
+
+fragment HockeyPlayByPlay on HockeyGame {
+    away_team {
+        ...HockeyPlayByPlayTeam
+    }
+    home_team {
+        ...HockeyPlayByPlayTeam
+    }
+    hockey_all_plays: play_by_play {
+        ...HockeyPlay
+        ...HockeyTeamPlay
+        ...HockeyShootoutPlay
+    }
+}
+
+fragment HockeyPlayByPlayTeam on HockeyGameTeam {
+    scoring(aggregated: false) {
+        ...PeriodScore
+    }
+}
+
+fragment BaseballPlayByPlay on BaseballGame {
+    sport
+    away_team {
+        ...BaseballPlayByPlayTeam
+    }
+    home_team {
+        ...BaseballPlayByPlayTeam
+    }
+    baseball_all_plays: play_by_play {
+        ...BaseballPlay
+        ...BaseballTeamPlay
+        ...BaseballLineupChangePlay
+    }
+}
+
+fragment BaseballPlayByPlayTeam on BaseballGameTeam {
+    team {
+        alias
+        logos {
+            ...TeamLogo
+        }
+    }
+    scoring {
+        id
+        inning
+        hits
+        runs
+    }
+}
+
+fragment BasketballPlayByPlay on BasketballGame {
+    away_team {
+        ...BasketballPlayByPlayTeam
+    }
+    home_team {
+        ...BasketballPlayByPlayTeam
+    }
+    basketball_all_plays: play_by_play {
+        ...BasketballPlay
+    }
+}
+
+fragment BasketballPlayByPlayTeam on BasketballGameTeam {
+    scoring(aggregated: false) {
+        ...PeriodScore
+    }
+}
+
+fragment AmericanFootballPlayByPlay on AmericanFootballGame {
+    sport
+    away_team {
+        ...AmericanFootballPlayByPlayTeam
+    }
+    home_team {
+        ...AmericanFootballPlayByPlayTeam
+    }
+    american_football_all_plays: play_by_play {
+        ...AmericanFootballDrive
+    }
+}
+
+fragment AmericanFootballPlayByPlayTeam on AmericanFootballGameTeam {
+    team {
+        alias
+        logos {
+            ...TeamLogo
+        }
+    }
+    scoring(aggregated: false) {
+        id
+        score
+        score_str
+        period_id
+    }
+}
+
+fragment AmericanFootballDrive on AmericanFootballDrive {
+    id
+    period_id
+    occurred_at
+    is_active: active
+    header
+    description
+    away_score
+    home_score
+    duration
+    play_count
+    yards
+    team {
+        logos {
+            ...TeamLogo
+        }
+    }
+    plays {
+        ...AmericanFootballSubPlay
+    }
+}
+
+fragment AmericanFootballSubPlay on AmericanFootballPlay {
+    id
+    clock
+    header
+    possession {
+        ...AmericanFootballPossession
+    }
+    description
+    is_scoring_play: scoring_play
+    occurred_at_str
+}
+
+fragment SoccerPlayByPlay on SoccerGame {
+    status
+    started_at
+    sport
+    away_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    home_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    soccer_all_plays: play_by_play {
+        ...SoccerSupportedPlay
+    }
+}
+
+fragment SoccerSupportedPlay on Play {
+    ...SoccerStandardPlay
+    ...SoccerShootoutPlay
+}
+
+fragment SoccerStandardPlay on SoccerPlay {
+    id
+    is_key_play: key_play
+    occurred_at
+    occurred_at_str
+    header
+    away_score
+    home_score
+    home_chances_created
+    away_chances_created
+    game_time
+    description
+    period_id
+    type
+    team {
+        ...SoccerPlayByPlayTeam
+    }
+}
+
+fragment SoccerShootoutPlay on SoccerShootoutPlay {
+    period_id
+    occurred_at
+    type
+    shooter {
+        display_name
+    }
+    shooter_team: team {
+        id
+    }
+    away_score
+    home_score
+    away_shootout_goals
+    home_shootout_goals
+}
+
+fragment SoccerPlayByPlayTeam on Teamv2 {
+    id
+    alias
+    color_accent
+    logos {
+        ...TeamLogo
+    }
+}

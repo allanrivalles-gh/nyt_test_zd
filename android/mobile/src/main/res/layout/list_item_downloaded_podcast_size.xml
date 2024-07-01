@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.podcast.downloaded.ui.PodcastDownloadedSizeItem" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/ath_grey_80"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/global_spacing_16"
+            android:gravity="center_vertical"
+            android:text="@string/podcast_downloaded_size_label"
+            android:textColor="@color/ath_grey_50"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/global_spacing_16"
+            android:layout_gravity="center_vertical|end"
+            android:gravity="center_vertical"
+            android:text="@{@string/podcast_downloaded_size_value(data.downloadedSize)}"
+            android:textColor="@color/ath_grey_50"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            tools:text="50.3 MB"
+            />
+
+    </FrameLayout>
+
+</layout>

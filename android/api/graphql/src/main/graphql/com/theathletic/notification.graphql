@@ -1,0 +1,5 @@
+mutation SetTopSportsNewsOpt($isSubTopSportsNews: Boolean!) {
+    setTopSportsNewsOpt(is_sub_top_sports_news: $isSubTopSportsNews) {
+        response
+    }
+}

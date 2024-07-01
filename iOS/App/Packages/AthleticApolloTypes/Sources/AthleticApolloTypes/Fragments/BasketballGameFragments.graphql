@@ -1,0 +1,61 @@
+fragment BasketballRecentPlays on BasketballGame {
+    sport
+    away_team {
+        ...GameV2RecentPlaysTeam
+    }
+    home_team {
+        ...GameV2RecentPlaysTeam
+    }
+    basketball_recent_plays: recent_plays(size: 3) {
+        ...BasketballPlay
+    }
+}
+
+fragment BasketballPlay on BasketballPlay {
+    id
+    period_id
+    clock
+    header
+    description
+    away_score
+    home_score
+    occurred_at
+    occurred_at_str
+    type
+    team {
+        color_accent
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment BasketballScoring on BasketballGame {
+    home_team {
+        ...BasketballScoringTeam
+    }
+    away_team {
+        ...BasketballScoringTeam
+    }
+}
+
+fragment BasketballScoringTeam on BasketballGameTeam {
+    __typename
+    scoring {
+        ...PeriodScore
+    }
+}
+
+fragment BasketballTimeouts on BasketballGame {
+    away_team {
+        ...BasketballTimeoutsTeam
+    }
+    home_team {
+        ...BasketballTimeoutsTeam
+    }
+}
+
+fragment BasketballTimeoutsTeam on BasketballGameTeam {
+    used_timeouts
+    remaining_timeouts
+}

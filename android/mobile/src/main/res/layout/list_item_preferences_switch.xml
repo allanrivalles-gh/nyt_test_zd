@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="view"
+            type="com.theathletic.preferences.ui.IPreferenceToggleView" />
+
+        <variable
+            name="data"
+            type="com.theathletic.preferences.ui.PreferenceSwitchItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_70"
+        android:minHeight="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="4dp"
+        >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:visibility="@{data.imageUrl != null &amp;&amp; data.imageUrl.length() > 0}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:imageUrl="@{data.imageUrl}"
+            tools:src="@sample/podcast"
+            />
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/toggle"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            android:layout_marginTop="@dimen/global_spacing_16"
+            android:layout_marginBottom="@dimen/global_spacing_16"
+            android:layout_marginEnd="@dimen/global_spacing_24"
+            >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@color/ath_grey_30"
+                android:parameterizedString="@{data.title}"
+                style="@style/TextAppearance.Ath.Navigation"
+                tools:text="Daily"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/global_spacing_4"
+                android:parameterizedString="@{data.description}"
+                android:textColor="@color/ath_grey_45"
+                android:visibility="@{data.description != null}"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                tools:text="The latest stories for your favorite team &amp; leagues, delivered on weekdays"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/global_spacing_16"
+            android:checked="@{data.switchOn}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onToggled="@{(switch, checked) -> view.onPreferenceToggled(data, checked)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/ath_grey_60"
+            android:visibility="@{data.showDivider}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

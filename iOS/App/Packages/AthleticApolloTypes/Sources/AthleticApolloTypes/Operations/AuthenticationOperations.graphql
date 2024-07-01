@@ -1,0 +1,29 @@
+mutation Login($webLoginInput: webLoginInput!) {
+    webLogin(input: $webLoginInput) {
+        ...UserCredentials
+    }
+}
+
+mutation CreateAccount($createAccountInput: CreateAccountInput!) {
+  createAccount(input: $createAccountInput) {
+    ...UserCredentials
+  }
+}
+
+mutation CompleteAccount($input: CompleteAccountInput!) {
+  completeAccount(input: $input) {
+    ...CustomerDetail
+  }
+}
+
+mutation SocialLogin($input: SocialLoginInput!) {
+  socialLogin(input: $input) {
+    ...UserCredentials
+  }
+}
+
+mutation RegisterAnonymousAccount($device_id: String!) {
+  registerAnonymousAccount(device_id: $device_id) {
+    ...UserCredentials
+  }
+}

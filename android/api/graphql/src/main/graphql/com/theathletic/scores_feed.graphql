@@ -1,0 +1,259 @@
+# QUERIES
+
+query ScoresFeed($timeZone: String!) {
+    scoresFeed(time_zone: $timeZone) {
+        id
+        days {
+            ... ScoresFeedDay
+        }
+        nav {
+            ... ScoresFeedNavItem
+        }
+    }
+}
+
+query ScoresFeedDay($timeZone: String!, $day: Date!) {
+    scoresFeedDay(time_zone: $timeZone, day: $day) {
+        ... ScoresFeedGroup
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription ScoresFeedUpdates($blockIds: [ID!]!) {
+    scoresFeedUpdates(block_ids: $blockIds) {
+        block {
+            ... ScoresFeedBlock
+        }
+    }
+}
+
+# FRAGMENTS
+
+fragment ScoresFeedDay on ScoresFeedDay {
+    id
+    day
+    top_games
+    groups {
+        ... ScoresFeedGroup
+    }
+}
+
+fragment ScoresFeedGroup on ScoresFeedGroup {
+    ... ScoresFeedBaseGroup
+    ... ScoresFeedFollowingGroup
+    ... ScoresFeedLeagueGroup
+}
+
+fragment ScoresFeedBaseGroup on ScoresFeedBaseGroup {
+    id
+    title
+    subtitle
+    blocks {
+        ... ScoresFeedBlock
+    }
+    widget {
+        ... ScoresFeedWidgetBlock
+    }
+}
+
+fragment ScoresFeedFollowingGroup on ScoresFeedFollowingGroup {
+    id
+    title
+    subtitle
+    blocks {
+        ... ScoresFeedBlock
+    }
+    widget {
+        ... ScoresFeedWidgetBlock
+    }
+}
+
+fragment ScoresFeedLeagueGroup on ScoresFeedLeagueGroup {
+    id
+    title
+    subtitle
+    league {
+        id
+        legacy_id
+        display_name
+    }
+    blocks {
+        ... ScoresFeedBlock
+    }
+    widget {
+        ... ScoresFeedWidgetBlock
+    }
+}
+
+fragment ScoresFeedBlock on ScoresFeedBlock {
+    id
+    game_id
+    header
+    footer
+    game_block {
+        ... ScoresFeedGameBlock
+    }
+    info_block {
+        ... ScoresFeedInfoBlock
+    }
+    widget {
+        ... ScoresFeedWidgetBlock
+    }
+    will_update
+}
+
+fragment ScoresFeedGameBlock on ScoresFeedGameBlock {
+    id
+    game_status
+    game_state
+    started_at
+    team1 {
+        ... ScoresFeedTeamBlock
+    }
+    team2 {
+        ... ScoresFeedTeamBlock
+    }
+}
+
+fragment ScoresFeedTeamBlock on ScoresFeedTeamBlock {
+    id
+    name
+    team_info {
+        ... ScoresFeedTeamInfoBlock
+    }
+    logos {
+        ... TeamLogo
+    }
+    icons
+    ranking
+    is_tbd
+}
+
+fragment ScoresFeedTeamInfoBlock on ScoresFeedTeamInfoBlock {
+    ... ScoresFeedTeamGameInfoBlock
+    ... ScoresFeedTeamPregameInfoBlock
+}
+
+fragment ScoresFeedTeamGameInfoBlock on ScoresFeedTeamGameInfoBlock {
+    id
+    score
+    penalty_score
+    is_winner
+}
+
+fragment ScoresFeedTeamPregameInfoBlock on ScoresFeedTeamPregameInfoBlock {
+    id
+    text
+}
+
+fragment ScoresFeedInfoBlock on ScoresFeedInfoBlock {
+    id
+    text {
+        ... ScoresFeedTextBlock
+    }
+    widget {
+        ... ScoresFeedWidgetBlock
+    }
+}
+
+fragment ScoresFeedTextBlock on ScoresFeedTextBlock {
+    ... ScoresFeedDateTimeTextBlock
+    ... ScoresFeedOddsTextBlock
+    ... ScoresFeedStandardTextBlock
+}
+
+fragment ScoresFeedDateTimeTextBlock on ScoresFeedDateTimeTextBlock {
+    id
+    format
+    time_tbd
+    timestamp
+    type
+}
+
+fragment ScoresFeedOddsTextBlock on ScoresFeedOddsTextBlock {
+    id
+    odds {
+        decimal_odds
+        fraction_odds
+        us_odds
+    }
+    type
+}
+
+fragment ScoresFeedStandardTextBlock on ScoresFeedStandardTextBlock {
+    id
+    text
+    type
+}
+
+fragment ScoresFeedWidgetBlock on ScoresFeedWidgetBlock {
+    ... ScoresFeedAllGamesWidgetBlock
+    ... ScoresFeedBaseballWidgetBlock
+    ... ScoresFeedDiscussionWidgetBlock
+    ... GameTicketsWidget
+}
+
+fragment ScoresFeedAllGamesWidgetBlock on ScoresFeedAllGamesWidgetBlock {
+    id
+    link_text
+}
+
+fragment ScoresFeedBaseballWidgetBlock on ScoresFeedBaseballWidgetBlock {
+    id
+    loaded_bases
+}
+
+fragment ScoresFeedDiscussionWidgetBlock on ScoresFeedDiscussionWidgetBlock {
+    id
+    text
+}
+
+fragment GameTicketsWidget on ScoresFeedGameTicketsWidgetBlock {
+    id
+    provider
+    logos_dark_mode {
+        ... GameTicketsLogo
+    }
+    logos_light_mode {
+        ... GameTicketsLogo
+    }
+    text
+    uri
+}
+
+fragment ScoresFeedNavItem on ScoresFeedNavItem {
+    ... ScoresFeedLeagueNavItem
+    ... ScoresFeedTeamNavItem
+}
+
+fragment ScoresFeedLeagueNavItem on ScoresFeedLeagueNavItem {
+    id
+    league {
+        id
+        legacy_id
+        alias
+    }
+}
+
+fragment ScoresFeedTeamNavItem on ScoresFeedTeamNavItem {
+    id
+    team {
+        id
+        legacy_team {
+            id
+        }
+    }
+}
+
+fragment TeamLogo on TeamLogo {
+    width
+    height
+    uri
+}
+
+fragment GameTicketsLogo on GameTicketsLogo {
+    width
+    height
+    uri
+}

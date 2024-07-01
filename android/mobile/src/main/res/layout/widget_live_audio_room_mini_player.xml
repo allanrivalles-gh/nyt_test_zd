@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.rooms.ui.LiveAudioRoomMiniPlayerInteractor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.rooms.ui.LiveAudioRoomMiniPlayerUiModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:background="@drawable/gradient_black_fade_down"
+            android:alpha="0.1"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/ath_grey_70"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onRoomMiniPlayerClicked(data.id)}"
+            >
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:padding="2dp"
+                android:background="@drawable/background_live_room_live_indicator"
+                android:tint="@color/ath_grey_10"
+                app:srcCompat="@drawable/anim_mini_player_visualizer"
+                app:animateDrawable="@{true}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{data.title}"
+                android:textColor="@color/ath_grey_30"
+                app:layout_constraintEnd_toStartOf="@id/close"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintTop_toTopOf="@id/icon"
+                tools:text="Breaking News: Jordan Clarkson wins 6th Man Of the Year" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/icon"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/close"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:text="@{data.subtitle}"
+                android:textColor="@color/ath_grey_45"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+                tools:text="With Shams Charania"
+                />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> interactor.onRoomCloseClicked(data.id)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_close"
+                tools:ignore="ContentDescription"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ath_grey_65"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</layout>

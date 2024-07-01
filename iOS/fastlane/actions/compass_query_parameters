@@ -1,0 +1,11 @@
+type=mobile
+os_version=15.3.1
+model=iPhone10,6
+app_version=12.17.0
+carrier=AT&T
+identifier=EE18609F-ABA0-4B2D-B83F-52D6E0D7AE18
+last_change_date=0001-01-01T00:00:00Z
+locale=en-US
+explorer_type=ios
+bundle_identifier=theathletic-ios
+brand=Apple

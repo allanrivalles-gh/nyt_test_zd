@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/ath_bright_green"
+        >
+
+        <TextView
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            android:text="@string/missing_layout_type"
+            android:gravity="center"
+            />
+    </FrameLayout>
+</layout>

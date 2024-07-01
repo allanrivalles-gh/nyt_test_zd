@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+
+    <gradient
+        android:startColor="#3ddd"
+        android:endColor="#000"
+        android:gradientRadius="@dimen/podcast_detail_header_height"
+        android:centerY="0.15"
+        android:centerX="0.5"
+        android:angle="-90"
+        android:type="linear"></gradient>
+</shape>

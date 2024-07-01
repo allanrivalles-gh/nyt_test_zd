@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ClassNaming:SoccerMomentsUi.kt$SoccerMomentsUi.Interaction$onFullTimeLineClick : FeedInteraction</ID>
+    <ID>ComplexMethod:DragReorder.kt$DragDropState$internal fun onDrag(offset: Offset)</ID>
+    <ID>ComplexMethod:TweetView.kt$@Composable fun TweetView( tweetHtml: String?, tweetKey: String, tweetMap: MutableMap&lt;String, WebView>, modifier: Modifier )</ID>
+    <ID>ComplexMethod:ViewportPagerIndicator.kt$ @OptIn(ExperimentalPagerApi::class) @Composable fun ViewportPagerIndicator( modifier: Modifier = Modifier, pagerState: PagerState, indicatorCount: Int = 5, indicatorSize: Dp = 16.dp, indicatorShape: Shape = CircleShape, space: Dp = 8.dp, activeColor: Color = AthTheme.colors.grey30, inactiveColor: Color = AthTheme.colors.grey45, onClick: ((Int) -> Unit)? = null )</ID>
+    <ID>LargeClass:BoxScorePreviewData.kt$BoxScorePreviewData</ID>
+    <ID>LongMethod:AmericanFootballDriveModule.kt$@Composable private fun DrivePlay( teamLogos: SizedImages, playTitle: String, playStats: ResourceString, awayTeamAlias: String, homeTeamAlias: String, awayTeamScore: String, homeTeamScore: String, isExpanded: Boolean = false, showDivider: Boolean = true, modifier: Modifier = Modifier )</ID>
+    <ID>LongMethod:BoxScorePreviewData.kt$BoxScorePreviewData$@Composable fun getRecentGamesMockData(): BoxScoreRecentGamesUiModel</ID>
+    <ID>LongMethod:CodeOfConductUi.kt$@Composable fun CodeOfConductScreen( codeOfConductUi: CodeOfConductUi, onFAQClicked: () -> Unit, onContactSupportClicked: () -> Unit, onAgreeClicked: () -> Unit, onDisagreeClicked: () -> Unit, )</ID>
+    <ID>LongMethod:CommentsUi.kt$@OptIn(ExperimentalComposeUiApi::class) @Composable fun CommentsScreen( @StringRes title: Int? = null, header: CommentsUi.HeaderModel? = null, comments: List&lt;CommentsUi.Comments> = emptyList(), commentsCount: Int = 0, isCommentEnabled: Boolean = true, sortedBy: SortType = SortType.MOST_LIKED, inputText: String = "", inputHeaderData: InputHeaderData = InputHeaderData.EmptyHeaderData, scrollToIndex: Int? = null, enableSend: Boolean = true, loadingState: LoadingState = LoadingState.FINISHED, interactor: CommentsUi.Interactor, itemInteractor: CommentsUi.Comments.Interactor )</ID>
+    <ID>LongMethod:CommentsUiHeader.kt$@Composable private fun Header( badgeUrl: String?, label: String, title: String, excerpt: String, authorName: String, timeStamp: String, backgroundColor: String, liveTag: CommentsUi.LiveTag? )</ID>
+    <ID>LongMethod:CommentsUiList.kt$@Composable private fun CommentActionRow( commentId: String, parentId: String, commentText: String, commentLink: String, likesCount: Int, replyCount: Int, hasUserLiked: Boolean, isAuthor: Boolean, iconsColor: Color, iconsTextColor: Color, interactor: CommentsUi.Comments.Interactor, )</ID>
+    <ID>LongMethod:FollowableItemUi.kt$@Composable fun FollowableItem( followableItem: FollowableItemUi.FollowableItem, interactor: FollowableItemUi.FollowableItem.Interactor, modifier: Modifier = Modifier, viewMode: ViewMode = ViewMode.VIEW )</ID>
+    <ID>LongMethod:GameSummaryUi.kt$@Composable private fun ScoreHeader( firstTeam: GameDetailUi.TeamSummary, secondTeam: GameDetailUi.TeamSummary, firstTeamStatus: List&lt;GameDetailUi.TeamStatus>, secondTeamStatus: List&lt;GameDetailUi.TeamStatus>, gameStatus: GameDetailUi.GameStatus, gameTitle: ResourceString, onTeamClicked: (teamId: String, legacyId: Long, teamName: String) -> Unit, )</ID>
+    <ID>LongMethod:HockeyShootoutPlayUi.kt$@Composable internal fun HockeyShootoutPlay( headshots: SizedImages, teamLogos: SizedImages, teamColor: Color, playerName: String, teamAlias: String, description: String, isGoal: Boolean, showDivider: Boolean )</ID>
+    <ID>LongMethod:HubUi.kt$@Composable private fun FollowMenu( isFollowed: Boolean, foregroundColor: Color, onManageFollowClicked: () -> Unit, onManageNotificationsClicked: () -> Unit, )</ID>
+    <ID>LongMethod:HubUi.kt$@Composable private fun TeamHubHeader( teamHeader: HubUi.Team.TeamHeader, foregroundColor: Color, backgroundColor: Color, height: Float, collapsedScale: Float, onBackButtonClicked: () -> Unit, onManageFollowClicked: () -> Unit, onManageNotificationsClicked: () -> Unit, )</ID>
+    <ID>LongMethod:LiveRoomUi.kt$@OptIn(ExperimentalAnimationApi::class) @Composable fun LiveRoomScreen( showSpinner: Boolean, roomTitle: String, roomDescription: String, hosts: List&lt;LiveRoomUi.HostInfo>, tags: List&lt;LiveRoomUi.TagInfo>, totalAudienceSize: Int, recording: Boolean, isHost: Boolean, isModerator: Boolean, isOnStage: Boolean, isMuted: Boolean, isLocked: Boolean, requestPending: Boolean, audienceRequestCount: Int, speakers: List&lt;LiveRoomUi.Speaker>, chatInput: String, messages: List&lt;LiveRoomUi.ChatMessage>, volumeProvider: Flow&lt;Map&lt;String, Int>>, interactor: LiveRoomUi.Interactor, )</ID>
+    <ID>LongMethod:PlayByPlaysCommonUI.kt$@Composable fun Play( teamLogos: SizedImages, title: String?, description: String, clock: String, awayTeamAlias: String? = null, homeTeamAlias: String? = null, awayTeamScore: String? = null, homeTeamScore: String? = null, showScores: Boolean = false, showDivider: Boolean, )</ID>
+    <ID>LongMethod:PlayerGradeCard.kt$@OptIn(ExperimentalComposeUiApi::class) @Composable fun PlayerGradeCard( playerId: String, name: String, position: String, teamLogos: SizedImages, teamColor: String?, headshots: SizedImages, averageGrade: String, totalGrades: Int, awardedGrade: Int, stats: List&lt;PlayerGradeModel.Stat>, isGraded: Boolean, interactor: FeedInteractor )</ID>
+    <ID>LongMethod:PlayerGradesDetailPreviewData.kt$PlayerGradesDetailPreviewData$fun getPlayerGrades(state: PlayerGradesDetailUi.GradingState)</ID>
+    <ID>LongMethod:PlayerGradesDetailPreviewData.kt$PlayerGradesDetailPreviewData$private fun createFullPlayerStats(): List&lt;PlayerGradesDetailUi.StatisticsSummary></ID>
+    <ID>LongMethod:PlayerGradesDetailUi.kt$@Composable private fun GameStatus( showLiveGameDetails: Boolean, firstTeamLogo: SizedImages, firstTeamScore: Int, secondTeamLogo: SizedImages, secondTeamScore: Int, scheduledDate: String, period: ResourceString, matchTime: String?, )</ID>
+    <ID>LongMethod:PlayerGradesDetailUi.kt$@Composable private fun PlayerGradePage( page: Int, pagerState: PagerState, uiModel: PlayerGradesDetailUi, background: Color, contentColor: Color, useDarkIcons: Boolean, )</ID>
+    <ID>LongMethod:PlayerGradesDetailUi.kt$@Composable private fun PlayerHeadshot( headshots: SizedImages, teamLogos: SizedImages, background: Color, useDarkIcons: Boolean, isFirstPlayer: Boolean, isLastPlayer: Boolean, expandedPercent: Float, pagerState: PagerState )</ID>
+    <ID>LongMethod:PlayerLineUpUi.kt$@Composable fun PlayerLineUp( firstTeamLabel: ResourceString, secondTeamLabel: ResourceString, firstTeamFormationUrl: String, secondTeamFormationUrl: String, firstTeamLineup: Map&lt;ResourceString, List&lt;PlayerLineUpModule.PlayerLineUp>>, secondTeamLineup: Map&lt;ResourceString, List&lt;PlayerLineUpModule.PlayerLineUp>>, interactor: FeedInteractor )</ID>
+    <ID>LongMethod:PlayerLineUpUi.kt$@Composable private fun PlayerRow( id: String, jerseyNumber: String, playerName: String, position: String, isPreGame: Boolean, isExpanded: Boolean, showExpandIcon: Boolean, eventIcons: List&lt;PlayerLineUpModule.PlayerLineUp.EventIconType>, playerStats: List&lt;PlayerLineUpModule.PlayerLineUp.Stats>, substitution: PlayerLineUpModule.PlayerLineUp.PlayerSubstitution, substitutionTime: String, modifier: Modifier )</ID>
+    <ID>LongMethod:RecentGamesUi.kt$@Composable fun RecentGames( includeDivider: Boolean, teams: RecentGamesUi.Teams, firstTeamRecentGames: List&lt;RecentGamesUi.RecentGame>, secondTeamRecentGames: List&lt;RecentGamesUi.RecentGame>, @StringRes titleId: Int = R.string.box_score_last_games_title, leagueName: String?, onRecentGameClick: (String) -> Unit )</ID>
+    <ID>LongMethod:RecentPlaysUi.kt$@Composable fun RecentPlays( recentPlays: List&lt;RecentPlaysModule.RecentPlay>, interactor: FeedInteractor )</ID>
+    <ID>LongMethod:RecentPlaysUi.kt$@Deprecated("Use RecentPlaysModule") @Composable fun RecentPlays( includeHeaderDivider: Boolean, includeFooterDivider: Boolean, recentPlays: List&lt;BoxScoreRecentPlays.RecentPlays>, interactor: BoxScoreRecentPlays.Interactor )</ID>
+    <ID>LongMethod:RelatedStoriesUi.kt$@Composable private fun ArticleRow( title: String, imageUrl: String, authors: ResourceString, commentCount: String, showCommentCount: Boolean, analyticsPayload: RelatedStoriesUi.RelatedStoriesAnalyticsPayload, onArticleClick: (analyticsPayload: RelatedStoriesUi.RelatedStoriesAnalyticsPayload) -> Unit, )</ID>
+    <ID>LongMethod:StageUi.kt$@Composable private fun SpeakerOnStage( initials: String, name: String, subtitle: String, imageUrl: String?, isMuted: Boolean, volume: Float, modifier: Modifier = Modifier )</ID>
+    <ID>LongMethod:StageUi.kt$@OptIn(ExperimentalFoundationApi::class) @Composable private fun UserInAudience( id: String, initials: String, name: String, imageUrl: String?, isLocked: Boolean, onAudienceClick: (String) -> Unit, onAudienceLongClick: (String) -> Unit, modifier: Modifier = Modifier )</ID>
+    <ID>LongMethod:StageUiV2.kt$@Composable private fun SpeakerOnStage( initials: String, name: String, imageUrl: String?, isMuted: Boolean, isVerified: Boolean, volume: Float, modifier: Modifier = Modifier )</ID>
+    <ID>LongMethod:StandingsTableModule.kt$@Composable private fun Team( team: StandingsTableModule.TeamColumnItem.Team, onTeamClick: (teamId: String) -> Unit )</ID>
+    <ID>LongMethod:TweetView.kt$@Composable fun TweetView( tweetHtml: String?, tweetKey: String, tweetMap: MutableMap&lt;String, WebView>, modifier: Modifier )</ID>
+    <ID>LongMethod:UserProfileUi.kt$@Composable private fun FollowableDetail( followable: LiveRoomUserProfileUi.FollowedItem, isCurrentUserFollowing: Boolean, onBackClicked: () -> Unit, onFollowClicked: (UserTopicId, Boolean) -> Unit, )</ID>
+    <ID>LongMethod:ViewportPagerIndicator.kt$ @OptIn(ExperimentalPagerApi::class) @Composable fun ViewportPagerIndicator( modifier: Modifier = Modifier, pagerState: PagerState, indicatorCount: Int = 5, indicatorSize: Dp = 16.dp, indicatorShape: Shape = CircleShape, space: Dp = 8.dp, activeColor: Color = AthTheme.colors.grey30, inactiveColor: Color = AthTheme.colors.grey45, onClick: ((Int) -> Unit)? = null )</ID>
+    <ID>MatchingDeclarationName:AnalyticsLogUI.kt$AnalyticsLogUi</ID>
+    <ID>MatchingDeclarationName:BaseballCurrentInningComponents.kt$IndicatorType</ID>
+    <ID>MatchingDeclarationName:CommentsUiInput.kt$InputHeaderData</ID>
+    <ID>MatchingDeclarationName:FeatureIntroUi.kt$FeatureIntroUiModel</ID>
+    <ID>MatchingDeclarationName:GameDetailsUi.kt$BoxScoreGameDetailsUiModel : UiModel</ID>
+    <ID>MatchingDeclarationName:GameSummaryUi.kt$GameDetailUi</ID>
+    <ID>MatchingDeclarationName:LatestEpisodesModule.kt$LatestPodcastEpisodesModule : FeedModule</ID>
+    <ID>MatchingDeclarationName:PitcherWinLossUi.kt$BaseballPitcherWinLossUiModel : UiModel</ID>
+    <ID>MatchingDeclarationName:PlayerGradeCard.kt$PlayerGradeModel</ID>
+    <ID>MatchingDeclarationName:PlayerGradeMiniCards.kt$PlayerGradeMiniCardModel</ID>
+    <ID>MatchingDeclarationName:PlayerGradesUi.kt$BoxScorePlayerGrades</ID>
+    <ID>MatchingDeclarationName:PrimaryNavigationBar.kt$PrimaryNavItem</ID>
+    <ID>MatchingDeclarationName:RecentPlaysUi.kt$BoxScoreRecentPlays</ID>
+    <ID>MatchingDeclarationName:RelegationLegendUi.kt$RelegationItem</ID>
+    <ID>MatchingDeclarationName:ScoresTableUi.kt$BoxScoresScoreTableUiModel : UiModel</ID>
+    <ID>MatchingDeclarationName:SeasonStatsUi.kt$BoxScoreSeasonStatsUiModel</ID>
+    <ID>MatchingDeclarationName:SoccerPenaltyShootoutUi.kt$SoccerPenaltyShootoutUI</ID>
+    <ID>MatchingDeclarationName:SoccerRecentFormHeaderUi.kt$SoccerRecentFormHeaderModel</ID>
+    <ID>MatchingDeclarationName:SoccerTimelineSummaryUi.kt$TimelineSummaryModel</ID>
+    <ID>MatchingDeclarationName:TeamStatsUi.kt$BoxScoreTeamStatsUiModel : UiModel</ID>
+    <ID>MatchingDeclarationName:TimelineNode.kt$NodeType</ID>
+    <ID>MatchingDeclarationName:TransitionalLayout.kt$TransitionDirection</ID>
+    <ID>MatchingDeclarationName:UserProfileUi.kt$LiveRoomUserProfileUi</ID>
+    <ID>VariableNaming:CollapsingToolbarHelper.kt$ScrollFlagState$protected abstract var _scrollOffset: Float</ID>
+    <ID>VariableNaming:CollapsingToolbarHelper.kt$ScrollFlagState$protected var _consumed: Float = 0f</ID>
+  </CurrentIssues>
+</SmellBaseline>

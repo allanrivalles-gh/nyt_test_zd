@@ -1,0 +1,11 @@
+framework module Transcend {
+  umbrella header "Transcend.h"
+
+  export *
+  module * { export * }
+}
+
+module Transcend.Swift {
+  header "Transcend-Swift.h"
+  requires objc
+}

@@ -1,0 +1,13257 @@
+"""
+Controls the rate of traffic.
+"""
+directive @rateLimit ("Number of occurrences allowed over duration." limit: Int! = 60, "Number of seconds before limit is reset." duration: Int! = 60) on OBJECT|FIELD_DEFINITION
+
+directive @cacheControl (maxAge: Int, scope: CacheControlScope, inheritMaxAge: Boolean) on OBJECT|FIELD_DEFINITION
+
+type Query {
+  cacheTypes: [String!]!
+
+  expiresOn(type: String!, id: ID): String!
+
+  getAnnouncement(platform: String!): Announcement
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  articleById(id: ID!, is_amp: Boolean = false, is_preview: Boolean = false): Article
+
+  articlePrimaryLeague(id: ID!): String @deprecated(reason: "Use articlePrimaryLeagueDetails instead")
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  articlePrimaryLeagueDetails(id: ID!): League
+
+  articleRelatedContent(tags: TagsInput!, count: Int = 8, exclude_ids: [ID!]!): [ContentUnion!]!
+
+  articles(search_text: String!): [Article!]!
+
+  articlesByDate(year: Int!, month: Int!, day: Int!): [Article!]!
+
+  gameArticles(game_id: ID!, league_id: ID!, limit: Int = 8): [Article!]!
+
+  getCurationsContainingArticleLinks(article_id: ID!): [CurationLink!]!
+
+  inkArticles(count: Int): [Article!]!
+
+  leagueBettingArticles(league_id: ID, limit: Int = 8): [Article!]!
+
+  mostPopularArticles(count: Int): [Article!]!
+
+  searchArticles(options: ArticleSearchOptions, count: Int = 10): [Article!]!
+
+  webArticleSearch(options: ArticleSearchOptions, count: Int = 10): [Article!]!
+
+  teamArticles(team_id: ID, limit: Int = 8): [Article!]!
+
+  leagueGameOddsRange(league_code: LeagueCode!): OddsGameInterval
+
+  brief(id: ID!): Brief!
+
+  chatRoom(id: ID!): ChatRoom!
+
+  """
+  Get a chat message by room id and message_id
+  """
+  chatMessage(id: ID!, message_id: ID!): ChatMessage!
+
+  """
+  Get the first page of messages.
+  """
+  firstChatMessages(id: ID!, limit: Int!, return_deleted: Boolean = false): [ChatMessage]!
+
+  """
+  Get next chat messages from cursor message_id
+  """
+  nextChatMessages(id: ID!, limit: Int!, message_id: ID!, return_deleted: Boolean = false): [ChatMessage]!
+
+  """
+  Get the last page of messages.
+  """
+  lastChatMessages(id: ID!, limit: Int!, return_deleted: Boolean = false): [ChatMessage]!
+
+  """
+  Get previous chat messages from cursor message_id
+  """
+  previousChatMessages(id: ID!, limit: Int!, message_id: ID!, return_deleted: Boolean = false): [ChatMessage]!
+
+  checkout(vanity_code: String, plan_id: ID, promo_codes: [String], country_code: String): Checkout!
+
+  getSinglePlanCheckout(plan_id: ID!, promo_code: String, country_code: String): SinglePlanCheckout!
+
+  promoCodeStatus(promo_code: String!): String!
+
+  userPromoEligibility(promo_code: String, vanity_code: String, is_user_churned: Boolean!, plan_id: String, country_code: String): PromoEligibility!
+
+  getPlpTableData(promo_code: String!): PlpData
+
+  getStudentPlanPricing(country_code: String!): StudentPlanPricing
+
+  getUniversityDomains: [String!]!
+
+  verifyGuestPass(share_code: String!, country_code: String!): GuestPassData!
+
+  getAvailableGiftPlans(country_code: String!): [GiftPlanData]!
+
+  verifyGiftCode(gift_code: String!, email_hash: String): VerifyGiftCodeData!
+
+  verifyLoggedInUserGiftCode(gift_code: String!, email_hash: String): verifyLoggedInUserGiftCodeData!
+
+  commentsForNews(id: ID!): [Comment!]! @deprecated(reason: "Use the more general query getComments.")
+
+  commentsForContent(id: ID!, content_type: ContentType!, sort_by: CommentSortBy, limit: Int, team_id: ID, page_limit: Int, page: Int, max_level: Int, root_comment_id: ID): [Comment!]!
+
+  getComments(input: QueryCommentsInput): CommentsResponse!
+
+  """
+  Game flairs are the teams the user follows during a game conversation
+  """
+  userGameFlairs(id: ID!, content_type: ContentType!, team_id: ID): [Flair!]!
+
+  getPermalink(content_id: ID!, content_type: ContentType!): String
+
+  getGameCommentTimestamp(game_id: ID!): String
+
+  """
+  Will return null if the user is not authenticated.
+  """
+  teamSpecificThreads(game_id: ID!): TeamSpecificResponse
+
+  profanity(text: String!): ProfanityResponse!
+
+  promptTypes: [PromptTypeResponse!]!
+
+  searchTags(searchTerm: String!): [Tag!]!
+
+  getTagsByType(types: [TagType!]!): [Tag!]!
+
+  getTagsFromText(text: String!, league_ids: [ID!]!, team_ids: [ID!]!): [Tag!]!
+
+  curatedModules(list_type: CuratedModuleListType, list_id: ID, region: Region, filter: CuratedModuleFilter, page: Int, pageSize: Int): [CuratedModule!]!
+
+  curatedLists(list_type: CuratedModuleListType, region: Region!): [CuratedModuleList!]
+
+  moduleById(id: ID!): CuratedModule!
+
+  getModuleCuratedLists(id: ID!): [ID!]
+
+  getDefaultCustomModuleItems(type: String!): [CuratedCustomItem!]!
+
+  qandaById(id: ID!): Qanda
+
+  followableItems: FollowableItems!
+
+  getUserFollowing: UserFollowResponse!
+
+  liveRoomHosts: LiveRoomHosts!
+
+  onboardingLeagues(order_by: String, country_code: String): [League]!
+
+  onboardingRecommendedTeams: [Team]!
+
+  geoConfigByCountryCode(country_code: String, bust_cache: Boolean): GeoConfig
+
+  currencyCodeByCountryCode(country_code: String): CurrencyCode
+
+  insiders: [Insider!]!
+
+  insight(id: ID!): Insight!
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  liveBlog(id: ID!, version: NodeVersion): LiveBlog!
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  liveBlogPrimaryLeague(id: ID!): League
+
+  liveBlogs(filter: NodeFilterInput, page: Int, perPage: Int, sort: SortInput, scheduledFirst: Boolean): LiveBlogConnection!
+
+  searchLiveBlogs(searchTerm: String!, status: String = "live", count: Int = 10, sort: SortInput, version: NodeVersion): [LiveBlog!]!
+
+  liveRoom(id: ID!): LiveRoom!
+
+  liveRooms(filter: NodeFilterInput, page: Int, perPage: Int, sort: SortInput): LiveRoomConnection!
+
+  liveRoomAudiences(id: ID!): [User!]!
+
+  has_live_rooms: Boolean!
+
+  lockedResource(resourceId: ID!, resourceName: ResourceNames!): Lock!
+
+  lockedResources(userId: ID!): [Lock!]!
+
+  media(filter: String): [Media]
+
+  """
+  Visit a URL and return the HTML content.
+  """
+  visit(url: String!, "timeout in seconds" timeout: Int = 300, userAgent: String = null): String
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  getWebNav(slug: String!, contentEdition: ContentEdition, filterHidden: Boolean): Nav
+
+  getNavItemById(id: ID!): NavItem
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  getWebNavV2(id: String!): NavV2
+
+  getWebNavs: [NavV2]
+
+  getNavItemByIdV2(id: ID!): NavItemV2
+
+  news(filter: NewsFilter, limit: Int, sort: NewsSortInput): [News] @deprecated(reason: "Will be removed")
+
+  newsV2(filter: NewsFilter, page: Int, perPage: Int, sort: NewsSortInput, use_dynamo: Boolean): NewsConnection! @deprecated(reason: "Will be removed")
+
+  newsById(id: ID!, version: NewsVersion): News @deprecated(reason: "Will be removed")
+
+  node(id: ID!, version: NewsVersion): NodeUnion!
+
+  searchNews(searchTerm: String!): [News!]!
+
+  notifications(tab: NotificationTab, limit: Int): [UserNotification!]!
+
+  notificationCounts: NotificationCountsResponse!
+
+  sendNytVerificationEmail(email: String!): SendEmailResponse!
+
+  validateNytEmail(email: String!, hash_code: String!): ValidateEmailResponse!
+
+  podcastChannelFeed(id: ID!): [Podcast]
+
+  podcastEpisodeById(id: ID!): PodcastEpisode
+
+  podcastEpisodeByNumber(podcast_id: ID!, episode_number: Int!): PodcastEpisode
+
+  podcastFeed: PodcastFeed
+
+  podcastLeagueFeed(id: ID, slug: String): PodcastLeagueFeed
+
+  podcastSeriesById(id: ID!): Podcast
+
+  searchPodcastEpisodes(options: PodcastEpisodeSearchOptions, count: Int = 10): [PodcastEpisode!]!
+
+  recentPodcastEpisodesForUser(page: Int = 0, per_page: Int = 10): [PodcastEpisode!]!
+
+  recommendedPodcastsForUser: [Podcast!]!
+
+  getEndCap(region: String): [EndCapResponse!]!
+
+  realtimeFeed(feedType: RealtimeFeedType, filter: NodeFilterInput, locale: String, perPage: Int, page: Int, sort: NewsSortInput): RealtimeFeedConnection!
+
+  closeGames(teams: [TeamInput]): [Game]
+
+  contentSearch(searchText: String!): [ContentSearchResult]!
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  leagues(order_by: String, country_code: String): [League]
+
+  leagueSearch(searchText: String!): [League]
+
+  playerSearch(searchText: String!): [Player]
+
+  podcastSeriesSearch(searchText: String!): [Podcast]
+
+  staffSearch(searchText: String!, hideAuthorPage: Boolean): [Staff!]!
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  teams: [Team]
+
+  """
+  WARNING - High value query - tag @web-doctors in github to review any changes
+  """
+  teamsForLeague(league_id: ID!): [Team]
+
+  teamsForCity(city_id: ID!): [Team]
+
+  teamSearch(searchText: String!): [Team]
+
+  teamSearches(searches: [String!]!): [[Team!]!]!
+
+  topicSearch(searchText: String!): [Topic]
+
+  slugToLeague(slug: String!): League
+
+  slugToTopic(slug: String!): Topic
+
+  slugToCity(slug: String!): City
+
+  slugToStaff(slug: String!): Staff
+
+  searchArticlesV2(options: ArticleSearchOptions, count: Int = 10): [ArticleSearchResult!]!
+
+  getSubscriptionSettings: SubscriptionSettings!
+
+  getCancelModalInformation(type: String): CancelModalInformation
+
+  getCancelWizard: CancelWizard
+
+  getSubStackingDetails(promo: String!, country_code: String!): SubStackingDetails
+
+  bangoVerifyEntitlement(merchant_entitlement_id: String!): BangoVerifyEntitlementDetails
+
+  currentSpotlight(language: String!): Spotlight
+
+  spotlight(id: ID!): Spotlight
+
+  spotlights(monthsAway: Int!): [Spotlight!]!
+
+  activeReplays: [Replay!]!
+
+  boxScore(game_id: ID!): BoxScore!
+
+  currentSeason(league_code: LeagueCode): Season
+
+  dayGames(time_zone: String, game_day: GameDay): [GamesGrouping!]!
+
+  game(id: ID!): Gamev2!
+
+  gameFeed(id: ID!): [GameFeedItem!]!
+
+  gamePrimaryLeague(id: ID!): Leaguev2
+
+  games(league_code: LeagueCode, season_id: ID, season_type: SeasonTypeCode, season_types: [SeasonTypeCode], team_id: ID, group: String, range: RangeInput, locale: String, week: Int): [Gamev2!]!
+
+  getTournament(league_code: LeagueCode, season_id: ID, highlighed_team_id: ID, test_game_id: ID): Tournament!
+
+  league(league_code: LeagueCode): Leaguev2!
+
+  leagueMap(league_ids: [String]): [Leaguev2]!
+
+  leagueRibbon(league_slug: String, team_slug: String, player_slug: String, sport: Sport, game_id: ID, live_blog_id: ID, excluded_game_ids: [ID!]): [RibbonBlock!]!
+
+  legacyGames(team_id: ID!): [Game!]!
+
+  liveGames(league_code: LeagueCode): [Gamev2!]!
+
+  primaryRibbon(article_id: ID, region: Region): [RibbonBlock!]!
+
+  schedule(league_code: LeagueCode!, season_id: ID, team_id: ID, group: String, range: RangeInput, season_type: SeasonTypeCode, week: Int): [GameScheduleGrouping!]! @deprecated(reason: "use schedule prop in season type")
+
+  scheduleFeed(time_zone: String!, league_code: LeagueCode, team_id: ID): ScoresFeed!
+
+  scoresFeed(time_zone: String!): ScoresFeed!
+
+  scoresFeedBlocks(game_id: ID!): [ScoresFeedBlock!]!
+
+  scoresFeedDay(time_zone: String!, day: Date!): [ScoresFeedGroup!]! @deprecated(reason: "use scoresFeedGroups query")
+
+  scoresFeedGroups(time_zone: String!, grouping_id: ID!, filter_ids: [ID!]): [ScoresFeedGroup!]!
+
+  season(id: ID!): Season
+
+  seasons(league_code: LeagueCode): [Season!]!
+
+  slugToLegacyTeam(slug: String!): Team
+
+  slugToTeamv2(slug: String!, league_code: LeagueCode, league_slug: String): Teamv2
+
+  slugToTeamMember(slug: String!, league_code: LeagueCode!): TeamMember @deprecated(reason: "use slugToTeamMemberv2")
+
+  slugToTeamMemberv2(slug: String!, league_code: LeagueCode, sport: Sport): TeamMember
+
+  teamMember(id: ID!): TeamMember
+
+  teamMembers(ids: [ID!]!): [TeamMember!]!
+
+  teamMemberSearch(search_string: String!, sport: Sport!, strict: Boolean, size: Int): [TeamMemberSearchResult!]!
+
+  teamMemberSearches(searches: [String!]!, sport: Sport!, strict: Boolean, size: Int): [[TeamMemberSearchResult!]!]!
+
+  teamv2(id: ID!): Teamv2
+
+  teamsv2Search(search_string: String!, league_code: LeagueCode, sport: Sport, strict: Boolean, size: Int): [Teamv2SearchResult!]!
+
+  teamsv2Searches(searches: [String!]!, league_code: LeagueCode, sport: Sport, strict: Boolean, size: Int): [[Teamv2SearchResult!]!]!
+
+  teamSchedule(team_id: ID!): [GameScheduleGrouping!]!
+
+  teamStandings(team_id: ID!): [TeamStanding!]!
+
+  teamStats(team_id: ID!, season_id: ID, season_type: SeasonTypeCode, league_code: LeagueCode): TeamStats
+
+  teamsv2(league_code: LeagueCode!, group: String): [Teamv2!]!
+
+  todaysGames(time_zone: String): [Gamev2!]!
+
+  todaysGamesLegacy(time_zone: String): [Game!]! @deprecated(reason: "Legacy scores are DEAD!")
+
+  searchTopics(options: TopicSearchOptions, count: Int = 10): [Topic!]!
+
+  searchTopicsV2(searchTerm: String!): [Topic]!
+
+  topic(id: ID!): Topic!
+
+  topics(page: Int, perPage: Int, sort: SortInput): TopicsConnection!
+
+  getTweet(id: ID!): Tweetv2!
+
+  getTwitterOAuthAccessToken(callbackUri: String!, token: String!, tokenSecret: String!, verifier: String!): TwitterTokens!
+
+  getTwitterOAuthRequestToken(callbackUri: String!): TwitterTokens!
+
+  getTwitterUser(accessToken: String!, accessTokenSecret: String!, callbackUri: String!): TwitterUser!
+
+  me: User!
+
+  customer: User!
+
+  customerSearch(id: ID, email: String, device_id: String): Customer
+
+  customerSearchInternal(id: ID): Customer
+
+  findAllCustomers(email_search_key: String, device_id: String, uuid: String): [Customer!]!
+
+  userByHashId(hash_id: ID!): User!
+
+  """
+  Use this query when you want a Staff as a Customer.
+  """
+  customerByHashId(hash_id: ID!): Customer!
+
+  userArticles: [Article!]!
+
+  validatePasswordLink(key: String!, login: String!, isAccountCompletion: Boolean): ValidatePasswordLinkData
+
+  userFreeArticlesRead: FreeArticlesRead
+
+  getUserContentEdition(fallback_edition: UserContentEdition): UserContentEdition!
+
+  today(filter: TodayFilter): [Layout!]!
+
+  appFeed(filter: FeedFilter): [Layout!]! @deprecated(reason: "Use Query.appFeedV2 instead which includes PageInfo")
+
+  appFeedV2(filter: FeedFilter): LayoutsConnection! @deprecated(reason: "Use Query.feed - it is meant to consolidate web and app queries")
+
+  appNav: [NavigationHeader!]!
+
+  shortFormModule(filter: FeedFilter): ShortFormCarouselLayout!
+
+  feed(filter: FeedRequest): FeedConnection!
+
+  feedMulligan(feed: String!, feed_id: Int, feed_url: String, filter: FeedFilterV2, is_mobile_web: Boolean, show_long_titles: Boolean, locale: String, page: Int!): FeedResponseV2
+
+  paywallRules(country_code: String!): [PaywallRule!]!
+
+  isUserSignedUpForNewsletter(newsletter_key: String!): QueryNewsletterSignUpResponse!
+
+  doesEmailExist(reg_email: String!): QueryEmailExistsResponse
+
+  getUserAttributionSurvey: AttributionSurvey!
+
+  threadById(id: ID!): Node!
+
+  getOffers(id: Int, country_code: String!): [UotOfferType]
+}
+
+type Mutation {
+  deleteCache(type: String!, id: ID): Boolean!
+
+  deleteCacheByKey(key: String!): Boolean!
+
+  purge(type: String!, id: ID): PurgeOutcome!
+
+  removeKeysFor(type: String!, id: ID): [String!]!
+
+  postEvent(input: EventInput): Boolean
+
+  postImpressions(input: [ImpressionInput], topic: String, platform: String): Boolean
+
+  postWebVitalsEvent(input: EventInput): Boolean
+
+  clickAnnouncement(id: ID!, platform: String!): Boolean!
+
+  hideAnnouncement(id: ID!): Boolean!
+
+  logArticleRead(input: LogArticleReadInput!): Boolean!
+
+  rateArticle(input: RateArticleInput!): Boolean!
+
+  refreshArticle(id: ID!): Boolean!
+
+  """
+  Set an article as outdated. Send slack message to #outdated_content_feed. Only for Staffs.
+  """
+  setArticleAsOutdated(id: ID!): Boolean!
+
+  setArticleAsNotOutdated(id: ID!): Boolean!
+
+  archiveBrief(id: ID!): Brief!
+
+  createBrief(input: CreateBriefInput): Brief!
+
+  readReaction(id: ID!): Boolean!
+
+  updateBrief(input: UpdateBriefInput): Brief!
+
+  """
+  Create a new chat room.  Pass in optional node id and version to link ChatRoom to a node.
+  """
+  createChatRoom(input: CreateChatRoomInput!): ChatRoom!
+
+  updateChatRoom(input: UpdateChatRoomInput!): ChatRoom!
+
+  """
+  Set status of chat room to inactive and publish a ClosedChatEvent subscription.
+  """
+  closeChatRoom(id: ID!): ChatRoom!
+
+  """
+  Write a message to a room.
+  """
+  createMessage(id: ID!, message: String!): ChatMessage!
+
+  """
+  Delete a message and return a Deleted Message Event.
+  """
+  deleteMessage(id: ID!, message_id: ID!): DeletedMessageEvent!
+
+  """
+  Replay a single chat message to subscription.
+  """
+  replayMessage(id: ID!, message_id: ID!, replay_to_id: ID): ChatMessage!
+
+  """
+  Replay chat room to subscription.
+  """
+  replayChatRoom(id: ID!, message_id: ID = null, counter: Int = 10, replay_to_id: ID): Boolean!
+
+  """
+  Report a message. Once a message has been reported 3 times it will be deleted.
+  """
+  reportMessage(id: ID!, message_id: ID!, reason: ReportedReason!): ReportedMessageEvent
+
+  """
+  Join caller to the chat room.  This is to maintain the user list.
+  This mutation is not required to be called if auto_join is on.
+  """
+  joinChatRoom(id: ID!): UserJoinedEvent!
+
+  """
+  Add user to the block user's list.
+  """
+  blockUserChatRoom(id: ID!, user_id: ID!): UserBlockedEvent!
+
+  createAccount(input: CreateAccountInput!): UserCredentials!
+
+  stripeCheckout(input: StripeCheckoutInput!): UserCredentials!
+
+  externalPaymentCheckout(input: ExternalPaymentCheckoutInput!): UserCredentials!
+
+  webLogin(input: webLoginInput!): UserCredentials!
+
+  oneStepCheckout(input: OneStepCheckoutInput!): UserCredentials!
+
+  sendStudentVerificationEmail(studentFirstName: String!, studentLastName: String!, studentEmail: String!): SendStudentEmailResponse!
+
+  pauseUserSubscription(pause_period: Int!): SubPauseResponse
+
+  redeemGiftCode(gift_code: String!): RedeemGiftCodeResponse!
+
+  addPaymentToGift(input: AddPaymentToGiftInput!): UserCredentials!
+
+  purchaseUnauthenticatedGift(input: GiftPurchaseInput!): PurchaseGiftResponse!
+
+  purchaseAuthenticatedGift(input: GiftPurchaseInput!): PurchaseGiftResponse!
+
+  addComment(input: AddCommentInput!): Boolean! @deprecated(reason: "use 'addNewComment' (returns Comment, not Boolean)")
+
+  addNewComment(input: CommentInput!): Comment!
+
+  addPlayComment(input: PlayCommentInput!): PlayCommentResponse!
+
+  deleteComment(id: ID!): Boolean!
+
+  editComment(id: ID!, comment: String!): Boolean!
+
+  flagComment(id: ID!, reason: FlagReason!): Boolean!
+
+  likeComment(id: ID!): Boolean!
+
+  pinComment(id: ID!): Boolean!
+
+  unpinComment(id: ID!): Boolean!
+
+  unlikeComment(id: ID!): Boolean!
+
+  """
+  Update brief comment count
+  """
+  updateCommentCount(id: ID!, count: Int!): Boolean!
+
+  updateThreadCommentCount(id: ID!, count: Int!): Node!
+
+  updateUserSortPreference(content_type: ContentType!, sort_by: CommentSortBy): Boolean!
+
+  deleteCommentCaches(content_type: ContentType!, content_id: ID!): Boolean!
+
+  updateCurrentSpecificThread(game_id: ID!, team_id: ID!): Boolean!
+
+  createPromptComment(game_id: ID!, prompt_type_id: ID!, team_id: ID): CreatePromptCommentResponse
+
+  approveContribution(id: ID!): Content!
+
+  archiveContribution(id: ID!): Content!
+
+  submitContribution(input: SubmitContributionInput!): Content!
+
+  unapproveContribution(id: ID!): Content!
+
+  unpublishContribution(input: UnpublishContributionInput!): Content!
+
+  updateContribution(input: UpdateContributionInput!): Content!
+
+  archiveCuratedModule(id: ID!, region: Region!): CuratedModule
+
+  createCuratedModule(input: CreateCuratedModuleInput): CuratedModule
+
+  publishCuratedModule(id: ID!, rank: Int!, listType: CuratedModuleListType, listId: ID): [CuratedModule!]!
+
+  scheduleCuratedModule(id: ID!, scheduled_at: Timestamp!): CuratedModule
+
+  unpublishCuratedModule(id: ID!, listType: CuratedModuleListType, listId: ID): CuratedModule
+
+  updateCuratedModule(id: ID!, input: UpdateCuratedModuleInput): CuratedModule
+
+  updateCuratedModuleList(input: CuratedModuleListInput!): [CuratedModule!]!
+
+  removeCuratedModuleList(list_id: ID!, list_type: CuratedModuleListType!, region: Region!): ID
+
+  addUserFollow(input: UserFollow!): UserFollowResponse!
+
+  removeUserFollow(input: UserFollow!): UserFollowResponse!
+
+  """
+  Save user following order. Can also bulk add or remove user follows. 
+  """
+  saveUserFollows(input: [UserFollow!]!): Boolean!
+
+  """
+  Reset user following to default order of team, league, authors, podcast
+  """
+  resetUserFollowsOrder: UserFollowResponse!
+
+  like(id: ID!): Boolean!
+
+  unlike(id: ID!): Boolean!
+
+  archiveLiveBlog(id: ID!): LiveBlog!
+
+  archiveLiveBlogPost(id: ID!): LiveBlogPost!
+
+  createLiveBlog(input: CreateLiveBlogInput!): LiveBlog!
+
+  createLiveBlogPost(input: CreateLiveBlogPostInput!): LiveBlogPost!
+
+  publishLiveBlog(id: ID!): LiveBlog!
+
+  updateLiveBlog(input: UpdateLiveBlogInput!): LiveBlog!
+
+  updateLiveBlogPost(input: UpdateLiveBlogPostInput!): LiveBlogPost!
+
+  updateMatchAdminSettings(input: UpdateMatchAdminSettingsInput!): MatchAdminSettings!
+
+  createLiveRoom(input: CreateLiveRoomInput!): LiveRoom!
+
+  updateLiveRoom(input: UpdateLiveRoomInput!): LiveRoom!
+
+  """
+  Set status to 'live' and started_at to current datetime
+  """
+  startLiveRoom(id: ID!): LiveRoom!
+
+  """
+  Set status to 'ended' and ended_at to current datetime
+  """
+  endLiveRoom(id: ID!): LiveRoom!
+
+  """
+  Sync the LiveRoom broadcasters, audiences and audience_total with Agora.
+  Note this mutation is expensive. Once a room is synced other processes should query liveRoom(id).
+  """
+  syncLiveRoomWithAgora(id: ID!): LiveRoom!
+
+  """
+  Sync all live rooms attributes such as broadcasters and audiences with Agora.
+  Returns the number of active live room found in Agora. -1 if error occurred.
+  """
+  syncAllLiveRoomsWithAgora: Int!
+
+  createSpeakingRequest(live_room_id: ID!, user_id: ID!, type: SpeakingRequestType!): LiveRoom!
+
+  updateSpeakingRequest(live_room_id: ID!, user_id: ID!, type: SpeakingRequestType!, approved: Boolean!): LiveRoom!
+
+  """
+  Delete Speaking Request. Will delete both types: promotion and demotion if it is not passed in.
+  """
+  deleteSpeakingRequest(live_room_id: ID!, user_id: ID!, type: SpeakingRequestType): LiveRoom!
+
+  startRecording(id: ID!): LiveRoom!
+
+  stopRecording(id: ID!): LiveRoom!
+
+  queryRecording(id: ID!): LiveRoom!
+
+  """
+  Return the active channels information from Agora.
+  """
+  getActiveChannels: ActiveChannelsData
+
+  """
+  Banned users can not join live room or listen.
+  """
+  banUser(live_room_id: ID!, user_id: ID!, minutes: Int!): LiveRoom!
+
+  unBanUser(live_room_id: ID!, user_id: ID!): LiveRoom!
+
+  kickFromStage(live_room_id: ID!, user_id: ID!, minutes: Int!): LiveRoom!
+
+  """
+  Locked users can join live room and listen, but can not come on stage or chat.
+  """
+  lockUser(live_room_id: ID!, user_id: ID!): LiveRoom!
+
+  unlockUser(live_room_id: ID!, user_id: ID!): LiveRoom!
+
+  """
+  Disable chat room associated with the Live Room.
+  Set liveRoom.disable_chat to true and chatRoom.status to 'disable'
+  """
+  disableChatLiveRoom(id: ID!): LiveRoom!
+
+  lockResource(resourceId: ID!, resourceName: ResourceNames!): Lock!
+
+  unlockResource(resourceId: ID!, resourceName: ResourceNames!): Lock!
+
+  createMedia(input: CreateMediaInput!): Media!
+
+  updateMedia(input: UpdateMediaInput!): Media!
+
+  updateNav(input: UpdateNavInput!): Nav
+
+  createDefaultLeagueNavItems: [Nav]
+
+  deleteDefaultLeagueNavs: [String]
+
+  createLeagueNav(input: CreateLeagueNavInput!): Nav
+
+  deleteLeagueNav(slug: String!): [String]
+
+  createNavItem(input: NavItemInput!): NavItem!
+
+  deleteNavItem(id: ID!): Boolean
+
+  deleteNavItems(ids: [ID!]): Boolean
+
+  updateNavItem(id: ID!, input: NavItemInput!): NavItem
+
+  reorderNavItems(input: ReorderNavInput!): NavV2
+
+  createLeagueNavV2(input: CreateLeagueNavV2Input!): NavV2
+
+  createNavItemV2(ancestor_id: ID!, input: NavItemInputV2!): NavItemV2!
+
+  deleteNavItemV2(id: ID!, ancestor_id: ID!): Boolean
+
+  updateNavItemV2(id: ID!, input: NavItemInputV2!): NavItemV2
+
+  updateNode(input: UpdateNodeInput!): NodeUnion!
+
+  triggerNotifications(input: TriggerNotificationsInput!): Boolean!
+
+  markNotificationsReadState(ids: [ID!]!, is_notification_read: Boolean!): Boolean!
+
+  setTopSportsNewsOpt(is_sub_top_sports_news: Boolean!): SetTopSportsNewsOptResponse!
+
+  updateNytAccess(nyt_regi_id: ID!, ath_user_id: ID!, has_access: Boolean!): Boolean!
+
+  cancelSubForNytBundle(ath_user_id: ID!): CancelSubResponse!
+
+  followPodcast(id: ID!): PodcastFollowResponse!
+
+  logPodcastListen(episode_id: ID!, finished: Boolean, time_elapsed: Int, platform: PlatformType): Boolean
+
+  unfollowPodcast(id: ID!): PodcastFollowResponse!
+
+  applyAnnualPlanWithDiscount: GenericSubscriptionSettingsResultResponse
+
+  submitCancelReason(input: CancelReasonsInput): Boolean!
+
+  submitCancelFeedback(input: CancelFeedbackInput): Boolean!
+
+  addNewCard(input: StripePaymentInput!): SubscriptionSettingsCardDetails!
+
+  updateCard(input: StripeExpInput!): SubscriptionSettingsCardDetails!
+
+  cancelSubscription: GenericSubscriptionSettingsResultResponse
+
+  uncancelSubscription(last_payment_method: String): GenericSubscriptionSettingsResultResponse
+
+  extendSubscription(type: String): GenericSubscriptionSettingsResultResponse
+
+  applyWinbackOffer(promo: String!): Boolean
+
+  applyCancelOffer(promo: String!): Boolean
+
+  bangoActivateEntitlement(merchant_entitlement_id: String!): BangoActivateEntitlementDetails
+
+  createChannel(input: ChannelInput!): Channel!
+
+  inviteUsers(id: ID!, users: [SlackUserInput!]!): Boolean!
+
+  addSpotlight(input: SpotlightInput): Spotlight
+
+  removeSpotlight(id: ID!): Boolean
+
+  updateSpotlight(id: ID!, input: SpotlightInput): Spotlight
+
+  gradePlayer(game_id: ID!, player_id: ID!, grade: Int): PlayerGrade!
+
+  resetReplayedGame(id: ID!): ReplayResponse!
+
+  startSimulation(initial_delay: Int): ID!
+
+  triggerReplay(id: ID!, speed: Int): ReplayResponse!
+
+  ungradePlayer(game_id: ID!, player_id: ID!): PlayerGrade!
+
+  emitStat(input: StatInput): Boolean
+
+  archiveTopic(id: ID!): Topic!
+
+  createTopic(input: CreateTopicInput!): Topic!
+
+  updateTopic(input: UpdateTopicInput!): Topic!
+
+  setTopicMetadata(id: ID!, league_id: ID, title_tag: String!, headline_tag: String!): Boolean
+
+  setSponsoredTopic(id: ID!): Boolean
+
+  setSponsoredTopicMetadata(id: ID!, meta_key: String!, meta_value: String!): Boolean
+
+  removeSponsorshipFromTopic(id: ID!): Boolean
+
+  removeMetaFromSponsoredTopic(id: ID!, meta_key: String!): Boolean
+
+  setPassword(password: String!): CookieCredentials!
+
+  completeAccount(input: CompleteAccountInput!): Customer!
+
+  socialLogin(input: SocialLoginInput!): UserCredentials!
+
+  registerAnonymousAccount(device_id: String!): UserCredentials!
+
+  generateLiveRoomToken(input: LiveRoomTokenInput!): LiveRoomToken!
+
+  """
+  Guest tokens are listeners only and using user_id that are 9 digits starting with 9.
+  """
+  guestLiveRoomToken(input: GuestLiveRoomTokenInput!): LiveRoomToken!
+
+  acceptCodeOfConduct(year: Int): User!
+
+  updateUserPolicyAgreement: User!
+
+  setRegwallArticleAsRead(article_id: ID!): RegwallArticleData
+
+  customerFlushCache(customer: Int!): Float
+
+  userFlushCache(user_id: ID!): User!
+
+  sendResetPasswordEmail(email: String!): SendResetPasswordEmailData
+
+  saveArticle(article_id: ID!): UserSaveResponse!
+
+  unsaveArticle(article_id: ID!): UserSaveResponse!
+
+  resetPassword(key: String!, login: String!, password: String!, flow: String, newsletter_opt_in: Boolean): ResetPasswordData
+
+  addNewsletters(newsletter_types: [String!]!): Boolean
+
+  removeNewsletters(newsletter_types: [String!]!): Boolean
+
+  unlinkSocial(social_name: String!): String!
+
+  oauthCompleteNYTAccount(first_name: String!, last_name: String!, newsletter_opt_in: Boolean): Boolean
+
+  downloadGiftPdf(gift_id: String!): String
+
+  resendGiftEmail(gift_id: String!): String
+
+  updatePassword(input: UpdatePasswordInput!): Boolean!
+
+  webUpdatePassword(input: UpdatePasswordInput!): CookieCredentials
+
+  updateUser(first_name: String!, last_name: String!, email: String!): Boolean!
+
+  webUpdateUser(first_name: String!, last_name: String!, email: String!): CookieCredentials
+
+  toggleUserScoresPreference: Boolean!
+
+  setUserContentEdition(edition: UserContentEdition!): String!
+
+  saveUserTranscendPreferences(transcend_settings: TranscendSettingsInput!): Boolean
+
+  signUserUpForNewsletter(newsletter_name: String!, newsletter_registration_surface: String!): SignUpUserNewsletterResponse!
+
+  updateUserEmailTerms(email_terms_opt_in_status: EmailOptInStatus!, country_code: String!): SignUpUserNewsletterResponse!
+
+  updateUserEndDate(user_id: ID!, new_end_date: String!): ServerResponse
+
+  updateUserEmail(user_id: ID!, user_email: String!): ServerResponse
+
+  updateUserPassword(user_id: ID!, user_password: String!): ServerResponse
+
+  addStripeCardId(user_id: ID!, stripe_card_id: String!): ServerResponse
+
+  removeUserFromGracePeriod(user_id: ID!): ServerResponse
+
+  deleteFacebookMetaData(user_id: ID!): ServerResponse
+
+  submitUserAttributionSurvey(value: String!, display_order: Int!): Boolean!
+
+  setUserAttributionSurveySeen: Boolean!
+
+  createPostThread(input: CreatePostThreadInput!): PostThread!
+
+  updatePostThread(input: UpdatePostThreadInput!): PostThread!
+
+  upsertOffer(offer: UotOffer!): UotResponse!
+
+  upsertPaywall(paywall: UotWall!): UotResponse!
+
+  upsertApron(apron: UotApron!): UotResponse!
+}
+
+type Subscription {
+  updatedLock(resourceId: ID!, resourceName: ResourceNames!): Lock!
+
+  createdBrief: Brief!
+
+  updatedBrief: Brief!
+
+  liveScoreUpdates(game_ids: [ID!]!): Gamev2
+
+  scoresFeedUpdates(block_ids: [ID!]!): ScoresFeedBlockUpdate!
+
+  updatedLiveRoom(id: ID!): LiveRoom!
+
+  liveRoomEvents(id: ID!): LiveRoomEvent!
+
+  updatedLiveBlog(id: ID!): LiveBlog!
+
+  publishedPostToLiveBlog(id: ID!, includeDrafts: Boolean, includeUpdates: Boolean): LiveBlogPost!
+
+  createdTopic: Topic!
+
+  changedRealtimeFeed: RealtimeFeedSubscriptionResult!
+
+  realtimeFeedUpdates(userId: String, feedType: RealtimeFeedType, filter: NodeFilterInput, locale: String): RealtimeFeedUpdate
+
+  chatEvents(id: ID!): ChatNode!
+
+  createdQaComment(id: ID!): Comment!
+}
+
+type PurgeOutcome {
+  ok: Boolean!
+
+  count: Int!
+
+  keys: [String!]!
+}
+
+input EventInput {
+  browser: String!
+
+  browser_version: String
+
+  device_id: String
+
+  element: String
+
+  event_timestamp: Timestamp!
+
+  ip_address: String
+
+  is_subscriber: Boolean!
+
+  locale: String
+
+  meta_blob: String!
+
+  object_id: String
+
+  object_type: String
+
+  page_view_id: String
+
+  platform: String!
+
+  previous_view: String
+
+  session_id: String
+
+  source: String
+
+  user_agent: String!
+
+  user_id: Int!
+
+  verb: String!
+
+  view: String!
+}
+
+input ImpressionInput {
+  author_id: String
+
+  browser: String!
+
+  browser_version: String
+
+  city_id: String
+
+  container: String
+
+  curated_flag: Boolean
+
+  device_id: String
+
+  element: String!
+
+  event_timestamp: Timestamp!
+
+  filter_id: Int
+
+  filter_type: String
+
+  h_index: Int
+
+  impress_end_time: Timestamp!
+
+  impress_start_time: Timestamp!
+
+  league_id: String
+
+  locale: String
+
+  object_id: String!
+
+  object_type: String!
+
+  page_order: Int
+
+  parent_object_id: String
+
+  parent_object_type: String
+
+  platform: String!
+
+  team_id: String
+
+  term_id: String
+
+  topic_id: String
+
+  session_id: String
+
+  user_agent: String
+
+  user_id: Int!
+
+  v_index: Int
+
+  verb: String!
+
+  view: String!
+}
+
+type Announcement implements Node & Consumable {
+  id: ID!
+
+  title: String!
+
+  excerpt: String!
+
+  image_url: String
+
+  deeplink_url: String
+
+  desktop_image_url: String
+
+  mobile_image_url: String
+
+  cta_text: String
+
+  cta_url: String
+
+  end_date: Timestamp!
+
+  type: String!
+}
+
+type Article implements Post & Node & Consumable {
+  ad_unit_path: String
+
+  ad_targeting_params(plat: String, prop: String): AdParameters
+
+  app_feed_img_url: String
+
+  article_body: String
+
+  """
+  Ads sprinkled article_body for desktop.
+  """
+  article_body_desktop: String
+
+  """
+  Experiment ads sprinkled article_body for desktop
+  """
+  article_body_desktop_exp: String
+
+  """
+  Ads sprinkled article_body for mobile.
+  """
+  article_body_mobile: String
+
+  """
+  Experiment ads sprinkled article_body for mobile.
+  """
+  article_body_mobile_exp: String
+
+  article_body_blocks: [BlockUnion!]!
+
+  """
+  author is a single field, in the case of multiple authors with be an id to a combined author with an aggregated name
+  """
+  author: User!
+
+  """
+  authors will also be a list of one of more single authors
+  """
+  authors: [ArticleAuthor!]!
+
+  author_id: ID! @deprecated(reason: "use the author\/authors field instead")
+
+  author_image: String @deprecated(reason: "use the author\/authors field instead")
+
+  author_name: String! @deprecated(reason: "use the author\/authors field instead")
+
+  byline_linkable: LinkableString
+
+  chartbeat_authors: [ArticleAuthor!]!
+
+  chartbeat_sections: String
+
+  comment_count: Int!
+
+  date: String @deprecated(reason: "use the published_at field instead")
+
+  disable_comments: Boolean!
+
+  disable_nps: Boolean!
+
+  entity_keywords: String
+
+  excerpt: String!
+
+  excerpt_plaintext: String!
+
+  featured: Boolean
+
+  game_id: ID
+
+  hide_upsell_text: Boolean
+
+  hide_scores_banner: Boolean
+
+  id: ID!
+
+  image_caption: String
+
+  image_uri: String
+
+  image_uri_full: String
+
+  inferred_league_ids: [ID]
+
+  is_article_locked: Boolean
+
+  is_interactive: Boolean
+
+  is_read: Boolean
+
+  is_saved: Boolean
+
+  is_teaser: Boolean!
+
+  is_unpublished: Boolean
+
+  is_paid_post: Boolean
+
+  is_premier: Boolean!
+
+  is_hard_regwall: Boolean!
+
+  is_outdated: Boolean!
+
+  last_activity_at: Timestamp!
+
+  league_ids: [ID]
+
+  league_names: String
+
+  league_urls: String
+
+  lock_comments: Boolean!
+
+  minimal_title: String
+
+  news_topics: String
+
+  permalink: String!
+
+  permalink_for_embed: String!
+
+  post_type_id: ID
+
+  primary_league: String
+
+  primary_league_details: League
+
+  primary_tag: String
+
+  published_at: Timestamp!
+
+  short_title: String!
+
+  show_rating: Boolean
+
+  subscriber_score: Float
+
+  team_hex: String
+
+  title: String!
+
+  team_ids: [ID]
+
+  team_names: String
+
+  team_urls: String
+
+  truncated_article_body: String
+
+  type: String!
+
+  web_feed_img_url: String
+}
+
+type ArticleAuthor {
+  id: ID!
+
+  author: User!
+
+  display_order: Int!
+}
+
+union ContentUnion = Article|News|LiveBlog
+
+enum ArticleRating {
+  meh
+
+  solid
+
+  awesome
+}
+
+input LogArticleReadInput {
+  article_id: ID!
+
+  is_read: Boolean!
+
+  percent_read: Int
+}
+
+input RateArticleInput {
+  rating: ArticleRating!
+
+  article_id: ID!
+
+  platform: String!
+}
+
+input ArticleFilter {
+  post_type_id: ID
+
+  is_teaser: Int
+
+  story_type_ids: [ID]
+
+  story_subject_ids: [ID]
+}
+
+input ArticleStringSearch {
+  title: String
+
+  excerpt: String
+
+  body: String
+}
+
+input ArticleSearchOptions {
+  range: ContentFilterRange
+
+  condition: FilterCondition
+
+  generic_filters: ContentFilter
+
+  filters: ArticleFilter
+
+  string_search: ArticleStringSearch
+}
+
+union BlockUnion = ParagraphBlock|HeaderBlock|TwitterEmbedBlock|VideoEmbedBlock|InlineBlock|Dropzone
+
+type ParagraphBlock {
+  content: String!
+}
+
+type HeaderBlock {
+  content: String!
+}
+
+type TwitterEmbedBlock {
+  content: String!
+}
+
+type VideoEmbedBlock {
+  content: String!
+}
+
+"""
+Inline html block
+"""
+type InlineBlock {
+  content: String!
+}
+
+"""
+Represents a position where sprinkled content or ads can be placed
+"""
+type Dropzone {
+  """
+  Starting with 1
+  """
+  index: Int!
+
+  content: String!
+}
+
+type CurationLink {
+  title: String!
+
+  url: String!
+}
+
+enum CoverResult {
+  yes
+
+  no
+
+  push
+}
+
+enum BetType {
+  moneyline
+
+  moneyline3way
+
+  spread
+
+  totals
+}
+
+enum BetPeriod {
+  fulltime
+
+  regulartime
+}
+
+type GameOddsPrice {
+  fraction_odds: String
+
+  decimal_odds: String
+
+  us_odds: String
+}
+
+interface GameOddsMarket {
+  id: ID!
+
+  balanced_line: Boolean
+
+  betting_open: Boolean
+
+  bet_period: String
+
+  line: String
+
+  price: GameOddsPrice!
+}
+
+type GameOddsMoneylineMarket implements GameOddsMarket {
+  id: ID!
+
+  balanced_line: Boolean
+
+  betting_open: Boolean
+
+  bet_period: String
+
+  line: String
+
+  price: GameOddsPrice!
+
+  team: Teamv2
+}
+
+type GameOddsSpreadMarket implements GameOddsMarket {
+  id: ID!
+
+  balanced_line: Boolean
+
+  betting_open: Boolean
+
+  bet_period: String
+
+  line: String
+
+  price: GameOddsPrice!
+
+  team: Teamv2
+}
+
+type GameOddsTotalsMarket implements GameOddsMarket {
+  id: ID!
+
+  balanced_line: Boolean
+
+  betting_open: Boolean
+
+  bet_period: String
+
+  line: String
+
+  price: GameOddsPrice!
+
+  direction: String
+}
+
+type GameOddsTeamMarket {
+  id: ID!
+
+  balanced_line: Boolean
+
+  betting_open: Boolean
+
+  bet_period: String
+
+  bet_type: BetType
+
+  line: String
+
+  price: GameOddsPrice!
+
+  direction: String
+}
+
+type AmericanFootballGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  attendance: String
+
+  away_team: GameTeam
+
+  broadcast_network: String
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  grade_status: GradeStatus
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  key_events: [KeyEvent!]!
+
+  last_play: String
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  play_by_play: [Play!]!
+
+  possession: Possession
+
+  recent_plays(size: Int!): [Play!]!
+
+  scheduled_at: Timestamp
+
+  scoring_plays: [ScoringPlay!]!
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  weather: Weather
+
+  week: Int
+}
+
+type AmericanFootballGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int @deprecated(reason: "Soccer only")
+
+  current_ranking: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  penalty_score: Int @deprecated(reason: "Soccer only")
+
+  remaining_timeouts: Int
+
+  score: Int
+
+  scoring(aggregated: Boolean): [PeriodScore!]!
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stat_leaders: [TeamLeader!]!
+
+  stats: [GameStat!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+
+  used_timeouts: Int
+}
+
+type BaseballGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  attendance: String
+
+  away_team: GameTeam
+
+  broadcast_network: String
+
+  clock: String @deprecated(reason: "Not used in baseball")
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  grade_status: GradeStatus
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  inning: Int
+
+  inning_half: InningHalf
+
+  inning_plays: [Play!]!
+
+  key_events: [KeyEvent!]!
+
+  last_play: BaseballPlay
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int @deprecated(reason: "Soccer only")
+
+  match_time_display: String
+
+  outcome: BaseballOutcome
+
+  period: Int @deprecated(reason: "Use inning")
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  pitching: BaseballPitching
+
+  play_by_play(current_inning_only: Boolean, inning: Int, inning_half: InningHalf): [Play!]!
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  scoring_plays: [BaseballTeamPlay!]!
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  weather: Weather
+
+  week: Int
+}
+
+type BaseballGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int @deprecated(reason: "Soccer only")
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  errors: Int
+
+  hits: Int
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  penalty_score: Int @deprecated(reason: "Soccer only")
+
+  players: [BaseballPlayer!]!
+
+  runs: Int
+
+  """
+  score === runs
+  """
+  score: Int
+
+  scoring: [InningScore!]!
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  """
+  Whether the starting_pitcher has been officially confirmed (or still probable)
+  """
+  starting_pitcher_confirmed: Boolean
+
+  starting_pitcher: BaseballPitcher
+
+  stat_leaders: [TeamLeader!]!
+
+  stats: [GameStat!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+}
+
+type BasketballGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  attendance: String
+
+  bracket: BasketballGameBracket
+
+  away_team: GameTeam
+
+  broadcast_network: String
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  grade_status: GradeStatus
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  key_events: [KeyEvent!]!
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  play_by_play: [Play!]!
+
+  recent_plays(size: Int!): [BasketballPlay!]!
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  week: Int
+}
+
+type BasketballGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int
+
+  current_ranking: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  penalty_score: Int
+
+  remaining_timeouts: Int
+
+  score: Int
+
+  scoring(aggregated: Boolean): [PeriodScore!]!
+
+  seed: Int
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stat_leaders: [TeamLeader!]!
+
+  stats: [GameStat!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+
+  used_timeouts: Int
+}
+
+interface GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  penalty_score: Int
+
+  score: Int
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stat_leaders: [TeamLeader!]! @deprecated(reason: "Use Gamev2.season_stats.home_stat_leaders and away_stat_leaders")
+
+  stats: [GameStat!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+}
+
+interface Gamev2 {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  away_team: GameTeam
+
+  clock: String
+
+  comments_on: Boolean! @deprecated(reason: "Use Gamev2.coverage.available_data")
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean! @deprecated(reason: "Use Gamev2.coverage.available_data")
+
+  key_events: [KeyEvent!]!
+
+  league: Leaguev2!
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  live_blog: LiveBlog
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  week: Int
+}
+
+type GenericGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  away_team: GameTeam
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  key_events: [KeyEvent!]!
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  week: Int
+}
+
+type GenericGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  penalty_score: Int
+
+  score: Int
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stat_leaders: [TeamLeader!]!
+
+  stats: [GameStat!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+}
+
+type HockeyGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  attendance: String
+
+  away_team: GameTeam
+
+  broadcast_network: String
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  grade_status: GradeStatus
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  key_events: [KeyEvent!]!
+
+  last_play: Play
+
+  league: Leaguev2!
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  live_blog: LiveBlog
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  play_by_play: [Play!]!
+
+  recent_plays(size: Int!): [Play!]!
+
+  scheduled_at: Timestamp
+
+  scoring_plays: [Play!]!
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  week: Int
+}
+
+type HockeyGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  line_up: LineUp
+
+  penalty_score: Int
+
+  score: Int
+
+  scoring(aggregated: Boolean): [PeriodScore!]!
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stat_leaders: [TeamLeader!]!
+
+  stats: [GameStat!]!
+
+  strength: HockeyStrength
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+}
+
+type SoccerGame implements Gamev2 & Consumable {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  aggregate_winner: Teamv2
+
+  leg: Int
+
+  away_team: GameTeam
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  grade_status: GradeStatus
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  key_events: [KeyEvent!]!
+
+  key_plays(size: Int): [Play!]!
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int
+
+  match_time_display: String
+
+  next_game_winner: NextGame
+
+  next_game_loser: NextGame
+
+  officials: [SoccerOfficial!]!
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  play_by_play: [Play!]!
+
+  recent_plays(size: Int!): [Play!]!
+
+  related_game: SoccerGame
+
+  replay: Boolean
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  win_probability: WinProbability
+
+  venue: Venue
+
+  week: Int
+}
+
+type SoccerGameTeam implements GameTeam {
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  id: ID!
+
+  aggregate_score: Int
+
+  current_record: String
+
+  current_standing(short: Boolean): String
+
+  expected_goals: DecimalGameStat
+
+  last_games(size: Int!, game_league_only: Boolean, range: RangeInput): [Gamev2!]!
+
+  last_six: String
+
+  line_up: LineUp
+
+  penalty_score: Int
+
+  score: Int
+
+  season_stats: [RankedStat!]! @deprecated(reason: "Use Gamev2.season_stats")
+
+  stats: [GameStat!]!
+
+  stat_leaders: [TeamLeader!]!
+
+  team: Teamv2
+
+  top_performer: TopPerformer
+
+  top_performers: [TopPerformer!]!
+}
+
+type OddsGameInterval {
+  from_ts: Timestamp
+
+  to_ts: Timestamp
+}
+
+type Brief implements Content & Node & Consumable & Likeable & GameFeedItem {
+  allTags: [Tag!]!
+
+  ancestor_id: ID @deprecated(reason: "Backend use only")
+
+  ancestor_type: String @deprecated(reason: "Backend use only")
+
+  audio_uri: String
+
+  comment_count: Int!
+
+  created_at: Timestamp!
+
+  current_user_has_read: Boolean!
+
+  current_user_is_owner: Boolean!
+
+  disable_comments: Boolean!
+
+  html: String
+
+  htmlDisplayLength: Int
+
+  id: ID!
+
+  images: [Image!]!
+
+  is_contribution: Boolean!
+
+  last_activity_at: Timestamp!
+
+  lock_comments: Boolean!
+
+  permalink: String!
+
+  primary_tag: Tag
+
+  reactions: [Brief]!
+
+  region: Region
+
+  reviewed_at: Timestamp
+
+  reviewer: User
+
+  reviewer_id: ID @deprecated(reason: "use the reviewer object instead")
+
+  reviewer_name: String @deprecated(reason: "use the reviewer object instead")
+
+  status: String!
+
+  tags: NewsTags! @deprecated(reason: "use the allTags object instead")
+
+  text: String
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  user: User!
+
+  user_id: ID @deprecated(reason: "use the user object instead")
+
+  user_name: String @deprecated(reason: "use the user object instead")
+
+  version: NewsVersion!
+
+  current_user_has_liked: Boolean!
+
+  likes: Int!
+
+  occurred_at: Timestamp!
+
+  topics: [Topic]!
+}
+
+type BriefTags {
+  leagues: [Tag]
+
+  teams: [Tag]
+}
+
+input CreateBriefInput {
+  allTags: [TagInput]
+
+  ancestor_id: ID
+
+  disable_comments: Boolean
+
+  headline: String
+
+  images: [ImageInput!]
+
+  tags: NewsTagsInput
+
+  text: String!
+
+  twitter: TwitterInput
+
+  user_id: ID
+}
+
+input CreateReactionInput {
+  allTags: [TagInput]
+
+  ancestor_id: ID!
+
+  images: [ImageInput!]!
+
+  tags: NewsTagsInput
+
+  text: String!
+
+  twitter: TwitterInput
+}
+
+enum BriefFilterType {
+  all
+
+  latest
+
+  league
+
+  team
+}
+
+input UpdateBriefInput {
+  allTags: [TagInput]
+
+  ancestor_id: ID
+
+  disable_comments: Boolean
+
+  headline: String
+
+  id: ID!
+
+  images: [ImageInput!]
+
+  lock_comments: Boolean
+
+  tags: NewsTagsInput
+
+  text: String
+}
+
+interface ChatNode {
+  """
+  This is the chat room id
+  """
+  id: ID!
+
+  type: ChatNodeType!
+}
+
+type ChatRoom implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  """
+  The node_id this ChatRoom is linked to
+  """
+  node_id: ID
+
+  title: String
+
+  """
+  When true user does not need to join ChatRoom to make a comments.
+  Defaults to true.
+  """
+  auto_join: Boolean!
+
+  created_by: User!
+
+  created_at: Timestamp!
+
+  """
+  Get list of users that have joined the ChatRoom
+  """
+  users: [User!]!
+
+  """
+  Get list of users that have been banned from the ChatRoom
+  """
+  blocked_users: [User!]!
+
+  """
+  Get last 10 messages in the ChatRoom
+  """
+  messages: [ChatMessage!]!
+
+  status: ChatRoomStatus!
+}
+
+type ChatMessage implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  message_id: ID!
+
+  """
+  message field has been filtered for bad words.
+  """
+  message: String!
+
+  """
+  supports markdown url linking
+  """
+  message_markdown: String!
+
+  deleted: Boolean!
+
+  has_profanity: Boolean!
+
+  created_by: User!
+
+  created_at: Timestamp!
+
+  reports: [ReportedMessage]!
+}
+
+type ReportedMessage {
+  reported_by: User!
+
+  reported_at: Timestamp!
+
+  reason: ReportedReason!
+}
+
+type UserJoinedEvent implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  user: User!
+
+  created_at: Timestamp!
+}
+
+type UserBlockedEvent implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  user: User!
+
+  created_by: User!
+
+  created_at: Timestamp!
+}
+
+type DeletedMessageEvent implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  message_id: ID!
+
+  created_by: User!
+
+  created_at: Timestamp!
+}
+
+type ReportedMessageEvent implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  message_id: ID!
+
+  """
+  Number of times message has been reported
+  """
+  num_reports: Int!
+
+  reason: ReportedReason!
+
+  created_by: User!
+
+  created_at: Timestamp!
+}
+
+type ClosedChatEvent implements ChatNode {
+  id: ID!
+
+  type: ChatNodeType!
+
+  created_by: User!
+
+  created_at: Timestamp!
+}
+
+enum ChatNodeType {
+  closed_chat
+
+  deleted_message
+
+  """
+  Using msg to save space in the db.
+  """
+  message
+
+  room
+
+  user_joined
+
+  user_blocked
+
+  reported_message
+}
+
+enum ChatRoomStatus {
+  active
+
+  closed
+
+  disabled
+}
+
+enum ReportedReason {
+  abusive
+
+  trolling
+
+  spam
+}
+
+input CreateChatRoomInput {
+  node_id: ID
+
+  title: String!
+
+  auto_join: Boolean
+
+  status: ChatRoomStatus
+}
+
+input UpdateChatRoomInput {
+  id: ID!
+
+  node_id: ID
+
+  title: String
+
+  auto_join: Boolean
+
+  status: ChatRoomStatus
+}
+
+type Checkout {
+  default_plan_id: String!
+
+  headline: String!
+
+  plans: [Plan!]!
+
+  subheader: String!
+
+  tagline: String!
+
+  payment_providers: PaymentProviders!
+}
+
+type SinglePlanCheckout {
+  plan: Plan!
+
+  payment_providers: PaymentProviders!
+}
+
+input CreateAccountInput {
+  email: String!
+
+  first_name: String!
+
+  last_name: String!
+
+  password: String!
+
+  privacy: Boolean!
+
+  tos: Boolean!
+
+  newsletter_opt_in: String
+
+  login_method_used: String
+
+  promo_checkbox: String
+
+  newsletter_campaign: String
+
+  registration_surface: String
+
+  amp_reader_id: String
+
+  country_code: String
+
+  registration_source: String
+}
+
+input OneStepCheckoutInput {
+  braintree_nonce: String
+
+  email: String!
+
+  first_name: String
+
+  last_name: String
+
+  plan_id: ID!
+
+  promo_code: String
+
+  stripe_token: String
+
+  privacy: Boolean!
+
+  tos: Boolean!
+
+  unique_code: String
+
+  access_code: String
+}
+
+type Currency {
+  name: String!
+
+  sign: String!
+
+  prefix: Boolean
+}
+
+type PaymentProviders {
+  braintree: Int!
+
+  stripe: Int!
+}
+
+type Plan {
+  annual_price: Float
+
+  billing_details: String
+
+  currency: Currency!
+
+  country_code: String
+
+  discounted_annual_price: Float
+
+  discounted_monthly_price: Float
+
+  fine_print: String!
+
+  headline: String!
+
+  id: ID!
+
+  monthly_price: Float!
+
+  plan_num: Int!
+
+  plan_term: String!
+
+  price_due_today: Float!
+
+  promo_code: String
+
+  promo_code_duration_in_months: Int
+
+  ribbon_text: String
+
+  subheader: String!
+
+  tagline: String
+
+  total_price: Float
+
+  trial_days: Int!
+}
+
+type PromoEligibility {
+  valid: Boolean!
+
+  reason: String
+}
+
+type PlpData {
+  promo_header: String
+
+  promo_subheader: String
+
+  promo_background_image: String
+
+  promo_subtext: String
+
+  checkout_cta_text: String
+}
+
+type PurchaseGiftResponse {
+  confirmation_id: String!
+
+  success: Boolean
+}
+
+type StudentPlanPricing {
+  discounted_price: String
+
+  full_price: String
+}
+
+type SubPauseResponse {
+  pause_end_date: String
+
+  pause_start_date: String
+}
+
+type RedeemGiftCodeResponse {
+  success: Boolean!
+
+  error: String
+
+  end_date: String
+}
+
+type SendStudentEmailResponse {
+  success: Boolean!
+}
+
+input StripeCheckoutInput {
+  credit_card_name: String!
+
+  plan_id: ID!
+
+  promo_code: String
+
+  stripe_token: String!
+
+  unique_code: String
+
+  recaptcha_token: String
+
+  access_code: String
+}
+
+input ExternalPaymentCheckoutInput {
+  credit_card_name: String!
+
+  plan_id: ID!
+
+  promo_code: String
+
+  stripe_token: String
+
+  braintree_nonce: String
+
+  unique_code: String
+
+  access_code: String
+}
+
+input AddPaymentToGiftInput {
+  credit_card_name: String!
+
+  plan_id: ID!
+
+  stripe_token: String!
+
+  recaptcha_token: String!
+}
+
+input webLoginInput {
+  email: String!
+
+  password: String!
+
+  amp_reader_id: String
+}
+
+type GuestPassPlanDetails {
+  id: String!
+
+  name: String!
+
+  name_fr: String
+
+  amount: Float!
+
+  currency: String!
+
+  plan_term: String!
+
+  plan_num: String!
+
+  trial_days: String!
+
+  country_id: String!
+
+  plan_type: String!
+
+  status: String!
+
+  initial_trial_charge_amount: String!
+
+  currency_symbol: String!
+
+  currency_suffix: String!
+
+  show_strikethrough: Boolean!
+
+  description_text: String!
+
+  amount_total: String!
+
+  amount_total_desc: String!
+
+  full_charge_amount_total: String!
+
+  full_charge_amount_total_desc: String!
+}
+
+type GuestPassData {
+  valid_pass: Boolean!
+
+  referrer_name: String
+
+  plan_details: GuestPassPlanDetails
+}
+
+type GiftPlanData {
+  id: String!
+
+  amount: Float!
+
+  gift_original_price: Float!
+
+  currency_symbol: String!
+
+  currency_name: String!
+
+  term_length_formatted: String!
+}
+
+type VerifyGiftCodeData {
+  is_valid: Boolean!
+
+  error_message: String
+
+  skip_payment_allowed: Boolean
+
+  buyer_name: String
+
+  plan_term: String
+}
+
+type verifyLoggedInUserGiftCodeData {
+  is_valid: Boolean
+
+  skip_payment_allowed: Boolean
+
+  redeemed_user_id: String
+
+  has_card_on_file: Boolean
+}
+
+input GiftPurchaseInput {
+  gift_cart: [Gift]!
+
+  on_file: Boolean!
+
+  buyer_email: String!
+
+  stripe_token: String
+
+  recaptcha_token: String
+}
+
+input Gift {
+  delivery_method: String!
+
+  plan_id: String!
+
+  buyer_name: String!
+
+  recipient_email: String!
+
+  recipient_name: String!
+
+  gift_delivery_date: String!
+
+  gift_message: String
+}
+
+input AddCommentInput {
+  comment: String!
+
+  news_id: ID!
+
+  parent_id: ID
+
+  platform: String!
+}
+
+type Comment {
+  author_color: String!
+
+  author_id: ID!
+
+  author_initials: String!
+
+  author_name: String!
+
+  author_social_name: String!
+
+  author_user_level: Int!
+
+  """
+  Game flairs are the teams the user follows during a game conversation
+  """
+  author_game_flairs(team_id: ID): [Flair]!
+
+  avatar_url: String
+
+  comment: String!
+
+  comment_as_markdown: String!
+
+  comment_permalink: String
+
+  commented_at: Timestamp!
+
+  comment_metadata: String
+
+  id: ID!
+
+  is_ambassador: Boolean! @deprecated(reason: "legacy, no longer used")
+
+  is_deletable: Boolean!
+
+  is_flagged: Boolean!
+
+  is_liked: Boolean!
+
+  is_pinned: Boolean!
+
+  is_tweet: Boolean!
+
+  likes_count: Int!
+
+  parent_id: ID!
+
+  parent_user_id: ID
+
+  replies: [Comment!]
+
+  has_replies_next_level: Boolean!
+
+  total_replies: Int!
+
+  tweet: Tweetv2
+}
+
+input CommentInput {
+  comment: String!
+
+  content_id: ID!
+
+  content_type: ContentType
+
+  parent_id: ID
+
+  platform: String!
+
+  team_id: ID
+}
+
+input PlayCommentInput {
+  comment: String!
+
+  content_id: ID!
+
+  content_type: ContentType!
+
+  occurred_at_str: String!
+
+  platform: String!
+
+  team_id: ID
+}
+
+type PlayCommentResponse {
+  parent_comment: Comment!
+
+  child_comment: Comment!
+
+  is_parent_new: Boolean!
+}
+
+enum CommentSortBy {
+  likes
+
+  recent
+
+  time
+
+  trending
+}
+
+enum ContentType {
+  brief
+
+  discussion
+
+  game_play
+
+  game_v2
+
+  headline
+
+  podcast_episode
+
+  post
+
+  post_thread
+
+  qanda
+}
+
+enum FlagReason {
+  spam
+
+  abusive_or_harmful
+
+  trolling_or_baiting
+
+  user
+}
+
+type News implements Likeable & Node & Consumable {
+  comments: [Comment!]
+
+  current_user_has_liked: Boolean!
+
+  likes: Int!
+
+  allow_comments: Boolean! @deprecated(reason: "use the disable_comments field instead")
+
+  autolinked_lede: String @deprecated(reason: "resolved into lede when appropriate")
+
+  autolinked_smart_brevity: String @deprecated(reason: "resolved into smart_brevity when appropriate")
+
+  autolinker_on: Boolean
+
+  byline: String @deprecated(reason: "use the byline_linkable field instead")
+
+  byline_authors: [Staff]
+
+  byline_linkable: LinkableString
+
+  comment_count: Int!
+
+  content(filter: NewsFilter): [Content]
+
+  created_at: Timestamp!
+
+  current_user_is_owner: Boolean!
+
+  custom_meta_description: String
+
+  custom_search_title: String @deprecated(reason: "use short_title field instead")
+
+  disable_comments: Boolean!
+
+  draft: News
+
+  """
+  editing_statuses is a hub-only field
+  """
+  editing_statuses: EditingStatuses
+
+  experts_group: [Staff]!
+
+  following: Boolean!
+
+  has_published_background: Boolean
+
+  has_unpublished_changes: Boolean!
+
+  headline: String!
+
+  headline_type: NewsHeadlineType!
+
+  id: ID!
+
+  image_uri: String @deprecated(reason: "Use the 'images' field instead")
+
+  images: [Image!]!
+
+  importance: NewsImportance!
+
+  is_read: Boolean
+
+  last_activity_at: Timestamp!
+
+  lede(isEditor: Boolean): String
+
+  localization: NewsLocalization!
+
+  lock_comments: Boolean!
+
+  permalink: String!
+
+  primary_tag: Tag
+
+  published_at: Timestamp
+
+  reactions: [Brief]!
+
+  regions: [Region!]
+
+  short_title: String!
+
+  slug: String!
+
+  smart_brevity(isEditor: Boolean): String
+
+  smart_brevity_cta: String
+
+  smart_brevity_headers: String
+
+  status: String!
+
+  tags: NewsTags!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  user: User!
+
+  user_id: ID @deprecated(reason: "use the user object instead")
+
+  user_name: String @deprecated(reason: "use the user object instead")
+
+  version: NewsVersion!
+
+  topics: [Topic]!
+}
+
+type CommentsResponse {
+  comment_count: Int!
+
+  comments: [Comment!]!
+
+  disable_comments: Boolean!
+
+  input: CommentsInput!
+
+  lock_comments: Boolean!
+
+  user: User
+
+  userFlairs: [Flair!]!
+}
+
+input QueryCommentsInput {
+  content_id: ID!
+
+  content_type: ContentType!
+
+  sort_by: CommentSortBy
+
+  limit: Int
+
+  team_id: ID
+
+  page_limit: Int
+
+  page: Int
+
+  max_level: Int
+
+  root_comment_id: ID
+}
+
+type CommentsInput {
+  content_id: ID!
+
+  content_type: ContentType!
+
+  sort_by: CommentSortBy
+
+  limit: Int
+
+  team_id: ID
+}
+
+type Flair {
+  id: String!
+
+  name: String!
+
+  icon_contrast_color: String!
+}
+
+type TeamSpecificResponse {
+  content_type: ID!
+
+  content_id: ID!
+
+  team_id: ID
+
+  current_thread: TeamSpecificThread!
+
+  threads: [TeamSpecificThread!]!
+}
+
+type TeamSpecificThread {
+  label: String!
+
+  team: Teamv2
+}
+
+type ProfanityResponse {
+  text: String!
+
+  text_clean: String!
+
+  has_profanity: Boolean!
+}
+
+type PromptTypeResponse {
+  id: ID!
+
+  name: String!
+
+  sports: String!
+}
+
+type CreatePromptCommentResponse {
+  id: ID!
+
+  prompt_id: ID!
+
+  prompt_type_id: ID!
+
+  comment_id: ID!
+
+  game_id: ID!
+
+  league: String!
+
+  comment: String!
+
+  comment_url: String!
+}
+
+"""
+ISO 8601 Date only String representation
+"""
+scalar Date
+
+"""
+Timestamp type because GraphQL's Int doesn't support numbers beyond 32-bit, and because they store SQL dates in the primary DB
+"""
+scalar Timestamp
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+input BooleanFilterInput {
+  eq: Boolean
+
+  ne: Boolean
+}
+
+enum CacheControlScope {
+  PUBLIC
+
+  PRIVATE
+}
+
+interface Content {
+  ancestor_id: ID @deprecated(reason: "Backend use only")
+
+  ancestor_type: String @deprecated(reason: "Backend use only")
+
+  current_user_is_owner: Boolean!
+
+  created_at: Timestamp!
+
+  id: ID!
+
+  reviewed_at: Timestamp
+
+  reviewer: User
+
+  reviewer_id: ID
+
+  reviewer_name: String
+
+  status: String!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  user: User!
+
+  user_id: ID
+
+  user_name: String
+
+  version: NewsVersion!
+}
+
+type ContentConnection {
+  items: [Node]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+type Cookie {
+  name: String!
+
+  body: String!
+}
+
+type CookieCredentials {
+  cookie: Cookie!
+}
+
+type TranscendSettings {
+  functional: Boolean
+
+  analytics: Boolean
+
+  advertising: Boolean
+
+  saleOfInfo: Boolean
+}
+
+type Customer implements User {
+  id: ID!
+
+  attribution_survey_eligible: Boolean!
+
+  avatar_uri: String
+
+  braintree_customer_id: String
+
+  braintree_subscription_id: String
+
+  can_host_live_rooms: Boolean!
+
+  code_of_conduct: Boolean!
+
+  code_of_conduct_2022: Boolean!
+
+  color: String!
+
+  comment_sort_preference: CommentSortPreference!
+
+  comments_activated: Int!
+
+  content_edition: UserContentEdition
+
+  device_ids: [String!]!
+
+  email: String!
+
+  email_settings: [EmailSetting]
+
+  end_date: Timestamp
+
+  fb_id: String
+
+  first_name: String!
+
+  following: UserFollowing!
+
+  google_order_id: String
+
+  has_invalid_email: Boolean!
+
+  hash_id: ID!
+
+  initials: String!
+
+  is_anonymous: Int!
+
+  is_in_grace_period: Boolean!
+
+  is_nyt: Boolean!
+
+  is_shadow_ban: Boolean!
+
+  last_name: String!
+
+  last_payment_method: String
+
+  login_method: LoginMethod
+
+  name: String!
+
+  notify_comments: Boolean!
+
+  notify_top_sports_news: Boolean!
+
+  privacy_policy: Boolean!
+
+  promo_code: String
+
+  referrals_redeemed: Int!
+
+  referrals_total: Int!
+
+  registration_date: Timestamp
+
+  social_name: String!
+
+  stripe_customer_id: String
+
+  stripe_subscription_id: String
+
+  subscription_log: [SubscriptionLog]
+
+  temp_ban_end_date: Timestamp
+
+  terms_and_conditions: Boolean!
+
+  user_level: Int!
+
+  user_scores: Boolean!
+
+  uuid: String
+
+  transcend_settings: TranscendSettings
+}
+
+type SubscriptionLog {
+  amount: String
+
+  card_last4: String
+
+  card_brand: String
+
+  currency: String
+
+  date: Timestamp
+
+  delivery_method: String
+
+  gift_code: String
+
+  gift_id: String
+
+  hosted_invoice_url: String
+
+  id: ID!
+
+  isTrial: String
+
+  platform: String
+
+  pretty_amount: String
+
+  pretty_plan_amount: String
+
+  pretty_transaction_type: String
+
+  recipient_email: String
+
+  recipient_name: String
+
+  stripe_invoice_id: String
+
+  stripeInvoice: String
+
+  transaction_type: String
+}
+
+type DisplayTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  image_url: String
+}
+
+input Filter {
+  field: String!
+
+  value: String!
+}
+
+type GameTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  seasonType: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  image_url: String
+}
+
+type Image {
+  alt_text: String
+
+  credits: String
+
+  dark_image_cdn_uri: String
+
+  dark_image_uri: String
+
+  id: ID!
+
+  image_cdn_uri: String
+
+  image_height: Int
+
+  image_uri: String!
+
+  image_width: Int
+
+  thumbnail_cdn_uri: String
+
+  thumbnail_height: Int
+
+  thumbnail_uri: String
+
+  thumbnail_width: Int
+}
+
+input ImageInput {
+  alt_text: String
+
+  credits: String
+
+  image_height: Int
+
+  image_uri: String!
+
+  image_width: Int
+
+  thumbnail_height: Int
+
+  thumbnail_uri: String
+
+  thumbnail_width: Int
+}
+
+type LeagueTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  leagueRef: League
+
+  image_url: String
+}
+
+enum Mutations {
+  CREATED
+
+  DELETED
+
+  UPDATED
+}
+
+interface Node {
+  id: ID!
+
+  type: String!
+}
+
+type PageInfo {
+  currentPage: Int!
+
+  hasNextPage: Boolean!
+
+  hasPreviousPage: Boolean!
+
+  id: ID!
+}
+
+type PlayerTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  image_url: String
+}
+
+type AuthorTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  authorRef: Author
+
+  image_url: String
+}
+
+interface Consumable {
+  id: ID!
+
+  type: String!
+}
+
+interface Post {
+  """
+  author is a single field, in the case of multiple authors with be an id to a combined author with an aggregated name
+  """
+  author: User!
+
+  comment_count: Int!
+
+  excerpt: String!
+
+  id: ID!
+
+  image_uri: String
+
+  permalink: String!
+
+  primary_tag: String
+
+  published_at: Timestamp!
+
+  title: String!
+
+  type: String!
+
+  is_saved: Boolean
+
+  is_read: Boolean
+}
+
+enum TagType {
+  league
+
+  team
+
+  player
+
+  city
+
+  author
+
+  topic
+}
+
+"""
+These should be ISO 2 Alpha codes
+"""
+enum Region {
+  ca
+
+  uk
+
+  us
+}
+
+enum SortDirection {
+  asc
+
+  desc
+}
+
+enum SortMissing {
+  first
+
+  last
+}
+
+input SortInput {
+  direction: SortDirection
+
+  field: String
+
+  missing: SortMissing
+}
+
+type Staff implements User {
+  avatar_uri: String
+
+  bio: String
+
+  description: String
+
+  can_edit_headlines: Boolean!
+
+  can_host_live_rooms: Boolean!
+
+  code_of_conduct: Boolean!
+
+  code_of_conduct_2022: Boolean!
+
+  comment_sort_preference: CommentSortPreference!
+
+  email_settings: [EmailSetting]
+
+  first_name: String!
+
+  full_description: String
+
+  following: UserFollowing!
+
+  hash_id: ID!
+
+  id: ID!
+
+  insider_avatar_uri: String
+
+  last_name: String!
+
+  league_avatar_uri: String
+
+  league_id: ID
+
+  login_method: LoginMethod
+
+  name: String!
+
+  role: UserRole!
+
+  slack_user_id: String
+
+  slug: String
+
+  team_avatar_uri: String
+
+  team_id: ID
+
+  twitter: String
+
+  uot_permission: Boolean
+}
+
+enum Status {
+  archived
+
+  draft
+
+  live
+
+  recap
+
+  upcoming
+}
+
+input StringFilterInput {
+  age: String
+
+  eq: String
+
+  exists: Boolean
+}
+
+interface Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  image_url: String
+}
+
+input TagInput {
+  id: ID!
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  seasonType: String
+
+  shortname: String
+
+  sportType: Sport
+
+  title: String
+
+  type: String
+}
+
+input TagsInput {
+  leagues: [TagInput!]
+
+  teams: [TagInput!]
+
+  authors: [TagInput!]
+}
+
+type Tags {
+  leagues: [LeagueTag!]
+
+  teams: [TeamTag!]
+
+  authors: [AuthorTag!]
+}
+
+type TeamTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  teamRef: Team
+
+  image_url: String
+}
+
+type TopicTag implements Tag {
+  id: ID!
+
+  deeplink_url: String
+
+  league: ID
+
+  leagueCode: String
+
+  leagueShortname: String
+
+  leagueTitle: String
+
+  name: String
+
+  shortname: String!
+
+  sportType: Sport
+
+  title: String!
+
+  type: String
+
+  image_url: String
+
+  slug: String
+}
+
+type Evergreen implements Node & Consumable {
+  articles_count: Int
+
+  id: ID!
+
+  team: Team
+
+  title: String!
+
+  type: String!
+}
+
+type EmailSetting {
+  title: String
+
+  email_type: String!
+
+  description: String
+
+  value: Boolean
+
+  index: Int
+}
+
+interface User {
+  id: ID!
+
+  hash_id: ID!
+
+  first_name: String!
+
+  last_name: String!
+
+  login_method: LoginMethod
+
+  name: String!
+
+  email_settings: [EmailSetting]
+
+  comment_sort_preference: CommentSortPreference!
+}
+
+type UserCredentials {
+  access_token: String!
+
+  cookie: Cookie!
+
+  expires_in: Int!
+
+  token_type: String!
+
+  user: Customer!
+}
+
+type LiveRoomToken {
+  token: String!
+}
+
+type LoginMethod {
+  apple_sub: String
+
+  device_id: String
+
+  fb_id: String
+
+  google_sub: String
+
+  nyt_sub: String
+}
+
+type CommentSortPreference {
+  brief: CommentSortBy!
+
+  discussion: CommentSortBy!
+
+  game_v2: CommentSortBy!
+
+  headline: CommentSortBy!
+
+  podcast_episode: CommentSortBy!
+
+  post: CommentSortBy!
+
+  qanda: CommentSortBy!
+}
+
+enum UserRole {
+  administrator
+
+  author
+
+  collab_byline
+
+  comped_account
+
+  contributor
+
+  edit_packaging
+
+  editor
+
+  inactive_contributor
+
+  people_team
+
+  podcast_host
+
+  podcast_producer
+
+  programmer
+}
+
+enum NodeVersion {
+  current
+
+  latest
+}
+
+type LinkableString {
+  raw_string: String
+
+  app_linked_string: String
+
+  web_linked_string: String
+}
+
+type KeyValuePair {
+  key: String!
+
+  value: String!
+}
+
+type AdParameters {
+  auth: String
+
+  byline: String
+
+  coll: String
+
+  org: String
+
+  id: String
+
+  tags: String
+
+  keywords: String
+
+  typ: String
+
+  prop: String
+
+  plat: String
+
+  als_test_clientside: String
+
+  gscat: String
+
+  tt: String
+}
+
+type Contributer {
+  slack_user_id: ID
+
+  user_id: ID!
+
+  user_name: String!
+
+  user_role: UserRole!
+}
+
+input ContributerInput {
+  slack_user_id: ID
+
+  user_id: ID!
+
+  user_name: String!
+
+  user_role: UserRole!
+}
+
+input SubmitContributionInput {
+  ancestor_id: ID!
+
+  article_id: ID
+
+  audio_uri: String
+
+  images: [ImageInput]
+
+  smart_brevity: String
+
+  text: String
+
+  type: ContributionType!
+
+  user_id: ID
+}
+
+input UnpublishContributionInput {
+  id: ID!
+
+  type: ContributionType
+
+  ancestor_id: ID
+}
+
+input UpdateContributionInput {
+  article_id: ID
+
+  audio_uri: String
+
+  id: ID!
+
+  images: [ImageInput]
+
+  smart_brevity: String
+
+  text: String
+}
+
+enum ContributionType {
+  audio_insight
+
+  background_reading
+
+  brief
+
+  smart_brevity
+
+  written_insight
+}
+
+enum AudienceType {
+  free_users
+
+  subscribers
+}
+
+enum CollectionType {
+  article_type
+
+  blitz
+
+  content_format
+
+  engagement
+
+  evergreen
+
+  hand_picked
+
+  layout
+
+  length
+
+  other
+
+  subject_type
+
+  time_period
+}
+
+input CreateCuratedModuleInput {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  description: String
+
+  importance: RankedImportanceType
+
+  items: [CuratedItemInput!]!
+
+  list_type: CuratedModuleListType!
+
+  list_id: ID
+
+  primary_tag: TagInput
+
+  region: Region!
+
+  secondary_content: CuratedItemInput
+
+  secondary_title: String
+
+  tags: [TagInput!]
+
+  title: String!
+
+  title_override: JSON
+
+  topper_type: CuratedTopperType
+
+  type: CuratedModuleType!
+}
+
+type CuratedContentModule implements CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  created_at: Timestamp!
+
+  description: String
+
+  id: ID!
+
+  importance: RankedImportanceType
+
+  items: [CuratedItem!]!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  primary_tag: Tag
+
+  scheduled_at: Timestamp
+
+  secondary_content: CuratedItem
+
+  secondary_title: String
+
+  tags: [Tag!]
+
+  title: String
+
+  type: CuratedModuleType!
+
+  user: User!
+
+  updated_at: Timestamp!
+
+  status: Status
+
+  title_override: JSON
+}
+
+type CuratedCustomModule implements CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  created_at: Timestamp!
+
+  description: String
+
+  id: ID!
+
+  items: [CuratedCustomItem!]!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  primary_tag: Tag
+
+  scheduled_at: Timestamp
+
+  tags: [Tag!]
+
+  title: String
+
+  type: CuratedModuleType!
+
+  user: User!
+
+  updated_at: Timestamp!
+
+  status: Status
+
+  title_override: JSON
+}
+
+type CuratedItem {
+  content: Node
+
+  description: String
+
+  id: ID!
+
+  title: String
+
+  type: CuratedItemType!
+}
+
+type CuratedStatsScoresItem {
+  display: String
+
+  enabled: Boolean
+
+  id: ID!
+
+  leagues: [Tag!]
+
+  title: String
+
+  type: CuratedItemType!
+}
+
+union CuratedCustomItem = CuratedStatsScoresItem
+
+input CuratedItemInput {
+  description: String
+
+  display: String
+
+  enabled: Boolean
+
+  id: ID!
+
+  leagues: [TagInput]
+
+  title: String
+
+  type: CuratedItemType!
+}
+
+enum CuratedItemType {
+  article
+
+  discussion
+
+  podcast_episode
+
+  qanda
+
+  topic
+
+  news
+
+  liveBlog
+
+  stats_scores
+}
+
+interface CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  description: String
+
+  id: ID!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  scheduled_at: Timestamp
+
+  tags: [Tag!]
+
+  title: String
+
+  user: User!
+
+  type: CuratedModuleType!
+
+  status: Status
+}
+
+input CuratedModuleFilter {
+  status: Status
+
+  title: String
+
+  module_type: CuratedModuleType
+
+  curation_type: CuratedModuleListType
+
+  include_scheduled: Boolean
+}
+
+type CuratedModuleList {
+  id: ID!
+
+  list_type: CuratedModuleListType!
+
+  list_id: ID
+
+  region: Region!
+
+  list: [ID!]!
+
+  updated_at: Timestamp!
+}
+
+input CuratedModuleListInput {
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  region: Region
+
+  list: [ID!]!
+}
+
+enum CuratedModuleListType {
+  collections
+
+  frontpage
+
+  news
+
+  static
+
+  league
+
+  team
+
+  tag
+
+  topic
+
+  stats_scores
+
+  following
+
+  loggedin
+}
+
+enum CuratedModuleType {
+  content_module
+
+  static_module
+
+  topic_module
+
+  topper_module
+
+  mostpopular_module
+
+  insiders_module
+
+  spotlight_module
+
+  shortforms_module
+
+  stats_scores_module
+
+  following_collection_module
+
+  ranked_content_module
+}
+
+enum CuratedTopperType {
+  default
+
+  medium
+
+  large
+}
+
+enum RankedImportanceType {
+  standard
+
+  important
+
+  very_important
+}
+
+type CuratedTopicModule implements CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  created_at: Timestamp!
+
+  description: String
+
+  id: ID!
+
+  items: [CuratedItem!]!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  scheduled_at: Timestamp
+
+  region: Region!
+
+  tags: [Tag!]
+
+  title: String
+
+  type: CuratedModuleType!
+
+  user: User!
+
+  updated_at: Timestamp!
+
+  status: Status
+}
+
+type CuratedTopperModule implements CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  created_at: Timestamp!
+
+  description: String
+
+  id: ID!
+
+  items: [CuratedItem!]!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  scheduled_at: Timestamp
+
+  region: Region!
+
+  tags: [Tag!]
+
+  title: String
+
+  type: CuratedModuleType!
+
+  topper_type: CuratedTopperType
+
+  user: User!
+
+  updated_at: Timestamp!
+
+  status: Status
+
+  title_override: JSON
+}
+
+type StaticModule implements CuratedModule {
+  audience: [AudienceType!]!
+
+  collection_type: CollectionType
+
+  description: String
+
+  id: ID!
+
+  list_type: CuratedModuleListType
+
+  list_id: ID
+
+  scheduled_at: Timestamp
+
+  tags: [Tag!]
+
+  title: String
+
+  type: CuratedModuleType!
+
+  user: User!
+
+  region: Region
+
+  status: Status
+}
+
+input UpdateCuratedModuleInput {
+  audience: [AudienceType!]
+
+  collection_type: CollectionType
+
+  description: String
+
+  importance: RankedImportanceType
+
+  items: [CuratedItemInput!]
+
+  list_type: CuratedModuleListType
+
+  primary_tag: TagInput
+
+  region: Region
+
+  secondary_content: CuratedItemInput
+
+  secondary_title: String
+
+  tags: [TagInput!]
+
+  title: String
+
+  title_override: JSON
+
+  topper_type: CuratedTopperType
+
+  type: CuratedModuleType
+}
+
+type Discussion implements Post & Node & Consumable {
+  author: User!
+
+  comment_count: Int!
+
+  excerpt: String!
+
+  excerpt_plaintext: String!
+
+  id: ID!
+
+  image_uri: String
+
+  permalink: String!
+
+  primary_tag: String
+
+  published_at: Timestamp!
+
+  title: String!
+
+  type: String!
+
+  is_saved: Boolean
+
+  is_read: Boolean
+}
+
+type Qanda implements Post & Node & Consumable {
+  author: User!
+
+  comment_count: Int!
+
+  ended_at: Timestamp
+
+  excerpt: String!
+
+  excerpt_plaintext: String!
+
+  id: ID!
+
+  image_uri: String
+
+  permalink: String!
+
+  primary_tag: String
+
+  published_at: Timestamp!
+
+  started_at: Timestamp
+
+  title: String!
+
+  type: String!
+
+  is_saved: Boolean
+
+  is_read: Boolean
+}
+
+input UserFollow {
+  id: ID!
+
+  type: UserFollowType!
+
+  """
+  Current user id is used for JWT. user_id can only be passed with GRAPHQL_ACCESS_TOKEN.
+  """
+  user_id: ID
+}
+
+type UserFollowOutput {
+  id: ID!
+
+  type: UserFollowType!
+}
+
+enum UserFollowType {
+  author
+
+  league
+
+  team
+}
+
+type UserFollowResponse {
+  success: Boolean!
+
+  appNav: [NavigationHeader]!
+
+  following: UserFollowing!
+}
+
+type FollowableItems {
+  leagues: [League!]!
+
+  teams: [Team!]!
+
+  authors: [Author!]!
+}
+
+type LiveRoomHosts {
+  hosts: [Author!]!
+}
+
+type GeoConfig {
+  country_code: String!
+
+  currency_code: String!
+
+  vat_rate: String
+
+  can_use_braintree_payment: Int!
+
+  can_use_stripe_payment: Int!
+
+  can_view_special_plans: Int!
+
+  can_view_betting_content: Int!
+
+  use_navbar: String!
+}
+
+type CurrencyCode {
+  name: String
+}
+
+type Insider implements Consumable {
+  id: ID!
+
+  post: Post
+
+  author: User
+
+  type: String!
+}
+
+type Insight implements Content {
+  ancestor_id: ID! @deprecated(reason: "Backend use only")
+
+  ancestor_type: String! @deprecated(reason: "Backend use only")
+
+  audio_uri: String
+
+  created_at: Timestamp!
+
+  current_user_is_owner: Boolean!
+
+  id: ID!
+
+  images: [Image!]!
+
+  is_contribution: Boolean!
+
+  reviewed_at: Timestamp
+
+  reviewer: User
+
+  reviewer_id: ID @deprecated(reason: "use the reviewer object instead")
+
+  reviewer_name: String @deprecated(reason: "use the reviewer object instead")
+
+  status: String!
+
+  text: String
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  user: User!
+
+  user_id: ID @deprecated(reason: "use the user object instead")
+
+  user_name: String @deprecated(reason: "use the user object instead")
+
+  version: NewsVersion!
+}
+
+interface Likeable {
+  current_user_has_liked: Boolean!
+
+  likes: Int!
+}
+
+input CreateLiveBlogInput {
+  autolinker_on: Boolean
+
+  byline_authors: [ID!]!
+
+  byline_linkable: LinkableStringInput
+
+  description: String
+
+  free_apron_state: String
+
+  images: [ImageInput!]
+
+  is_unlocked: Boolean
+
+  metadata: LiveBlogMetadataInput!
+
+  post: LiveBlogPostInput
+
+  scheduled_at: Timestamp
+
+  short_title: String
+
+  slug: String
+
+  suppress_sponsorship: Boolean @deprecated(reason: "No longer used")
+
+  tags: [TagInput!]
+
+  primaryLeagueID: ID
+
+  title: String!
+
+  tweets: [String!]
+}
+
+input LiveBlogPostAttachmentInput {
+  type: LiveBlogPostAttachmentType!
+
+  value: String!
+}
+
+input CreateLiveBlogPostInput {
+  attachments: [LiveBlogPostAttachmentInput!]
+
+  ancestorId: ID!
+
+  articleIds: [ID!]
+
+  authorId: ID
+
+  body: String!
+
+  images: [ImageInput!]
+
+  is_pinned: Boolean
+
+  scheduled_at: Timestamp
+
+  status: String
+
+  tags: [TagInput!]
+
+  title: String!
+
+  tweets: [String!]
+}
+
+enum LiveStatus {
+  upcoming
+
+  live
+
+  ended
+}
+
+type LiveBlogBanner implements Node & Consumable {
+  description_as_markdown: String
+
+  lastActivityAt: Timestamp!
+
+  permalink: String!
+
+  permalinkForEmbed: String!
+
+  id: ID!
+
+  images: [Image!]!
+
+  publishedAt: Timestamp
+
+  short_title: String!
+
+  title: String!
+
+  type: String!
+
+  updatedAt: Timestamp!
+
+  user: User!
+}
+
+type LiveBlog implements Node & Consumable & GameFeedItem {
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  autolinked_description: String @deprecated(reason: "resolved into description when appropriate")
+
+  autolinker_on: Boolean
+
+  byline_authors: [Staff!]!
+
+  byline_linkable: LinkableString
+
+  createdAt: Timestamp!
+
+  description(isEditor: Boolean): String
+
+  description_as_markdown: String
+
+  game_id: String
+
+  hasUnpublishedChanges: Boolean!
+
+  metadata: LiveBlogMetadata!
+
+  lastActivityAt: Timestamp!
+
+  coreUpdatedAt: Timestamp
+
+  permalink: String!
+
+  permalinkForEmbed: String!
+
+  id: ID!
+
+  free_apron_state: String
+
+  images: [Image!]!
+
+  is_unlocked: Boolean
+
+  is_sponsored: Boolean @deprecated(reason: "No longer used")
+
+  league_slug: String
+
+  liveStatus: LiveStatus
+
+  match_admin_settings: MatchAdminSettings
+
+  match_widgets: [MatchBlogModule!]!
+
+  pinned_post_id: ID
+
+  posts(filter: NodeFilterInput, includeAds: Boolean, page: Int, perPage: Int, sort: SortInput, initialPostId: ID): LiveBlogPostsConnection!
+
+  primaryLeague: League
+
+  publishedAt: Timestamp
+
+  scheduled_at: Timestamp
+
+  short_title: String!
+
+  slug: String!
+
+  sponsor: LiveBlogSponsor @deprecated(reason: "No longer used")
+
+  status: String!
+
+  suppress_sponsorship: Boolean! @deprecated(reason: "No longer used")
+
+  tags: [Tag!]!
+
+  title: String!
+
+  tweets: [String!]!
+
+  tweetsv2: [Tweet!]!
+
+  type: String!
+
+  updatedAt: Timestamp!
+
+  user: User!
+
+  occurred_at: Timestamp!
+}
+
+type LiveBlogPostAttachment {
+  id: ID
+
+  type: LiveBlogPostAttachmentType
+
+  url: String
+
+  html: String
+
+  title: String
+
+  short_title: String
+
+  image_uri: String
+}
+
+enum LiveBlogPostAttachmentType {
+  article
+
+  custom
+
+  instagram
+
+  twitter
+
+  youtube
+}
+
+type Tweet {
+  url: String!
+
+  html: String!
+}
+
+type LiveBlogSponsor {
+  cobranded_header: LiveBlogSponsorCobrandedHeader @deprecated(reason: "No longer used")
+
+  presented_by: LiveBlogSponsorPresentedBy @deprecated(reason: "No longer used")
+
+  tracking_scripts: [String!]! @deprecated(reason: "No longer used")
+
+  tracking_uris: [String!]! @deprecated(reason: "No longer used")
+}
+
+type LiveBlogSponsorCobrandedHeader {
+  background_color: String @deprecated(reason: "No longer used")
+
+  description: String @deprecated(reason: "No longer used")
+
+  desktop_image: Image! @deprecated(reason: "No longer used")
+
+  mobile_image: Image! @deprecated(reason: "No longer used")
+
+  sponsor_uri: String @deprecated(reason: "No longer used")
+}
+
+type LiveBlogSponsorPresentedBy {
+  id: ID! @deprecated(reason: "No longer used")
+
+  image: Image! @deprecated(reason: "No longer used")
+
+  label: String! @deprecated(reason: "No longer used")
+
+  sponsor_name: String @deprecated(reason: "No longer used")
+
+  sponsor_uri: String @deprecated(reason: "No longer used")
+}
+
+type LiveBlogConnection {
+  items: [LiveBlog]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+type LiveBlogMetadata {
+  about: LiveBlogMetadataAbout
+
+  description: String
+
+  headline: String
+}
+
+input LiveBlogMetadataInput {
+  about: LiveBlogMetadataAboutInput
+
+  description: String
+
+  headline: String
+}
+
+type LiveBlogMetadataAbout {
+  endDate: Timestamp
+
+  name: String
+
+  location: LiveBlogMetadataAboutLocation
+
+  sameAs: String
+
+  startDate: Timestamp
+}
+
+input LiveBlogMetadataAboutInput {
+  endDate: Timestamp
+
+  name: String
+
+  location: LiveBlogMetadataAboutLocationInput
+
+  sameAs: String
+
+  startDate: Timestamp
+}
+
+type LiveBlogMetadataAboutLocation {
+  address: LiveBlogMetadataAboutLocationAddress
+
+  name: String
+}
+
+type LiveBlogMetadataAboutLocationAddress {
+  addressCountry: String!
+
+  addressLocality: String!
+
+  addressRegion: String!
+
+  postalCode: String!
+
+  streetAddress: String!
+}
+
+input LiveBlogMetadataAboutLocationAddressInput {
+  addressCountry: String!
+
+  addressLocality: String!
+
+  addressRegion: String!
+
+  postalCode: String!
+
+  streetAddress: String!
+}
+
+input LiveBlogMetadataAboutLocationInput {
+  address: LiveBlogMetadataAboutLocationAddressInput
+
+  name: String
+}
+
+union LiveBlogPostUnion = LiveBlogPost|LiveBlogPostSponsored|LiveBlogPostInlineBanner|LiveBlogDropzone
+
+type LiveBlogDropzone {
+  id: ID!
+
+  dropzone_id: ID!
+
+  type: String!
+}
+
+type LiveBlogPostSponsored {
+  article: Article! @deprecated(reason: "No longer used")
+
+  id: ID! @deprecated(reason: "No longer used")
+
+  presented_by: LiveBlogSponsorPresentedBy @deprecated(reason: "No longer used")
+
+  published_at: Timestamp @deprecated(reason: "No longer used")
+
+  type: String! @deprecated(reason: "No longer used")
+}
+
+type LiveBlogPostInlineBanner {
+  description: String @deprecated(reason: "No longer used")
+
+  desktop_image: Image! @deprecated(reason: "No longer used")
+
+  id: ID! @deprecated(reason: "No longer used")
+
+  mobile_image: Image! @deprecated(reason: "No longer used")
+
+  published_at: Timestamp @deprecated(reason: "No longer used")
+
+  sponsor_uri: String @deprecated(reason: "No longer used")
+
+  type: String! @deprecated(reason: "No longer used")
+}
+
+type LiveBlogPost implements Node & GameFeedItem {
+  ancestorId: String!
+
+  articles: [Article]
+
+  attachments: [LiveBlogPostAttachment!]!
+
+  body(isEditor: Boolean): String!
+
+  body_as_markdown: String!
+
+  createdAt: Timestamp!
+
+  id: ID!
+
+  images: [Image!]!
+
+  is_pinned: Boolean
+
+  permalink: String
+
+  scheduled_at: Timestamp
+
+  slug: String!
+
+  status: String!
+
+  tags: [Tag!]!
+
+  title: String!
+
+  type: String!
+
+  tweets: [String!]!
+
+  tweetsv2: [Tweet!]!
+
+  publishedAt: Timestamp
+
+  updatedAt: Timestamp!
+
+  user: User!
+
+  occurred_at: Timestamp!
+}
+
+input LiveBlogPostInput {
+  ancestorId: ID
+
+  articleIds: [ID!]
+
+  authorId: ID
+
+  body: String!
+
+  images: [ImageInput!]
+
+  is_pinned: Boolean
+
+  scheduled_at: Timestamp
+
+  title: String!
+
+  tweets: [String!]
+}
+
+type LiveBlogPostsConnection {
+  items: [LiveBlogPostUnion]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+
+  numNewPosts: Int!
+}
+
+type MatchAdminSettings {
+  module_settings: MatchModuleDisplaySettings
+}
+
+enum MatchBlogModule {
+  header
+
+  lineup
+
+  game_details
+
+  related_content
+
+  related_matches
+
+  standings
+
+  match_stats
+}
+
+type MatchModuleDisplaySettings {
+  header: Boolean
+
+  lineup: Boolean
+
+  game_details: Boolean
+
+  related_content: Boolean
+
+  related_matches: Boolean
+
+  standings: Boolean
+
+  match_stats: Boolean
+}
+
+input UpdateLiveBlogInput {
+  autolinker_on: Boolean
+
+  byline_authors: [ID!]!
+
+  byline_linkable: LinkableStringInput
+
+  description: String
+
+  id: ID!
+
+  free_apron_state: String
+
+  images: [ImageInput!]
+
+  images_added: [ImageInput!]
+
+  images_deleted: [String!]
+
+  initial_page_load_time: Timestamp
+
+  is_unlocked: Boolean
+
+  metadata: LiveBlogMetadataInput
+
+  scheduled_at: Timestamp
+
+  short_title: String
+
+  slug: String
+
+  suppress_sponsorship: Boolean @deprecated(reason: "No longer used")
+
+  tags: [TagInput!]
+
+  pinned_post_id: ID
+
+  primaryLeagueID: ID
+
+  title: String!
+
+  tweets: [String!]
+}
+
+input UpdateLiveBlogPostInput {
+  attachments: [LiveBlogPostAttachmentInput!]
+
+  articleIds: [ID!]
+
+  authorId: ID
+
+  body: String
+
+  id: ID!
+
+  images: [ImageInput!]
+
+  images_added: [ImageInput!]
+
+  images_deleted: [String!]
+
+  is_pinned: Boolean
+
+  published_at: Timestamp
+
+  scheduled_at: Timestamp
+
+  status: String
+
+  tags: [TagInput!]
+
+  title: String
+
+  tweets: [String!]
+}
+
+input UpdateMatchAdminSettingsInput {
+  id: ID!
+
+  module_settings: MatchModuleDisplaySettingsInput
+}
+
+input MatchModuleDisplaySettingsInput {
+  header: Boolean
+
+  lineup: Boolean
+
+  game_details: Boolean
+
+  related_content: Boolean
+
+  related_matches: Boolean
+
+  standings: Boolean
+
+  match_stats: Boolean
+}
+
+input CreateLiveRoomInput {
+  audience_ids: [Int!]
+
+  auto_push_enabled: Boolean
+
+  broadcaster_ids: [Int!]
+
+  description: String
+
+  disable_chat: Boolean
+
+  ended_at: Timestamp
+
+  host_ids: [Int!]!
+
+  images: [ImageInput]
+
+  is_recorded: Boolean
+
+  live_room_types: [LiveRoomType!]
+
+  moderator_ids: [Int!]
+
+  room_limit: Int
+
+  send_full_audience: Boolean
+
+  scheduled_at: Timestamp
+
+  started_at: Timestamp
+
+  status: LiveRoomStatus
+
+  tags: [TagInput!]
+
+  title: String!
+}
+
+type LiveRoom implements Node & Consumable {
+  audience_total: Int!
+
+  audiences: [User!]! @deprecated(reason: "do not use in subscription. use query.liveRoomAudiences instead")
+
+  audiences_ids: [ID!]!
+
+  partial_audiences: [User!]!
+
+  auto_push_enabled: Boolean!
+
+  auto_push_sent: Boolean!
+
+  average_user_time: String!
+
+  """
+  Banned users can not join live room or listen.
+  """
+  banned_users: [User!]!
+
+  broadcast_total: Int!
+
+  broadcasters: [User!]!
+
+  broadcasters_ids: [ID!]!
+
+  """
+  True if the current user is banned from room
+  """
+  current_user_is_banned: Boolean!
+
+  """
+  True if the current user is locked from room
+  """
+  current_user_is_locked: Boolean!
+
+  recording: RecordingMetadata
+
+  chat: ChatRoom!
+
+  created_at: Timestamp!
+
+  created_by: User!
+
+  description: String!
+
+  disable_chat: Boolean!
+
+  ended_at: Timestamp
+
+  first_synced_at: String!
+
+  hosts: [User!]!
+
+  id: ID!
+
+  images: [Image!]!
+
+  is_recorded: Boolean!
+
+  last_synced_at: String!
+
+  live_room_types: [LiveRoomType!]!
+
+  """
+  Locked users can join live room and listen, but can not come on stage or chat.
+  """
+  locked_users: [User!]!
+
+  """
+  Max room total is the total number of people in the room at one time.
+  """
+  max_room_total: Int!
+
+  moderators: [User!]!
+
+  num_unique_users: Int!
+
+  num_users_got_on_stage: Int!
+
+  permalink: String!
+
+  send_full_audience: Boolean!
+
+  scheduled_at: Timestamp
+
+  started_at: Timestamp
+
+  status: LiveRoomStatus
+
+  subtitle: String!
+
+  requests: [SpeakingRequest!]!
+
+  """
+  The maximum number of users allowed in a room.
+  """
+  room_limit: Int!
+
+  room_total: Int!
+
+  tags: [Tag]!
+
+  theme_color: String
+
+  title: String!
+
+  type: String!
+
+  updated_at: Timestamp
+
+  user_entries: [UserEntry!]!
+
+  version: String!
+}
+
+enum LiveRoomStatus {
+  created
+
+  live
+
+  ended
+}
+
+enum LiveRoomType {
+  breaking_news
+
+  game_preview_1_team
+
+  game_preview_2_team
+
+  game_recap
+
+  live_podcast
+
+  question_and_answer
+
+  recurring
+}
+
+type RecordingMetadata {
+  uid: Int
+
+  resource_id: String
+
+  recording_id: String
+
+  mode: RecordingMode
+
+  query: String
+}
+
+type UserEntry {
+  user_id: ID!
+
+  got_on_stage: Boolean!
+
+  first_seen_at: String!
+
+  last_seen_at: String!
+}
+
+enum RecordingMode {
+  individual
+
+  mix
+}
+
+type LiveRoomConnection {
+  items: [LiveRoom]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+type SpeakingRequest {
+  id: ID!
+
+  live_room_id: ID!
+
+  from: User!
+
+  type: SpeakingRequestType!
+
+  approved: Boolean!
+
+  completed: Boolean!
+
+  created_at: Timestamp!
+
+  updated_at: Timestamp!
+}
+
+input SpeakingRequestInput {
+  id: ID!
+
+  from: ID!
+
+  type: SpeakingRequestType!
+
+  approved: Boolean!
+
+  completed: Boolean!
+
+  created_at: Timestamp!
+
+  updated_at: Timestamp!
+}
+
+enum SpeakingRequestType {
+  demotion
+
+  mute
+
+  promotion
+
+  unmute
+}
+
+type ActiveChannelsData {
+  channels: [ChannelMetaData]!
+
+  total_size: Int!
+}
+
+type ChannelMetaData {
+  channel_name: String!
+
+  user_count: Int!
+}
+
+input UpdateLiveRoomInput {
+  audience_ids: [Int!]
+
+  auto_push_enabled: Boolean
+
+  broadcaster_ids: [Int!]
+
+  description: String
+
+  disable_chat: Boolean
+
+  ended_at: Timestamp
+
+  host_ids: [Int!]
+
+  id: ID!
+
+  images: [ImageInput]
+
+  is_recorded: Boolean
+
+  live_room_types: [LiveRoomType!]
+
+  moderator_ids: [Int!]
+
+  requests: [SpeakingRequestInput!]
+
+  room_limit: Int
+
+  send_full_audience: Boolean
+
+  scheduled_at: Timestamp
+
+  started_at: Timestamp
+
+  status: LiveRoomStatus
+
+  tags: [TagInput!]
+
+  title: String
+}
+
+union LiveRoomEvent = LiveRoom|SpeakingRequest
+
+type Lock {
+  locked: Boolean!
+
+  lockedByCurrentUser: Boolean!
+
+  resourceId: ID
+
+  resourceName: ResourceNames
+
+  user: User
+
+  userId: ID
+}
+
+enum ResourceNames {
+  LIVE_BLOG
+
+  NEWS_CONTRIBUTIONS
+
+  NEWS_DETAILS
+
+  NEWS_QA
+
+  CURATED_MODULE
+
+  RANKED_CURATED_MODULE
+}
+
+input CreateMediaInput {
+  created_at: Timestamp!
+
+  id: ID!
+
+  image_height: Int
+
+  image_uri: String
+
+  image_width: Int
+
+  status: String
+
+  type: String
+
+  updated_at: Timestamp!
+}
+
+type Media {
+  created_at: Timestamp!
+
+  id: ID!
+
+  image_height: Int
+
+  image_uri: String
+
+  image_width: Int
+
+  status: String
+
+  thumbnail_height: Int
+
+  thumbnail_uri: String
+
+  thumbnail_width: Int
+
+  type: String
+
+  updated_at: Timestamp!
+}
+
+input UpdateMediaInput {
+  id: ID!
+
+  image_uri: String
+
+  status: String
+
+  updated_at: Timestamp!
+}
+
+enum ContentEdition {
+  us
+
+  uk
+}
+
+input CreateLeagueNavInput {
+  has_podcasts: Boolean
+
+  has_scores: Boolean
+
+  has_teams: Boolean
+
+  is_football: Boolean
+
+  league_id: String!
+}
+
+input NavItemInput {
+  display_name: String
+
+  hidden: Boolean
+
+  league_id: String
+
+  location: NavLocation
+
+  slug: String
+
+  title: String!
+
+  url: String!
+}
+
+type NavItem {
+  id: ID!
+
+  hidden: Boolean
+
+  league_id: String
+
+  location: NavLocation
+
+  display_name: String
+
+  title: String!
+
+  type: NavItemType
+
+  url: String!
+}
+
+enum NavLocation {
+  primary
+
+  secondary
+}
+
+enum NavItemType {
+  automatic
+
+  manual
+}
+
+type Nav {
+  id: ID!
+
+  items: [NavItem!]!
+
+  slug: String
+}
+
+input UpdateNavInput {
+  slug: String
+
+  items: [UpdateNavItemInput]!
+}
+
+input UpdateNavItemInput {
+  id: ID
+
+  hidden: Boolean
+}
+
+enum NavV2Type {
+  league
+
+  global
+}
+
+input ReorderNavInput {
+  id: String
+
+  item_ids: [ID!]!
+}
+
+input CreateLeagueNavV2Input {
+  has_podcasts: Boolean
+
+  has_scores: Boolean
+
+  has_teams: Boolean
+
+  is_football: Boolean
+
+  league_id: String!
+}
+
+input NavItemInputV2 {
+  hidden: Boolean
+
+  icon_url: String
+
+  location: NavLocation
+
+  title: String!
+
+  url: String!
+}
+
+type NavTeamsList {
+  has_divisions: Boolean
+
+  team_data: [[NavItemV2]]
+}
+
+type NavItemV2 {
+  id: ID!
+
+  hidden: Boolean
+
+  icon_url: String
+
+  location: NavLocation
+
+  title: String!
+
+  url: String
+
+  subnav_items: [NavItemV2!]
+
+  is_removable: Boolean!
+
+  teams_list: NavTeamsList
+}
+
+type NavV2 {
+  id: ID!
+
+  items(include_hidden: Boolean): [NavItemV2!]!
+
+  nav_type: NavV2Type!
+
+  home_link_text: String
+
+  home_link_url: String
+
+  home_link_icon_url: String
+
+  league_id: Int
+}
+
+input LinkableStringInput {
+  raw_string: String
+
+  app_linked_string: String
+
+  web_linked_string: String
+}
+
+type EditingStatuses {
+  contributions: EditingUser
+
+  details: EditingUser
+
+  linked_content: EditingUser
+
+  notifications: EditingUser
+
+  settings: EditingUser
+}
+
+type EditingUser {
+  user_id: ID!
+
+  user_name: String!
+}
+
+type NewsConnection {
+  items: [News]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+enum NewsHeadlineType {
+  standard
+
+  business
+
+  coach
+
+  covid
+
+  crime
+
+  draft
+
+  equipment
+
+  exclusive
+
+  fans
+
+  feuds
+
+  fine
+
+  firing
+
+  free_agency
+
+  front_office_move
+
+  hiring
+
+  illness
+
+  incremental_development
+
+  injury
+
+  investigation
+
+  legal
+
+  lineup
+
+  media
+
+  mini
+
+  obituary
+
+  player
+
+  prospect
+
+  rankings
+
+  recap
+
+  recruiting
+
+  rivalry
+
+  roundup
+
+  scandal
+
+  schedule
+
+  signing
+
+  shade
+
+  suspension
+
+  trade
+
+  what_we_are_hearing
+}
+
+input NewsFilter {
+  age: String
+
+  headline: String
+
+  headline_type: NewsHeadlineType
+
+  last_activity_age: String
+
+  region: Region
+
+  region_strict: Region
+
+  status: String
+
+  search: String
+
+  tags: NewsTagsInput
+
+  user_ids: [ID]
+
+  version: NewsVersion
+
+  range: NewsRangeInput
+}
+
+input NewsRangeInput {
+  field: String!
+
+  gte: String
+
+  lte: String
+
+  gt: String
+
+  lt: String
+}
+
+enum NewsImportance {
+  important
+
+  pinned
+
+  standard
+}
+
+enum NewsLocalization {
+  global
+
+  uk
+
+  us
+}
+
+enum NewsSections {
+  contributions
+
+  details
+
+  linked_content
+
+  notifications
+
+  settings
+}
+
+input NewsSortInput {
+  field: String
+
+  order: NewsSortOrder
+
+  type: NewsSortType!
+}
+
+enum NewsSortOrder {
+  asc
+
+  desc
+}
+
+enum NewsSortType {
+  score
+
+  field
+
+  search
+
+  hub_search
+}
+
+type NewsTags {
+  game: Tag
+
+  leagues: [Tag]!
+
+  players: [Tag]!
+
+  teams: [Tag]!
+
+  topics: [Tag]
+}
+
+input NewsTagsInput {
+  game: TagInput
+
+  leagues: [TagInput]!
+
+  players: [TagInput]!
+
+  teams: [TagInput]!
+
+  topics: [TagInput]
+}
+
+enum NewsVersion {
+  current
+
+  latest
+}
+
+input NodeFilterInput {
+  ancestor_id: StringFilterInput
+
+  and: [NodeFilterInput]
+
+  byline_authors: StringFilterInput
+
+  exists: String
+
+  headline_type: StringFilterInput
+
+  id: StringFilterInput
+
+  not: [NodeFilterInput]
+
+  or: [NodeFilterInput]
+
+  status: StringFilterInput
+
+  tags: NodeFilterInput
+
+  tags_leagues: NodeFilterInput
+
+  tags_teams: NodeFilterInput
+
+  type: StringFilterInput
+
+  updated_at: StringFilterInput
+
+  user_id: StringFilterInput
+
+  version: StringFilterInput
+
+  range: NodeRangeInput
+}
+
+input NodeRangeInput {
+  field: String!
+
+  gte: String
+
+  lte: String
+
+  gt: String
+
+  lt: String
+}
+
+union NodeUnion = Brief|LiveBlog|LiveBlogPost|News
+
+input UpdateNodeInput {
+  id: ID!
+
+  images: [ImageInput]
+
+  version: String!
+}
+
+input TriggerNotificationsInput {
+  push_title: String!
+
+  push_message: String!
+
+  id: ID!
+
+  league_ids: String
+
+  team_ids: String
+
+  exclude_score_spoilers: Boolean
+}
+
+enum NotificationTab {
+  activity
+
+  updates
+}
+
+type UserNotification {
+  id: ID!
+
+  type: NotificationType!
+
+  title: String!
+
+  message: String!
+
+  image_url: String
+
+  is_notification_read: Boolean!
+
+  is_badgeable: Boolean!
+
+  deep_link: String!
+
+  permalink: String!
+
+  platform: String!
+
+  created_at: Timestamp!
+}
+
+enum NotificationType {
+  comment_reply
+
+  comment_like_threshold
+
+  post
+
+  headline
+
+  discussion
+
+  podcast
+
+  boxscore
+
+  game_start
+
+  game_result
+
+  liveRoom
+}
+
+type NotificationCountsResponse {
+  unread: UnreadNotificationCounts!
+
+  total: TotalNotificationCounts!
+}
+
+type UnreadNotificationCounts {
+  activity: Int!
+}
+
+type TotalNotificationCounts {
+  activity: Int!
+
+  updates: Int!
+}
+
+type SetTopSportsNewsOptResponse {
+  response: Boolean!
+
+  email: String!
+
+  is_sub_top_sports_news: Boolean!
+}
+
+type CancelSubResponse {
+  success: Boolean!
+
+  message: String
+}
+
+type SendEmailResponse {
+  success: Boolean!
+}
+
+type ValidateEmailResponse {
+  success: Boolean!
+
+  nyt_regi_id: ID!
+
+  ath_user_id: ID!
+
+  is_subscriber: Boolean!
+
+  is_ios_payment: Boolean!
+
+  is_already_bundled: Boolean!
+}
+
+type Podcast implements Node & Consumable {
+  description: String!
+
+  episodes: [PodcastEpisode]
+
+  id: ID!
+
+  image_url: String
+
+  """
+  True if current user is following the podcast.
+  """
+  is_following: Boolean!
+
+  metadata_string: String
+
+  notif_episodes_on: Boolean
+
+  num_episodes: Int!
+
+  permalink_url: String
+
+  primary_tag: Tag
+
+  short_description: String!
+
+  slug: String
+
+  title: String!
+
+  type: String!
+}
+
+type PodcastChannel {
+  id: ID!
+
+  image_url: String
+
+  mobile_image_url: String
+
+  name: String
+
+  type: String
+
+  url: String
+}
+
+type PodcastLeagueFeed {
+  national: [Podcast]
+
+  league_id: ID
+
+  local: [Podcast]
+
+  title: String
+}
+
+type PodcastEpisode implements Node & Consumable {
+  comment_count: Int!
+
+  description: String!
+
+  disable_comments: Boolean!
+
+  duration: Int!
+
+  duration_formatted: String!
+
+  finished: Boolean
+
+  id: ID!
+
+  image_uri: String
+
+  is_teaser: Boolean!
+
+  mp3_uri: String!
+
+  number: Int!
+
+  permalink: String!
+
+  parent_podcast: Podcast
+
+  podcast_id: ID! @deprecated(reason: "use parent podcast object instead")
+
+  published_at: Timestamp!
+
+  series_title: String @deprecated(reason: "use parent podcast object instead")
+
+  time_elapsed: Int
+
+  title: String!
+
+  type: String!
+}
+
+type PodcastFeed {
+  """
+  Discover podcasts
+  """
+  discover: [PodcastChannel]
+
+  discover_live_rooms: [LiveRoom]!
+
+  has_live_rooms: Boolean!
+
+  recommended_podcasts: [Podcast]
+
+  user_live_rooms: [LiveRoom]!
+
+  user_podcast_episodes: [PodcastEpisode]
+
+  user_podcasts: [Podcast]!
+}
+
+input PodcastEpisodeSearchOptions {
+  range: ContentFilterRange
+
+  condition: FilterCondition!
+
+  generic_filters: ContentFilter
+
+  filters: PodcastEpisodeFilter
+
+  string_search: PodcastEpisodeStringSearch
+}
+
+input PodcastEpisodeFilter {
+  podcast_episode_id: ID
+
+  podcast_id: ID
+}
+
+input PodcastEpisodeStringSearch {
+  podcast_series_name: String
+
+  podcast_episode_name: String
+
+  podcast_series_description: String
+
+  podcast_episode_description: String
+}
+
+enum PlatformType {
+  android
+
+  ios
+
+  web
+}
+
+type PodcastFollowResponse {
+  success: Boolean!
+
+  following: [Podcast!]!
+}
+
+type EndcapResponseItem {
+  consumable_id: ID!
+
+  permalink: String!
+
+  title: String!
+}
+
+type EndcapTag {
+  id: ID!
+
+  type: String
+
+  url: String
+
+  image_url: String
+}
+
+type EndCapResponse {
+  id: ID!
+
+  title: String
+
+  contents: [EndcapResponseItem!]!
+
+  tag: EndcapTag
+}
+
+type CommentCountUpdate implements RealtimeFeedUpdate {
+  comment_count: Int!
+
+  id: ID!
+
+  type: String!
+}
+
+type LikesUpdate implements RealtimeFeedUpdate {
+  likes: Int!
+
+  id: ID!
+
+  type: String!
+}
+
+type NewCommentUpdate implements RealtimeFeedUpdate {
+  comment: Comment!
+
+  id: ID!
+
+  type: String!
+}
+
+type RealtimeFeedConnection {
+  items: [RealtimeFeedUnion]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+interface RealtimeExtension {
+  activeFrom: Timestamp
+
+  activeUntil: Timestamp
+
+  content(page: Int, perPage: Int, sort: SortInput): ContentConnection!
+
+  description: String
+
+  images: [Image!]
+
+  permalink: String!
+
+  tags: [Tag!]
+
+  status: Status!
+}
+
+type RealtimeFeedSubscriptionResult {
+  mutation: Mutations!
+
+  node: RealtimeFeedUnion!
+}
+
+enum RealtimeFeedType {
+  filter
+
+  following
+
+  global
+}
+
+union RealtimeFeedUnion = Brief|News
+
+interface RealtimeFeedUpdate {
+  type: String!
+}
+
+enum RealtimeFeedUpdateType {
+  comment_count
+
+  new_comment
+}
+
+type City {
+  id: ID!
+
+  name: String
+
+  shortname: String
+
+  url: String
+
+  country_id: ID
+
+  teams(count: Int): [Team]
+}
+
+type Author {
+  id: ID!
+
+  name: String
+
+  nav_order: Int
+
+  url: String
+
+  image_url: String
+
+  notif_stories: Boolean
+
+  search_text: String
+
+  shortname: String
+
+  hash_id: ID!
+}
+
+enum ContentSearchEntityType {
+  article
+
+  discussion
+
+  podcast_episode
+}
+
+type ContentSearchResult {
+  article_author_id: Int
+
+  article_author_name: String
+
+  date: String!
+
+  entity_type: ContentSearchEntityType!
+
+  id: ID!
+
+  podcast_id: Int
+
+  podcast_image_url: String
+
+  podcast_mp3_url: String
+
+  podcast_name: String
+
+  title: String!
+}
+
+type Game implements Consumable {
+  id: ID!
+
+  season: String
+
+  seasonType: Int
+
+  status: String
+
+  game_time: Timestamp
+
+  league: League!
+
+  leagues: [League]!
+
+  time_tbd: Boolean
+
+  score_status_text: String
+
+  game_type: String
+
+  away_team_id: ID!
+
+  away_team_name: String
+
+  home_team_id: ID!
+
+  home_team_name: String
+
+  away_team: Team
+
+  away_team_details: String
+
+  away_score: Int
+
+  home_team: Team
+
+  home_team_details: String
+
+  home_score: Int
+
+  type: String!
+
+  game_v2: Gamev2
+
+  broadcast_network: String
+
+  stadium: String
+}
+
+type League {
+  id: ID!
+
+  ad_unit_path: String
+
+  name: String
+
+  nav_order: Int
+
+  display_order: Int
+
+  uk_display_order: Int
+
+  shortname: String
+
+  sport_type: String
+
+  title: String
+
+  url: String
+
+  notif_stories: Boolean
+
+  has_scores: Boolean
+
+  has_gqlscores: Boolean
+
+  is_followable: Boolean
+
+  permalink: String
+
+  hash_id: ID!
+
+  current_season: Season
+
+  current_schedule(around_day_iso: String, season_type: SeasonTypeCode, time_zone: String, week: Int): [GameScheduleGrouping!]!
+
+  league_code: LeagueCode
+
+  leaguev2: Leaguev2
+}
+
+type Player {
+  id: ID!
+
+  name: String
+
+  team: String
+
+  league: String
+
+  position: String
+
+  image_url: String
+}
+
+type Team {
+  id: ID!
+
+  ad_unit_path: String
+
+  ath_team_id: ID
+
+  name: String
+
+  shortname: String
+
+  cityname: String
+
+  short_display_name: String
+
+  long_display_name: String
+
+  nav_order: Int
+
+  nickname: String
+
+  division: String
+
+  conference: String
+
+  url: String
+
+  status: String
+
+  last_edited: Timestamp
+
+  """
+  Full team URL including domain
+  """
+  permalink: String
+
+  """
+  Team URL path (excludes domain)
+  """
+  permalink_path: String
+
+  sport_type: String
+
+  league_shortname: String
+
+  league_title: String
+
+  league_id: String
+
+  color_dark: String
+
+  color_gradient: String
+
+  icon_contrast_color: String
+
+  color_primary: String
+
+  color_secondary: String
+
+  color_accent: String
+
+  league: League
+
+  notif_stories: Boolean
+
+  notif_games: Boolean
+
+  notif_games_start: Boolean
+
+  search_text: String
+
+  hash_id: ID!
+
+  logos: [TeamLogo!]!
+
+  teamv2: Teamv2
+}
+
+input TeamInput {
+  id: ID!
+}
+
+input ContentFilterRange {
+  date_range_start: Timestamp
+
+  date_range_end: Timestamp
+}
+
+input ContentFilter {
+  game_ids: [ID]
+
+  team_ids: [ID]
+
+  league_ids: [ID]
+
+  category_ids: [ID]
+
+  city_ids: [ID]
+
+  headline_ids: [ID]
+
+  author_ids: [ID]
+
+  player_ids: [ID]
+
+  post_type_id: ID
+
+  author_names: [String]
+}
+
+enum FilterCondition {
+  and
+
+  or
+}
+
+type ArticleSearchResult {
+  id: ID!
+
+  title: String
+
+  published_at: Timestamp
+
+  permalink: String
+
+  image_uri: String
+
+  byline: String
+
+  short_title: String
+
+  comment_count: Int
+
+  post_type_id: ID
+}
+
+type GenericSubscriptionSettingsResultResponse {
+  result: String
+}
+
+type SubscriptionSettings {
+  user_id: Int!
+
+  user_level: Int
+
+  display_name: String
+
+  access_granted: Boolean
+
+  fname: String
+
+  card: SubscriptionSettingsCardDetails
+
+  is_user_special: Boolean
+
+  is_nyt_employee: Boolean
+
+  nyt_access_user: Boolean
+
+  latest_nyt_offer: String
+
+  next_billing_date: String
+
+  next_billing_ts: Int
+
+  flags: SubscriptionSettingsFlags
+
+  platform: String!
+
+  stripe_id: String
+
+  braintree_id: String
+
+  subscription_id: String!
+
+  plan_details: SubscriptionSettingsPlanDetails
+
+  upcoming_invoice_amount: String
+
+  upcoming_invoice_ts: Int
+
+  upcoming_invoice_date: String
+}
+
+type SubscriptionSettingsFlags {
+  is_pro: Boolean
+
+  has_cancelled: Boolean
+
+  platform_web_no_customer_id: Boolean
+
+  has_gift_plan: Boolean
+
+  is_trial: Boolean
+
+  upgrade_eligibility: String
+
+  upgrade_plan_id: String
+
+  upgrade_discount_percentage: String
+}
+
+type SubscriptionSettingsPlanDetails {
+  name: String!
+
+  name_fr: String
+
+  name_pretty: String
+
+  plan_term: String!
+
+  amount: Float!
+
+  currency: String!
+
+  gift_plan_end_date: Timestamp
+
+  stripe_subscription_id: String
+
+  braintree_subscription_id: String
+
+  apple_product_id: String
+
+  google_product_id: String
+
+  plan_type: String!
+
+  amount_formatted: String!
+}
+
+type SubscriptionSettingsCardDetails {
+  brand: String!
+
+  last_4: String!
+
+  exp_month: Int!
+
+  exp_year: Int!
+}
+
+type CancelWizard {
+  order: [String]!
+}
+
+type CancelModalInformation {
+  type: String!
+
+  content: OfferModal
+
+  articles: [ArticleModal]
+}
+
+type ArticleModal {
+  permalink: String!
+
+  author_name: String!
+
+  num_comments: String!
+
+  post_title: String!
+
+  post_img_url: String!
+
+  post_id: Int!
+}
+
+type OfferModal {
+  headline: String!
+
+  body: String!
+
+  confirm_text: String!
+
+  plan: Int!
+
+  promo_code: String!
+
+  on_success: String!
+}
+
+type SubStackingDetails {
+  access_granted: Boolean!
+
+  content: DefaultSubStackingContent
+}
+
+type DefaultSubStackingContent {
+  headline: String
+
+  body: String!
+
+  cta: String!
+
+  full_amount_annual: String!
+
+  discount_amount_annual: String!
+
+  full_amount_monthly: String!
+
+  discount_amount_monthly: String!
+
+  discount: Float
+
+  plan_id: String
+
+  promo_code: String!
+
+  promo_code_mask: String
+
+  platform: String!
+}
+
+type BangoEntitlementDetails {
+  bango_user_id: String
+
+  product_id: String
+
+  offer_id: String
+
+  status: String
+
+  retail_price: String
+
+  offer_price: String
+}
+
+type BangoVerifyEntitlementDetails {
+  is_valid: Boolean!
+
+  data: BangoEntitlementDetails
+}
+
+type BangoActivateEntitlementDetails {
+  success: Boolean!
+}
+
+input CancelReasonsInput {
+  no_coverage: Boolean!
+
+  expensive: Boolean!
+
+  one_story: Boolean!
+
+  no_value: Boolean!
+
+  no_use: Boolean!
+
+  auto_renew: Boolean!
+
+  other: String
+}
+
+input CancelFeedbackInput {
+  reason: String!
+
+  position: String!
+
+  other: String
+}
+
+input StripePaymentInput {
+  credit_card_name: String!
+
+  stripe_token: String!
+
+  recaptcha_token: String
+}
+
+input StripeExpInput {
+  exp_month: String!
+
+  exp_year: String!
+
+  recaptcha_token: String
+}
+
+type Channel {
+  id: ID!
+
+  created: Int!
+
+  is_private: Boolean!
+
+  name: String!
+
+  topic: String!
+}
+
+input ChannelInput {
+  name: String!
+
+  topic: String!
+}
+
+input SlackUserInput {
+  slack_user_id: String!
+}
+
+type Spotlight implements Node & Consumable {
+  """
+  Used by WP Tool
+  """
+  article_id: ID!
+
+  article: Article
+
+  created_at: Timestamp!
+
+  id: ID!
+
+  quote: String
+
+  quotee: String
+
+  region: Region!
+
+  scheduled_at: Timestamp!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  user: User!
+}
+
+input SpotlightInput {
+  article_id: ID!
+
+  quote: String
+
+  quotee: String
+
+  region: Region!
+
+  scheduled_at: Timestamp!
+}
+
+type AmericanFootballDrive implements Play {
+  id: ID!
+
+  active: Boolean!
+
+  away_score: Int!
+
+  description: String!
+
+  duration: String
+
+  header: String
+
+  home_score: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period
+
+  play_count: Int!
+
+  plays: [Play!]!
+
+  team: Teamv2!
+
+  yards: Int!
+}
+
+type AmericanFootballInjury implements Injury {
+  comment: String
+
+  injured_date: Date!
+
+  injury: String!
+
+  player: TeamMember!
+
+  practice_status: AmericanFootballPracticeStatus
+
+  status: InjuryStatus!
+
+  updated_date: Date
+}
+
+type AmericanFootballPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  clock: String!
+
+  description: String!
+
+  header: String
+
+  home_score: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period
+
+  possession: Possession
+
+  play_type: AmericanFootballPlayType
+
+  scoring_play: Boolean!
+
+  team: Teamv2
+}
+
+enum AmericanFootballPlayType {
+  conversion
+
+  extra_point
+
+  field_goal
+
+  game_over
+
+  kickoff
+
+  pass
+
+  penalty
+
+  period_end
+
+  punt
+
+  rush
+
+  timeout
+
+  tv_timeout
+
+  two_minute_warning
+}
+
+enum AmericanFootballPracticeStatus {
+  did_not
+
+  full
+
+  limited
+
+  unknown
+}
+
+type BaseballBatter {
+  id: ID!
+
+  player: TeamMember!
+
+  game_stats: [GameStat!]!
+
+  position: Position
+
+  season_avg: GameStat
+}
+
+type BaseballPlayer {
+  id: ID!
+
+  country: String!
+
+  display_name: String
+
+  jersey_number: String
+
+  order: Int!
+
+  pitching_outcome: String
+
+  player: TeamMember!
+
+  position: Position
+
+  regular_position: Position
+
+  starter: Boolean
+
+  stats: [GameStat!]!
+}
+
+type BaseballLineupChangePlay implements Play {
+  id: ID!
+
+  description: String!
+
+  header: String
+
+  inning: Int!
+
+  inning_half: InningHalf
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+}
+
+type BaseballOutcome {
+  id: ID!
+
+  balls: Int
+
+  batter: BaseballBatter
+
+  inning: Int
+
+  inning_half: InningHalf
+
+  next_batter: BaseballBatter
+
+  outs: Int
+
+  pitcher: BaseballPitcher
+
+  runners: [BaseballRunner!]!
+
+  strikes: Int
+}
+
+type BaseballPitcher {
+  id: ID!
+
+  player: TeamMember!
+
+  game_stats: [GameStat!]!
+}
+
+type BaseballPitching {
+  id: ID!
+
+  win: BaseballPitcher
+
+  loss: BaseballPitcher
+
+  save: BaseballPitcher
+}
+
+enum BaseballPitchOutcome {
+  ball
+
+  dead_ball
+
+  hit
+
+  strike
+}
+
+type BaseballPitchPlay implements Play {
+  id: ID!
+
+  bases: [Int!]!
+
+  description: String!
+
+  header: String
+
+  hit_icon_uri: String
+
+  hit_zone: Int
+
+  number: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  pitch_description: String
+
+  pitch_icon_uri: String
+
+  pitch_outcome: BaseballPitchOutcome
+
+  pitch_zone: Int
+}
+
+type BaseballPlay implements Play {
+  id: ID!
+
+  description: String!
+
+  header: String
+
+  inning: Int!
+
+  inning_half: InningHalf
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  plays: [Play!]!
+}
+
+type BaseballRunner {
+  id: ID!
+
+  ending_base: Int!
+
+  player: TeamMember!
+
+  starting_base: Int!
+}
+
+type BaseballTeamPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  description: String!
+
+  header: String
+
+  home_score: Int!
+
+  inning: Int!
+
+  inning_half: InningHalf
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  plays: [Play!]!
+
+  team: Teamv2!
+}
+
+type BasketballGameBracket {
+  name: String!
+
+  rank: Int!
+}
+
+type BasketballPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  clock: String!
+
+  description: String!
+
+  header: String
+
+  home_score: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  team: Teamv2
+
+  type: BasketballPlayType!
+}
+
+enum BasketballPlayType {
+  challengereview
+
+  challengetimeout
+
+  clearpathfoul
+
+  deadball
+
+  defaultviolation
+
+  defensivegoaltending
+
+  defensiverebound
+
+  defensivethreeseconds
+
+  delay
+
+  doublelane
+
+  ejection
+
+  endperiod
+
+  flagrantone
+
+  flagranttwo
+
+  freethrowmade
+
+  freethrowmiss
+
+  jumpball
+
+  jumpballviolation
+
+  kickball
+
+  lane
+
+  lineupchange
+
+  minortechnicalfoul
+
+  offensivefoul
+
+  officialtimeout
+
+  openinbound
+
+  opentip
+
+  personalfoul
+
+  possession
+
+  requestreview
+
+  resettimeout
+
+  review
+
+  rebound
+
+  shootingfoul
+
+  stoppage
+
+  teamtimeout
+
+  technicalfoul
+
+  threepointmade
+
+  threepointmadeandfoul
+
+  threepointmiss
+
+  turnover
+
+  tvtimeout
+
+  twopointmade
+
+  twopointmadeandfoul
+
+  twopointmiss
+}
+
+"""
+The blueprint to render the box score page
+"""
+type BoxScore {
+  id: ID!
+
+  sections: [BoxScoreSection!]!
+}
+
+type BoxScoreArticleBlock implements BoxScoreBlock {
+  id: ID!
+
+  article_id: ID!
+
+  """
+  Names of the authors, pre-formatted and can be rendered as is
+  E.g.
+  John Doe
+  John Doe and Doe John
+  John Doe, Doe John and more
+  """
+  authors: String
+
+  comment_count: Int!
+
+  description: String
+
+  image_uri: String
+
+  permalink: String!
+
+  title: String!
+
+  """
+  The SEO friendly title for Anonymous Users/SEO in web
+  """
+  short_title: String
+}
+
+type BoxScoreBasicModuleHeader implements BoxScoreModuleHeader {
+  id: ID!
+
+  title: String!
+}
+
+interface BoxScoreBlock {
+  id: ID!
+}
+
+"""
+The module in box score page showing latest articles and podcasts related to the game
+"""
+type BoxScoreLatestNewsModule implements BoxScoreModule {
+  id: ID!
+
+  blocks: [BoxScoreBlock!]!
+
+  header: BoxScoreModuleHeader
+}
+
+interface BoxScoreModule {
+  id: ID!
+}
+
+interface BoxScoreModuleHeader {
+  id: ID!
+}
+
+"""
+The block represents a podcast episode.
+
+Please note: A "podcast episode" is typically an audio file, which belongs to
+a "podcast" (that consists of a series of podcast episodes). A "podcast episode"
+may also be split smaller into sections with start/stop time markers and title,
+called "clips"
+"""
+type BoxScorePodcastEpisodeBlock implements BoxScoreBlock {
+  id: ID!
+
+  clips: [BoxScorePodcastEpisodeClip!]
+
+  comment_count: Int!
+
+  disable_comments: Boolean!
+
+  description: String
+
+  duration: Int
+
+  episode_id: ID!
+
+  finished: Boolean @deprecated(reason: "Use user_data instead")
+
+  image_url: String
+
+  mp3_url: String
+
+  permalink: String!
+
+  podcast_id: ID!
+
+  podcast_title: String
+
+  published_at: Timestamp!
+
+  time_elapsed: Int @deprecated(reason: "Use user_data instead")
+
+  title: String!
+
+  user_data: BoxScorePodcastEpisodeUserData
+}
+
+type BoxScorePodcastEpisodeClip {
+  id: Int!
+
+  end_position: Int
+
+  start_position: Int
+
+  title: String
+}
+
+type BoxScorePodcastEpisodeUserData {
+  """
+  Whether the user has finished listening to this podcast episode
+  """
+  finished: Boolean
+
+  """
+  How many seconds of the episode the user has already listened
+  """
+  time_elapsed: Int
+}
+
+type BoxScoreSection {
+  id: ID!
+
+  modules: [BoxScoreModule!]!
+
+  type: BoxScoreSectionType!
+}
+
+enum BoxScoreSectionType {
+  game
+}
+
+type CardEvent implements GameFeedItem & KeyEvent & TimelineEvent {
+  id: ID!
+
+  team: Teamv2!
+
+  period: Int!
+
+  period_id: Period!
+
+  match_time: Int!
+
+  match_time_display: String!
+
+  clock: String!
+
+  occurred_at: Timestamp!
+
+  card_type: CardType!
+
+  carded_player: TeamMember!
+
+  reason: String
+}
+
+enum CardType {
+  """
+  Yellow Card
+  """
+  yc
+
+  """
+  2nd Yellow Card
+  """
+  y2c
+
+  """
+  Red Card
+  """
+  rc
+}
+
+type Conference {
+  id: ID!
+
+  name: String
+}
+
+type DecimalGameStat implements GameStat {
+  id: ID!
+
+  decimal_value: Float
+
+  less_is_best: Boolean
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+type DefaultGameScheduleGrouping implements GameScheduleGrouping {
+  id: ID!
+
+  format: GameScheduleGroupingFormat
+
+  games: [Gamev2!]!
+
+  season_type: SeasonTypeCode
+
+  subtitle: String
+
+  title: String!
+
+  week: Int
+}
+
+type DefaultInjury implements Injury {
+  comment: String
+
+  injured_date: Date!
+
+  injury: String!
+
+  player: TeamMember!
+
+  status: InjuryStatus!
+
+  updated_date: Date
+}
+
+type DefaultPlay implements Play {
+  id: ID!
+
+  description: String!
+
+  header: String
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+}
+
+type Division {
+  id: ID!
+
+  name: String
+}
+
+type DriveInfo {
+  duration: String
+
+  play_count: Int!
+
+  yards: Int!
+}
+
+type FollowedTeamsGamesRibbonBlock implements RibbonBlock {
+  id: ID!
+
+  type: RibbonBlockType!
+
+  games: [Gamev2!]!
+}
+
+type FractionGameStat implements GameStat {
+  id: ID!
+
+  denominator_value: Int
+
+  less_is_best: Boolean
+
+  numerator_value: Int
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  separator: FractionSeparator
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+enum FractionSeparator {
+  dash
+
+  slash
+}
+
+type GameCoverage {
+  available_data: [GameCoverageDataType!]
+
+  coverage_type: GameCoverageType
+
+  expected_data: [GameCoverageDataType!]
+}
+
+enum GameCoverageDataType {
+  all
+
+  comments
+
+  comments_navigation
+
+  discoverable_comments
+
+  team_specific_comments
+
+  line_up
+
+  live_blog
+
+  player_stats
+
+  plays
+
+  scores
+
+  team_stats
+}
+
+enum GameCoverageType {
+  full
+
+  partial
+
+  partial_pending
+
+  partial_final
+}
+
+enum GameDay {
+  yesterday
+
+  today
+
+  tomorrow
+}
+
+interface GameFeedItem {
+  id: ID!
+
+  occurred_at: Timestamp!
+}
+
+type GamePlayer {
+  id: ID!
+
+  captain: Boolean
+
+  country: String!
+
+  display_name: String
+
+  grade: PlayerGrade
+
+  jersey_number: String
+
+  place: String
+
+  player: TeamMember!
+
+  position: Position
+
+  position_side: PositionSide
+
+  regular_position: Position
+
+  starter: Boolean
+
+  stats(stat_groups: [GameStatGroup!]): [GameStat!]!
+}
+
+type GamesGrouping {
+  id: ID!
+
+  filter: GamesGroupingFilter!
+
+  is_in_postseason: Boolean!
+
+  games: [Gamev2!]!
+
+  league: Leaguev2
+
+  type: GamesGroupingType!
+}
+
+enum GamesGroupingFilter {
+  none
+
+  march_madness
+
+  top25
+}
+
+enum GamesGroupingType {
+  following
+
+  league
+}
+
+enum GameScheduleGroupingFormat {
+  day
+
+  fixed
+
+  month
+}
+
+interface GameScheduleGrouping {
+  id: ID!
+
+  format: GameScheduleGroupingFormat
+
+  games: [Gamev2!]!
+
+  season_type: SeasonTypeCode
+
+  subtitle: String
+
+  title: String!
+
+  week: Int
+}
+
+type GameSeasonStats {
+  season: Season!
+
+  season_type: SeasonType
+
+  home_stat_leaders: [TeamLeader!]!
+
+  away_stat_leaders: [TeamLeader!]!
+
+  home_team_stats: [RankedStat!]!
+
+  away_team_stats: [RankedStat!]!
+}
+
+interface GameStat {
+  id: ID!
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+}
+
+enum GameStatCategory {
+  standard
+
+  advanced
+
+  summary
+
+  passing
+
+  rushing
+
+  receiving
+
+  punts
+
+  punt_returns
+
+  penalties
+
+  misc_returns
+
+  kicking
+
+  kickoffs
+
+  kick_returns
+
+  int_returns
+
+  fumbles
+
+  field_goals
+
+  extra_points_kicks
+
+  extra_points_conversions
+
+  defense
+
+  efficiency_goaltogo
+
+  efficiency_redzone
+
+  efficiency_thirddown
+
+  efficiency_fourthdown
+
+  first_downs
+
+  interceptions
+
+  touchdowns
+
+  batting
+
+  pitching
+
+  fielding
+}
+
+enum GameStatGroup {
+  grades_summary
+
+  grades_default
+
+  grades_extra
+
+  player_stats
+
+  reference_only
+
+  team_leader
+
+  team_stats
+
+  top_performer
+}
+
+enum GameState {
+  pre
+
+  live
+
+  post
+}
+
+type GameStatus {
+  extra: String
+
+  main: String
+}
+
+enum GameStatusCode {
+  cancelled
+
+  delayed
+
+  final
+
+  if_necessary
+
+  in_progress
+
+  postponed
+
+  scheduled
+
+  suspended
+
+  unnecessary
+}
+
+"""
+The currency in ISO code (in lowercase due to our enum coding convention) used for the game ticket
+"""
+enum GameTicketsCurrency {
+  usd
+}
+
+type GameTicketsLogo {
+  id: ID!
+
+  height: Int!
+
+  uri: String!
+
+  width: Int!
+}
+
+type GameTicketsPrice {
+  amount: Float!
+
+  currency: GameTicketsCurrency!
+}
+
+type GameTickets {
+  logos_dark_mode: [GameTicketsLogo!]!
+
+  logos_light_mode: [GameTicketsLogo!]!
+
+  """
+  The lowest price in different available currencies
+  """
+  min_price: [GameTicketsPrice!]!
+
+  provider: String!
+
+  uri: String!
+}
+
+type GoalEvent implements GameFeedItem & KeyEvent & TimelineEvent {
+  id: ID!
+
+  team: Teamv2!
+
+  period: Int!
+
+  period_id: Period!
+
+  match_time: Int!
+
+  match_time_display: String!
+
+  clock: String!
+
+  occurred_at: Timestamp!
+
+  goal_type: GoalType!
+
+  goal_scorer: TeamMember!
+
+  goal_assist: TeamMember
+
+  second_assist: TeamMember
+
+  away_score: Int!
+
+  home_score: Int!
+}
+
+enum GoalType {
+  """
+  Goal
+  """
+  g
+
+  """
+  Own Goal
+  """
+  og
+
+  """
+  Penalty Goal
+  """
+  pg
+}
+
+enum GradeStatus {
+  disabled
+
+  enabled
+
+  locked
+}
+
+type Headshot {
+  id: ID!
+
+  height: Int!
+
+  uri: String!
+
+  width: Int!
+}
+
+type HockeyPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  away_sog: Int
+
+  clock: String!
+
+  description: String!
+
+  game_time: String
+
+  header: String
+
+  home_score: Int!
+
+  home_sog: Int
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  type: HockeyPlayType!
+}
+
+enum HockeyPlayType {
+  awardedgoal
+
+  challenge
+
+  earlyintermission
+
+  emptynetgoal
+
+  endperiod
+
+  endshootoutperiod
+
+  evenstrength
+
+  faceoff
+
+  gamesetup
+
+  giveaway
+
+  goal
+
+  goaliechange
+
+  hit
+
+  owngoal
+
+  penalty
+
+  penaltygoal
+
+  penaltyshotmissed
+
+  penaltyshotsaved
+
+  powerplay
+
+  shootoutgoal
+
+  shootoutshotmissed
+
+  shootoutshotsaved
+
+  shotmissed
+
+  shotsaved
+
+  startshootoutperiod
+
+  stoppage
+
+  substitution
+
+  substitutions
+
+  takeaway
+
+  teamtimeout
+
+  tvtimeout
+}
+
+type HockeyShootoutPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  away_shootout_goals: Int!
+
+  away_shootout_shots: Int!
+
+  description: String!
+
+  header: String
+
+  home_score: Int!
+
+  home_shootout_goals: Int!
+
+  home_shootout_shots: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  shooter: TeamMember
+
+  team: Teamv2!
+
+  type: HockeyPlayType!
+}
+
+type HockeyTeamPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  away_sog: Int
+
+  clock: String!
+
+  description: String!
+
+  game_time: String
+
+  header: String
+
+  home_score: Int!
+
+  home_sog: Int
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  strength: HockeyStrength!
+
+  team: Teamv2!
+
+  type: HockeyPlayType!
+}
+
+enum HockeyStrength {
+  even
+
+  powerplay
+
+  shorthanded
+
+  unknown
+}
+
+interface Injury {
+  comment: String
+
+  injured_date: Date!
+
+  injury: String!
+
+  player: TeamMember!
+
+  status: InjuryStatus!
+
+  updated_date: Date
+}
+
+enum InjuryStatus {
+  d7
+
+  d10
+
+  d15
+
+  d60
+
+  day
+
+  day_to_day
+
+  doubtful
+
+  out
+
+  out_for_season
+
+  out_indefinitely
+
+  questionable
+
+  unknown
+}
+
+enum InningHalf {
+  bottom
+
+  middle
+
+  over
+
+  top
+}
+
+type InningScore {
+  id: ID!
+
+  errors: Int
+
+  hits: Int
+
+  inning: Int!
+
+  runs: Int
+}
+
+type IntegerGameStat implements GameStat {
+  id: ID!
+
+  int_value: Int!
+
+  less_is_best: Boolean
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+interface KeyEvent {
+  id: ID!
+
+  team: Teamv2!
+
+  period: Int!
+
+  period_id: Period!
+
+  match_time: Int!
+
+  match_time_display: String!
+
+  clock: String!
+}
+
+enum LeagueCode {
+  """
+  Copa del Rey
+  """
+  cdr
+
+  """
+  EFL Championship
+  """
+  cha
+
+  """
+  Premier League
+  """
+  epl
+
+  """
+  European Championship
+  """
+  euc
+
+  """
+  FA Cup
+  """
+  fac
+
+  """
+  International Friendlies
+  """
+  fri
+
+  """
+  EFL League Cup
+  """
+  lec
+
+  """
+  EFL League One
+  """
+  leo
+
+  """
+  EFL League Two
+  """
+  let
+
+  """
+  Major League Baseball
+  """
+  mlb
+
+  """
+  Major League Soccer
+  """
+  mls
+
+  """
+  National Basketball League
+  """
+  nba
+
+  """
+  NCAA football
+  """
+  ncaafb
+
+  """
+  NCAA Mens basketball
+  """
+  ncaamb
+
+  """
+  NCAA Womens basketball
+  """
+  ncaawb
+
+  """
+  National Football League
+  """
+  nfl
+
+  """
+  National Hockey League
+  """
+  nhl
+
+  """
+  National Women's Soccer League
+  """
+  nws
+
+  """
+  La Liga Primera Divison
+  """
+  prd
+
+  """
+  Scottish Premiership
+  """
+  pre
+
+  """
+  UEFA Champions League
+  """
+  ucl
+
+  """
+  UEFA Europa League
+  """
+  uel
+
+  """
+  Womens Euros
+  """
+  uwc
+
+  """
+  Mens World Cup
+  """
+  woc
+
+  """
+  Womens NBA
+  """
+  wnba
+
+  """
+  Womens World Cup
+  """
+  wwc
+}
+
+type LeagueGamesRibbonBlock implements RibbonBlock {
+  id: ID!
+
+  league: Leaguev2!
+
+  schedule: [GameScheduleGrouping!]!
+
+  type: RibbonBlockType!
+}
+
+type LeaguesGamesRibbonBlock implements RibbonBlock {
+  id: ID!
+
+  games: [Gamev2!]!
+
+  league: Leaguev2!
+
+  type: RibbonBlockType!
+}
+
+type Leaguev2 {
+  id: LeagueCode!
+
+  alias: String!
+
+  current_season: Season
+
+  display_name: String!
+
+  is_primary: Boolean
+
+  legacy_id: ID
+
+  legacy_league: League
+
+  name: String!
+
+  seasons: [Season!]!
+
+  slug: String
+
+  sport: Sport!
+}
+
+type LegacyGameScheduleGrouping implements GameScheduleGrouping {
+  id: ID!
+
+  format: GameScheduleGroupingFormat
+
+  games: [Gamev2!]!
+
+  legacy_games: [Game!]!
+
+  season_type: SeasonTypeCode
+
+  subtitle: String
+
+  title: String!
+
+  week: Int
+}
+
+type LineUp {
+  id: ID!
+
+  formation: String
+
+  image_uri: String
+
+  manager: String
+
+  manager_id: String
+
+  players(grades: Boolean): [GamePlayer!]!
+
+  team_officials: [TeamMember!]!
+}
+
+type NextGame {
+  id: ID!
+
+  game: Gamev2!
+}
+
+enum PenaltyOutcome {
+  missed
+
+  saved
+
+  scored
+}
+
+type PenaltyShotEvent implements GameFeedItem & KeyEvent & TimelineEvent {
+  id: ID!
+
+  team: Teamv2!
+
+  period: Int!
+
+  period_id: Period!
+
+  match_time: Int!
+
+  match_time_display: String!
+
+  clock: String!
+
+  occurred_at: Timestamp!
+
+  outcome: PenaltyOutcome!
+
+  penalty_number: Int!
+
+  penalty_taker: TeamMember!
+}
+
+type PercentageGameStat implements GameStat {
+  id: ID!
+
+  decimal_value: Float
+
+  less_is_best: Boolean
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+enum Period {
+  kick_off
+
+  first_half
+
+  second_half
+
+  extra_time_first_half
+
+  extra_time_second_half
+
+  penalty_shootout
+
+  first_quarter
+
+  second_quarter
+
+  third_quarter
+
+  fourth_quarter
+
+  half_time
+
+  full_time
+
+  full_time_ot
+
+  full_time_ot_2
+
+  full_time_ot_3
+
+  full_time_ot_4
+
+  full_time_ot_5
+
+  full_time_ot_6
+
+  full_time_ot_7
+
+  full_time_ot_8
+
+  full_time_ot_9
+
+  full_time_ot_10
+
+  full_time_so
+
+  over_time
+
+  over_time_2
+
+  over_time_3
+
+  over_time_4
+
+  over_time_5
+
+  over_time_6
+
+  over_time_7
+
+  over_time_8
+
+  over_time_9
+
+  over_time_10
+
+  pre_game
+
+  first_period
+
+  second_period
+
+  third_period
+
+  shootout
+
+  inning_bottom
+
+  inning_delayed
+
+  inning_middle
+
+  inning_over
+
+  inning_top
+}
+
+type PeriodScore {
+  id: ID!
+
+  period_id: Period!
+
+  score: Int!
+
+  score_str: String
+}
+
+type PeriodEvent implements GameFeedItem & TimelineEvent {
+  id: ID!
+
+  occurred_at: Timestamp!
+
+  period_id: Period!
+}
+
+interface Play {
+  id: ID!
+
+  description: String!
+
+  header: String
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+}
+
+type PlayerGrade {
+  id: ID!
+
+  avg: Float!
+
+  avg_str: String!
+
+  game_id: ID!
+
+  grade: Int
+
+  order: Int
+
+  player_id: ID!
+
+  total: Int!
+
+  updated_at: Timestamp!
+}
+
+enum PlayerHand {
+  right
+
+  left
+}
+
+enum Position {
+  """
+  Soccer
+  """
+  goalkeeper
+
+  defender
+
+  wing_back
+
+  defensive_midfielder
+
+  midfielder
+
+  attacking_midfielder
+
+  attacker
+
+  striker
+
+  substitute
+
+  """
+  American Football
+  """
+  center
+
+  cornerback
+
+  defensive_back
+
+  defensive_end
+
+  defensive_lineman
+
+  defensive_tackle
+
+  fullback
+
+  free_safety
+
+  kicker
+
+  inside_linebacker
+
+  linebacker
+
+  long_snapper
+
+  middle_linebacker
+
+  nose_tackle
+
+  offensive_guard
+
+  offensive_lineman
+
+  outside_linebacker
+
+  offensive_tackle
+
+  punter
+
+  quarterback
+
+  running_back
+
+  safety
+
+  strong_safety
+
+  tight_end
+
+  wide_receiver
+
+  """
+  Basketball (also has center and forward)
+  """
+  center_forward
+
+  forward_center
+
+  forward_guard
+
+  guard
+
+  guard_forward
+
+  point_guard
+
+  power_forward
+
+  shooting_guard
+
+  small_forward
+
+  """
+  Hockey (also has center)
+  """
+  goalie
+
+  defense
+
+  forward
+
+  left_wing
+
+  right_wing
+
+  """
+  Baseball
+  """
+  catcher
+
+  center_field
+
+  designated_hitter
+
+  first_base
+
+  left_field
+
+  pinch_hitter
+
+  pinch_runner
+
+  pitcher
+
+  relief_pitcher
+
+  right_field
+
+  second_base
+
+  shortstop
+
+  starting_pitcher
+
+  third_base
+
+  """
+  In case we dont know
+  """
+  unknown
+
+  """
+  Staff
+  """
+  head_coach
+
+  coach
+
+  offensive_coordinator
+
+  defensive_coordinator
+}
+
+enum PositionSide {
+  left
+
+  left_centre
+
+  centre
+
+  centre_right
+
+  right
+}
+
+type Possession {
+  down: Int
+
+  drive_info: DriveInfo
+
+  goal_to_go: Boolean
+
+  location_team: Teamv2
+
+  location_yardline: Int
+
+  team: Teamv2
+
+  yfd: Int
+}
+
+type PlaceholderTeamPair {
+  away_team_name: String
+
+  home_team_name: String
+
+  type: String
+}
+
+input RangeInput {
+  from_str: String
+
+  from_ts: Timestamp
+
+  to_str: String
+
+  to_ts: Timestamp
+}
+
+type RankedStat implements GameStat {
+  id: ID!
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  rank: Int!
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  stat_value: String!
+}
+
+enum RankStatus {
+  finals
+
+  final_playoffs
+
+  promotion
+
+  promotion_playoff
+
+  r16
+
+  relegation
+
+  relegation_playoff
+
+  uefa_champions_league
+
+  uefa_europa_league
+
+  uefa_conference_league_qualifiers
+}
+
+type Replay {
+  id: ID!
+
+  game: Gamev2!
+
+  started_at: Timestamp!
+}
+
+type ReplayResponse {
+  message: String!
+
+  ok: Boolean!
+}
+
+interface RibbonBlock {
+  id: ID!
+
+  type: RibbonBlockType!
+}
+
+enum RibbonBlockType {
+  followed_teams_games
+
+  league_games
+
+  leagues_games
+}
+
+type ScoresFeedFilter {
+  id: ID!
+
+  values: [ScoresFeedFilterValue!]!
+}
+
+type ScoresFeedFilterValue {
+  id: ID!
+
+  label: String!
+
+  is_default: Boolean!
+}
+
+type ScoresFeed {
+  id: ID!
+
+  days: [ScoresFeedDay!]! @deprecated(reason: "use groupings")
+
+  filters: [ScoresFeedFilter!]!
+
+  groupings: [ScoresFeedGrouping!]!
+
+  leagues: [Leaguev2!]! @deprecated(reason: "use nav")
+
+  nav: [ScoresFeedNavItem!]!
+}
+
+type ScoresFeedAllGamesWidgetBlock implements ScoresFeedWidgetBlock {
+  id: ID!
+
+  link_text: String!
+}
+
+type ScoresFeedBaseGroup implements ScoresFeedGroup {
+  id: ID!
+
+  blocks: [ScoresFeedBlock!]!
+
+  subtitle: String
+
+  title: String
+
+  widget: ScoresFeedWidgetBlock
+}
+
+type ScoresFeedBaseballWidgetBlock implements ScoresFeedWidgetBlock {
+  id: ID!
+
+  loaded_bases: [Int!]!
+}
+
+type ScoresFeedBlock {
+  id: ID!
+
+  footer: String
+
+  game_block: ScoresFeedGameBlock!
+
+  game_id: ID!
+
+  header: String
+
+  info_block: ScoresFeedInfoBlock!
+
+  widget: ScoresFeedWidgetBlock
+
+  will_update: Boolean!
+}
+
+type ScoresFeedBlockUpdate {
+  id: ID!
+
+  block: ScoresFeedBlock!
+}
+
+type ScoresFeedDay {
+  id: ID!
+
+  day: Date!
+
+  groups: [ScoresFeedGroup!]!
+
+  top_games: Boolean!
+}
+
+"""
+deprecated. to  be removed
+"""
+type ScoresFeedDateTextBlock implements ScoresFeedTextBlock {
+  id: ID!
+
+  date: Date!
+
+  type: ScoresFeedTextType!
+}
+
+enum ScoresFeedDateTimeFormat {
+  date
+
+  datetime
+
+  time
+}
+
+type ScoresFeedDateTimeTextBlock implements ScoresFeedTextBlock {
+  id: ID!
+
+  format: ScoresFeedDateTimeFormat!
+
+  time_tbd: Boolean!
+
+  timestamp: Timestamp!
+
+  type: ScoresFeedTextType!
+}
+
+type ScoresFeedDiscussionWidgetBlock implements ScoresFeedWidgetBlock {
+  id: ID!
+
+  text: String!
+}
+
+type ScoresFeedGameBlock {
+  id: ID!
+
+  game_state: GameState!
+
+  game_status: GameStatusCode! @deprecated(reason: "superceded by game_state")
+
+  started_at: Timestamp @deprecated(reason: "superceded by game_state")
+
+  team1: ScoresFeedTeamBlock!
+
+  team2: ScoresFeedTeamBlock!
+}
+
+type ScoresFeedGameTicketsWidgetBlock implements ScoresFeedWidgetBlock {
+  id: ID!
+
+  logos_dark_mode: [GameTicketsLogo!]!
+
+  logos_light_mode: [GameTicketsLogo!]!
+
+  """
+  The lowest price in different available currencies
+  """
+  min_price: [GameTicketsPrice!]!
+
+  provider: String!
+
+  text: String!
+
+  uri: String!
+}
+
+interface ScoresFeedGroup {
+  id: ID!
+
+  blocks: [ScoresFeedBlock!]!
+
+  subtitle: String
+
+  title: String
+
+  widget: ScoresFeedWidgetBlock
+}
+
+interface ScoresFeedGrouping {
+  id: ID!
+
+  default_group: Boolean! @deprecated(reason: "it's a grouping not a group")
+
+  default_grouping: Boolean!
+
+  groups: [ScoresFeedGroup!]!
+}
+
+type ScoresFeedDayGrouping implements ScoresFeedGrouping {
+  id: ID!
+
+  day: Date!
+
+  default_group: Boolean! @deprecated(reason: "it's a grouping not a group")
+
+  default_grouping: Boolean!
+
+  groups: [ScoresFeedGroup!]!
+}
+
+type ScoresFeedDefaultGrouping implements ScoresFeedGrouping {
+  id: ID!
+
+  default_group: Boolean! @deprecated(reason: "it's a grouping not a group")
+
+  default_grouping: Boolean!
+
+  groups: [ScoresFeedGroup!]!
+
+  subtitle: String
+
+  title: String
+}
+
+type ScoresFeedFollowingGroup implements ScoresFeedGroup {
+  id: ID!
+
+  blocks: [ScoresFeedBlock!]!
+
+  subtitle: String
+
+  title: String
+
+  widget: ScoresFeedWidgetBlock
+}
+
+type ScoresFeedInfoBlock {
+  id: ID!
+
+  text: [ScoresFeedTextBlock!]!
+
+  widget: ScoresFeedWidgetBlock
+}
+
+type ScoresFeedLeagueGroup implements ScoresFeedGroup {
+  id: ID!
+
+  blocks: [ScoresFeedBlock!]!
+
+  league: Leaguev2!
+
+  subtitle: String
+
+  title: String
+
+  widget: ScoresFeedWidgetBlock
+}
+
+type ScoresFeedLeagueNavItem implements ScoresFeedNavItem {
+  id: ID!
+
+  league: Leaguev2!
+}
+
+interface ScoresFeedNavItem {
+  id: ID!
+}
+
+type ScoresFeedOdds {
+  decimal_odds: String!
+
+  fraction_odds: String!
+
+  us_odds: String!
+}
+
+type ScoresFeedOddsTextBlock implements ScoresFeedTextBlock {
+  id: ID!
+
+  odds: ScoresFeedOdds!
+
+  team_alias: String! @deprecated(reason: "not needed")
+
+  type: ScoresFeedTextType!
+}
+
+type ScoresFeedStandardTextBlock implements ScoresFeedTextBlock {
+  id: ID!
+
+  text: String!
+
+  type: ScoresFeedTextType!
+}
+
+type ScoresFeedTeamBlock {
+  id: ID!
+
+  icons: [ScoresFeedTeamIcon!]!
+
+  is_tbd: Boolean!
+
+  logos: [TeamLogo!]!
+
+  name: String!
+
+  ranking: Int
+
+  team_info: ScoresFeedTeamInfoBlock
+}
+
+type ScoresFeedTeamGameInfoBlock implements ScoresFeedTeamInfoBlock {
+  id: ID!
+
+  is_winner: Boolean
+
+  penalty_score: String
+
+  score: String
+}
+
+enum ScoresFeedTeamIcon {
+  american_football_possession
+
+  soccer_redcard
+}
+
+interface ScoresFeedTeamInfoBlock {
+  id: ID!
+}
+
+type ScoresFeedTeamNavItem implements ScoresFeedNavItem {
+  id: ID!
+
+  team: Teamv2!
+}
+
+type ScoresFeedTeamPregameInfoBlock implements ScoresFeedTeamInfoBlock {
+  id: ID!
+
+  text: String!
+}
+
+interface ScoresFeedTextBlock {
+  id: ID!
+
+  type: ScoresFeedTextType!
+}
+
+enum ScoresFeedTextType {
+  datetime
+
+  default
+
+  live
+
+  situation
+
+  status
+}
+
+"""
+deprecated. to be removed
+"""
+type ScoresFeedTimeTextBlock implements ScoresFeedTextBlock {
+  id: ID!
+
+  time_tbd: Boolean!
+
+  timestamp: Timestamp!
+
+  type: ScoresFeedTextType!
+}
+
+interface ScoresFeedWidgetBlock {
+  id: ID!
+}
+
+type ScoringPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  clock: String!
+
+  description: String!
+
+  header: String
+
+  home_score: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  possession: Possession
+
+  plays: Int! @deprecated(reason: "N\/A")
+
+  score_type: ScoreType!
+
+  team: Teamv2!
+
+  yards: Int! @deprecated(reason: "N\/A")
+}
+
+enum ScoreType {
+  conversion
+
+  field_goal
+
+  """
+  ot_conversion is a college football conversion in overtime, not a post-touchdown conversion
+  """
+  ot_conversion
+
+  safety
+
+  touchdown
+}
+
+type Season {
+  id: ID!
+
+  active: Boolean
+
+  finishes_at: Timestamp
+
+  name: String!
+
+  league: Leaguev2!
+
+  schedule(around_day_iso: String, season_type: SeasonTypeCode, time_zone: String, week: Int): [GameScheduleGrouping!]!
+
+  standings(new_format: Boolean): [StandingsGrouping!]!
+
+  starts_at: Timestamp
+
+  active_bracket: Boolean
+}
+
+type SeasonType {
+  id: SeasonTypeCode!
+
+  name: String!
+}
+
+enum SeasonTypeCode {
+  reg
+
+  pre
+
+  pit
+
+  pst
+
+  ct
+
+  off
+
+  star
+
+  extra_prelim
+
+  prelim
+
+  prelim_semi
+
+  prelim_final
+
+  qual
+
+  qual1
+
+  qual2
+
+  qual3
+
+  qual4
+
+  playoffs
+
+  grp
+
+  knockout
+
+  r16
+
+  r32
+
+  qtr
+
+  semi
+
+  final
+
+  friendlies1
+
+  friendlies2
+
+  friendlies3
+
+  playin
+
+  conf_qtr
+
+  conf_semi
+
+  conf_final
+
+  phase1
+
+  phase2
+
+  round1
+
+  round2
+
+  round3
+
+  round4
+
+  round5
+
+  prom_semi
+
+  prom_final
+
+  third_final
+
+  cc
+}
+
+type SoccerOfficial {
+  id: ID!
+
+  name: String!
+
+  type: SoccerOfficialType!
+}
+
+enum SoccerOfficialType {
+  assistant_referee
+
+  assistant_var
+
+  fourth_official
+
+  referee
+
+  var
+}
+
+type SoccerPlay implements Play {
+  id: ID!
+
+  away_chances_created: Int!
+
+  away_score: Int!
+
+  away_shootout_goals: Int!
+
+  clock: String!
+
+  description: String!
+
+  game_time: String
+
+  header: String
+
+  home_chances_created: Int!
+
+  home_score: Int!
+
+  home_shootout_goals: Int!
+
+  key_play: Boolean!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  team: Teamv2
+
+  type: SoccerPlayType
+}
+
+enum SoccerPlayType {
+  corner
+
+  end_of_et
+
+  end_of_first_et
+
+  end_of_game
+
+  end_of_half
+
+  end_of_regulation
+
+  foul
+
+  goal
+
+  injury_substitution
+
+  kickoff
+
+  offside
+
+  own_goal
+
+  penalty_goal
+
+  penalty_shot_missed
+
+  penalty_shot_saved
+
+  penalty_kick_awarded
+
+  player_retired
+
+  red_card
+
+  second_yellow_card
+
+  shot_blocked
+
+  shot_missed
+
+  shot_saved
+
+  start_penalty_shootout
+
+  stoppage_time
+
+  substitution
+
+  var_goal_awarded_cancelled
+
+  var_goal_awarded_confirmed
+
+  var_goal_not_awarded_cancelled
+
+  var_goal_not_awarded_confirmed
+
+  var_penalty_awarded_cancelled
+
+  var_penalty_awarded_confirmed
+
+  var_penalty_not_awarded_cancelled
+
+  var_penalty_not_awarded_confirmed
+
+  var_red_card_awarded_cancelled
+
+  var_red_card_awarded_confirmed
+
+  var_red_card_not_awarded_cancelled
+
+  var_red_card_not_awarded_confirmed
+
+  yellow_card
+}
+
+type SoccerShootoutPlay implements Play {
+  id: ID!
+
+  away_score: Int!
+
+  away_shootout_goals: Int!
+
+  clock: String!
+
+  description: String!
+
+  game_time: String
+
+  header: String
+
+  home_score: Int!
+
+  home_shootout_goals: Int!
+
+  occurred_at: Timestamp!
+
+  occurred_at_str: String!
+
+  period_id: Period!
+
+  shooter: TeamMember
+
+  team: Teamv2
+
+  type: SoccerPlayType
+}
+
+enum Sport {
+  american_football
+
+  baseball
+
+  basketball
+
+  boxing
+
+  football
+
+  formula_one
+
+  golf
+
+  hockey
+
+  mixed
+
+  mma
+
+  nascar
+
+  other
+
+  soccer
+
+  tennis
+
+  unknown
+}
+
+type Standing {
+  id: ID!
+
+  team: Teamv2!
+
+  rank: Int!
+
+  rank_status: RankStatus
+
+  points: String
+
+  played: String
+
+  won: String
+
+  lost: String
+
+  lost_overtime: String
+
+  drawn: String
+
+  for: String
+
+  against: String
+
+  difference: String
+
+  elimination_number: String
+
+  games_behind: String
+
+  win_pct: String
+
+  away_record: String
+
+  conf_record: String
+
+  div_record: String
+
+  home_record: String
+
+  last_ten_record: String
+
+  streak: String
+
+  last_six: String
+}
+
+type StandingsColumn {
+  id: ID!
+
+  field: String!
+
+  label: String!
+
+  description: String!
+}
+
+type StandingsGrouping {
+  id: ID!
+
+  grouping_label: String
+
+  grouping_type: StandingsGroupingType!
+
+  groups: [StandingsGroup!]!
+
+  headers: [StandingsGroupHeader]
+
+  show_rank: Boolean!
+}
+
+type StandingsGroupHeader {
+  id: ID!
+
+  header: String!
+
+  group_ids: [ID!]!
+}
+
+enum StandingsGroupingType {
+  conference
+
+  division
+
+  group
+
+  league
+
+  wildcard
+}
+
+type StandingsGroup {
+  id: ID!
+
+  columns: [StandingsColumn!]!
+
+  name: String
+
+  segments: [StandingsSegment!]!
+
+  standings: [Standing!]!
+}
+
+interface StandingsSegment {
+  id: ID!
+
+  segment_type: StandingsSegmentType
+}
+
+type StandingsRangeClosedSegment implements StandingsSegment {
+  id: ID!
+
+  from_rank: Int!
+
+  segment_type: StandingsSegmentType
+
+  to_rank: Int!
+}
+
+type StandingsRangeFromSegment implements StandingsSegment {
+  id: ID!
+
+  from_rank: Int!
+
+  segment_type: StandingsSegmentType
+}
+
+type StandingsRangeToSegment implements StandingsSegment {
+  id: ID!
+
+  segment_type: StandingsSegmentType
+
+  to_rank: Int!
+}
+
+enum StandingsSegmentType {
+  championship_round
+
+  playoff_qualification
+
+  play_in_qualification
+
+  playoff_wildcard
+
+  relegation_round
+
+  semi_final_qualification
+}
+
+type StringGameStat implements GameStat {
+  id: ID!
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+type SubstitutionEvent implements GameFeedItem & KeyEvent & TimelineEvent {
+  id: ID!
+
+  team: Teamv2!
+
+  period: Int!
+
+  period_id: Period!
+
+  match_time: Int!
+
+  match_time_display: String!
+
+  clock: String!
+
+  occurred_at: Timestamp!
+
+  player_on: TeamMember!
+
+  player_off: TeamMember!
+
+  reason: String
+}
+
+type TeamLeader {
+  id: ID!
+
+  player: TeamMember!
+
+  stats: [GameStat!]!
+
+  stats_label: String
+
+  stats_short_label: String
+}
+
+type TeamLeaders {
+  id: ID!
+
+  leaders: [TeamLeader!]!
+
+  stats_category: String
+}
+
+type TeamLogo {
+  id: ID!
+
+  height: Int!
+
+  uri: String!
+
+  width: Int!
+}
+
+type TeamMember {
+  id: ID!
+
+  bat_hand: PlayerHand
+
+  birth_date: String
+
+  college: String
+
+  country: String
+
+  display_name: String
+
+  first_name: String
+
+  full_name: String
+
+  handedness: PlayerHand
+
+  headshots: [Headshot!]!
+
+  height: Int
+
+  is_legacy_player: Boolean
+
+  jersey_number: Int
+
+  last_name: String
+
+  legacy_slug: String
+
+  player_season_stats: PlayerSeasonStats
+
+  preferred_full_name: String
+
+  position: Position
+
+  role: TeamRole
+
+  roles: [TeamRole!]!
+
+  season_stats: [GameStat!]! @deprecated(reason: "use TeamMember.player_season_stats")
+
+  slug: String
+
+  sport: Sport
+
+  throw_hand: PlayerHand
+
+  weight: Int
+}
+
+type PlayerSeasonStats {
+  id: ID!
+
+  season: Season!
+
+  season_stats: [GameStat!]!
+
+  season_type: SeasonType
+}
+
+type TeamMemberSearchResult {
+  id: ID!
+
+  score: Float!
+
+  teamMember: TeamMember!
+}
+
+type Teamv2SearchResult {
+  id: ID!
+
+  score: Float!
+
+  team: Teamv2!
+}
+
+type TeamRole {
+  id: ID!
+
+  active: Boolean
+
+  jersey_number: Int
+
+  position: Position
+
+  team: Teamv2
+
+  type: TeamRoleType
+}
+
+enum TeamRoleType {
+  assistant_coach
+
+  coach
+
+  player
+}
+
+type TeamStanding {
+  id: ID!
+
+  season: Season!
+
+  standing: TeamStandingGrouping!
+}
+
+type TeamStandingGrouping {
+  id: ID!
+
+  grouping_label: String
+
+  grouping_type: StandingsGroupingType!
+
+  group: StandingsGroup!
+}
+
+type TeamStandings {
+  id: ID!
+
+  season: Season!
+
+  standings: [StandingsGrouping!]!
+}
+
+type TeamStats {
+  id: ID!
+
+  members: [TeamMember!]!
+
+  season: Season!
+
+  season_stats: [GameStat!]! @deprecated(reason: "use stats as we want RankedStats returned")
+
+  stats: [RankedStat!]!
+}
+
+type Teamv2 implements BasicTeam {
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  alias: String
+
+  all_star: Boolean @deprecated(reason: "use type")
+
+  color_accent: String
+
+  color_contrast: String
+
+  color_primary: String
+
+  color_secondary: String
+
+  conference: Conference
+
+  current_ranking: Int
+
+  current_standing(short: Boolean): String
+
+  display_name: String
+
+  division: Division
+
+  injuries: [Injury!]
+
+  league: [Leaguev2!]!
+
+  league_standings(primary_only: Boolean, full_standings: Boolean, default_grouping_only: Boolean): [TeamStandings!]!
+
+  legacy_team: Team
+
+  logo: String @deprecated(reason: "use logos")
+
+  logo_sml: String @deprecated(reason: "use logos")
+
+  logos: [TeamLogo!]!
+
+  members(season_id: ID, season_type: SeasonTypeCode, league_code: LeagueCode): [TeamMember!]!
+
+  name: String
+
+  slug: String
+
+  sport: Sport!
+
+  stat_leaders(season_id: ID, season_type: SeasonTypeCode, league_code: LeagueCode): [TeamLeaders!]!
+
+  active_bracket: String
+
+  podcast_tab: Boolean
+
+  type: TeamType!
+}
+
+enum TeamType {
+  allstar
+
+  club
+
+  national
+}
+
+type TimeGameStat implements GameStat {
+  id: ID!
+
+  hours_value: Int
+
+  less_is_best: Boolean
+
+  minutes_value: Int
+
+  parent_stat_category: GameStatCategory
+
+  parent_stat_type: String
+
+  reference_only: Boolean
+
+  seconds_value: Int
+
+  stat_category: GameStatCategory
+
+  stat_groups: [GameStatGroup!]!
+
+  stat_header_label: String
+
+  stat_label: String!
+
+  stat_long_header_label: String
+
+  stat_type: String!
+
+  string_value: String
+}
+
+interface TimelineEvent {
+  id: ID!
+
+  occurred_at: Timestamp!
+
+  period_id: Period!
+}
+
+type TopPerformer {
+  id: ID!
+
+  player: GamePlayer!
+
+  stats: [GameStat!]!
+
+  stats_label: String
+}
+
+type Tournament {
+  id: ID!
+
+  extra_stages: [TournamentStage!]!
+
+  league_supported: Boolean!
+
+  name: String @deprecated(reason: "Not in use, but implemented by older mobile versions")
+
+  stages: [TournamentStage!]!
+}
+
+union TournamentGame = AmericanFootballGame|BaseballGame|BasketballGame|HockeyGame|SoccerGame|TournamentPlaceholderGame
+
+union TournamentGameTeam = TournamentPlaceholderGameTeam|Teamv2
+
+type TournamentPlaceholderGame {
+  id: ID!
+
+  away_team: TournamentGameTeam
+
+  home_team: TournamentGameTeam
+
+  type: String!
+
+  conference: String
+}
+
+type TournamentPlaceholderGameTeam implements BasicTeam {
+  id: ID!
+
+  name: String
+}
+
+interface BasicTeam {
+  id: ID!
+
+  name: String
+}
+
+type TournamentSeries {
+  id: ID!
+
+  away_team: Teamv2
+
+  away_team_wins: Int
+
+  away_team_rank: Int
+
+  away_team_record: String
+
+  highlighted: Boolean
+
+  best_of: Int
+
+  conference: String
+
+  games: [TournamentGame!]!
+
+  home_team: Teamv2
+
+  home_team_wins: Int
+
+  home_team_rank: Int
+
+  home_team_record: String
+
+  live: Boolean!
+
+  title: String @deprecated(reason: "Not in use, but implemented by older mobile versions. Use series_title instead")
+
+  series_title: TournamentSeriesTitle
+}
+
+union TournamentSeriesTitle = TournamentSeriesDateTitle|TournamentSeriesTextTitle
+
+type TournamentSeriesDateTitle {
+  date: Timestamp
+}
+
+type TournamentSeriesTextTitle {
+  text: String
+}
+
+type TournamentStage {
+  id: ID!
+
+  bracket_games: [TournamentGame!]!
+
+  games: [Gamev2!]! @deprecated(reason: "Not in use, but implemented by older mobile versions")
+
+  live: Boolean!
+
+  name: String!
+
+  placeholder_game_teams: [PlaceholderTeamPair]
+
+  series: [TournamentSeries!]
+
+  type: String!
+}
+
+type Venue {
+  id: ID!
+
+  name: String
+
+  city: String
+
+  country: String
+
+  state: String
+}
+
+type Weather {
+  id: ID!
+
+  outlook: String
+
+  temp_celsius: Int
+
+  temp_fahrenheit: Int
+}
+
+type WinProbability {
+  away: Float!
+
+  draw: Float!
+
+  home: Float!
+}
+
+input StatInput {
+  key: String!
+
+  function: String!
+
+  timer: Int
+
+  offset: Int
+
+  gauge: Float
+
+  tags: [StatTagInput!]
+}
+
+input StatTagInput {
+  tag: String!
+
+  value: String!
+}
+
+input CreateTopicInput {
+  activeFrom: Timestamp
+
+  activeUntil: Timestamp
+
+  description: String
+
+  images: [ImageInput!]
+
+  tags: [TagInput!]
+
+  title: String!
+
+  topicId: ID
+}
+
+type Topic implements RealtimeExtension & Node & Consumable {
+  activeFrom: Timestamp
+
+  activeUntil: Timestamp
+
+  articles_count: Int
+
+  content(page: Int, perPage: Int, sort: SortInput): ContentConnection!
+
+  createdAt: Timestamp!
+
+  description: String
+
+  permalink: String!
+
+  id: ID!
+
+  images: [Image!]
+
+  image_url: String
+
+  slug: String!
+
+  status: Status!
+
+  tags: [Tag!]
+
+  title: String!
+
+  topicId: ID
+
+  type: String!
+
+  updatedAt: Timestamp!
+
+  league_id: ID
+
+  title_tag: String
+
+  headline_tag: String
+
+  league: League
+
+  banner_img_url: String
+
+  banner_background_color: String
+}
+
+type TopicsConnection {
+  items: [Topic]!
+
+  pageInfo: PageInfo!
+
+  total: Int!
+}
+
+input TopicFilter {
+  id: ID
+
+  ids: [ID]
+}
+
+input TopicStringSearch {
+  name: String
+}
+
+input TopicSearchOptions {
+  condition: FilterCondition!
+
+  generic_filters: ContentFilter
+
+  filters: TopicFilter
+
+  string_search: TopicStringSearch
+}
+
+input UpdateTopicInput {
+  activeFrom: Timestamp
+
+  activeUntil: Timestamp
+
+  description: String
+
+  id: ID!
+
+  images: [ImageInput!]
+
+  tags: [TagInput!]
+}
+
+type Tweetv2 {
+  id: ID!
+
+  """
+  The Athletic user_id if the twitter account is linked in wordpress
+  """
+  user_id: ID
+
+  twitter_user_id: ID!
+
+  tweet_url: String!
+
+  text: String!
+
+  conversation_id: ID!
+
+  edit_history_tweet_ids: [ID!]!
+
+  possibly_sensitive: Boolean!
+
+  created_at: Timestamp!
+
+  updated_at: Timestamp!
+
+  urls: [TweetUrl!]
+
+  media: [TweetMedia!]
+
+  mentions: [TweetMention!]
+}
+
+type TweetUrl {
+  url: String!
+
+  expanded_url: String!
+
+  display_url: String!
+
+  start: Int!
+
+  end: Int!
+}
+
+type TweetMention {
+  id: ID!
+
+  username: String!
+
+  start: Int!
+
+  end: Int!
+}
+
+union TweetMedia = TweetMediaPhoto|TweetMediaVideo|TweetMediaAnimatedGif
+
+type TweetMediaPhoto {
+  media_key: ID!
+
+  type: TweetMediaTypes!
+
+  height: Int!
+
+  width: Int!
+
+  url: String!
+}
+
+type TweetMediaVideo {
+  media_key: ID!
+
+  type: TweetMediaTypes!
+
+  height: Int!
+
+  width: Int!
+
+  duration_ms: Int
+
+  preview_image_url: String!
+
+  variants: [TweetMediaVariant!]
+}
+
+type TweetMediaAnimatedGif {
+  media_key: ID!
+
+  type: TweetMediaTypes!
+
+  height: Int!
+
+  width: Int!
+
+  preview_image_url: String!
+
+  variants: [TweetMediaVariant!]
+}
+
+type TweetMediaVariant {
+  bit_rate: Int
+
+  url: String!
+
+  content_type: String!
+}
+
+enum TweetMediaTypes {
+  animated_gif
+
+  photo
+
+  video
+}
+
+input TwitterInput {
+  token: String!
+
+  token_secret: String!
+}
+
+type TwitterTokens {
+  token: String!
+
+  tokenSecret: String!
+}
+
+type TwitterUser {
+  id: ID!
+
+  name: String!
+
+  profileImageUrl: String!
+
+  screenName: String!
+}
+
+enum UserContentEdition {
+  us
+
+  uk
+}
+
+input CompleteAccountInput {
+  email: String!
+
+  first_name: String!
+
+  last_name: String!
+
+  password: String!
+}
+
+enum LoginGrantType {
+  facebook
+
+  apple
+
+  google
+
+  nyt
+}
+
+input SocialLoginInput {
+  device_id: String!
+
+  token_code: String!
+
+  grant_type: LoginGrantType!
+
+  first_name: String
+
+  last_name: String
+
+  email: String
+
+  sub: String
+
+  access_token: String
+
+  access_via_nyt: Boolean
+}
+
+input LiveRoomTokenInput {
+  user_id: Int!
+
+  live_room_id: String!
+
+  user_role: LiveRoomUserRole!
+}
+
+input GuestLiveRoomTokenInput {
+  user_id: Int!
+
+  live_room_id: String!
+}
+
+enum LiveRoomUserRole {
+  host
+
+  listener
+}
+
+input UpdatePasswordInput {
+  email: String!
+
+  current_password: String!
+
+  new_password: String!
+
+  new_password_confirmation: String!
+}
+
+input TranscendSettingsInput {
+  Functional: Boolean
+
+  Analytics: Boolean
+
+  Advertising: Boolean
+
+  SaleOfInfo: Boolean
+}
+
+type UserSaveResponse {
+  success: Boolean!
+}
+
+type UserFollowing {
+  id: ID!
+
+  teams: [Team!]!
+
+  leagues: [League!]!
+
+  authors: [Author!]!
+
+  podcasts: [Podcast!]!
+
+  """
+  Return ordered user followable (Team, Leageu, Author) in an array
+  """
+  all: [UserFollowingUnion!]!
+
+  """
+  Return ordered input that can be used for Mutation.saveUserFollows
+  """
+  input: [UserFollowOutput!]!
+}
+
+union UserFollowingUnion = Team|League|Author
+
+type RegwallArticleData {
+  regwall_article_read: Boolean
+}
+
+type FreeArticlesRead {
+  regwall_articles_read: [String!]!
+}
+
+type SendResetPasswordEmailData {
+  emailExists: Boolean
+
+  sentEmail: Boolean
+}
+
+type ValidatePasswordLinkData {
+  is_valid: Boolean
+}
+
+type ResetPasswordData {
+  success: Boolean
+}
+
+type CarouselLayout implements Layout {
+  description: String
+
+  id: ID!
+
+  items: [CuratedItem!]!
+
+  position: Int!
+
+  tag: Tag
+
+  title: String
+
+  type: LayoutType!
+}
+
+type HeadlinesListLayout implements Layout {
+  id: ID!
+
+  headlines: [News!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type HeadlineLayout implements Layout {
+  headline: News!
+
+  id: ID!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type InsidersLayout implements Layout {
+  id: ID!
+
+  insiders: [Insider!]!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+interface Layout {
+  id: ID!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+enum Platform {
+  ios
+
+  android
+
+  web
+}
+
+enum LayoutType {
+  a1_four
+
+  announcement
+
+  article
+
+  carousel
+
+  content_topper
+
+  curated_content_list
+
+  curation_four_up
+
+  discussion
+
+  dropzone
+
+  end_cap
+
+  end_cap_section
+
+  featured
+
+  five_gallery_curation
+
+  five_hero_curation
+
+  four_content
+
+  four_content_curated
+
+  four_gallery_curation
+
+  four_hero_curation
+
+  franchise
+
+  game
+
+  headline
+
+  headlines_list
+
+  highlight_four_content
+
+  highlight_three_content
+
+  hpfy
+
+  incompatible
+
+  insiders
+
+  live_blogs
+
+  most_popular_articles
+
+  one_content
+
+  one_content_curated
+
+  one_hero_curation
+
+  photo
+
+  podcast_episode
+
+  podcast_episodes_list
+
+  qanda
+
+  recommended_podcasts
+
+  live_rooms
+
+  live_room
+
+  more_for_you
+
+  scores
+
+  see_more
+
+  seven_plus_hero_curation
+
+  shortforms
+
+  single_content
+
+  single_headline
+
+  single_item
+
+  six_hero_curation
+
+  six_plus_gallery_curation
+
+  spotlight
+
+  spotlight_carousel
+
+  stats_scores
+
+  team_widgets
+
+  three_content
+
+  three_content_curated
+
+  three_hero_curation
+
+  topic
+
+  two_hero_curation
+
+  two_three
+}
+
+type UnknownLayout implements Layout {
+  id: ID!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type MostPopularArticlesLayout implements Layout {
+  articles: [Article!]!
+
+  contents: [FeedConsumable!]!
+
+  id: ID!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type CurationFourUpModule implements Layout {
+  description: String
+
+  id: ID!
+
+  items: [CuratedItem!]!
+
+  list_type: CuratedModuleListType
+
+  position: Int!
+
+  tag: Tag
+
+  title: String
+
+  type: LayoutType!
+}
+
+type EndCapModule implements Layout {
+  id: ID!
+
+  layouts: [EndCapSection!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type EndCapSection implements Layout {
+  author: Author
+
+  id: ID!
+
+  layouts: [Layout!]!
+
+  tag: Tag
+
+  title: String
+
+  type: LayoutType!
+
+  position: Int!
+}
+
+type A1AndFourModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type FourContentModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  contents: [FeedConsumable!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type HighlightFourContentModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  contents: [FeedConsumable!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type ThreeContentModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  contents: [FeedConsumable!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type HighlightThreeContentModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  contents: [FeedConsumable!]!
+
+  position: Int!
+
+  type: LayoutType!
+
+  title: String
+}
+
+type ContentTopperModule implements Layout {
+  id: ID!
+
+  layouts: [Layout!]!
+
+  contents: [FeedConsumable!]!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type SingleItemLayout implements Layout {
+  description: String
+
+  id: ID!
+
+  item: CuratedItem!
+
+  position: Int!
+
+  tag: Tag
+
+  title: String
+
+  type: LayoutType!
+}
+
+type PhotoLayout implements Layout {
+  id: ID!
+
+  item: Article!
+
+  position: Int!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type DiscussionLayout implements Layout {
+  id: ID!
+
+  item: Discussion!
+
+  position: Int!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type QandaLayout implements Layout {
+  id: ID!
+
+  item: Qanda!
+
+  position: Int!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type FeatureLayout implements Layout {
+  id: ID!
+
+  item: Article!
+
+  position: Int!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type FranchiseLayout implements Layout {
+  id: ID!
+
+  item: Article!
+
+  position: Int!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type PodcastEpisodeLayout implements Layout {
+  id: ID!
+
+  item: PodcastEpisode!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type SpotlightLayout implements Layout {
+  id: ID!
+
+  position: Int!
+
+  spotlight: Spotlight
+
+  contents: [FeedConsumable!]!
+
+  type: LayoutType!
+
+  read: Boolean
+
+  saved: Boolean
+}
+
+type AnnouncementLayout implements Layout {
+  id: ID!
+
+  item: Announcement! @deprecated(reason: "Use content")
+
+  content: FeedConsumable!
+
+  position: Int!
+
+  type: LayoutType!
+}
+
+type SeeMoreLayout implements Layout {
+  id: ID!
+
+  title: String
+
+  type: LayoutType!
+
+  position: Int!
+}
+
+input TodayFilter {
+  locale: String!
+
+  tags: TagsInput
+}
+
+input FeedFilter {
+  feed_type: FeedType
+
+  feed_id: Int
+
+  feed_url: String
+
+  page: Int!
+
+  locale: String
+
+  platform: Platform
+
+  layouts: [LayoutType!]
+
+  override: Boolean
+
+  tags: TagsInput
+}
+
+type FeedFilterSuggestion {
+  feed_type: FeedType
+
+  feed_id: Int
+
+  page: Int
+
+  locale: String
+
+  platform: Platform
+
+  layouts: [LayoutType!]
+}
+
+type MoreLink {
+  id: ID!
+
+  title: String
+
+  deeplink_url: String
+
+  type: String!
+}
+
+type TaggedFilterSuggestion {
+  filter: FeedFilterSuggestion!
+
+  tag: Tag
+
+  tags: Tags
+
+  name: String
+
+  has_content: Boolean
+
+  num_content: Int
+}
+
+union ShortFormCarouselItem = Brief|MoreLink
+
+type ShortFormCarouselLayout implements Layout {
+  id: ID!
+
+  position: Int!
+
+  shortforms: [Brief!]! @deprecated(reason: "Use content")
+
+  shortforms_more: [ShortFormCarouselItem!]! @deprecated(reason: "Use content")
+
+  contents: [FeedConsumable!]!
+
+  type: LayoutType!
+
+  title: String
+
+  description: String
+
+  filters: [TaggedFilterSuggestion!]!
+
+  container_id: ID
+
+  action: LinkableString
+}
+
+type HpfyCarouselLayout implements Layout {
+  id: ID!
+
+  description: String
+
+  hpfy: [Evergreen!]!
+
+  position: Int!
+
+  title: String
+
+  type: LayoutType!
+}
+
+type TopicCarouselLayout implements Layout {
+  description: String
+
+  id: ID!
+
+  position: Int!
+
+  tag: Tag
+
+  topics: [Topic!]!
+
+  title: String
+
+  type: LayoutType!
+}
+
+type RecommendedPodcastLayout implements Layout {
+  id: ID!
+
+  position: Int!
+
+  podcasts: [Podcast!]!
+
+  type: LayoutType!
+
+  title: String
+
+  container_id: ID
+}
+
+type ScoresLayout implements Layout {
+  id: ID!
+
+  position: Int!
+
+  scores: [Game!]!
+
+  type: LayoutType!
+}
+
+type TwoThreeLayout implements Layout {
+  description: String
+
+  id: ID!
+
+  items: [CuratedItem!]!
+
+  position: Int!
+
+  tag: Tag
+
+  title: String
+
+  type: LayoutType!
+}
+
+type NavigationHeader {
+  deeplink_url: String
+
+  entity_type: String
+
+  id: ID!
+
+  title: String!
+}
+
+type LayoutsConnection {
+  id: ID!
+
+  items: [Layout]!
+
+  pageInfo: PageInfo!
+
+  use_timestamp: Boolean!
+}
+
+enum FeedType {
+  author
+
+  city
+
+  following
+
+  loggedin
+
+  hpfy
+
+  league
+
+  team
+
+  teamhub
+
+  topic
+
+  global
+
+  lohp
+
+  latest
+
+  tag
+
+  test
+
+  frontpage
+
+  realtime
+
+  player
+
+  discover
+
+  betting
+}
+
+input LayoutFilter {
+  layout_type: LayoutType!
+
+  consumable_types: [FeedConsumableType!]
+}
+
+type VisibleText {
+  app_text: String
+
+  web_text: String
+}
+
+interface ConsumableLayout {
+  id: ID!
+
+  type: LayoutType!
+
+  typename: String
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+}
+
+interface SingleConsumableLayout {
+  id: ID!
+
+  content: FeedConsumable!
+
+  type: LayoutType!
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+}
+
+interface GroupConsumableLayout {
+  id: ID!
+
+  contents: [FeedConsumable!]!
+
+  type: LayoutType!
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+
+  action: LinkableString
+}
+
+type BasicSingleConsumableLayout implements SingleConsumableLayout & ConsumableLayout {
+  id: ID!
+
+  content: FeedConsumable!
+
+  type: LayoutType!
+
+  typename: String
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+}
+
+type BasicGroupConsumableLayout implements GroupConsumableLayout & ConsumableLayout {
+  id: ID!
+
+  contents: [FeedConsumable!]!
+
+  type: LayoutType!
+
+  typename: String
+
+  title: VisibleText
+
+  description: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+
+  action: LinkableString
+
+  tag: Tag
+}
+
+type ShortFormLayout implements GroupConsumableLayout & ConsumableLayout {
+  id: ID!
+
+  contents: [FeedConsumable!]!
+
+  type: LayoutType!
+
+  typename: String
+
+  title: VisibleText
+
+  filters: [TaggedFilterSuggestion!]
+
+  container_id: ID
+
+  container_type: ID
+
+  action: LinkableString
+}
+
+type PlaceholderLayout implements ConsumableLayout {
+  id: ID!
+
+  type: LayoutType!
+
+  typename: String
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+}
+
+type DropzonePlaceholderLayout implements ConsumableLayout {
+  id: ID!
+
+  type: LayoutType!
+
+  typename: String
+
+  dropzone_id: ID!
+
+  title: VisibleText
+
+  container_id: ID
+
+  container_type: ID
+}
+
+input FeedRequest {
+  feed_type: FeedType
+
+  feed_id: Int
+
+  feed_url: String
+
+  tags: TagsInput
+
+  page: Int!
+
+  locale: String
+
+  platform: Platform
+
+  layouts: [LayoutFilter!]
+
+  override: Boolean
+
+  show_long_titles: Boolean
+
+  is_mobile_web: Boolean
+}
+
+type FeedConsumable {
+  consumable: Consumable
+
+  title: String
+
+  description: String
+
+  id: ID!
+
+  consumable_id: ID
+
+  type: FeedConsumableType!
+
+  badge: String
+}
+
+enum FeedConsumableType {
+  action
+
+  announcement
+
+  article
+
+  brief
+
+  discussion
+
+  dropzone
+
+  evergreen
+
+  featured_feed_game
+
+  feed_game
+
+  game
+
+  game_v2
+
+  insider
+
+  liveBlog
+
+  liveBlogBanner
+
+  liveRoom
+
+  news
+
+  podcast
+
+  podcast_episode
+
+  qanda
+
+  spotlight
+
+  stats_scores
+
+  topic
+
+  team_widgets
+}
+
+type FeedConnection {
+  id: ID!
+
+  layouts: [ConsumableLayout]!
+
+  pageInfo: PageInfo!
+
+  isCurated: Boolean
+
+  sport_type: String
+
+  team_short_display_name: String
+
+  league_short_name: String
+
+  slug: String
+
+  ad_unit_path: String
+}
+
+type FeedGame implements Gamev2 & Consumable {
+  id: ID!
+
+  ad_unit_path: String
+
+  ad_targeting_params: AdParameters
+
+  away_team: GameTeam
+
+  clock: String
+
+  comments_on: Boolean!
+
+  coverage: GameCoverage
+
+  feed: [GameFeedItem!]!
+
+  finished_at: Timestamp
+
+  game_status: GameStatus
+
+  game_title: String
+
+  group: String
+
+  highlighted: Boolean
+
+  home_team: GameTeam
+
+  is_comments_discoverable: Boolean!
+
+  index: Int!
+
+  key_events: [KeyEvent!]!
+
+  league: Leaguev2!
+
+  live_blog: LiveBlog
+
+  links: [LinkableString!] @deprecated(reason: "Replaced with FeaturedGame.links")
+
+  match_time: Int
+
+  match_time_display: String
+
+  period: Int
+
+  period_id: Period
+
+  permalink(ignore_linked_content: Boolean): String
+
+  possession: Possession
+
+  scheduled_at: Timestamp
+
+  season: String
+
+  season_stats: GameSeasonStats!
+
+  season_type: SeasonType
+
+  sport: Sport!
+
+  started_at: Timestamp
+
+  status: GameStatusCode
+
+  tickets: GameTickets
+
+  time_tbd: Boolean
+
+  timeline: [TimelineEvent!]!
+
+  title: String
+
+  top_comments: [Comment!]!
+
+  type: String!
+
+  updated_at: Timestamp!
+
+  venue: Venue
+
+  week: Int
+
+  odds_live: [GameOddsMarket!]!
+
+  odds_pregame: [GameOddsMarket!]!
+
+  odds_main_deeplink: String
+}
+
+type TeamWidgets implements Consumable {
+  id: ID!
+
+  type: String!
+
+  title: String
+}
+
+type StatsScores implements Consumable {
+  id: ID!
+
+  component: String!
+
+  leagues: [String!]!
+
+  type: String!
+}
+
+type FeaturedComment implements Consumable {
+  id: ID!
+
+  type: String!
+
+  comment: Comment!
+}
+
+type FeaturedGame implements Consumable {
+  id: ID!
+
+  article: Article @deprecated(reason: "Replaced with FeatureGame.featured_content")
+
+  game: Gamev2!
+
+  game_title_parts: [String!]!
+
+  featured_content: Consumable
+
+  links: [LinkableString!]
+
+  type: String!
+
+  series_title: String
+}
+
+type AnnouncementConsumable implements ConsumableV2 {
+  consumable: AnnouncementConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  cta_text: String
+
+  cta_url: String
+
+  deeplink_url: String
+
+  desktop_image_url: String
+
+  end_date: Timestamp!
+
+  excerpt: String!
+
+  id: ID!
+
+  image_url: String
+
+  mobile_image_url: String
+
+  title: String!
+
+  type: String!
+}
+
+type ArticleConsumable implements ConsumableV2 {
+  author: AuthorV2
+
+  consumable: ArticleConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  comment_count: Int
+
+  description: String
+
+  disable_comments: Boolean!
+
+  ended_at: Timestamp
+
+  excerpt: String!
+
+  excerpt_plaintext: String!
+
+  id: ID!
+
+  image_uri: String
+
+  is_read: Boolean!
+
+  is_saved: Boolean!
+
+  permalink: String!
+
+  permalink_for_embed: String!
+
+  post_type_id: ID
+
+  started_at: Timestamp
+
+  title: String!
+
+  type: String!
+}
+
+type BriefConsumable implements ConsumableV2 {
+  allTags: [Tag!]! @deprecated(reason: "incorrect naming convention, use snake case")
+
+  all_tags: [Tag!]!
+
+  comment_count: Int!
+
+  consumable: BriefConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  current_user_has_liked: Boolean!
+
+  current_user_has_read: Boolean!
+
+  current_user_is_owner: Boolean!
+
+  disable_comments: Boolean!
+
+  html: String
+
+  id: ID!
+
+  images: [Image!]!
+
+  last_activity_at: Timestamp!
+
+  likes: Int!
+
+  permalink: String!
+
+  reactions: [BriefConsumable!]!
+
+  status: String!
+
+  text: String
+
+  type: String!
+
+  user: Staff!
+}
+
+type FeaturedGameConsumable implements ConsumableV2 {
+  consumable: FeaturedGameConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  type: String!
+
+  game: Gamev2
+
+  game_title_parts: [String]
+
+  series_title: String
+
+  featured_content: Consumable
+
+  links: [LinkableString!]
+}
+
+type GameConsumable implements ConsumableV2 {
+  consumable: GameConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  type: String!
+
+  game: Gamev2
+
+  index: Int!
+}
+
+type LiveBlogConsumableLastPostItem {
+  published_at: Timestamp
+}
+
+type LiveBlogConsumableLastPost {
+  items: [LiveBlogConsumableLastPostItem!]!
+}
+
+type LiveBlogConsumable implements ConsumableV2 {
+  consumable: LiveBlogConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  description: String
+
+  id: ID!
+
+  image_uri: String
+
+  last_activity_at: Timestamp!
+
+  lastActivityAt: Timestamp @deprecated(reason: "incorrect naming convention, use snake case")
+
+  lastPost: LiveBlogConsumableLastPost @deprecated(reason: "incorrect naming convention, use snake case")
+
+  last_post: LiveBlogConsumableLastPost
+
+  metadata: LiveBlogMetadata!
+
+  permalink: String!
+
+  permalink_for_embed: String!
+
+  short_title: String!
+
+  status: String!
+
+  tags: [Tag!]!
+
+  title: String!
+
+  type: String!
+}
+
+type LiveDiscussionConsumable implements ConsumableV2 {
+  consumable: LiveDiscussionConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  type: String!
+}
+
+type LiveRoomConsumable implements ConsumableV2 {
+  audience_total: Int!
+
+  consumable: LiveRoomConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  hosts: [User!]!
+
+  id: ID!
+
+  images: [Image!]!
+
+  permalink: String!
+
+  status: String!
+
+  subtitle: String!
+
+  title: String!
+
+  type: String!
+}
+
+type NewsConsumable implements ConsumableV2 {
+  consumable: NewsConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  comment_count: Int
+
+  description: String
+
+  id: ID!
+
+  image_uri: String
+
+  is_read: Boolean!
+
+  permalink: String!
+
+  title: String!
+
+  type: String!
+}
+
+type PodcastEpisodeClip {
+  id: Int!
+
+  start_position: Int
+
+  end_position: Int
+
+  title: String
+}
+
+type PodcastEpisodeConsumable implements ConsumableV2 {
+  consumable: PodcastEpisodeConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  id: ID!
+
+  consumable_id: ID!
+
+  clips: [PodcastEpisodeClip!]
+
+  description: String
+
+  duration: Int
+
+  finished: Boolean
+
+  image_url: String
+
+  mp3_url: String
+
+  number: Int!
+
+  parent_podcast: Podcast
+
+  permalink: String!
+
+  podcast_episode_id: ID!
+
+  published_at: Timestamp!
+
+  title: String!
+
+  type: String!
+
+  comment_count: Int!
+
+  disable_comments: Boolean!
+}
+
+type RecommendedPodcastConsumable implements ConsumableV2 {
+  consumable: RecommendedPodcastConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  image_url: String
+
+  metadata_string: String
+
+  permalink_url: String
+
+  podcast_id: ID!
+
+  title: String!
+
+  type: String!
+}
+
+type SpotlightConsumable implements ConsumableV2 {
+  id: ID!
+
+  article_id: ID!
+
+  article: Article
+
+  consumable: SpotlightConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  created_at: Timestamp!
+
+  scheduled_at: Timestamp!
+
+  type: String!
+
+  updated_at: Timestamp!
+}
+
+type StatsScoresConsumable implements ConsumableV2 {
+  id: ID!
+
+  consumable: StatsScoresConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  component: String
+
+  type: String!
+
+  title: String!
+
+  leagues: [String!]!
+}
+
+type PostAuthor {
+  name: String!
+
+  image_url: String
+
+  description: String
+}
+
+type PostConsumable implements ConsumableV2 {
+  author: PostAuthor
+
+  body: String!
+
+  consumable: PostConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  published_at: Timestamp!
+
+  title: String!
+
+  type: String!
+}
+
+type TweetAuthor {
+  full_description: String
+
+  image_url: String
+
+  name: String
+
+  slug: String
+
+  user_id: ID!
+}
+
+type FeedTweetConsumable implements ConsumableV2 {
+  tweetAuthor: TweetAuthor
+
+  body: String!
+
+  consumable: LiveBlogConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  created_at: Timestamp!
+
+  id: ID!
+
+  type: String!
+}
+
+type DefaultConsumable implements ConsumableV2 {
+  consumable: DefaultConsumable @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  type: String!
+}
+
+union FeedConsumableV2 = AnnouncementConsumable|ArticleConsumable|BriefConsumable|DefaultConsumable|FeaturedGameConsumable|GameConsumable|LiveBlogConsumable|LiveDiscussionConsumable|LiveRoomConsumable|NewsConsumable|PodcastEpisodeConsumable|PostConsumable|RecommendedPodcastConsumable|SpotlightConsumable|StatsScoresConsumable|FeedTweetConsumable
+
+type AuthorV2 {
+  first_name: String!
+
+  last_name: String!
+}
+
+interface ConsumableV2 {
+  consumable: FeedConsumableV2 @deprecated(reason: "use non-nested fields, this is just duplicate data")
+
+  consumable_id: ID!
+
+  id: ID!
+
+  type: String!
+}
+
+type FeedLayoutV2 {
+  action: LinkableString
+
+  id: ID!
+
+  container_id: ID
+
+  container_type: String
+
+  contents: [FeedConsumableV2!]!
+
+  description: VisibleTextV2
+
+  dropzone_id: String
+
+  title: VisibleTextV2
+
+  type: String!
+
+  typename: String!
+
+  tag: Tag
+
+  filters: [TaggedFilterSuggestion!]!
+}
+
+type FeedResponseV2 {
+  ad_unit_path: String
+
+  id: ID!
+
+  isCurated: Boolean!
+
+  feed: String!
+
+  layouts: [FeedLayoutV2!]!
+
+  pageInfo: PageInfo!
+}
+
+type VisibleTextV2 {
+  app_text: String
+
+  web_text: String
+}
+
+input LayoutFilterV2 {
+  layout_type: String!
+
+  consumable_types: [String!]!
+}
+
+input FeedFilterV2 {
+  layouts: [LayoutFilterV2!]
+}
+
+type PaywallRule {
+  country_code: String
+
+  experiment_name: String
+
+  experiment_info: CompassExperiment
+
+  priority_level: String
+
+  source: String
+
+  league_ids: [String!]
+
+  team_ids: [String!]
+}
+
+type CompassExperiment {
+  CTRL: CompassTreatment!
+
+  A: CompassTreatment
+
+  B: CompassTreatment
+
+  C: CompassTreatment
+
+  D: CompassTreatment
+}
+
+type CompassTreatment {
+  body: TreatmentString!
+
+  href: TreatmentString!
+
+  header: TreatmentString!
+
+  subheader: TreatmentString!
+
+  button_text: TreatmentString!
+}
+
+type TreatmentString {
+  default: String!
+}
+
+type QueryNewsletterSignUpResponse {
+  is_signed_up: Boolean!
+}
+
+type QueryEmailExistsResponse {
+  email_exists: Boolean!
+}
+
+type SignUpUserNewsletterResponse {
+  success: Boolean!
+}
+
+enum EmailOptInStatus {
+  accepted
+
+  rejected
+
+  seen
+}
+
+type ServerResponse {
+  response: String
+}
+
+type AttributionOption {
+  display_name: String!
+
+  value: String!
+
+  display_order: Int!
+}
+
+type AttributionSurvey {
+  header_text: String!
+
+  subheader_text: String!
+
+  cta_text: String!
+
+  attribution_survey_options: [AttributionOption!]!
+}
+
+type PostThread implements Node & Consumable {
+  id: ID!
+
+  type: String!
+
+  body: String
+
+  created_at: Timestamp!
+
+  created_by: User!
+
+  current_user_has_read: Boolean!
+
+  current_user_is_owner: Boolean!
+
+  disable_comments: Boolean!
+
+  flaggable: Boolean!
+
+  likes: Int!
+
+  lock_comments: Boolean!
+
+  num_comments: Int!
+
+  permalink: String!
+
+  primary_tag: Tag!
+
+  status: ThreadStatus
+
+  tags: [Tag!]!
+
+  title: String!
+
+  updated_at: Timestamp!
+}
+
+input CreatePostThreadInput {
+  body: String
+
+  """
+  teamV1 or teamV2 id for tagging
+  """
+  team_id: ID!
+
+  title: String!
+}
+
+input UpdatePostThreadInput {
+  id: ID!
+
+  body: String
+
+  disable_comments: Boolean
+
+  flaggable: Boolean
+
+  likes: Int
+
+  lock_comments: Boolean
+
+  num_comments: Int
+
+  status: ThreadStatus
+
+  """
+  teamV1 or teamV2 id for tagging
+  """
+  team_id: ID!
+
+  title: String!
+}
+
+enum ThreadStatus {
+  active
+
+  archived
+}
+
+input OfferVariant {
+  id: Int
+
+  apronId: Int
+
+  paywallId: Int
+
+  variant: String!
+}
+
+input UotOffer {
+  id: Int
+
+  name: String!
+
+  priority: Int!
+
+  source: String!
+
+  countryCode: String!
+
+  experimentName: String
+
+  sourceStrings: [String]
+
+  articleIds: [Int]
+
+  leagueIds: [Int]
+
+  teamIds: [Int]
+
+  subscriberScoreFloor: Float
+
+  startDate: Timestamp
+
+  endDate: Timestamp
+
+  isLive: Boolean
+
+  offerVariants: [OfferVariant!]!
+}
+
+input UotWall {
+  id: Int
+
+  name: String!
+
+  template: String!
+
+  cta_text: String!
+
+  cta_href: String!
+
+  header: String
+
+  body: String
+
+  tagline: String
+}
+
+input UotApron {
+  id: Int
+
+  name: String!
+
+  template: String!
+
+  cta_text: String!
+
+  cta_href: String!
+
+  header: String
+
+  body: String
+
+  tagline: String
+
+  cta_text_mobile: String
+
+  cta_text_tablet: String
+}
+
+type UotResponse {
+  success: Boolean!
+
+  error: String
+}
+
+type UotOfferType {
+  id: Int
+
+  name: String
+
+  experimentName: String
+
+  priority: Int
+
+  countryCode: String
+
+  source: String
+
+  sourceStrings: [String]
+
+  articleIds: [Int]
+
+  leagueIds: [Int]
+
+  teamIds: [Int]
+
+  subscriberScoreFloor: Float
+
+  startDate: Date
+
+  endDate: Date
+
+  isLive: Boolean
+
+  offerPaywalls: [UotOfferWall]
+
+  offerAprons: [UotOfferApron]
+}
+
+type UotOfferWall {
+  id: Int
+
+  name: String
+
+  cta_text: String
+
+  cta_href: String
+
+  template: String
+
+  header: String
+
+  body: String
+
+  tagline: String
+}
+
+type UotOfferApron {
+  id: Int
+
+  name: String
+
+  cta_text: String
+
+  cta_href: String
+
+  template: String
+
+  header: String
+
+  body: String
+
+  tagline: String
+
+  cta_text_mobile: String
+
+  cta_text_tablet: String
+}

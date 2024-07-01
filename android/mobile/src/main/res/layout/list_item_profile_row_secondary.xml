@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+            name="view"
+            type="com.theathletic.profile.ui.ProfileListItem.Interactor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.profile.ui.ProfileListItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:onClick="@{() -> view.onProfileListItemClick(data)}"
+        android:background="@color/ath_grey_70"
+        android:foreground="?selectableItemBackground"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:tint="@{ContextCompat.getColor(context, data.tintColor)}"
+            app:srcCompat="@{data.icon}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_gift" />
+
+        <TextView
+            android:id="@+id/row_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Ath.Navigation"
+            android:text="@{data.text}"
+            android:textColor="@{ContextCompat.getColor(context, data.tintColor)}"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Give a Gift" />
+
+    </LinearLayout>
+
+</layout>

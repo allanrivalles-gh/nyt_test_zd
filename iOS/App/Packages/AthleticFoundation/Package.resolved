@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "dd-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DataDog/dd-sdk-ios.git",
+      "state" : {
+        "revision" : "d2230acdc9ba9defded481f653c33f850bef9a95",
+        "version" : "1.12.1"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "state" : {
+        "revision" : "e2b52071483eec7b18c521d6cc74e24983804722",
+        "version" : "17.0.0"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/plcrashreporter.git",
+      "state" : {
+        "revision" : "b1a342da19ed9b3af61ea2efa7656c2af30aeb7c",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "swift-storage",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:TheAthletic/swift-storage.git",
+      "state" : {
+        "revision" : "65d013d056c8f5352cbdc12bd1fff79272983f95",
+        "version" : "1.1.12"
+      }
+    }
+  ],
+  "version" : 2
+}

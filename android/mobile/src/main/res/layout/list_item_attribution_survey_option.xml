@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+            name="view"
+            type="com.theathletic.attributionsurvey.ui.SurveyContract.SurveyInteractor"/>
+
+        <variable
+            name="data"
+            type="com.theathletic.attributionsurvey.ui.SurveyEntryUiModel"/>
+    </data>
+
+    <Button
+        android:id="@+id/row_text"
+        style="@style/TextAppearance.Ath.Navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@{data.title}"
+        android:textAllCaps="false"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@{data.isSelected ? @drawable/button_background_white_check : @drawable/button_background_grey_5_border}"
+        android:textColor="@{data.isSelected ? @color/black : @color/white}"
+        android:onClick="@{() -> view.onEntryClick(data.index)}"
+        android:layout_gravity="center_horizontal"
+        tools:text="Newspaper" />
+
+</layout>

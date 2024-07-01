@@ -1,0 +1,7 @@
+query GetUserContentEdition {
+    getUserContentEdition
+}
+
+mutation UpdateUserContentEdition($edition: UserContentEdition!) {
+    setUserContentEdition(edition: $edition)
+}

@@ -1,0 +1,179 @@
+fragment ChatMessageDetails on ChatMessage {
+    id
+    type
+    message_id
+    message
+    created_by {
+        ... on Staff {
+            ...LiveRoomStaff
+        }
+        ... on Customer {
+            id
+            first_name
+            last_name
+            is_shadow_ban
+        }
+    }
+    created_at
+    reports {
+        ...ReportedMessageDetails
+    }
+}
+
+fragment ChatNodeDetails on ChatNode {
+    ... on ChatMessage {
+        ...ChatMessageDetails
+    }
+    ... on DeletedMessageEvent {
+        message_id
+    }
+    ... on UserJoinedEvent {
+        user {
+            ...UserLiteWrapper
+        }
+    }
+    ... on UserBlockedEvent {
+        user {
+            ...UserLiteWrapper
+        }
+    }
+    ... on ReportedMessageEvent {
+        message_id
+        num_reports
+        created_by {
+            ...UserLiteWrapper
+        }
+    }
+}
+
+fragment ChatRoomDetails on ChatRoom {
+    id
+    title
+    status
+    messages {
+        ...ChatMessageDetails
+    }
+    blocked_users {
+        ...UserLiteWrapper
+    }
+    created_by {
+        ...UserLiteWrapper
+    }
+    created_at
+}
+
+fragment LiveRoomDetails on LiveRoom {
+    id
+    title
+    subtitle
+    description
+    is_recorded
+    liveRoomStatus: status
+    created_at
+    started_at
+    liveRoomUpdatedAt: updated_at
+    ended_at
+    permalink
+    type
+    audience_total
+    room_limit
+    disable_chat
+    auto_push_enabled
+    auto_push_sent
+    theme_color
+    hosts {
+        ...LiveRoomHost
+    }
+    broadcasters {
+        id
+        first_name
+        last_name
+        name
+        ... on Staff {
+            ...LiveRoomStaff
+        }
+    }
+    moderators {
+        id
+    }
+    created_by {
+        ... on Customer {
+            ...UserLiteWrapper
+        }
+        ... on Staff {
+            ...UserLiteWrapper
+        }
+    }
+    tags {
+        ...TagDetailWrapper
+    }
+    contentImages: images {
+        image_uri
+    }
+    requests {
+        ...SpeakingRequest
+    }
+    locked_users {
+        id
+    }
+    chat {
+        ...ChatRoomDetails
+    }
+    live_room_types
+}
+
+fragment LiveRoomHost on User {
+    id
+    first_name
+    last_name
+    name
+    ... on Staff {
+        ...LiveRoomStaff
+    }
+}
+
+fragment LiveRoomStaff on Staff {
+    __typename
+    avatar_uri
+    full_description
+    id
+    league_avatar_uri
+    name
+    first_name
+    last_name
+    role
+    team_avatar_uri
+    bio
+    twitter
+    following {
+        ...UserProfileFollowing
+    }
+}
+
+fragment ReportedMessageDetails on ReportedMessage {
+    reported_by {
+        ...UserLiteWrapper
+    }
+    reported_at
+    reason
+}
+
+fragment SpeakingRequest on SpeakingRequest {
+    id
+    from {
+        id
+        first_name
+        last_name
+        name
+        ... on Staff {
+            ...LiveRoomStaff
+        }
+        ... on Customer {
+            is_shadow_ban
+        }
+    }
+    type
+    approved
+    completed
+    created_at
+}

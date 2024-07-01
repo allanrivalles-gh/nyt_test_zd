@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <import type="com.theathletic.utility.RecyclerDecoration" />
+        <import type="android.support.v4.media.session.PlaybackStateCompat" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastBigPlayerView" />
+        <variable
+            name="viewModel" type="com.theathletic.viewmodel.main.PodcastBigPlayerViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_dodgeInsetEdges="bottom">
+
+        <!-- TT Toolbar -->
+        <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/podcast_big_player_toolbar_height"
+            android:background="@color/ath_grey_65"
+            android:outlineProvider="background">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="start"
+                android:background="@drawable/selector_clickable_item_circular_bg"
+                android:contentDescription="@null"
+                android:onClick="@{() -> view.onCloseClick()}"
+                android:padding="18dp"
+                android:tint="@color/ath_grey_10"
+                app:srcCompat="@drawable/ic_close" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:gravity="center"
+                android:text="@{viewModel.podcastName}"
+                android:textColor="@color/ath_grey_10"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/TextAppearance.Ath.Headline.Sans.Medium.ExtraSmall"
+                tools:text="No Dunks" />
+
+        </FrameLayout>
+
+        <com.theathletic.widget.FlingableNestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bottom_bar_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:paddingBottom="20dp"
+                    android:background="@color/ath_grey_65">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/image_start"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.18" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/image_end"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.82" />
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="12dp"
+                        android:contentDescription="@null"
+                        android:elevation="4dp"
+                        android:outlineProvider="background"
+                        android:maxWidth="50dp"
+                        app:centerCrop="@{true}"
+                        app:imageUrl="@{viewModel.activeTrack.imageUrl}"
+                        app:layout_constraintWidth_max="300dp"
+                        app:layout_constraintDimensionRatio="W,1:1"
+                        app:layout_constraintStart_toStartOf="@id/image_start"
+                        app:layout_constraintEnd_toEndOf="@id/image_end"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@sample/podcast" />
+
+                    <TextView
+                        android:id="@+id/text_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="@{viewModel.activeTrack.title}"
+                        android:textColor="@color/ath_grey_10"
+                        style="@style/TextAppearance.Ath.Headline.Sans.Semibold.Small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/image"
+                        app:layout_constraintVertical_bias="0"
+                        tools:text="@tools:sample/lorem[8]" />
+
+                    <TextView
+                        android:id="@+id/text_sub_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:letterSpacing="0"
+                        android:text="@{viewModel.activeTrack.description}"
+                        android:textColor="@color/ath_grey_45"
+                        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_title"
+                        app:layout_constraintVertical_bias="0"
+                        tools:text="@tools:sample/lorem[15]" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/seek_bar_buffer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:bindableProgress="@{viewModel.currentBufferProgress}"
+                        android:clickable="false"
+                        android:theme="@style/Widget.Ath.BigPodcastPlayerSeekBarBuffer"
+                        android:thumb="@null"
+                        app:layout_constraintBottom_toBottomOf="@id/seek_bar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/seek_bar" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/seek_bar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:bindableProgress="@{viewModel.currentProgress}"
+                        android:theme="@style/Widget.Ath.BigPodcastPlayerSeekBar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_sub_title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.currentProgressFormattedString}"
+                        android:textColor="@color/ath_grey_45"
+                        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"
+                        app:layout_constraintStart_toStartOf="@id/seek_bar"
+                        app:layout_constraintTop_toTopOf="@id/seek_bar"
+                        tools:text="00:06" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.timeRemainingFormattedString}"
+                        android:textColor="@color/ath_grey_45"
+                        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"
+                        app:layout_constraintEnd_toEndOf="@id/seek_bar"
+                        app:layout_constraintTop_toTopOf="@id/seek_bar"
+                        tools:text="29:01" />
+
+                    <ImageView
+                        android:id="@+id/play_pause_button"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onPlayPauseClick()}"
+                        android:tint="@color/ath_grey_10"
+                        app:srcCompat="@{(viewModel.playbackState != PlaybackStateCompat.STATE_PLAYING) ? @drawable/ic_podcast_play : @drawable/ic_podcast_pause }"
+                        tools:src="@drawable/ic_podcast_play"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/forward_button"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toEndOf="@id/backward_button"
+                        app:layout_constraintTop_toBottomOf="@id/seek_bar" />
+
+                    <ImageView
+                        android:id="@+id/backward_button"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onBackwardClick()}"
+                        android:tint="@color/ath_grey_10"
+                        app:srcCompat="@drawable/ic_podcast_backward"
+                        app:layout_constraintBottom_toBottomOf="@id/play_pause_button"
+                        app:layout_constraintEnd_toStartOf="@id/play_pause_button"
+                        app:layout_constraintStart_toEndOf="@id/speed_button"
+                        app:layout_constraintTop_toTopOf="@id/play_pause_button" />
+
+                    <ImageView
+                        android:id="@+id/forward_button"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onForwardClick()}"
+                        android:tint="@color/ath_grey_10"
+                        app:srcCompat="@drawable/ic_podcast_forward_10"
+                        app:layout_constraintBottom_toBottomOf="@id/play_pause_button"
+                        app:layout_constraintEnd_toStartOf="@id/share_button"
+                        app:layout_constraintStart_toEndOf="@id/play_pause_button"
+                        app:layout_constraintTop_toTopOf="@id/play_pause_button" />
+
+                    <TextView
+                        android:id="@+id/speed_button"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:gravity="center"
+                        android:onClick="@{() -> view.onChangeSpeedClick()}"
+                        android:paddingTop="1dp"
+                        android:text='@{String.valueOf(viewModel.currentPlayBackSpeed) + "x"}'
+                        android:textColor="@color/ath_grey_10"
+                        android:invisibility="@{viewModel.playBackSpeedEnabled}"
+                        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                        app:layout_constraintBottom_toBottomOf="@id/play_pause_button"
+                        app:layout_constraintEnd_toStartOf="@id/backward_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/play_pause_button"
+                        tools:text="1x" />
+
+                    <ImageView
+                        android:id="@+id/share_button"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onShareClick()}"
+                        android:padding="10dp"
+                        android:tint="@color/ath_grey_10"
+                        app:srcCompat="@drawable/ic_share"
+                        app:layout_constraintBottom_toBottomOf="@id/play_pause_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/forward_button"
+                        app:layout_constraintTop_toTopOf="@id/play_pause_button" />
+
+                    <ImageView
+                        android:id="@+id/queue_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:visibility="gone"
+                        android:onClick="@{() -> view.onOpenQueueClick()}"
+                        android:padding="10dp"
+                        android:tint="@color/ath_grey_10"
+                        app:srcCompat="@drawable/ic_podcast_queue"
+                        app:layout_constraintTop_toBottomOf="@id/share_button"
+                        app:layout_constraintStart_toStartOf="@id/share_button"
+                        app:layout_constraintEnd_toEndOf="@id/share_button" />
+
+                    <ImageView
+                        android:id="@+id/sleep_timer_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onSleepTimerClick()}"
+                        android:padding="10dp"
+                        android:tint="@{viewModel.sleepTimerRunning? @color/ath_bright_green : @color/ath_grey_10}"
+                        tools:tint="@color/ath_bright_green"
+                        app:srcCompat="@drawable/ic_podcast_sleep_timer_moon"
+                        app:layout_constraintTop_toBottomOf="@id/share_button"
+                        app:layout_constraintStart_toStartOf="@id/speed_button"
+                        app:layout_constraintEnd_toEndOf="@id/speed_button" />
+
+                    <TextView
+                        android:id="@+id/sleep_timer_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:fontFamily="@font/avenir_regular"
+                        android:gravity="center"
+                        android:onClick="@{() -> view.onSleepTimerClick()}"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:padding="10dp"
+                        android:text='@{viewModel.sleepTimerRemaining}'
+                        android:textColor="@color/ath_grey_10"
+                        android:visibility="@{viewModel.sleepTimerRunning}"
+                        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                        app:layout_constraintBottom_toBottomOf="@id/sleep_timer_button"
+                        app:layout_constraintStart_toEndOf="@+id/sleep_timer_button"
+                        app:layout_constraintTop_toTopOf="@id/sleep_timer_button"
+                        tools:text="15:49" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ath_grey_65"
+                    android:clipToPadding="false"
+                    android:paddingBottom="48dp"
+                    android:visibility="@{viewModel.recyclerList.isEmpty() == false}"
+                    app:recyclerDecoration="@{RecyclerDecoration.LINEAR_SPACE_SMALL}"
+                    app:recyclerLayout="@{RecyclerLayout.NESTED_LINEAR_VERTICAL}"
+                    tools:listitem="@layout/fragment_podcast_episode_detail_track_item" />
+
+            </LinearLayout>
+        </com.theathletic.widget.FlingableNestedScrollView>
+    </LinearLayout>
+</layout>

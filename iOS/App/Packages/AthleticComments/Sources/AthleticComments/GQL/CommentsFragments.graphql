@@ -1,0 +1,159 @@
+fragment Comment on Comment {
+    __typename
+    author_id
+    author_name
+    author_color
+    author_initials
+    author_user_level
+    avatar_url
+    comment
+    commented_at
+    id
+    is_pinned
+    likes_count
+    parent_id
+    is_deletable
+    author_game_flairs(team_id: $teamId) {
+        ...Flair
+    }
+    replies {
+        __typename
+        author_id
+        author_name
+        author_color
+        author_initials
+        author_user_level
+        avatar_url
+        comment
+        commented_at
+        id
+        is_pinned
+        is_deletable
+        likes_count
+        parent_id
+        author_game_flairs(team_id: $teamId) {
+            ...Flair
+        }
+        total_replies
+        comment_metadata
+        comment_permalink
+    }
+    total_replies
+    comment_metadata
+    comment_permalink
+    tweet {
+        id
+        tweet_url
+    }
+}
+
+fragment CommentWithoutReplies on Comment {
+    __typename
+    author_id
+    author_name
+    author_color
+    author_initials
+    author_user_level
+    avatar_url
+    comment
+    commented_at
+    id
+    is_pinned
+    likes_count
+    parent_id
+    is_deletable
+    author_game_flairs(team_id: $teamId) {
+        ...Flair
+    }
+    total_replies
+    comment_metadata
+    comment_permalink
+    tweet {
+        id
+        tweet_url
+    }
+}
+
+fragment Flair on Flair {
+    id
+    name
+    icon_contrast_color
+}
+
+fragment ArticleContentLite on Article {
+    __typename
+    id
+    author {
+        ...UserDetailWrapper
+    }
+    article_authors: authors {
+        id
+        author {
+            ...UserDetailWrapper
+        }
+        display_order
+    }
+    excerpt
+    excerpt_plaintext
+    league_ids
+    permalink
+    post_type_id
+    published_at
+    short_title
+    team_ids
+    title
+    team_hex
+}
+
+fragment QandADateInfo on Qanda {
+    __typename
+    started_at
+    ended_at
+}
+
+fragment PlayCommentResponse on PlayCommentResponse {
+    __typename
+    child_comment {
+        ...Comment
+    }
+    parent_comment {
+        ...Comment
+    }
+    is_parent_new
+}
+
+fragment CommentsResponse on CommentsResponse {
+    __typename
+    comment_count
+    all_comments: comments {
+        ...Comment
+    }
+    disable_comments
+    lock_comments
+    userFlairs {
+        ...Flair
+    }
+}
+
+fragment TeamSpecificResponse on TeamSpecificResponse {
+    content_type
+    content_id
+    team_id
+    current_thread {
+        ...TeamSpecificThread
+    }
+    threads {
+        ...TeamSpecificThread
+    }
+}
+
+fragment TeamSpecificThread on TeamSpecificThread {
+    label
+    team {
+        ...TeamV2
+        color_contrast
+        legacy_team {
+            id
+        }
+    }
+}

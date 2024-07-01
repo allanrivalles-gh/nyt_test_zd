@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "trial-interstitial_iPad_bg.png",
+      "idiom" : "ipad"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

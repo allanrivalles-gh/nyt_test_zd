@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.gifts.ui.GiftSheetDialogView" />
+        <variable
+            name="viewModel" type="com.theathletic.gifts.ui.GiftSheetDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/shirt_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_shirt_title"
+            style="@style/TA.Ath.Gifts.Title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/shirt_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_shirt_description"
+            android:textColor="@color/gray"
+            style="@style/TA.Ath.Gifts.Description"
+            app:layout_constraintTop_toBottomOf="@id/shirt_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/shirt_size_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_shirt_size_title"
+            style="@style/TA.Ath.Gifts.SubTitle"
+            app:layout_constraintTop_toBottomOf="@id/shirt_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/shirt_flexbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            app:flexWrap="wrap"
+            app:layout_constraintTop_toBottomOf="@id/shirt_size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/shirt_address_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_shirt_address_title"
+            style="@style/TA.Ath.Gifts.SubTitle"
+            app:layout_constraintTop_toBottomOf="@id/shirt_flexbox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- TT Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiAddressName.error}"
+            app:layout_constraintTop_toBottomOf="@id/shirt_address_title">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/address_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@={viewModel.valiAddressName.value}"
+                android:hint="@string/gifts_shirt_address_name_hint"
+                android:maxLines="1"
+                android:inputType="textPersonName"
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TT Address 1 -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_1_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiAddress1.error}"
+            app:layout_constraintTop_toBottomOf="@id/address_name_text_input">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/address_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@={viewModel.valiAddress1.value}"
+                android:hint="@string/gifts_shirt_address1_hint"
+                android:maxLines="1"
+                android:inputType="textPostalAddress"
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TT Address 2 -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_2_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiAddress2.error}"
+            app:layout_constraintTop_toBottomOf="@id/address_1_text_input">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/address_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@={viewModel.valiAddress2.value}"
+                android:hint="@string/gifts_shirt_address2_hint"
+                android:maxLines="1"
+                android:inputType="textPostalAddress"
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TT City -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_city_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiAddressCity.error}"
+            app:layout_constraintTop_toBottomOf="@id/address_2_text_input">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/address_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@={viewModel.valiAddressCity.value}"
+                android:hint="@string/gifts_shirt_address_city_hint"
+                android:maxLines="1"
+                android:inputType="textPostalAddress"
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/address_state_and_zip_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address_city_text_input">
+
+            <!-- TT State -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_state_text_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                app:hintEnabled="false"
+                app:error="@{viewModel.valiAddressState.error}">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/address_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@={viewModel.valiAddressState.value}"
+                    android:hint="@string/gifts_shirt_address_state_hint"
+                    android:maxLines="1"
+                    android:inputType="textPostalAddress"
+                    style="@style/TA.Ath.Gifts.EditText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- TT ZIP -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_zip_text_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
+                app:error="@{viewModel.valiAddressZIP.error}">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/address_zip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@={viewModel.valiAddressZIP.value}"
+                    android:hint="@string/gifts_shirt_address_zip_hint"
+                    android:maxLines="1"
+                    android:inputType="textPostalAddress"
+                    style="@style/TA.Ath.Gifts.EditText" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/country_container_text_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiAddressCountryCode.error}"
+            app:layout_constraintTop_toBottomOf="@id/address_state_and_zip_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/country_container"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginBottom="4dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <include
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    layout="@layout/fragment_gift_section_t_shirt_country_item"
+                    bind:view="@{view}"
+                    bind:title="@{@string/gifts_shirt_address_country_us}"
+                    bind:image="@{@drawable/ic_gifts_country_us}"
+                    bind:selectedAddressCountry="@{viewModel.valiAddressCountryCode}" />
+
+                <include
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    layout="@layout/fragment_gift_section_t_shirt_country_item"
+                    bind:view="@{view}"
+                    bind:title="@{@string/gifts_shirt_address_country_ca}"
+                    bind:image="@{@drawable/ic_gifts_country_ca}"
+                    bind:selectedAddressCountry="@{viewModel.valiAddressCountryCode}" />
+
+                <include
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    layout="@layout/fragment_gift_section_t_shirt_country_item"
+                    bind:view="@{view}"
+                    bind:title="@{@string/gifts_shirt_address_country_uk}"
+                    bind:image="@{@drawable/ic_gifts_country_uk}"
+                    bind:selectedAddressCountry="@{viewModel.valiAddressCountryCode}" />
+            </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

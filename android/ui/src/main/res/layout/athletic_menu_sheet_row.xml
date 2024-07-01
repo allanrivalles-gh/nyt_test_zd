@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.ui.widgets.dialog.AthleticMenuSheet" />
+
+        <variable
+            name="data"
+            type="com.theathletic.ui.widgets.dialog.AthleticMenuSheet.Entry" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> interactor.onOptionsItemSelected(data)}"
+        >
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:src="@{context.getDrawable(data.iconRes)}"
+            android:tint="@color/ath_grey_10"
+            tools:src="@drawable/ic_edit"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/ath_grey_10"
+            android:text="@{context.getString(data.textRes)}"
+            android:lines="1"
+            tools:text="@string/fragment_feed_save"
+            />
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticleToolbarModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticleToolbarModel.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mvp_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/ath_grey_70"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/action_share"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_share"
+            android:tint="@color/ath_grey_10"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onShareClick()}"
+            app:layout_constraintEnd_toEndOf="@+id/mvp_toolbar"
+            app:layout_constraintTop_toTopOf="@+id/mvp_toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/mvp_toolbar" />
+
+        <ImageView
+            android:id="@+id/action_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_text_style"
+            android:tint="@color/ath_grey_10"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onTextStyleClick()}"
+            app:layout_constraintEnd_toStartOf="@+id/action_share"
+            app:layout_constraintTop_toTopOf="@+id/mvp_toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/mvp_toolbar" />
+
+        <ImageView
+            android:id="@+id/action_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:tint="@color/ath_grey_10"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onBookmarkClick(data.isBookmarked)}"
+            app:srcCompat="@{data.bookmarkIcon}"
+            app:layout_constraintEnd_toStartOf="@+id/action_text_style"
+            app:layout_constraintTop_toTopOf="@+id/mvp_toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/mvp_toolbar"
+            tools:src="@drawable/ic_bookmark" />
+
+        <LinearLayout
+            android:id="@+id/comments_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onCommentsClick()}"
+            android:visibility="@{data.showComments}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/action_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/action_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_comments_outline"
+                android:tint="@color/ath_grey_10" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{data.commentCount}"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                tools:text="33" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/webview_upgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{() -> interactor.onWebViewUpgradeClick()}"
+            android:src="@drawable/ic_alert_red"
+            android:visibility="@{data.showWebViewUpgrade}"
+            app:layout_constraintEnd_toStartOf="@+id/comments_view"
+            app:layout_constraintTop_toTopOf="@+id/mvp_toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/mvp_toolbar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

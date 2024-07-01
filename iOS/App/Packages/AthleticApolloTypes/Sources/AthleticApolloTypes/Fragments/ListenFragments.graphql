@@ -1,0 +1,33 @@
+fragment PodcastDetail on Podcast {
+    __typename
+    id
+    title
+    description
+    notif_episodes_on
+    image_url
+    short_description
+    metadata_string
+    permalink_url
+    is_following
+}
+
+fragment PodcastEpisodeDetail on PodcastEpisode {
+    __typename
+    disable_comments
+    comment_count
+    description
+    duration
+    finished
+    id
+    image_uri
+    is_teaser
+    mp3_uri
+    number
+    permalink
+    published_at
+    time_elapsed
+    title
+    parent_podcast {
+        ...PodcastDetail
+    }
+}

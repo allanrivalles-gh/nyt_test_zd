@@ -1,0 +1,3 @@
+mutation SaveUserTranscendPreferences($transcendSettings: TranscendSettingsInput!) {
+  saveUserTranscendPreferences(transcend_settings: $transcendSettings)
+}

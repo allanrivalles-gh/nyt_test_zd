@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ad_slug_text_color">#969693</color>
+    <color name="ad_wrapper_background">#f7f7f4</color>
+    <color name="ad_wrapper_divider">#F0F0EE</color>
+</resources>

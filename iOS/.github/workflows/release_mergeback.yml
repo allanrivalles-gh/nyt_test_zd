@@ -1,0 +1,35 @@
+name: Release Mergeback
+on:
+  push:
+    branches:
+      - stable/**
+  workflow_dispatch:
+jobs:
+  stable_to_main:
+    runs-on: buildjet-4vcpu-ubuntu-latest
+    steps:
+      - name: Get version from stable branch name
+        env:
+          BRANCH: ${{ github.ref_name }}
+        id: version
+        run: |
+          echo "fragment=${BRANCH##*/}" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Reset stable_to_main/${{ steps.version.outputs.fragment }} branch
+        run: |
+          git fetch origin ${{ github.ref_name }}:${{ github.ref_name }}
+          git reset --hard ${{ github.ref_name }}
+      - name: Create Pull Request to merge stable_to_main/${{ steps.version.outputs.fragment }} into main
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: stable_to_main/${{ steps.version.outputs.fragment }}
+          title: Merge Release Changes Into Main
+          labels: |
+            Automated
+            Ready to merge
+          body: |
+            This is an automated pull request to merge the most recent changes in the release branch back into main. These changes have already been reviewed and should be considered ready to merge as soon as there is a passing build. This branch can be safely deleted after merging.
+            
+            **This pull request should be merged using the _Create a merge commit_ option below. Do not merge using _Squash and merge_.**

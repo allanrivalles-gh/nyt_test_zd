@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="data"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsGroupUiModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_header_title"
+            android:paddingStart="8dp"
+            android:paddingTop="20dp"
+            android:background="@color/ath_grey_70"
+            style="@style/TextAppearance.Ath.Headline.Sans.Semibold"
+            android:textSize="18sp"
+            android:visibility="@{(data.title.isEmpty()) ? View.GONE : View.VISIBLE}"
+            android:textColor="@color/ath_grey_10"
+            android:text="@{data.title.toUpperCase()}"
+            android:maxLines="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="AMERICAN ATHLETIC CONFERENCE"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_standings_rank_and_team"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/text_header_title"
+            app:layout_constraintTop_toBottomOf="@id/text_header_title"
+            />
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recycler_standings_rank_and_team"
+            app:layout_constraintTop_toBottomOf="@id/text_header_title"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_standings_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

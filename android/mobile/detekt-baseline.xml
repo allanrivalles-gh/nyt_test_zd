@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexMethod:AthleticApplication.kt$AthleticApplication$override fun onCreate()</ID>
+    <ID>ComplexMethod:BindingUtility.kt$@BindingAdapter( value = [ "topMargin", "bottomMargin", "startMargin", "endMargin" ], requireAll = false ) fun setProgrammableMargins( view: View, @DimenRes marginTop: Int? = null, @DimenRes marginBottom: Int? = null, @DimenRes marginStart: Int? = null, @DimenRes marginEnd: Int? = null )</ID>
+    <ID>ComplexMethod:BoxScoreFootballRenderer.kt$BoxScoreFootballRenderer$fun renderModels(data: BoxScoreState): List&lt;UiModel></ID>
+    <ID>ComplexMethod:CommentsTransformer.kt$CommentsTransformer$override fun transform(data: CommentsState): CommentsContract.ViewState</ID>
+    <ID>ComplexMethod:LinkableCollapsibleTextView.kt$LinkableCollapsibleTextView$private fun setupListeners()</ID>
+    <ID>ComplexMethod:StatefulLayout.kt$StatefulLayout$private fun setupView()</ID>
+    <ID>LongMethod:AthleticApplication.kt$AthleticApplication$override fun onCreate()</ID>
+    <ID>LongParameterList:Analytics.kt$Analytics$( private val analyticsTracker: AnalyticsTracker, private val contextInfoProvider: ContextInfoProvider, private val analyticsEventProducer: AnalyticsEventProducer, private val phpCallQueue: PhpCallQueue, private val analyticsApi: AnalyticsApi, private val firebaseAnalytics: FirebaseAnalytics, private val contextPreferences: ContextInfoPreferences, private val gson: Gson, private val preferences: ArticlePreferences )</ID>
+    <ID>LongParameterList:AnalyticsRepository.kt$AnalyticsRepository$( private val eventDao: AnalyticsEventDao, private val flexibleAnalyticsEventDao: FlexibleAnalyticsEventDao, private val analyticsApi: AnalyticsApi, private val analyticsTransformer: AnalyticsToRemoteTransformer, private val endpointConfig: AnalyticsEndpointConfig, private val analyticsBatchBuilder: AnalyticsBatchBuilder )</ID>
+    <ID>LongParameterList:DebugPurchase.kt$DebugPurchase$( val orderId: String = "testing_id", val packageName: String = "com.theathletic", val productId: String, val purchaseTime: Long, val purchaseState: Int, val purchaseToken: String = "testing_token", val autoRenewing: Boolean = true, val acknowledged: Boolean = false )</ID>
+    <ID>LongParameterList:DebugSkuDetails.kt$DebugSkuDetails$( val productId: String, val type: String, val price: String, @Json(name = "price_amount_micros") val priceAmountMicros: Int, @Json(name = "price_currency_code") val priceCurrencyCode: String, val subscriptionPeriod: String? = null, val title: String = "", val description: String = "", val skuDetailsToken: String = "fake_token", val freeTrialPeriod: String? = null, val introductoryPriceAmountMicros: Int? = null, val introductoryPrice: String? = null, val introductoryPricePeriod: String? = null, val introductoryPriceCycles: Int? = null )</ID>
+    <ID>LongParameterList:FeedArticlePrefetcher.kt$FeedArticlePrefetcher$( private val articleRepository: ArticleRepository, private val articleFetcher: SingleArticleFetcher, private val networkManager: INetworKManager, private val dateUtility: IDateUtility, private val timeProvider: TimeProvider, dispatcherProvider: DispatcherProvider )</ID>
+    <ID>LongParameterList:PodcastRepository.kt$PodcastRepository$( dispatcherProvider: DispatcherProvider, private val podcastDao: PodcastDao, private val userPodcastsFetcher: UserPodcastsFetcher, private val podcastFeedFetcher: PodcastFeedFetcher, private val userManager: IUserManager, private val entityDataSource: EntityDataSource, private val entityQueries: EntityQueries, private val updatePodcastListenedStateRequest: UpdatePodcastListenedStateRequest )</ID>
+    <ID>LongParameterList:ScoresTodaySorterTest.kt$ScoresTodaySorterTest$( id: String, awayTeamId: String, homeTeamId: String, leagueId: Long, gameState: GameState, gameTime: Long )</ID>
+    <ID>NestedBlockDepth:NestedScrollableHost.kt$NestedScrollableHost$@Suppress("ComplexMethod") private fun handleInterceptTouchEvent(e: MotionEvent)</ID>
+    <ID>NestedBlockDepth:UserEntityDeserializer.kt$UserEntityDeserializer$override fun deserialize( jsonElement: JsonElement, typeOfT: Type?, context: JsonDeserializationContext? ): UserEntity</ID>
+    <ID>NestedBlockDepth:UserTopicsDeserializer.kt$UserTopicsDeserializer$override fun deserialize( jsonElement: JsonElement, typeOfT: Type?, context: JsonDeserializationContext? ): UserTopics</ID>
+    <ID>VariableNaming:DateDeserializer.kt$DateDeserializer$private val DATE_FORMATS = arrayOf("yyyy-MM-dd HH:mm:ss", "MM/dd/yyyy", "yyyy-MM-dd")</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,51 @@
+# MUTATIONS
+
+mutation WebLogin($input: webLoginInput!) {
+    webLogin(input: $input) {
+        ...UserCredentials
+    }
+}
+
+mutation CreateAccount($createAccountInput: CreateAccountInput!) {
+    createAccount(input: $createAccountInput) {
+        ...UserCredentials
+    }
+}
+
+# FRAGMENTS
+
+fragment UserCredentials on UserCredentials {
+    access_token
+    user {
+        ...CustomerDetail
+    }
+}
+
+fragment CustomerDetail on Customer {
+    id
+    attribution_survey_eligible
+    avatar_uri
+    braintree_customer_id
+    braintree_subscription_id
+    can_host_live_rooms
+    code_of_conduct_2022
+    email
+    end_date
+    fb_id
+    first_name
+    has_invalid_email
+    is_anonymous
+    is_in_grace_period
+    last_name
+    name
+    notify_comments
+    notify_top_sports_news
+    content_edition
+    privacy_policy
+    referrals_redeemed
+    referrals_total
+    social_name
+    stripe_customer_id
+    terms_and_conditions
+    user_level
+}

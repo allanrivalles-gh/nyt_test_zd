@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.RecommendedPodcastsGrid" />
+    </data>
+
+    <com.theathletic.utility.ui.NestedScrollableHost
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ath_grey_65"
+            android:nestedScrollingEnabled="false"
+            android:paddingHorizontal="@dimen/feed_podcasts_carousel_padding"
+            android:clipToPadding="false"
+            app:itemSnap="@{true}"
+            app:recyclerLayout="@{data.recyclerLayout}"/>
+
+    </com.theathletic.utility.ui.NestedScrollableHost>
+</layout>

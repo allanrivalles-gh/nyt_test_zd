@@ -1,0 +1,192 @@
+fragment GameKeyEvent on KeyEvent {
+    ... on CardEvent {
+        ...CardEvent
+    }
+    ... on GoalEvent {
+        ...GoalEvent
+    }
+    ... on SubstitutionEvent {
+        ...SubstitutionEvent
+    }
+    ... on PenaltyShotEvent {
+        ...PenaltyShotEvent
+    }
+}
+
+fragment CardEvent on CardEvent {
+    id
+    team {
+        ...TeamV2
+    }
+    period_id
+    match_time_display
+    occurred_at
+    card_type
+    carded_player {
+        ...TeamMember
+    }
+}
+
+fragment GoalEvent on GoalEvent {
+    id
+    team {
+        ...TeamV2
+    }
+    period_id
+    match_time
+    match_time_display
+    occurred_at
+    goal_type
+    goal_scorer {
+        ...TeamMember
+    }
+}
+
+fragment SubstitutionEvent on SubstitutionEvent {
+    id
+    team {
+        ...TeamV2
+    }
+    period_id
+    match_time_display
+    occurred_at
+    player_on {
+        ...TeamMember
+    }
+    player_off {
+        ...TeamMember
+    }
+}
+
+fragment PenaltyShotEvent on PenaltyShotEvent {
+    id
+    team {
+        ...TeamV2
+    }
+    penalty_taker {
+        ...TeamMember
+    }
+    period_id
+    match_time_display
+    occurred_at,
+    penalty_number,
+    outcome
+}
+
+fragment SoccerGoalsSummary on SoccerGame {
+    key_events {
+        ... on CardEvent {
+            ...CardEvent
+        }
+        ... on GoalEvent {
+            ...GoalEvent
+        }
+    }
+    home_team {
+        ... on SoccerGameTeam {
+            expected_goals {
+                string_value
+            }
+        }
+    }
+    away_team {
+        ... on SoccerGameTeam {
+            expected_goals {
+                string_value
+            }
+        }
+    }
+}
+
+fragment SoccerGameLineUps on Gamev2 {
+    home_team {
+        ...SoccerTeamLineUp
+    }
+    away_team {
+        ...SoccerTeamLineUp
+    }
+    key_events {
+        ...GameKeyEvent
+    }
+}
+
+fragment SoccerTeamLineUp on SoccerGameTeam {
+    team {
+        id
+        display_name
+    }
+    line_up {
+        formation
+        image_uri
+        players {
+            ...SoccerGamePlayer
+        }
+        team_officials {
+            ...SoccerLineUpTeamOfficial
+        }
+    }
+}
+
+fragment SoccerLineUpTeamOfficial on TeamMember {
+    id
+    display_name
+    roles {
+        type
+    }
+}
+
+fragment SoccerGamePlayer on GamePlayer {
+    id
+    display_name
+    jersey_number
+    place
+    position
+    position_side
+    regular_position
+    starter
+    isCaptain: captain
+    stats {
+        ...GameStat
+    }
+    player {
+        ...TeamMember
+    }
+}
+
+fragment SoccerRecentPlays on SoccerGame {
+    status
+    started_at
+    sport
+    away_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    home_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    soccer_recent_plays: recent_plays(size: 3) {
+        ...SoccerSupportedPlay
+    }
+}
+
+fragment SoccerAllKeyPlays on SoccerGame {
+    status
+    started_at
+    sport
+    away_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    home_team {
+        team {
+            ...SoccerPlayByPlayTeam
+        }
+    }
+    soccer_all_key_plays: key_plays {
+        ...SoccerSupportedPlay
+    }
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.theathletic.ui.DayNightMode" />
+        <variable
+            name="data"
+            type="com.theathletic.article.ui.ArticleSettingsSheetContract.ViewState"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ui.ArticleSettingsSheetContract.Presenter"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_70">
+
+        <TextView
+            android:id="@+id/display_theme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/profile_display_theme"
+            android:maxLines="1"
+            android:textColor="@color/ath_grey_10"
+            style="@style/TextAppearance.Ath.Navigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toggle_button_group"
+            app:layout_constraintBottom_toBottomOf="@+id/toggle_button_group"
+            app:layout_constraintEnd_toStartOf="@+id/toggle_button_group"
+            tools:text="@tools:sample/lorem[3]" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_button_group"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/light_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.DAY_MODE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.DAY_MODE)}"
+                android:text="@string/profile_daynight_light"
+                style="@style/Widget.Ath.Button.ToggleItem" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dark_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.NIGHT_MODE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.NIGHT_MODE)}"
+                android:text="@string/profile_daynight_dark"
+                style="@style/Widget.Ath.Button.ToggleItem" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/system_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.SYSTEM}"
+                android:visibility="@{data.displaySystemThemeButton ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.SYSTEM)}"
+                android:text="@string/profile_daynight_system"
+                style="@style/Widget.Ath.Button.ToggleItem"/>
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/ath_grey_60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toggle_button_group"/>
+
+        <TextView
+            android:id="@+id/start_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/article_font_selector_character"
+            android:textColor="@color/ath_grey_10"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_size_slider"
+            app:layout_constraintBottom_toBottomOf="@+id/text_size_slider" />
+
+        <com.google.android.material.slider.Slider
+            style="@style/Widget.Ath.Slider"
+            android:id="@+id/text_size_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:valueFrom="0.0"
+            android:valueTo="3.0"
+            android:stepSize="1"
+            app:labelBehavior="gone"
+            app:layout_constraintStart_toEndOf="@+id/start_text_size"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/end_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/end_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/article_font_selector_character"
+            android:textColor="@color/ath_grey_10"
+            android:textSize="28sp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_size_slider"
+            app:layout_constraintBottom_toBottomOf="@+id/text_size_slider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

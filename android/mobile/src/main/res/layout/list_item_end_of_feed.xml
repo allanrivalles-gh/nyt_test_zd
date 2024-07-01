@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedEndOfFeed.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_80"
+        android:paddingVertical="32dp">
+
+        <TextView
+            android:id="@+id/end_of_feed"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feed_you_reached_the_end"
+            android:textColor="@color/ath_grey_45"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/back_to_top"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/back_to_top"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/feed_back_to_top"
+            android:textColor="@color/ath_grey_30"
+            android:onClick="@{() -> interactor.onEndOfFeedClicked()}"
+            app:layout_constraintStart_toEndOf="@id/end_of_feed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

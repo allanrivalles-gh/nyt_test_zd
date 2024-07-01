@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedSpotlightModel"
+            />
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedSpotlightModel.Interactor"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:paddingBottom="16dp"
+        android:onClick="@{() -> interactor.onArticleClicked(data.id, data.analyticsPayload, data.title)}"
+        android:onLongClick="@{() -> interactor.onArticleLongClicked(data.id)}"
+        android:background="@color/ath_grey_60"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/spotlight_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageError="@{@drawable/ic_placeholder_offline_large}"
+            app:withErrorBackground="@{true}"
+            app:centerCrop="@{true}"
+            app:isBlackAndWhite="@{data.isRead}"
+            app:layout_constraintDimensionRatio="3:2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:background="@drawable/gradient_feed_spotlight_image_overlay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/spotlight_image" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="6dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/background_feed_spotlight_date"
+            android:text="@{data.date}"
+            android:textColor="@color/ath_grey_50_raw"
+            android:textAllCaps="true"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintEnd_toStartOf="@id/read_icon"
+            app:layout_constraintTop_toTopOf="@id/spotlight_image"
+            tools:text="JUN 5" />
+
+        <ImageView
+            android:id="@+id/read_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_feed_read"
+            android:visibility="@{data.isRead}"
+            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintEnd_toEndOf="@id/spotlight_image"
+            app:layout_constraintTop_toTopOf="@id/date" />
+
+        <TextView
+            android:id="@+id/spotlight_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:minLines="3"
+            android:text="@{data.title}"
+            android:textColor="@{data.isRead ? @color/ath_grey_45 : @color/ath_grey_30}"
+            style="@style/TextAppearance.Ath.Headline.XXS"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spotlight_image"
+            tools:text="@tools:sample/lorem[10]" />
+
+        <include
+            android:id="@+id/image_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:visibility="@{data.avatarModel.displayImageCount &lt; 4 ? View.VISIBLE : View.GONE}"
+            app:data="@{data.avatarModel}"
+            layout="@layout/widget_feed_author_image_stack_v2"
+            app:layout_constraintStart_toEndOf="@id/bookmark_icon"
+            app:layout_constraintTop_toTopOf="@+id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@+id/author_name_stack" />
+
+        <ImageView
+            android:id="@+id/bookmark_icon"
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_feed_bookmark"
+            android:visibility="@{data.isBookmarked}"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@id/author_name_stack"
+            app:layout_constraintEnd_toStartOf="@id/image_stack" />
+
+        <TextView
+            android:id="@+id/author_name_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="@{data.authorsNames}"
+            android:textColor="@color/ath_grey_45"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_stack"
+            app:layout_constraintEnd_toStartOf="@+id/comment_icon"
+            app:layout_constraintTop_toBottomOf="@id/spotlight_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@tools:sample/lorem[10]" />
+
+        <ImageView
+            android:id="@+id/comment_icon"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:src="@drawable/ic_news_comment"
+            android:tint="@color/ath_grey_45"
+            android:visibility="@{data.showComment}"
+            app:layout_constraintStart_toEndOf="@+id/author_name_stack"
+            app:layout_constraintTop_toTopOf="@id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@id/author_name_stack"
+            app:layout_constraintEnd_toStartOf="@+id/comment_count"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <TextView
+            android:id="@+id/comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="6dp"
+            android:text="@{data.commentNumber}"
+            android:textColor="@color/ath_grey_45"
+            android:gravity="center_vertical"
+            android:visibility="@{data.showComment}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            app:layout_constraintStart_toEndOf="@+id/comment_icon"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@+id/author_name_stack"
+            tools:text="123" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

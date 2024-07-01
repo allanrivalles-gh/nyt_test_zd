@@ -1,0 +1,61 @@
+// MARK: - General
+
+"tbd" = "TBD";
+"live" = "Live";
+
+// MARK: - GQL
+"gqlPeriodKickOffTitle" = "Kick Off";
+"gqlPeriodExtraTimeFirstHalfTitle" = "1st Half Extra Time";
+"gqlPeriodExtraTimeSecondHalfTitle" = "2nd Half Extra Time";
+"gqlPeriodPenaltyShootoutTitle" = "Penalty Shootout";
+"gqlPeriodHalftimeTitle" = "Halftime";
+"gqlPeriodFullTimeTitle" = "Full Time";
+"gqlPeriodFinalTitle" = "Final";
+"gqlPeriodPreGameTitle" = "Pre-game";
+"gqlPeriodFirstHalfTitle" = "1st Half";
+"gqlPeriodSecondHalfTitle" = "2nd Half";
+"gqlPeriodFirstQuarterTitle" = "1st Quarter";
+"gqlPeriodSecondQuarterTitle" = "2nd Quarter";
+"gqlPeriodThirdQuarterTitle" = "3rd Quarter";
+"gqlPeriodFourthQuarterTitle" = "4th Quarter";
+"gqlPeriodOvertimeTitle" = "Overtime";
+"gqlPeriodOvertimeNumberedTitleFormat" = "Overtime %d";
+"gqlPeriodFullTimeOvertimeTitle" = "Full Time/OT";
+"gqlPeriodFinalOvertimeTitle" = "Final/OT";
+"gqlPeriodFinalOvertimeNumberedTitleFormat" = "Final/%dOT";
+"gqlPeriodFullTimeShootOutTitle" = "Full Time/SO";
+"gqlPeriodFinalShootOutTitle" = "Final/SO";
+"gqlPeriodShootoutTitle" = "Shootout";
+"gqlPeriodFirstPeriodTitle" = "Period 1";
+"gqlPeriodSecondPeriodTitle" = "Period 2";
+"gqlPeriodThirdPeriodTitle" = "Period 3";
+"gqlPeriodUnknownTitle" = "Unknown";
+
+"mlbInningTopTitle" = "Top";
+"mlbInningMiddleTitle" = "Middle";
+"mlbInningBottomTitle" = "Bottom";
+"mlbInningOverTitle" = "Over";
+
+"gameStatusScheduledTitle" = "Scheduled";
+"gameStatusInProgressTitle" = "In Progress";
+"gameStatusFinalTitle" = "Final";
+"gameStatusSuspendedTitle" = "Suspended";
+"gameStatusPostponedTitle" = "Postponed";
+"gameStatusCancelledTitle" = "Canceled";
+"gameStatusIfNecessaryTitle" = "If Necessary";
+"gameStatusIfNecessaryShortTitle" = "If Nec.";
+"gameStatusUnnecessaryTitle" = "Not Required";
+"gameStatusUnknownTitle" = "Unknown";
+"gameStatusDelayedTitle" = "Delayed";
+
+"overTimeAbbreviation" = "OT";
+"overTimeAbbreviationNumberedFormat" = "%dOT";
+"fullTimeOverTimeAbbreviation" = "F/OT";
+"fullTimeOverTimeAbbreviationNumberedFormat" = "F/%dOT";
+
+"shootoutAbbreviation" = "SO";
+
+// MARK: - Tickets
+
+"buyTickets" = "Buy Tickets";
+"ticketsFromPriceFormat" = "Tickets from %@";

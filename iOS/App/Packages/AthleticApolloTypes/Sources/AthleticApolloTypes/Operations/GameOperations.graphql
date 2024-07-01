@@ -1,0 +1,118 @@
+query GameContainer($id: ID!) {
+    game(id: $id) {
+        ... on AmericanFootballGame {
+            ...GameContainer
+        }
+        ... on BasketballGame {
+            ...GameContainer
+        }
+        ... on SoccerGame {
+            ...GameContainer
+        }
+        ... on HockeyGame {
+            ...GameContainer
+        }
+        ... on BaseballGame {
+            ...GameContainer
+        }
+    }
+}
+
+query GamePreGame($id: ID!, $limitLastGamesToCurrentLeague: Boolean!, $teamId: ID) {
+    game(id: $id) {
+        ...GameV2PreGame
+    }
+}
+
+query GameInGame($id: ID!, $teamId: ID) {
+    game(id: $id) {
+        ...GameV2InGame
+    }
+}
+
+query GameJustFinishedGame($id: ID!, $teamId: ID) {
+    game(id: $id) {
+        ...GameV2JustFinishedGame
+    }
+}
+
+query GamePostGame($id: ID!, $teamId: ID) {
+    game(id: $id) {
+        ...GameV2PostGame
+    }
+}
+
+query GameLineUp($id: ID!) {
+    game(id: $id) {
+        ...GameV2LineUp
+    }
+}
+
+query BaseballGamePlayerStats($id: ID!, $isPostGame: Boolean!) {
+    game(id: $id) {
+        ...BaseballGameV2PlayerStats
+    }
+}
+
+query GameArticles($id: ID!, $leagueId: ID!, $limit: Int) {
+    gameArticles(game_id: $id, league_id: $leagueId, limit: $limit) {
+        ...ArticleLiteAuthor
+    }
+}
+
+query GamePlayByPlay($id: ID!) {
+    game(id: $id) {
+        ...GamePlayByPlay
+    }
+}
+
+subscription ScoresFeedBlockUpdates($blockIds: [ID!]!) {
+    scoresFeedUpdates(block_ids: $blockIds) {
+        block {
+            ...ScoresFeedBlock
+        }
+    }
+}
+
+subscription BoxScoreGameUpdates($gameIds: [ID!]!, $teamId: ID) {
+    liveScoreUpdates(game_ids: $gameIds) {
+        ...GameContainer
+        ...GameV2InGame
+    }
+}
+
+subscription GameLineUpUpdates($gameId: ID!) {
+    liveScoreUpdates(game_ids: [$gameId]) {
+        ...GameV2LineUp
+    }
+}
+
+subscription BaseballGamePlayerStatsUpdates($gameId: ID!, $isPostGame: Boolean! = false) {
+    liveScoreUpdates(game_ids: [$gameId]) {
+        ...BaseballGameV2PlayerStats
+    }
+}
+
+subscription LiveScoreUpdates($gameIds: [ID!]!) {
+    liveScoreUpdates(game_ids: $gameIds) {
+        ...GameV2Lite
+    }
+}
+
+subscription FeedLiveScoreUpdates($gameIds: [ID!]!) {
+    liveScoreUpdates(game_ids: $gameIds) {
+        ...GameV2Lite
+    }
+}
+
+subscription FeaturedGameLiveScoreUpdates($gameIds: [ID!]!) {
+    liveScoreUpdates(game_ids: $gameIds) {
+        ...FeaturedGameV2
+    }
+}
+
+subscription GamePlayByPlayUpdates($gameId: ID!) {
+    liveScoreUpdates(game_ids: [$gameId]) {
+        ...GamePlayByPlay
+    }
+}

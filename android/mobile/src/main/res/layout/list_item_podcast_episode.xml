@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.podcast.downloaded.ui.LiveState" />
+        <import type="androidx.lifecycle.LiveData" />
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="view"
+            type="com.theathletic.podcast.ui.IPodcastEpisodeItemView" />
+
+        <variable
+            name="data"
+            type="com.theathletic.podcast.ui.PodcastEpisodeListItem" />
+
+        <variable
+            name="liveState"
+            type="com.theathletic.podcast.downloaded.ui.LiveState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="24dp"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> view.onPodcastEpisodeItemClick(data)}" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@null"
+            android:foreground="@color/podcast_image_overlay"
+            app:imageUrl="@{data.imageUrl}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:background="@tools:sample/avatars"
+            />
+
+        <ImageView
+            android:id="@+id/play_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="14dp"
+            android:contentDescription="@null"
+            android:clickable="@{safeUnbox(data.playClickable)}"
+            android:onClick="@{() -> view.onPodcastPlayClick(data)}"
+            android:background="@drawable/selector_clickable_item_bg"
+            app:srcCompat="@{data.playDrawable}"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            tools:src="@drawable/ic_play_2_padded"
+            />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="16dp"
+            style="@style/TextAppearance.Ath.Headline.ExtraExtraSmall"
+            android:text="@{data.title}"
+            android:textColor="@color/ath_grey_20"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Really long episode title that goes to two lines."
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/text_metadata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            android:text="@{String.format(@string/podcast_feed_metadata, data.formattedDuration, data.formattedDate)}"
+            android:textColor="@color/ath_grey_50"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            app:layout_constraintStart_toEndOf="@id/image"
+            tools:text="51:23 | Fri, Feb 14" />
+
+        <TextView
+            android:id="@+id/text_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/global_spacing_16"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            android:text="@{data.formattedCommentCount}"
+            android:textColor="@color/ath_grey_30"
+            android:drawablePadding="@dimen/global_spacing_8"
+            android:visibility="@{data.showCommentCount}"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:drawableStartCompat="@drawable/ic_news_comment"
+            app:drawableTint="@color/ath_grey_30"
+            tools:text="21" />
+
+        <ImageView
+            android:id="@+id/download_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@null"
+            android:onClick="@{() -> view.onPodcastDownloadClick(data)}"
+            android:foreground="?attr/selectableItemBackground"
+            app:srcCompat="@{data.downloadDrawable}"
+            android:tint="@{ContextCompat.getColor(context, data.downloadTint)}"
+            app:layout_constraintTop_toTopOf="@id/text_comments"
+            app:layout_constraintEnd_toEndOf="@id/text_title"
+            app:layout_constraintBottom_toBottomOf="@id/text_comments"
+            tools:src="@drawable/ic_podcast_feed_downloaded"
+            />
+
+        <ProgressBar
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:max="100"
+            android:progressDrawable="@drawable/shape_progress_bar_podcast_circle_thick"
+            android:background="@drawable/shape_progress_bar_podcast_bg"
+            android:rotation="270"
+            android:visibility="@{data.downloadProgress >= 0 &amp;&amp; data.downloadProgress &lt; 100}"
+            android:animatedBindableProgressSlow="@{data.downloadProgress}"
+            android:indeterminate="false"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintTop_toTopOf="@id/download_button"
+            app:layout_constraintStart_toStartOf="@id/download_button"
+            app:layout_constraintBottom_toBottomOf="@id/download_button"
+            app:layout_constraintEnd_toEndOf="@id/download_button"
+            tools:progress="33"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/ath_grey_60"
+            android:invisibility="@{data.showDivider}"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/download_button"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

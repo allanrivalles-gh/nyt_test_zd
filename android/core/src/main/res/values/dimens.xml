@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="global_spacing_0">0dp</dimen>
+    <dimen name="global_spacing_1">1dp</dimen>
+    <dimen name="global_spacing_2">2dp</dimen>
+    <dimen name="global_spacing_4">4dp</dimen>
+    <dimen name="global_spacing_8">8dp</dimen>
+    <dimen name="global_spacing_10">10dp</dimen>
+    <dimen name="global_spacing_12">12dp</dimen>
+    <dimen name="global_spacing_14">14dp</dimen>
+    <dimen name="global_spacing_16">16dp</dimen>
+    <dimen name="global_spacing_20">20dp</dimen>
+    <dimen name="global_spacing_24">24dp</dimen>
+    <dimen name="global_spacing_32">32dp</dimen>
+    <dimen name="global_spacing_40">40dp</dimen>
+    <dimen name="global_spacing_44">44dp</dimen>
+    <dimen name="global_spacing_48">48dp</dimen>
+    <dimen name="global_spacing_52">52dp</dimen>
+    <dimen name="global_spacing_56">56dp</dimen>
+    <dimen name="global_spacing_64">64dp</dimen>
+    <dimen name="global_spacing_72">72dp</dimen>
+    <dimen name="global_spacing_88">88dp</dimen>
+    <dimen name="global_spacing_120">120dp</dimen>
+
+    <dimen name="global_elevation_4">4dp</dimen>
+    <dimen name="global_elevation_8">8dp</dimen>
+
+    <dimen name="global_text_size_subhead">16sp</dimen>
+    <dimen name="global_text_size_body_1">14sp</dimen>
+    <dimen name="global_text_size_caption">11sp</dimen>
+
+
+    <dimen name="placeholder_empty_margin_bottom">160dp</dimen>
+
+    <dimen name="divider_size">1dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_title_max_width">260dp</dimen>
+
+    <!-- FEED -->
+    <dimen name="feed_item_spacing_tiny">2dp</dimen>
+    <dimen name="feed_item_spacing_normal">4dp</dimen>
+    <dimen name="feed_divider_padding">8dp</dimen>
+    <dimen name="feed_most_popular_margin">55dp</dimen>
+    <dimen name="feed_topper_hero_margin">16dp</dimen>
+    <dimen name="feed_item_divider_height">7dp</dimen>
+    <dimen name="feed_horizontal_padding">16dp</dimen>
+    <dimen name="feed_podcasts_carousel_padding">4dp</dimen>
+    <dimen name="feed_hero_carousel_end_padding">24dp</dimen>
+    <dimen name="feed_four_content_vertical_padding">20dp</dimen>
+
+
+    <dimen name="carousel_font_large">42sp</dimen>
+    <dimen name="carousel_font_small">27sp</dimen>
+
+    <!-- Padding on either side of most RecyclerViews for tablets -->
+    <dimen name="global_list_gutter_padding">0dp</dimen>
+
+    <!-- Items Height -->
+    <dimen name="feed_item_size_primary">240dp</dimen>
+
+    <!-- Others -->
+    <dimen name="fragment_feed_item_article_author_top_spacing">20dp</dimen>
+    <dimen name="fragment_feed_item_article_header_image_max_width">600dp</dimen>
+    <dimen name="fragment_feed_tag_horizontal_padding">10dp</dimen>
+
+    <!-- PODCAST -->
+    <dimen name="podcast_detail_header_height">412dp</dimen>
+    <dimen name="podcast_detail_header_max_header_image_height">300dp</dimen>
+    <dimen name="podcast_episode_item_image_size">80dp</dimen>
+    <dimen name="podcast_big_player_toolbar_height">56dp</dimen>
+    <dimen name="podcast_tiny_player_icon_size">10dp</dimen>
+    <dimen name="podcast_tiny_player_text_size">16sp</dimen>
+
+    <!-- Authentication -->
+    <dimen name="authentication_max_content_width">1200dp</dimen>
+
+    <!-- Create Account Wall -->
+    <dimen name="create_account_wall_global_spacing">24dp</dimen>
+
+    <!-- Article -->
+    <dimen name="fragment_article_follow_icons_size">48dp</dimen>
+    <dimen name="article_content_width">1200dp</dimen>
+    <dimen name="article_featured_author_image_height">200dp</dimen>
+
+    <!-- Gifts -->
+    <dimen name="gifts_toolbar_height">56dp</dimen>
+
+    <!-- News -->
+    <dimen name="news_default_text_size">18sp</dimen>
+    <dimen name="news_medium_text_size">21sp</dimen>
+    <dimen name="news_large_text_size">24sp</dimen>
+    <dimen name="news_extra_large_text_size">27sp</dimen>
+
+    <!-- fragment_authentication vals -->
+
+    <!-- Markdown -->
+    <dimen name="markdown_bullet_point_spacing">14dp</dimen>
+    <dimen name="markdown_bullet_point_radius">3dp</dimen>
+</resources>

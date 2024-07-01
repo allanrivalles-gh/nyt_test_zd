@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data" type="com.theathletic.ui.gallery.ui.ImageGalleryContract.ViewState" />
+
+        <variable
+            name="interactor" type="com.theathletic.ui.gallery.ui.ImageGalleryViewInteractor" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ath_grey_70">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_images_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/btn_image_galley_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{() -> interactor.onClose()}"
+            android:padding="12dp"
+            android:src="@drawable/ic_close"
+            android:tint="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/txt_image_gallery_page_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:text="@{data.pageIndicator}"
+            android:textColor="@color/news_comment"
+            tools:text="1/8" />
+
+    </RelativeLayout>
+</layout>

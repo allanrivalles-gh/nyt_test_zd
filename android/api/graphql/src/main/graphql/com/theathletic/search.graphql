@@ -1,0 +1,7 @@
+# QUERIES
+query SearchPopularArticles($count: Int) {
+    mostPopularArticles(count: $count) {
+        ... Article
+    }
+}
+

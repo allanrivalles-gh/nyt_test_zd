@@ -1,0 +1,85 @@
+# MUTATIONS
+
+mutation SendChatMessage($chat_room_id: ID!, $message: String!) {
+    createMessage(id: $chat_room_id, message: $message) {
+        ... ChatMessageFragment
+    }
+}
+
+mutation DeleteChatMessage($chat_room_id: ID!, $message_id: ID!) {
+    deleteMessage(id: $chat_room_id, message_id: $message_id) {
+        id
+    }
+}
+
+mutation ReportChatMessage(
+    $chat_room_id: ID!,
+    $message_id: ID!,
+    $reason: ReportedReason!,
+) {
+    reportMessage(
+        id: $chat_room_id,
+        message_id: $message_id,
+        reason: $reason,
+    ) {
+        chat_id: id
+        type
+        message_id
+        num_reports
+        created_by {
+            id
+            first_name
+            last_name
+        }
+        created_at
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription ChatEvents($chat_room_id: ID!) {
+    chatEvents(id: $chat_room_id) {
+        chat_id: id
+        type
+        __typename
+        ... on ChatMessage {
+            ... ChatMessageFragment
+        }
+        ... on DeletedMessageEvent {
+            message_id
+        }
+    }
+}
+
+# FRAGMENTS
+
+fragment ChatRoomFragment on ChatRoom {
+    id
+
+    messages {
+        ... ChatMessageFragment
+    }
+}
+
+fragment ChatMessageFragment on ChatMessage {
+    id
+    message_id
+    message
+    created_at
+    created_by {
+        id
+        first_name
+        last_name
+        name
+        ... on Staff {
+            bio
+            avatar_uri
+            twitter
+            description
+            role
+        }
+        ... on Customer {
+            is_shadow_ban
+        }
+    }
+}

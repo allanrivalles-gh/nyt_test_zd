@@ -1,0 +1,31 @@
+query TeamSpecificThreads($gameId: ID!) {
+    teamSpecificThreads(game_id: $gameId) {
+        content_type
+        content_id
+        current_thread {
+            ...teamThread
+        }
+        threads {
+            ...teamThread
+        }
+    }
+}
+
+fragment teamThread on TeamSpecificThread {
+    label
+    team {
+        id
+        legacy_team {
+            id
+        }
+        name
+        color_contrast
+        logos {
+            uri
+        }
+    }
+}
+
+mutation UpdateCurrentSpecificThread($gameId: ID!, $teamId: ID!) {
+    updateCurrentSpecificThread(game_id: $gameId, team_id: $teamId)
+}

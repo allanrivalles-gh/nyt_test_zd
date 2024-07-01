@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "sports_news_notification_setting_tour.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

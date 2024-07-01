@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+            name="data"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsRankAndTeamUiModel" />
+        <variable
+            name="interactor"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsRowUiModel.Interactor" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="@{() -> interactor.onTeamRowClick(data.teamId, data.teamDisplayName, data.analyticsPayload)}"
+        android:background="@{(data.showHighlighted == true) ?  @color/ath_grey_60 : @color/ath_grey_65}"
+        tools:background="@color/ath_grey_65" >
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:visibility="@{data.showRelegation}"
+            android:background="@{ContextCompat.getColor(context, data.relegationColor)}"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:background="@color/ath_royal" />
+
+        <TextView
+            android:id="@+id/text_standings_team_ranking"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ath_grey_45"
+            android:text="@{data.rank}"
+            android:gravity="start"
+            android:visibility="@{data.showRank}"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22" />
+
+        <ImageView
+            android:id="@+id/image_standings_team_logo"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:imageError="@{@drawable/ic_team_logo_placeholder}"
+            app:imagePlaceholder="@{@drawable/ic_team_logo_placeholder}"
+            app:imageUrlList="@{data.logoUrlList}"
+            app:preferredUrlSize="@{@dimen/global_spacing_16}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_standings_team_ranking"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="12dp"
+            tools:src="@drawable/ic_team_logo_placeholder" />
+
+        <TextView
+            android:id="@+id/text_ncaa_top_25_ranking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="12dp"
+            android:textColor="@color/ath_grey_45"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="@{data.ncaaRanking}"
+            android:visibility="@{data.showNcaaRanking}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_standings_team_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"
+            tools:text="23" />
+
+        <TextView
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_goneMarginStart="8dp"
+            android:paddingEnd="4dp"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:textColor="@color/ath_grey_10"
+            android:text="@{data.teamName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_ncaa_top_25_ranking"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="MCY" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60"
+            android:visibility="@{!data.showDottedPlayoffDivider &amp;&amp; !data.showSolidPlayoffDivider}"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/ath_grey_30"
+            android:visibility="@{data.showSolidPlayoffDivider}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"/>
+
+       <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/dotted_playoff_divider"
+            android:visibility="@{data.showDottedPlayoffDivider}"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

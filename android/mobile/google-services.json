@@ -1,0 +1,46 @@
+{
+    "project_info": {
+        "project_number": "1064305052792",
+        "firebase_url": "https://the-athletic.firebaseio.com",
+        "project_id": "the-athletic",
+        "storage_bucket": "the-athletic.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:1064305052792:android:15490a01e89e9ff4",
+                "android_client_info": {
+                    "package_name": "com.theathletic"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "1064305052792-hvkp5cu466c4bodspe7epu8goh25i7nn.apps.googleusercontent.com",
+                    "client_type": 3
+                },
+                {
+                    "client_id": "1064305052792-sakq0fb6s5i1pld8inbg71ua0909euq9.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBEmexMAf6ljHXRlzuLConCC17tVT4UgDM"
+                }
+            ],
+            "services": {
+                "analytics_service": {
+                    "status": 1
+                },
+                "appinvite_service": {
+                    "status": 1,
+                    "other_platform_oauth_client": []
+                },
+                "ads_service": {
+                    "status": 2
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

@@ -1,0 +1,266 @@
+{
+  "pins" : [
+    {
+      "identity" : "agorartcengine_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AgoraIO/AgoraRtcEngine_iOS.git",
+      "state" : {
+        "revision" : "13f007dff53e2c670ad645fae43e3fcea8f4df6c",
+        "version" : "4.1.1"
+      }
+    },
+    {
+      "identity" : "apollo-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apollographql/apollo-ios.git",
+      "state" : {
+        "revision" : "42646f765d22dac0f22bfff48590102195c76da4",
+        "version" : "0.53.0"
+      }
+    },
+    {
+      "identity" : "apple-swiftpackage-kochavaadnetwork",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kochava/Apple-SwiftPackage-KochavaAdNetwork.git",
+      "state" : {
+        "revision" : "492b352ea826d2362d75db03a015d7d391feb2aa",
+        "version" : "5.1.1"
+      }
+    },
+    {
+      "identity" : "apple-swiftpackage-kochavacore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kochava/Apple-SwiftPackage-KochavaCore",
+      "state" : {
+        "revision" : "9e9bf8d880379772f2ea203036dbd576d99d02d5",
+        "version" : "5.1.1"
+      }
+    },
+    {
+      "identity" : "apple-swiftpackage-kochavatracker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kochava/Apple-SwiftPackage-KochavaTracker",
+      "state" : {
+        "revision" : "351e90467489c9bdba6dda0f4bcf9080601f0dd8",
+        "version" : "5.1.1"
+      }
+    },
+    {
+      "identity" : "asn1swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tikhop/ASN1Swift",
+      "state" : {
+        "revision" : "b53bee03a942623db25afc5bfb80227b2cb3b425",
+        "version" : "1.2.4"
+      }
+    },
+    {
+      "identity" : "atributika",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/psharanda/Atributika.git",
+      "state" : {
+        "revision" : "d018897afbd55d9065ef859650585bac890ada7e",
+        "version" : "4.10.1"
+      }
+    },
+    {
+      "identity" : "comscore-swift-package-manager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/comScore/Comscore-Swift-Package-Manager.git",
+      "state" : {
+        "revision" : "7e3c521ad689b0e2bbf5cfb62e19c9e1619feae2",
+        "version" : "6.10.0"
+      }
+    },
+    {
+      "identity" : "dd-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Datadog/dd-sdk-ios.git",
+      "state" : {
+        "revision" : "e6f2ac667c73d851cee320f4ac8d02e168e68a3c",
+        "version" : "1.19.0"
+      }
+    },
+    {
+      "identity" : "embrace-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/embrace-io/embrace-spm",
+      "state" : {
+        "revision" : "10e06b11e5dfcab3fcf64619070d0f01381203c7",
+        "version" : "5.19.1"
+      }
+    },
+    {
+      "identity" : "googleappmeasurement",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleAppMeasurement.git",
+      "state" : {
+        "revision" : "9209b95a2593985569918e5e5ee2bf4ef8ff3640",
+        "version" : "10.9.0"
+      }
+    },
+    {
+      "identity" : "googleutilities",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleUtilities.git",
+      "state" : {
+        "revision" : "871d43135925cde39ef7421d8723ce47edfdcc39",
+        "version" : "7.11.1"
+      }
+    },
+    {
+      "identity" : "iterate-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iteratehq/iterate-ios",
+      "state" : {
+        "revision" : "774e17c0aaa06851691206fee373581c43654554",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "state" : {
+        "revision" : "e2b52071483eec7b18c521d6cc74e24983804722",
+        "version" : "17.0.0"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "b4bd0604ded9574807f41b4004b57dd1226a30a4",
+        "version" : "3.5.0"
+      }
+    },
+    {
+      "identity" : "nanopb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/nanopb.git",
+      "state" : {
+        "revision" : "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
+        "version" : "2.30909.0"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "33f7e93be5d4ec027d42af77a8ec4680d1862ad2",
+        "version" : "11.6.4"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/plcrashreporter.git",
+      "state" : {
+        "revision" : "b1a342da19ed9b3af61ea2efa7656c2af30aeb7c",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "promises",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/promises.git",
+      "state" : {
+        "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
+        "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "sqlite.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stephencelis/SQLite.swift.git",
+      "state" : {
+        "revision" : "4d543d811ee644fa4cc4bfa0be996b4dd6ba0f54",
+        "version" : "0.13.3"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms.git",
+      "state" : {
+        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "9564d61b08a5335ae0a36f789a7d71493eacadfc",
+        "version" : "0.3.2"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "32e8d724467f8fe623624570367e3d50c5638e46",
+        "version" : "1.5.2"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swift-package-manager-google-mobile-ads",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/swift-package-manager-google-mobile-ads.git",
+      "state" : {
+        "revision" : "886501bfff8bd8cc22899de2c1779e479c96f9ff",
+        "version" : "10.3.0"
+      }
+    },
+    {
+      "identity" : "swift-package-manager-google-user-messaging-platform",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git",
+      "state" : {
+        "revision" : "3b924ce3313a5fd2fc6a8dc889a8c38f76890fe3",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "swift-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iterable/swift-sdk",
+      "state" : {
+        "revision" : "fe72db1694d32d15a888e8c96094ed997202c74a",
+        "version" : "6.4.13"
+      }
+    },
+    {
+      "identity" : "tpinappreceipt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tikhop/TPInAppReceipt.git",
+      "state" : {
+        "revision" : "14f707e28fc7e19aadac72c8d63eb8610fa9c3bf",
+        "version" : "3.3.0"
+      }
+    }
+  ],
+  "version" : 2
+}

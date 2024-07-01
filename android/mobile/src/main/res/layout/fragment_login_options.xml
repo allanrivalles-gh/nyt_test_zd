@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_options_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ath_grey_65"
+    android:theme="@style/Theme.Ath.Rebrand">
+
+    <include
+        android:id="@+id/appbar_container"
+        layout="@layout/toolbar_grey_65"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/google_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="21dp"
+        android:text="@string/auth_options_continue_google"
+        style="@style/Widget.Ath.Button.Social"
+        app:icon="@drawable/ic_auth_google"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_container"
+        app:layout_constraintWidth_max="@dimen/authentication_max_content_width" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fb_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:text="@string/auth_options_continue_fb"
+        style="@style/Widget.Ath.Button.Social"
+        app:icon="@drawable/ic_auth_facebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/google_btn"
+        app:layout_constraintWidth_max="@dimen/authentication_max_content_width" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/apple_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:text="@string/auth_options_continue_apple"
+        style="@style/Widget.Ath.Button.Social"
+        app:iconTint="@color/ath_grey_80_raw"
+        app:icon="@drawable/ic_auth_apple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fb_btn"
+        app:layout_constraintWidth_max="@dimen/authentication_max_content_width" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nyt_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:text="@string/auth_options_continue_nyt"
+        style="@style/Widget.Ath.Button.Social"
+        app:iconTint="@color/ath_grey_80_raw"
+        app:icon="@drawable/ic_nyt_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/apple_btn"
+        app:layout_constraintWidth_max="@dimen/authentication_max_content_width" />
+
+    <TextView
+        android:id="@+id/or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/auth_options_or"
+        android:textColor="@color/ath_grey_45"
+        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nyt_btn" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/ath_grey_45"
+        app:layout_constraintBottom_toBottomOf="@id/or"
+        app:layout_constraintEnd_toStartOf="@id/or"
+        app:layout_constraintStart_toStartOf="@id/email_btn"
+        app:layout_constraintTop_toTopOf="@id/or" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/ath_grey_45"
+        app:layout_constraintBottom_toBottomOf="@id/or"
+        app:layout_constraintEnd_toEndOf="@id/email_btn"
+        app:layout_constraintStart_toEndOf="@id/or"
+        app:layout_constraintTop_toTopOf="@id/or" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/email_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        style="@style/Widget.Ath.Button.Social"
+        android:text="@string/auth_options_login_email"
+        app:icon="@drawable/ic_auth_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/or"
+        app:layout_constraintWidth_max="@dimen/authentication_max_content_width"/>
+
+    <TextView
+        android:id="@+id/dont_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/auth_dont_have_account"
+        android:visibility="invisible"
+        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+        android:textColor="@color/ath_grey_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sign_up"
+        app:layout_constraintTop_toBottomOf="@id/email_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/auth_sign_up"
+        android:textColor="@color/ath_grey_20"
+        android:visibility="invisible"
+        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+        app:layout_constraintStart_toEndOf="@id/dont_have_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dont_have_account"
+        app:layout_constraintBottom_toBottomOf="@id/dont_have_account"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

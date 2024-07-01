@@ -1,0 +1,12 @@
+<!-- TODO: remove the tools:ignore attribute once the New-Feed-Project is done -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="8dp"
+    android:height="10dp"
+    android:viewportWidth="8"
+    android:viewportHeight="10"
+    tools:ignore="UnusedResources">
+  <path
+      android:pathData="M0.5,0V0.01V0.75V9.135V9.995L4,8.046L6.752,9.58L6.777,9.595L6.962,9.7L7.5,10V0.75V0.01V0H0.5Z"
+      android:fillColor="#4EAB75"/>
+</vector>

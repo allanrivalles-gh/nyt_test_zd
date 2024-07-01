@@ -1,0 +1,156 @@
+fragment ArticleDetails on Article {
+    __typename
+    comment_count
+    disable_comments
+    lock_comments
+    excerpt
+    excerpt_plaintext
+    id
+    image_uri
+    permalink
+    primary_tag_string: primary_tag
+    published_at
+    title
+    subscriber_score
+    author {
+        ...UserDetailWrapper
+    }
+}
+
+fragment ArticleLite on Article {
+    __typename
+    id
+    title
+    image_uri
+    primary_tag_string: primary_tag
+    comment_count
+    published_at
+    permalink
+    excerpt
+    excerpt_plaintext
+    subscriber_score
+}
+
+fragment ArticleLiteAuthor on Article {
+    __typename
+    id
+    title
+    image_uri
+    app_feed_img_url
+    primary_tag_string: primary_tag
+    comment_count
+    lock_comments
+    disable_comments
+    published_at
+    permalink
+    excerpt
+    excerpt_plaintext
+    post_type_id
+    subscriber_score
+    author {
+        ...UserDetailWrapper
+    }
+}
+
+fragment ArticleLiteAuthorLite on Article {
+    __typename
+    id
+    title
+    image_uri
+    primary_tag_string: primary_tag
+    comment_count
+    lock_comments
+    disable_comments
+    published_at
+    permalink
+    excerpt
+    excerpt_plaintext
+    post_type_id
+    subscriber_score
+    author {
+        ...UserLiteWrapper
+    }
+}
+
+fragment ArticleContent on Article {
+    __typename
+    id
+    ad_targeting_params(prop: "athios") {
+        als_test_clientside
+        auth
+        byline
+        coll
+        gscat
+        id
+        keywords
+        org
+        prop
+        tags
+        tt
+        typ
+    }
+    ad_unit_path
+    author {
+        id
+        name
+        ... on Staff {
+           avatar_uri
+        }
+    }
+
+    article_authors: authors {
+        __typename
+        id
+        display_order
+        author {
+            id
+            ... on Staff {
+                name
+            }
+        }
+    }
+
+    byline_linkable {
+        app_linked_string
+        raw_string
+    }
+
+    body: article_body
+    body_ads: article_body_mobile
+    comment_count
+    disable_comments
+    excerpt
+    excerpt_plaintext
+    image_uri
+    is_teaser
+    is_premier
+    is_interactive
+    league_ids
+    league_urls
+    lock_comments
+    news_topics
+    permalink
+    permalink_for_embed
+    post_type_id
+    primary_league
+    primary_tag_string: primary_tag
+    published_at
+    short_title
+    team_ids
+    team_urls
+    title
+    subscriber_score
+    game_id
+    disable_nps
+}
+
+fragment AuthorDetail on Author {
+    id
+    image_url
+    url
+    name
+    notif_stories
+    shortname
+    search_text
+    __typename
+}

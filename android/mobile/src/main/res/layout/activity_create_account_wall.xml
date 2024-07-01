@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.ui.authentication.CreateAccountWallView" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/header_image"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/bg_create_account_wall_header"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginStart="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_title"
+                    android:textColor="@color/black_1"
+                    android:fontFamily="@font/tiempos_bold"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/header_image" />
+
+                <TextView
+                    android:id="@+id/note_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginStart="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_note_title"
+                    android:textColor="@color/black_1"
+                    style="@style/TA.Ath.Headline.Bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+                <View
+                    android:id="@+id/note_1_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_dot_large"
+                    app:layout_constraintStart_toStartOf="@id/note_title"
+                    app:layout_constraintTop_toTopOf="@id/note_1_text" />
+
+                <TextView
+                    android:id="@+id/note_1_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_note_1"
+                    android:textColor="@color/black_1"
+                    style="@style/TA.Ath.Body1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/note_1_dot"
+                    app:layout_constraintTop_toBottomOf="@id/note_title" />
+
+                <View
+                    android:id="@+id/note_2_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_dot_large"
+                    app:layout_constraintStart_toStartOf="@id/note_title"
+                    app:layout_constraintTop_toTopOf="@id/note_2_text" />
+
+                <TextView
+                    android:id="@+id/note_2_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_note_2"
+                    android:textColor="@color/black_1"
+                    style="@style/TA.Ath.Body1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/note_2_dot"
+                    app:layout_constraintTop_toBottomOf="@id/note_1_text" />
+
+                <View
+                    android:id="@+id/note_3_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_dot_large"
+                    app:layout_constraintStart_toStartOf="@id/note_title"
+                    app:layout_constraintTop_toTopOf="@id/note_3_text" />
+
+                <TextView
+                    android:id="@+id/note_3_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_note_3"
+                    android:textColor="@color/black_1"
+                    style="@style/TA.Ath.Body1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/note_3_dot"
+                    app:layout_constraintTop_toBottomOf="@id/note_2_text" />
+
+                <TextView
+                    android:id="@+id/registration_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginBottom="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginStart="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:text="@string/create_account_wall_button_registration"
+                    android:background="@drawable/button_background_red_rounded"
+                    android:onClick="@{() -> view.onCreateAccountClick()}"
+                    style="@style/TA.Ath.Button.Dark"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/note_3_text"
+                    app:layout_constraintBottom_toTopOf="@id/login_button" />
+
+                <TextView
+                    android:id="@+id/login_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginStart="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:textColor="@color/black"
+                    android:text="@string/create_account_wall_button_login"
+                    android:background="@drawable/button_background_white_rounded"
+                    android:onClick="@{() -> view.onLoginClick()}"
+                    style="@style/TA.Ath.Button.Dark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/cancel_button" />
+
+                <TextView
+                    android:id="@+id/cancel_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginStart="@dimen/create_account_wall_global_spacing"
+                    android:layout_marginEnd="@dimen/create_account_wall_global_spacing"
+                    android:textColor="@color/black"
+                    android:text="@string/create_account_wall_button_cancel"
+                    android:background="@drawable/selector_clickable_item_bg_gray"
+                    android:onClick="@{() -> view.onCancelClick()}"
+                    style="@style/TA.Ath.Button.Dark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

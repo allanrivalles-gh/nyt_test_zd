@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>LongMethod:LiveBlogPostUi.kt$@Composable fun LiveBlogPostBasic( post: LiveBlogUi.LiveBlogPostBasic, contentTextSize: ContentTextSize, tweetMap: MutableMap&lt;String, WebView>, interactor: LiveBlogUi.Interactor )</ID>
+    <ID>LongMethod:LiveBlogUi.kt$@Composable fun LiveBlogContent( liveBlog: LiveBlogUi.LiveBlog, contentTextSize: ContentTextSize, tweetMap: MutableMap&lt;String, WebView>, interactor: LiveBlogUi.Interactor )</ID>
+    <ID>LongMethod:LiveBlogUi.kt$@Composable fun LiveBlogScreen( isLoading: Boolean, liveBlog: LiveBlogUi.LiveBlog, stagedPostsCount: Int, contentTextSize: ContentTextSize, listState: LazyListState, interactor: LiveBlogUi.Interactor, showToolbar: Boolean = true )</ID>
+    <ID>LongMethod:RelatedContentRow.kt$@Composable fun RelatedContentRow( relatedContentItem: RelatedContentItem, interactor: RelatedContentItem.Interactor )</ID>
+  </CurrentIssues>
+</SmellBaseline>

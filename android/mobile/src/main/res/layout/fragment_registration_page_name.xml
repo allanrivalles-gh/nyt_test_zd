@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Ath.Rebrand"
+    android:background="@color/ath_grey_65"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:animateLayoutChanges="true">
+
+        <!-- TT Email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_first_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:boxBackgroundColor="@color/ath_grey_80"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/authentication_max_content_width">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textColorHint="@color/ath_grey_45"
+                android:textColor="@color/ath_grey_20"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:hint="@string/registration_hint_name_first"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- TT Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_last_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:imeOptions="actionDone"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:boxBackgroundColor="@color/ath_grey_80"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_first_name"
+            app:layout_constraintWidth_max="@dimen/authentication_max_content_width">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:textColorHint="@color/ath_grey_45"
+                android:textColor="@color/ath_grey_20"
+                android:hint="@string/registration_hint_name_last"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/input_receive_promos_checkbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/registration_updates_checkbox"
+            android:textColor="@color/ath_grey_20"
+            app:buttonTint="@color/ath_grey_50"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            app:layout_constraintBottom_toTopOf="@id/complete_signup"
+            app:layout_constraintEnd_toEndOf="@id/input_last_name"
+            app:layout_constraintStart_toStartOf="@id/input_last_name"
+            app:layout_constraintTop_toBottomOf="@id/input_last_name" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/complete_signup"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/registration_button_done"
+            android:enabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_receive_promos_checkbox"
+            app:layout_constraintWidth_max="@dimen/authentication_max_content_width"
+            tools:enabled="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

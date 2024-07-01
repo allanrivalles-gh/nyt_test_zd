@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.theathletic.utility.RecyclerDecoration" />
+
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.FeedContract.ViewState" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.FeedContract.Presenter" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:theme="@style/Theme.Ath.Rebrand.Feed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/container_follow_header"
+                layout="@layout/standalone_feed_header"
+                app:data="@{data.followHeader}" />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:enabled="@{true}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:onRefreshListener="@{() -> interactor.onPullToRefresh()}"
+                app:refreshing="@{data.showSpinner}">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/feed_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/global_list_gutter_padding"
+                        android:paddingEnd="@dimen/global_list_gutter_padding"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:supportsChangeAnimations="@{false}" />
+                </FrameLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

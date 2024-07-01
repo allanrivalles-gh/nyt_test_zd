@@ -1,0 +1,183 @@
+# QUERIES
+query Feed($filter: FeedRequest, $isAdsEnabled: Boolean! = false) {
+    feed(filter: $filter) {
+        id
+        pageInfo {
+            hasNextPage
+        }
+        ad_unit_path @include(if: $isAdsEnabled)
+        layouts {
+            __typename
+            type
+            container_type
+            ... on SingleConsumableLayout {
+                id
+                title {
+                    app_text
+                }
+                content {
+                    ...Consumable
+                }
+            }
+            ... on BasicGroupConsumableLayout {
+                id
+                title {
+                    app_text
+                }
+                description {
+                    app_text
+                }
+                feedAction: action {
+                    app_linked_string
+                    raw_string
+                }
+                contents {
+                    ...Consumable
+                }
+                tag {
+                    image_url
+                }
+            }
+            ... on ShortFormLayout {
+                id
+                title {
+                    app_text
+                }
+                feedAction: action {
+                    app_linked_string
+                    raw_string
+                }
+                contents {
+                    ...Consumable
+                }
+            }
+            ... on DropzonePlaceholderLayout {
+                id
+                dropzone_id
+            }
+        }
+    }
+}
+
+query SlugToTopic($slug: String!) {
+    slugToTopic(slug: $slug) {
+        __typename
+        id
+        title
+    }
+}
+
+query TabNavigation {
+    appNav {
+        ...TabNavigationItem
+    }
+}
+
+# FRAGMENTS
+
+fragment Announcement on Announcement {
+    id
+    title
+    excerpt
+    cta_text
+    deeplink_url
+    image_url
+    end_date
+}
+
+fragment FeedPodcast on Podcast {
+    __typename
+    id
+    title
+    image_url
+}
+
+fragment Insider on Insider {
+    __typename
+    id
+    staff_author: author {
+        ... Staff
+    }
+    post {
+        ... Article
+    }
+}
+
+fragment TabNavigationItem on NavigationHeader {
+    __typename
+    title
+    deeplink_url
+    entity_type
+}
+
+fragment Consumable on FeedConsumable {
+    consumable {
+        ...Announcement
+        ...NewsHeadline
+        ...FeedArticleLite
+        ...FeedPodcast
+        ...Discussion
+        ...Qanda
+        ...Topic
+        ...PodcastEpisode
+        ...FeedGame
+        ...Spotlight
+        ...Insider
+        ...LiveBlog
+        ...LiveRoomFragment
+        __typename
+    }
+    title
+    description
+    consumable_id
+    type
+}
+
+fragment FeedArticleLite on Article {
+    __typename
+    comment_count
+    excerpt
+    id
+    image_uri
+    permalink
+    published_at
+    post_type_id
+    title
+    primary_tag_string: primary_tag
+    author {
+        name
+    }
+}
+
+fragment LiveBlog on LiveBlog {
+    id
+    title
+    liveStatus: status
+    permalink
+    lastActivityAt
+    images {
+        image_uri
+    }
+}
+
+fragment FeedGame on FeedGame {
+    id
+    index
+    status
+    scheduled_at
+    time_tbd
+    match_time_display
+    league {
+        id
+        alias
+    }
+    away_team {
+        ... ScheduleGameTeam
+    }
+    home_team {
+        ... ScheduleGameTeam
+    }
+    coverage {
+        available_data
+    }
+}

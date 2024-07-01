@@ -1,0 +1,5 @@
+query PodcastEpisodeByNumber($podcastId: ID!, $episodeNumber: Int!) {
+    podcastEpisodeByNumber(podcast_id: $podcastId, episode_number: $episodeNumber) {
+        ...PodcastEpisode
+    }
+}

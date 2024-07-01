@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedCarouselModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_65"
+        android:orientation="vertical"
+        >
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:visibility="@{data.title.length() > 0 &amp;&amp; data.titleTopPadding}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.title}"
+            android:visibility="@{data.title.length() > 0}"
+            style="@style/TextAppearance.Ath.Slab.Small"
+            android:textColor="@color/ath_grey_10"
+            android:layout_marginStart="@dimen/feed_horizontal_padding"
+            android:layout_marginEnd="12dp"
+            android:includeFontPadding="false"
+            tools:text="MLB Negotiations"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{data.subtitle}"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small.Variant1"
+            android:visibility="@{data.displaySubtitle}"
+            android:lineSpacingMultiplier="1.3"
+            android:layout_marginHorizontal="@dimen/feed_horizontal_padding"
+            tools:text="Who are the winners and losers of this years draft? We're gonna find out next time on."
+            />
+
+        <com.theathletic.utility.ui.NestedScrollableHost
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:blockAllParallelIntercepts="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/carousel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/feed_horizontal_padding"
+                android:clipToPadding="false"
+                app:recyclerLayout="@{data.recyclerLayout}"
+                app:supportsChangeAnimations="@{false}"
+                app:itemSnap="@{data.snapScroll}"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/carousel_item_trending_topic"
+                tools:ignore="RtlSymmetry" />
+
+        </com.theathletic.utility.ui.NestedScrollableHost>
+
+    </LinearLayout>
+
+</layout>

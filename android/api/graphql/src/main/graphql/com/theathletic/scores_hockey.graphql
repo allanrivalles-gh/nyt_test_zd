@@ -1,0 +1,264 @@
+# QUERIES
+
+query GetHockeyGame($id: ID!) {
+    game(id: $id) {
+        ... HockeyGameFragment
+    }
+}
+
+query GetHockeyPlayByPlays($id: ID!) {
+    game(id: $id) {
+        ... HockeyPlayByPlays
+    }
+}
+
+query GetHockeyPlayerGrades($id: ID!) {
+    game(id: $id) {
+        ... HockeyPlayerGradesGame
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription AllGameUpdatesForHockey($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... HockeyGameFragment
+    }
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription HockeyPlayUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... HockeyPlayByPlays
+    }
+}
+
+subscription HockeyPlayerGradesUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... HockeyPlayerGradesGame
+    }
+}
+
+# FRAGMENTS
+
+fragment HockeyGameFragment on HockeyGame {
+    id
+    status
+    scheduled_at
+    time_tbd
+    away_team {
+        ... HockeyGameTeamFragment
+    }
+    home_team {
+        ... HockeyGameTeamFragment
+    }
+    league {
+        ... League
+    }
+    recent_plays(size:3) {
+        ... HockeyPlaysFragment
+    }
+    venue {
+        name
+        city
+    }
+    sport
+    clock
+    period_id
+    permalink
+    coverage {
+        available_data
+    }
+    odds_pregame {
+        ... GameOddsMarketFragment
+    }
+    scoring_plays {
+        ... HockeyPlaysFragment
+    }
+    grade_status
+    tickets {
+        ... GameTicket
+    }
+    season_stats {
+        ... SeasonStats
+    }
+    top_comments {
+        ... ScoresTopComment
+    }
+    is_comments_discoverable
+}
+
+fragment HockeyGameTeamFragment on HockeyGameTeam {
+    id
+    team {
+        ... Team
+    }
+    scoring {
+        ... PeriodScoreFragment
+    }
+    score
+    last_games(size: 5) {
+        ... RecentGameFragment
+    }
+    stats {
+        ... GameStat
+    }
+    season_stats {
+        ... RankedStat
+    }
+    stat_leaders {
+        ... TeamLeader
+    }
+    top_performers {
+        ... TopPerformer
+    }
+    line_up {
+        players (grades: true) {
+            ... GradablePlayer
+        }
+    }
+    current_record
+    strength
+}
+
+fragment HockeyGameSummary on HockeyGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    clock
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    permalink
+    away_team {
+        ... HockeyGameSummaryTeam
+    }
+    home_team {
+        ... HockeyGameSummaryTeam
+    }
+    is_comments_discoverable
+    comments_on
+    grade_status
+    game_status {
+        ... GameState
+    }
+    game_title
+}
+
+fragment HockeyGameSummaryTeam on HockeyGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+    strength
+}
+
+fragment HockeyTeamPlayFragment on HockeyTeamPlay {
+    id
+    away_score
+    game_time
+    description
+    header
+    home_score
+    occurred_at
+    period_id
+    strength
+    type
+    team {
+        ... TeamLite
+    }
+}
+
+fragment HockeyShootoutPlayFragment on HockeyShootoutPlay {
+    id
+    away_score
+    description
+    header
+    home_score
+    occurred_at
+    period_id
+    type
+    team {
+        ... TeamLite
+    }
+    away_shootout_goals
+    away_shootout_shots
+    home_shootout_goals
+    home_shootout_shots
+    shooter {
+        headshots {
+            ... Headshot
+        }
+    }
+}
+
+fragment HockeyPlayFragment on HockeyPlay {
+    id
+    clock
+    description
+    header
+    occurred_at
+    period_id
+    type
+    away_score
+    away_sog
+    home_score
+    home_sog
+}
+
+fragment HockeyPlaysFragment on Play {
+    ... HockeyTeamPlayFragment
+    ... HockeyShootoutPlayFragment
+    ... HockeyPlayFragment
+}
+
+fragment HockeyPlayByPlays on HockeyGame {
+    id
+    away_team {
+        ... HockeyPlayByPlaysTeam
+    }
+    home_team {
+        ... HockeyPlayByPlaysTeam
+    }
+    status
+    play_by_play {
+        ... HockeyPlaysFragment
+    }
+}
+
+fragment HockeyPlayByPlaysTeam on HockeyGameTeam {
+    team {
+        ... TeamLite
+    }
+    scoring {
+        ... PeriodScoreFragment
+    }
+}
+
+fragment HockeyPlayerGradesGame on HockeyGame {
+    id
+    status
+    period_id
+    clock
+    scheduled_at
+    grade_status
+    away_team {
+        ... PlayerGradesTeam
+    }
+    home_team {
+        ... PlayerGradesTeam
+    }
+    game_status {
+        ... GameState
+    }
+}

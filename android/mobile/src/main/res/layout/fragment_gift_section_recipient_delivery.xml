@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.gifts.ui.GiftSheetDialogView" />
+        <variable
+            name="viewModel" type="com.theathletic.gifts.ui.GiftSheetDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
+
+        <TextView
+            android:id="@+id/recipient_delivery_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_recipient_delivery_title"
+            style="@style/TA.Ath.Gifts.Title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/recipient_delivery_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_recipient_delivery_text"
+            android:textColor="@color/gray"
+            style="@style/TA.Ath.Gifts.Description"
+            app:layout_constraintTop_toBottomOf="@id/recipient_delivery_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/recipient_name_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_recipient_delivery_name_title"
+            style="@style/TA.Ath.Gifts.SubTitle"
+            app:layout_constraintTop_toBottomOf="@id/recipient_delivery_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/recipient_name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiRecipientName.error}"
+            app:layout_constraintTop_toBottomOf="@id/recipient_name_title">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:inputType="textPersonName"
+                android:hint="@string/gifts_recipient_delivery_name_hint"
+                android:maxLines="1"
+                android:text="@={viewModel.valiRecipientName.value}"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_recipient_delivery_message_title"
+            style="@style/TA.Ath.Gifts.SubTitle"
+            app:layout_constraintTop_toBottomOf="@id/recipient_name_text_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/message_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:hintEnabled="false"
+            app:error="@{viewModel.valiMessage.error}"
+            app:layout_constraintTop_toBottomOf="@id/message_title">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:gravity="top"
+                android:inputType="textMultiLine|textAutoCorrect"
+                android:minLines="4"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:text="@={viewModel.valiMessage.value}"
+                android:hint="@string/gifts_recipient_delivery_message_hint"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                style="@style/TA.Ath.Gifts.EditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/delivery_method_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/gifts_recipient_delivery_method_title"
+            style="@style/TA.Ath.Gifts.SubTitle"
+            app:layout_constraintTop_toBottomOf="@id/message_input_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <include
+            android:id="@+id/selector_method_print"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            layout="@layout/fragment_gift_section_recipient_delivery_method_item"
+            bind:view="@{view}"
+            bind:title="@{@string/gifts_recipient_delivery_method_print_title}"
+            bind:description="@{@string/gifts_recipient_delivery_method_print_description}"
+            bind:isEmailMethod="@{false}"
+            bind:isSelected="@{!viewModel.purchaseAsEmail}"
+            app:layout_constraintTop_toBottomOf="@id/delivery_method_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <include
+            android:id="@+id/selector_method_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            layout="@layout/fragment_gift_section_recipient_delivery_method_item"
+            bind:view="@{view}"
+            bind:title="@{@string/gifts_recipient_delivery_method_email_title}"
+            bind:description="@{@string/gifts_recipient_delivery_method_email_description}"
+            bind:isEmailMethod="@{true}"
+            bind:isSelected="@{viewModel.purchaseAsEmail}"
+            app:layout_constraintTop_toBottomOf="@id/selector_method_print"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="@{viewModel.purchaseAsEmail}"
+            app:layout_constraintTop_toBottomOf="@id/selector_method_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/recipient_email_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/gifts_recipient_delivery_recipient_email_title"
+                style="@style/TA.Ath.Gifts.SubTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/recipient_email_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
+                app:error="@{viewModel.valiRecipientEmail.error}"
+                app:layout_constraintTop_toBottomOf="@id/recipient_email_title">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:maxLines="1"
+                    android:text="@={viewModel.valiRecipientEmail.value}"
+                    android:hint="@string/gifts_recipient_delivery_recipient_email_hint"
+                    android:inputType="textEmailAddress"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%*+-/=?^_`{|}~.@&amp;"
+                    style="@style/TA.Ath.Gifts.EditText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/recipient_date_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/gifts_recipient_delivery_date_title"
+                style="@style/TA.Ath.Gifts.SubTitle"
+                app:layout_constraintTop_toBottomOf="@id/recipient_email_input_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/recipient_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:padding="16dp"
+                android:text="@{viewModel.valiDeliveryDate.value}"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_gifts_item_unselected"
+                style="@style/TA.Ath.Gifts.Description"
+                app:layout_constraintTop_toBottomOf="@id/recipient_date_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/recipient_date_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/red"
+                android:text="@string/gifts_recipient_delivery_date_edit_button"
+                style="@style/TA.Ath.Body3"
+                app:layout_constraintBaseline_toBaselineOf="@id/recipient_date"
+                app:layout_constraintEnd_toEndOf="@id/recipient_date" />
+
+            <View
+                android:id="@+id/recipient_date_overlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> view.onEditDeliveryDateClick()}"
+                app:layout_constraintTop_toTopOf="@id/recipient_date"
+                app:layout_constraintBottom_toBottomOf="@id/recipient_date"
+                app:layout_constraintStart_toStartOf="@id/recipient_date"
+                app:layout_constraintEnd_toEndOf="@id/recipient_date" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

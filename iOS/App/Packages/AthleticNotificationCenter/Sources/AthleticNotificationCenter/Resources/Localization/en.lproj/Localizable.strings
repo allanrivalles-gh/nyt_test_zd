@@ -1,0 +1,30 @@
+/// General
+
+"activity" = "Activity";
+"genericError" = "Something has gone wrong.\nPlease try again later.";
+"moreUnread" = "More Unread";
+"notifications" = "Notifications";
+"updates" = "Updates";
+
+/// Empty content
+
+"allNotificationsOffTitle" = "Turn on notifications";
+"allNotificationsOffSubtitle" = "Get notified for replies to your comments, updates around teams and leagues you follow, and more.";
+"commentNotificationsOffTitle" = "Turn on comment notifications";
+"commentNotificationsOffSubtitle" = "Get alerts for replies and likes on your comments and community activity.";
+"noActivityTitle" = "No new activity notifications";
+"noActivitySubtitle" = "Alerts for replies and likes on your comments live here.";
+"noUpdatesTitle" = "No new updates";
+"noUpdatesSubtitle" = "Updates on the teams and leagues you follow live here.";
+"notSubscribedTitle" = "Join the conversation";
+"notSubscribedSubtitle" = "Engage with other fans in The Athletic community";
+"subscribeNow" = "Subscribe Now";
+"goToSettings" = "Take me to settings";
+
+/// Context menus
+
+"markContentRead" = "Mark Read";
+"markContentUnread" = "Mark Unread";
+"saveContent" = "Save";
+"share" = "Share";
+"unsaveContent" = "Unsave";

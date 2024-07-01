@@ -1,0 +1,75 @@
+# Queries
+
+query LegacyMostPopularArticles {
+    mostPopularArticles {
+        ...ArticleLite
+        author {
+            ...UserLiteWrapper
+        }
+    }
+}
+
+query MostPopularArticles {
+    mostPopularArticles {
+        ...ArticleLiteAuthorLite
+    }
+}
+
+query ArticleSearch($options: ArticleSearchOptions!) {
+    webArticleSearch(options: $options) {
+        ...ArticleLiteAuthorLite
+    }
+}
+
+query ArticleById($id: ID!, $input: QueryCommentsInput) {
+    articleById(id: $id) {
+        ...ArticleContent
+    }
+    getComments(input: $input) {
+        comment_count
+    }
+}
+
+query ArticleRelatedContentCache5($tags: TagsInput!, $excludeIds: [ID!]!, $count: Int) {
+    articleRelatedContent(tags: $tags, exclude_ids: $excludeIds, count: $count) {
+        ...ArticleLiteAuthor
+        ...NewsHeadline
+        ...LiveBlogContent
+    }
+}
+
+query UserArticles {
+    userArticles {
+        ...ArticleLiteAuthor
+    }
+}
+
+query SlugToTopic($slug: String!) {
+    slugToTopic(slug: $slug) {
+        __typename
+        id
+        title
+    }
+}
+
+# Mutations
+
+mutation SaveArticle($id: ID!) {
+    saveArticle(article_id: $id) {
+        success
+    }
+}
+
+mutation UnsaveArticle($id: ID!) {
+    unsaveArticle(article_id: $id) {
+        success
+    }
+}
+
+mutation RateArticle($input: RateArticleInput!) {
+    rateArticle(input: $input)
+}
+
+mutation LogArticleRead($input: LogArticleReadInput!) {
+    logArticleRead(input: $input)
+}

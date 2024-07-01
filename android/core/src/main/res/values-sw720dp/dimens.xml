@@ -1,0 +1,25 @@
+<resources>
+    <!-- Feed specific sizing -->
+    <dimen name="global_list_gutter_padding">80dp</dimen>
+
+    <!-- Tt Others -->
+    <dimen name="fragment_feed_item_article_author_top_spacing">20dp</dimen>
+
+    <!-- TT PODCAST -->
+    <dimen name="podcast_detail_header_height">500dp</dimen>
+    <dimen name="podcast_detail_header_max_header_image_height">420dp</dimen>
+    <dimen name="podcast_episode_item_image_size">112dp</dimen>
+
+    <!-- TT Authentication -->
+    <dimen name="authentication_max_content_width">540dp</dimen>
+
+    <!-- TT Article -->
+    <dimen name="article_content_width">640dp</dimen>
+
+    <!-- Feed -->
+    <dimen name="feed_topper_hero_margin">20dp</dimen>
+    <dimen name="feed_horizontal_padding">20dp</dimen>
+    <dimen name="feed_podcasts_carousel_padding">8dp</dimen>
+    <dimen name="feed_hero_carousel_end_padding">390dp</dimen>
+    <dimen name="feed_four_content_vertical_padding">12dp</dimen>
+</resources>

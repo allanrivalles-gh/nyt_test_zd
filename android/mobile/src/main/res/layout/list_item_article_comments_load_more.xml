@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticleViewMoreComments.Interactor" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/load_more"
+            style="@style/Widget.Ath.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/button_background_comments"
+            android:onClick="@{ () -> interactor.onViewMoreComments()}"
+            android:text="@string/article_view_more_comments"
+            android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            android:textColor="@color/ath_grey_30"/>
+
+    </FrameLayout>
+</layout>

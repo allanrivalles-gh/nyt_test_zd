@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="title" type="String" />
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_65"
+        app:elevation="0dp"
+        android:theme="@style/ThemeOverlay.Ath.ToolbarColorControl"
+        app:layout_behavior="com.theathletic.widget.behavior.FixAppBarLayoutBehavior">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+                <TextView
+                    android:id="@+id/toolbar_custom_title"
+                    style="@style/TextAppearance.Ath.Slab.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?actionBarSize"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:maxWidth="@dimen/toolbar_title_max_width"
+                    android:ellipsize="end"
+                    android:textColor="@color/ath_grey_10"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMaxTextSize="24sp"
+                    app:autoSizeMinTextSize="16sp"
+                    tools:text="Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

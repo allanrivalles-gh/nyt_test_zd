@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data" type="com.theathletic.feed.ui.models.FeedAuthorHeader" />
+        <variable
+            name="interactor" type="com.theathletic.feed.ui.models.FeedAuthorHeader.Interactor" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/article_featured_author_image_height"
+            android:scaleType="centerCrop"
+            android:visibility='@{data.imageUrl == ""}'
+            android:contentDescription="@null"
+            app:imageUrl="@{data.imageUrl}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/global_spacing_32"
+            android:layout_marginStart="@dimen/global_spacing_32"
+            android:layout_marginEnd="@dimen/global_spacing_32"
+            android:gravity="center"
+            android:text="@{data.name}"
+            android:textColor="@color/ath_grey_30"
+            style="@style/TextAppearance.Ath.Headline.Medium"
+            tools:text="Marcus Thompson II" />
+
+        <TextView
+            android:id="@+id/author_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:text="@{data.description}"
+            android:background="?attr/selectableItemBackground"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/ath_grey_45"
+            android:letterSpacing="0"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            app:expandedMaxLines="@{20}"
+            app:expandedMinLines="@{2}"
+            tools:text="@tools:sample/lorem[100]" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="52dp"
+                android:orientation="vertical"
+                android:onClick="@{() -> interactor.onFollowAuthorClick()}"
+                android:background="?attr/selectableItemBackground"
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/fragment_article_follow_icons_size"
+                    android:layout_height="@dimen/fragment_article_follow_icons_size"
+                    android:layout_gravity="center_horizontal"
+                    android:duplicateParentState="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@{data.isUserFollowing? @drawable/ic_following_author : @drawable/ic_follow_author}"
+                    android:tint="@{data.isUserFollowing ? @color/ath_bright_green : @color/ath_grey_30}"
+                    tools:src="@drawable/ic_follow_author" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@{data.isUserFollowing? @color/ath_bright_green : @color/ath_grey_30}"
+                    android:textAllCaps="true"
+                    android:text="@{data.isUserFollowing? @string/fragment_author_detail_following : @string/fragment_author_detail_follow}"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    tools:text="@string/fragment_author_detail_follow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="52dp"
+                android:orientation="vertical"
+                android:onClick="@{() -> interactor.onFeaturedAuthorTwitterClick(data.twitterHandle)}"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/fragment_article_follow_icons_size"
+                    android:layout_height="@dimen/fragment_article_follow_icons_size"
+                    android:layout_gravity="center_horizontal"
+                    android:duplicateParentState="true"
+                    android:contentDescription="@null"
+                    android:tint="@color/ath_grey_30"
+                    app:srcCompat="@drawable/ic_follow_twitter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:textAllCaps="true"
+                    android:text="@string/fragment_author_detail_twitter"
+                    android:textColor="@color/ath_grey_30"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"/>
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:text="@{@string/fragment_author_detail_stories_by(data.name)}"
+            android:textColor="@color/ath_grey_45"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            tools:text="Stories by Marcus Thompson II" />
+
+    </LinearLayout>
+</layout>

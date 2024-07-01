@@ -1,0 +1,128 @@
+fragment AppNavItem on NavigationHeader {
+    __typename
+    id
+    title
+    deeplink_url
+    entity_type
+}
+
+fragment FollowingStuff on FollowableItems {
+    leagues {
+        ...LeagueDetail
+    }
+    authors {
+        ...AuthorDetail
+    }
+    teams {
+        ...TeamDetail
+    }
+}
+
+fragment LeagueDetail on League {
+    id
+    leaguev2 {
+        id
+        alias
+        name
+        sport
+    }
+    current_season {
+        active_bracket
+    }
+    name
+    shortname
+    sport_type
+    notif_stories
+    has_gql_scores: has_gqlscores
+    title
+    url
+    __typename
+}
+
+fragment TeamDetail on Team {
+    id
+    teamv2 {
+        id
+        alias
+        name
+        sport
+        type
+        leagues: league {
+            id
+            legacy_id
+            is_primary
+            current_season {
+                active_bracket
+            }
+        }
+        has_podcast_tab: podcast_tab
+    }
+    short_display_name
+    shortname
+    search_text
+    league_title
+    league_shortname
+    league_id
+    color_dark
+    color_gradient
+    color_primary
+    color_secondary
+    icon_contrast_color
+    cityname
+    long_display_name
+    status
+    notif_games
+    notif_stories
+    notif_games_start
+    url
+    league {
+        league_code
+        has_gql_scores: has_gqlscores
+        sport_type
+        url
+    }
+    __typename
+}
+
+fragment UserFollowing on UserFollowing {
+    id
+    __typename
+    leagues {
+        ...LeagueDetail
+    }
+    teams {
+        ...TeamDetail
+    }
+    authors {
+        ...AuthorDetail
+    }
+    podcasts {
+        ...PodcastDetail
+    }
+    sort_order: input {
+        id
+        type
+    }
+}
+
+fragment UserProfileFollowing on UserFollowing {
+    id
+    __typename
+    leagues {
+        __typename
+        id
+        name
+    }
+    authors {
+        __typename
+        id
+        name
+        image_url
+    }
+    teams {
+        __typename
+        id
+        name
+        league_id
+    }
+}

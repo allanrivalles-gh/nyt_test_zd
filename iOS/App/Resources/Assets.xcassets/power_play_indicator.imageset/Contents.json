@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "power_play_indicator.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

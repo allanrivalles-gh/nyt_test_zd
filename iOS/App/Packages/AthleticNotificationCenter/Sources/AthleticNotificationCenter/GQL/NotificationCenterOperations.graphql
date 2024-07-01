@@ -1,0 +1,31 @@
+query Notifications($tab: NotificationTab) {
+    notifications(tab: $tab) {
+        id
+        type
+        title
+        subtitle: message
+        image_url
+        created_at
+        deeplink: deep_link
+        permalink
+        is_badgeable
+        is_notification_read
+        platform
+    }
+}
+
+query NotificationCounts {
+    notificationCounts {
+        total {
+            activity
+            updates
+        }
+        unread {
+            activity
+        }
+    }
+}
+
+mutation MarkNotificationsReadState($ids: [ID!]!, $isNotificationRead: Boolean!) {
+    markNotificationsReadState(ids: $ids, is_notification_read: $isNotificationRead)
+}

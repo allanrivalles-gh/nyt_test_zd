@@ -1,0 +1,23 @@
+query Me {
+    customer {
+        ... on Customer {
+            ...CustomerDetail
+        }
+    }
+}
+
+mutation FlushCustomerCache($id: Int!) {
+    customerFlushCache(customer: $id)
+}
+
+mutation AcceptCodeOfConduct($year: Int) {
+    acceptCodeOfConduct(year: $year) {
+        ...CustomerDetail
+    }
+}
+
+mutation SetTopSportsNewsNotificationsEnabled($enabled: Boolean!) {
+    setTopSportsNewsOpt(is_sub_top_sports_news: $enabled) {
+        response
+    }
+}

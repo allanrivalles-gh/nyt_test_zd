@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><!-- TT Display Size = Default -->
+<resources>
+    <!-- TT Create Account Wall -->
+    <dimen name="create_account_wall_global_spacing">24dp</dimen>
+</resources>

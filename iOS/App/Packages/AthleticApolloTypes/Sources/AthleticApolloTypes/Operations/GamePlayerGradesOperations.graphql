@@ -1,0 +1,35 @@
+query GamePlayerGrades($gameId: ID!) {
+    game(id: $gameId) {
+        ...GamePlayerGrades
+    }
+}
+
+query GamePlayerGradesGameSummary($gameId: ID!) {
+    game(id: $gameId) {
+        ...GamePlayerGradesGameSummary
+    }
+}
+
+mutation GradeGamePlayer($gameId: ID!, $teamMemberId: ID!, $grade: Int) {
+    gradePlayer(game_id: $gameId, player_id: $teamMemberId, grade: $grade) {
+        ...GamePlayerGrade
+    }
+}
+
+mutation UngradeGamePlayer($gameId: ID!, $teamMemberId: ID!) {
+    ungradePlayer(game_id: $gameId, player_id: $teamMemberId) {
+        ...GamePlayerGrade
+    }
+}
+
+subscription GamePlayerGradesUpdates($gameId: ID!) {
+    liveScoreUpdates(game_ids: [$gameId]) {
+        ...GamePlayerGrades
+    }
+}
+
+subscription GradesGameSummaryUpdates($gameId: ID!) {
+    liveScoreUpdates(game_ids: [$gameId]) {
+        ...GamePlayerGradesGameSummary
+    }
+}

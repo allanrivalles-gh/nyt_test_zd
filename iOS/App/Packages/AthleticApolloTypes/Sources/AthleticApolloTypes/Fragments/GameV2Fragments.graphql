@@ -1,0 +1,960 @@
+fragment BaseballGameTeamPlayerStats on BaseballGameTeam {
+    __typename
+    id
+    team {
+        __typename
+        id
+        display_name
+    }
+    players {
+        __typename
+        id
+        teamMember: player {
+            id
+        }
+        display_name
+        starter
+        order
+        position
+        pitching_outcome @include(if: $isPostGame)
+        stats {
+          ...GameStat
+        }
+    }
+}
+
+fragment BaseballGameV2PlayerStats on Gamev2 {
+    __typename
+    id
+    status
+    scheduled_at
+    started_at
+    league {
+        id
+    }
+    home_team {
+      ...BaseballGameTeamPlayerStats
+    }
+    away_team {
+      ...BaseballGameTeamPlayerStats
+    }
+}
+
+fragment FeaturedGameV2 on Gamev2 {
+    id
+    sport
+    status
+    period_id
+    scheduled_at
+    is_scheduled_time_tbd: time_tbd
+    started_at
+    game_status {
+        ...GameStatusDisplay
+    }
+    group
+    permalink
+    league {
+        id
+        name
+        display_name
+    }
+    home_team {
+        ...FeaturedGameTeam
+    }
+    away_team {
+        ...FeaturedGameTeam
+    }
+    coverage {
+        available_data
+    }
+    game_title
+    title
+    updated_at
+    ... on AmericanFootballGame {
+        possession {
+            ...AmericanFootballPossession
+        }
+    }
+    ... on SoccerGame {
+        __typename
+        season
+        status
+        scheduled_at
+        started_at
+        league {
+            __typename
+            id
+            display_name
+        }
+        group
+        home_team {
+            __typename
+            ...SoccerGameContainerGameTeam
+        }
+        away_team {
+            __typename
+            ...SoccerGameContainerGameTeam
+        }
+        aggregate_winner {
+            __typename
+            id
+            display_name
+        }
+        related_game {
+            __typename
+            scheduled_at
+        }
+    }
+}
+
+fragment GameContainer on Gamev2 {
+    ...GameV2Lite
+    ...GameV2BroadcastNetwork
+    game_status {
+        ...GameStatusDisplay
+    }
+    period_id
+    clock
+    permalink
+    game_title
+    updated_at
+    live_blog {
+        id
+        liveStatus
+        permalink
+        permalinkForEmbed
+    }
+    ... on AmericanFootballGame {
+        ...AmericanFootballTimeouts
+        possession {
+            ...AmericanFootballPossession
+        }
+    }
+    ... on BaseballGame {
+        status
+        inning
+        inning_half
+        outcome {
+            strikes
+            balls
+            outs
+            runners {
+                ending_base
+            }
+        }
+    }
+    ... on BasketballGame {
+        ...BasketballTimeouts
+    }
+    ... on HockeyGame {
+        ...HockeyPowerPlay
+    }
+    ... on SoccerGame {
+        season
+        status
+        scheduled_at
+        started_at
+        league {
+            id
+            display_name
+        }
+        group
+        home_team {
+            ...SoccerGameContainerGameTeam
+        }
+        away_team {
+            ...SoccerGameContainerGameTeam
+        }
+        aggregate_winner {
+            id
+            display_name
+        }
+        related_game {
+            scheduled_at
+        }
+    }
+}
+
+fragment GameStatusDisplay on GameStatus {
+    main
+    extra
+}
+
+fragment GamePlayer on GamePlayer {
+    id
+    display_name
+    jersey_number
+    place
+    position
+    position_side
+    regular_position
+    starter
+    stats {
+        ...GameStat
+    }
+    player {
+        id
+        ...TeamMember
+    }
+}
+
+fragment GameOddsMarket on GameOddsMarket {
+    ... on GameOddsMoneylineMarket {
+        ...GameOddsMoneylineMarket
+    }
+    ... on GameOddsSpreadMarket {
+        ...GameOddsSpreadMarket
+    }
+    ... on GameOddsTotalsMarket {
+        ...GameOddsTotalsMarket
+    }
+}
+
+fragment GameOddsMoneylineMarket on GameOddsMoneylineMarket {
+    __typename
+    price {
+        us_odds
+    }
+    team {
+        id
+    }
+}
+
+fragment GameOddsSpreadMarket on GameOddsSpreadMarket {
+    __typename
+    id
+    line
+    price {
+        us_odds
+    }
+    team {
+        id
+        alias
+    }
+}
+
+fragment GameOddsTotalsMarket on GameOddsTotalsMarket {
+    __typename
+    id
+    line
+    price {
+        us_odds
+    }
+    direction
+}
+
+fragment GameTeam on GameTeam {
+    id
+    team {
+        ...TeamV2
+    }
+    penalty_score
+    score
+    stats {
+        ...GameStat
+    }
+}
+
+fragment GameV2 on Gamev2 {
+    id
+    league {
+        ...LeagueV2
+    }
+    sport
+    season_type {
+        ...SeasonTypeDetail
+    }
+    group
+    scheduled_at
+    is_scheduled_time_tbd: time_tbd
+    started_at
+    status
+    clock
+    game_status {
+        ...GameStatusDisplay
+    }
+    period_id
+    away_team {
+        ...GameTeam
+    }
+    home_team {
+        ...GameTeam
+    }
+    coverage {
+        available_data
+    }
+    updated_at
+    permalink
+    ... on BaseballGame {
+        inning_half
+        inning
+    }
+    ... on SoccerGame {
+        venue {
+            ...VenueDetail
+        }
+    }
+}
+
+fragment GameV2BroadcastNetwork on Gamev2 {
+    ... on AmericanFootballGame {
+        broadcast_network
+    }
+    ... on BasketballGame {
+        broadcast_network
+    }
+    ... on HockeyGame {
+        broadcast_network
+    }
+    ...on BaseballGame {
+        broadcast_network
+    }
+}
+
+fragment GameV2Details on Gamev2 {
+    odds_pregame {
+        ...GameOddsMarket
+    }
+    venue {
+        ...VenueDetail
+    }
+    ... on AmericanFootballGame {
+        weather {
+            id
+            outlook
+            temp_celsius
+            temp_fahrenheit
+        }
+    }
+    ... on SoccerGame {
+        officials {
+            id
+            name
+            type
+        }
+    }
+}
+
+fragment GameV2TopComments on Gamev2 {
+    id
+    sport
+    league {
+        id
+    }
+    top_comments {
+        ...CommentWithoutReplies
+    }
+}
+
+fragment GameV2InGame on Gamev2 {
+    ...GameV2
+    ...GameV2BroadcastNetwork
+    ...GameV2TopPerformers
+    ...GameV2Injuries
+    ...GameV2ScoringGame
+    ...GameV2Details
+    ...GameV2TopComments
+    ... on AmericanFootballGame {
+        ...AmericanFootballScoring
+        ...AmericanFootballRecentPlays
+        ...AmericanFootballDownAndDistance
+        ...GamePlayerGrades
+    }
+    ... on BaseballGame {
+        ...BaseballScoring
+        ...BaseballCurrentInning
+        ...GamePlayerGrades
+    }
+    ... on BasketballGame {
+        ...BasketballScoring
+        ...BasketballRecentPlays
+        ...GamePlayerGrades
+    }
+    ... on HockeyGame {
+        ...HockeyScoring
+        ...HockeyRecentPlays
+        ...GamePlayerGrades
+    }
+    ... on SoccerGame {
+        ...SoccerGoalsSummary
+        ...SoccerGameLineUps
+        ...SoccerRecentPlays
+        ...SoccerAllKeyPlays
+        ...GamePlayerGrades
+    }
+}
+
+fragment GameV2Injuries on Gamev2 {
+    sport
+    home_team {
+        ...GameV2InjuriesTeam
+    }
+    away_team {
+        ...GameV2InjuriesTeam
+    }
+}
+
+fragment GameV2InjuriesTeam on GameTeam {
+    team {
+        id
+        display_name
+        color_primary
+        injuries {
+            ... on DefaultInjury {
+                ...PlayerInjury
+            }
+            ... on AmericanFootballInjury {
+                ...PlayerInjury
+            }
+        }
+    }
+}
+
+fragment GameV2JustFinishedGame on Gamev2 {
+    ...GameV2PostGame
+    ...GameV2RecentPlays
+}
+
+fragment GameV2LastGames on Gamev2 {
+    id
+    status
+    started_at
+    sport
+    league {
+        id
+        display_name
+    }
+    home_team {
+        ...GameV2LastGamesTeam
+    }
+    away_team {
+        ...GameV2LastGamesTeam
+    }
+}
+
+fragment GameV2LastGamesTeam on GameTeam {
+    team {
+        id
+        display_name
+        league {
+            id
+        }
+    }
+    last_games(size: 5, game_league_only: $limitLastGamesToCurrentLeague) {
+        ...GameV2Lite
+    }
+}
+
+fragment GameV2LineUp on Gamev2 {
+    id
+    status
+    scheduled_at
+    started_at
+    sport
+    league {
+        ...LeagueV2
+    }
+    home_team {
+        ...GameV2LineUpTeam
+    }
+    away_team {
+        ...GameV2LineUpTeam
+    }
+}
+
+fragment GameV2LineUpTeam on GameTeam {
+    team {
+        id
+        display_name
+    }
+    line_up {
+        ...LineUpDetail
+    }
+}
+
+fragment GameV2Lite on Gamev2 {
+    id
+    sport
+    status
+    period_id
+    scheduled_at
+    is_scheduled_time_tbd: time_tbd
+    started_at
+    game_status {
+        ...GameStatusDisplay
+    }
+    group
+    permalink
+    league {
+        id
+        name
+        display_name
+    }
+    home_team {
+        ...GameV2LiteTeam
+    }
+    away_team {
+        ...GameV2LiteTeam
+    }
+    coverage {
+        available_data
+    }
+    ... on AmericanFootballGame {
+        grade_status
+        possession {
+            team {
+                id
+            }
+        }
+    }
+    ... on SoccerGame {
+        grade_status
+    }
+    ... on BaseballGame {
+        inning_half
+        inning
+        outcome {
+            runners {
+                ending_base
+            }
+        }
+        grade_status
+    }
+    ... on BasketballGame {
+        grade_status
+    }
+    ... on HockeyGame {
+        grade_status
+    }
+}
+
+fragment GameV2LiteTeam on GameTeam {
+    id
+    team {
+        ...TeamV2Lite
+    }
+    score
+    penalty_score
+    current_record
+    current_standing(short: true)
+    ... on BasketballGameTeam {
+        current_ranking
+    }
+    ... on AmericanFootballGameTeam {
+        current_ranking
+    }
+}
+
+fragment GameV2Odds on Gamev2 {
+    sport
+    home_team {
+        team {
+            ...GameV2OddsTeam
+        }
+    }
+    away_team {
+        team {
+            ...GameV2OddsTeam
+        }
+    }
+    odds_pregame {
+        ...GameOddsMarket
+    }
+}
+
+fragment GameV2OddsTeam on Teamv2 {
+    id
+    alias
+    logos {
+        ...TeamLogo
+    }
+}
+
+fragment GameV2PostGame on Gamev2 {
+    ...GameV2
+    ...GameV2BroadcastNetwork
+    ...GameV2TopPerformers
+    ...GameV2ScoringGame
+    ...GameV2Details
+    ...GameV2TopComments
+    ... on AmericanFootballGame {
+        ...AmericanFootballScoring
+        ...GamePlayerGrades
+    }
+    ... on BaseballGame {
+        ...BaseballScoring
+        ...BaseballFinalPlayers
+        ...GamePlayerGrades
+    }
+    ... on BasketballGame {
+        ...BasketballScoring
+        ...GamePlayerGrades
+    }
+    ... on HockeyGame {
+        ...HockeyScoring
+        ...GamePlayerGrades
+    }
+    ... on SoccerGame {
+        ...SoccerGoalsSummary
+        ...SoccerGameLineUps
+        ...SoccerAllKeyPlays
+        ...GamePlayerGrades
+    }
+}
+
+fragment GameV2PreGame on Gamev2 {
+    ...GameV2
+    ...GameV2Tickets
+    ...GameV2BroadcastNetwork
+    ...GameV2LastGames
+    ...GameV2TeamLeaders
+    ...GameV2Injuries
+    ...GameV2SeasonStats
+    ...GameV2Details
+    ...GameV2Odds
+    ...GameV2TopComments
+    ... on BaseballGame {
+        ...BaseballStartingPitchers
+    }
+    ... on SoccerGame {
+        ...SoccerGameLineUps
+    }
+}
+
+fragment GameV2RecentPlays on Gamev2 {
+    ... on AmericanFootballGame {
+        ...AmericanFootballRecentPlays
+    }
+    ... on BaseballGame {
+        ...BaseballCurrentInning
+    }
+    ... on BasketballGame {
+        ...BasketballRecentPlays
+    }
+    ... on HockeyGame {
+        ...HockeyRecentPlays
+    }
+    ... on SoccerGame {
+        ...SoccerRecentPlays
+    }
+}
+
+fragment GameV2RecentPlaysTeam on GameTeam {
+    team {
+        id
+        alias
+    }
+}
+
+fragment GameV2ScoringGame on Gamev2 {
+    status
+    period_id
+    sport
+    league {
+        ...LeagueV2
+    }
+    home_team {
+        ...GameV2ScoringTeam
+    }
+    away_team {
+        ...GameV2ScoringTeam
+    }
+}
+
+fragment GameV2ScoringTeam on GameTeam {
+    score
+    team {
+        id
+        alias
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment GameV2SeasonStats on Gamev2 {
+    sport
+    league {
+        display_name
+    }
+    season_stats {
+        ...SeasonStatsSeasonInfo
+        ...SeasonStatsTeamStats
+    }
+}
+
+fragment SeasonStatsTeamStats on GameSeasonStats {
+    away_team_stats {
+        ...RankedStat
+    }
+    home_team_stats {
+        ...RankedStat
+    }
+}
+
+fragment GameV2TeamLeaders on Gamev2 {
+    sport
+    league {
+        display_name
+    }
+    season_stats {
+        ...SeasonStatsSeasonInfo
+        ...SeasonStatsTeamLeaderStats
+    }
+    away_team {
+        ...SeasonStatsTeamInfo
+    }
+    home_team {
+        ...SeasonStatsTeamInfo
+    }
+}
+
+fragment SeasonStatsTeamLeaderStats on GameSeasonStats {
+    away_stat_leaders {
+        ...TeamLeader
+    }
+    home_stat_leaders {
+        ...TeamLeader
+    }
+}
+
+fragment GameV2Tickets on Gamev2 {
+    tickets {
+        ...GameTickets
+    }
+}
+
+fragment GameTickets on GameTickets {
+    uri
+    provider
+    min_price {
+        ...GameTicketsPrice
+    }
+    logos_light_mode {
+        ...TicketLogo
+    }
+    logos_dark_mode {
+        ...TicketLogo
+    }
+}
+
+fragment GameTicketsPrice on GameTicketsPrice {
+    amount
+    currency
+}
+
+fragment TeamLeader on TeamLeader {
+    id
+    player {
+        id
+        display_name
+        full_name
+        headshots {
+            ...PlayerHeadshot
+        }
+        role {
+            jersey_number
+            position
+        }
+    }
+    stats {
+        ...GameStat
+    }
+    stats_label
+}
+
+
+fragment TicketLogo on GameTicketsLogo {
+    id
+    uri
+    width
+    height
+}
+
+fragment SeasonStatsSeasonInfo on GameSeasonStats {
+    season {
+        ...SeasonStatsSeason
+    }
+    season_type {
+        ...SeasonStatsSeasonType
+    }
+}
+
+fragment SeasonStatsSeason on Season {
+    name
+    active
+    league {
+        id
+        sport
+        display_name
+    }
+}
+
+fragment SeasonStatsSeasonType on SeasonType {
+    name
+}
+
+fragment SeasonStatsTeamStats on GameSeasonStats {
+    away_team_stats {
+        ...RankedStat
+    }
+    home_team_stats {
+        ...RankedStat
+    }
+}
+
+fragment SeasonStatsTeamInfo on GameTeam {
+    team {
+        alias
+        color_primary
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment GameV2TopPerformers on Gamev2 {
+    sport
+    home_team {
+        ...GameV2TopPerformersTeam
+    }
+    away_team {
+        ...GameV2TopPerformersTeam
+    }
+}
+
+fragment GameV2TopPerformersTeam on GameTeam {
+    top_performers {
+        id
+        player {
+            id
+            display_name
+            position
+            jersey_number
+            player {
+                id
+                headshots {
+                    ...PlayerHeadshot
+                }
+                full_name
+            }
+        }
+        stats {
+            ...GameStat
+        }
+        stats_label
+    }
+    team {
+        alias
+        color_primary
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment LeagueV2 on Leaguev2 {
+    id
+    legacy_id
+    alias
+    name
+    display_name
+    sport
+}
+
+fragment LineUpDetail on LineUp {
+    id
+    image_uri
+    players {
+        ...GamePlayer
+    }
+}
+
+fragment PlayerHeadshot on Headshot {
+    __typename
+    id
+    uri
+    width
+    height
+}
+
+fragment PlayerInjury on Injury {
+    player {
+        id
+        display_name
+        full_name
+        headshots {
+            ...PlayerHeadshot
+        }
+        position
+    }
+    injury
+    comment
+    status
+}
+
+fragment TeamLogo on TeamLogo {
+    __typename
+    id
+    uri
+    width
+    height
+}
+
+fragment SeasonTypeDetail on SeasonType {
+    id
+    name
+}
+
+fragment SoccerGameContainerGameTeam on SoccerGameTeam {
+    aggregate_score
+    penalty_score
+    current_standing(short: true)
+    last_six
+    expected_goals {
+        string_value
+    }
+    team {
+        display_name
+        leagues: league {
+            id
+        }
+    }
+}
+
+fragment TeamMember on TeamMember {
+    id
+    display_name
+}
+
+fragment TeamV2 on Teamv2 {
+    id
+    alias
+    name
+    display_name
+    logos {
+        ...TeamLogo
+    }
+    color_accent
+    league {
+        ...LeagueV2
+    }
+}
+
+fragment TeamV2Lite on Teamv2 {
+    id
+    alias
+    name
+    display_name
+    logos {
+        ...TeamLogo
+    }
+    color_accent
+}
+
+fragment VenueDetail on Venue {
+    id
+    name
+    city
+    state
+}

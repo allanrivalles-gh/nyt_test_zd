@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="initialize_ad_event" translatable="false">javascript:window.dispatchEvent(new CustomEvent(\'visibleRectChanged\', {detail:{visibleRect:{y:%d}}}))</string>
+</resources>

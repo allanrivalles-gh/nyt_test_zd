@@ -1,0 +1,1637 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation, ExtraTranslation">
+    <!-- TT GLOBAL -->
+    <string name="app_name">The Athletic</string>
+
+    <string name="global_date_updated_today">Updated Today</string>
+    <string name="global_date_today">Today</string>
+    <string name="global_date_today_time_span">Today, %1$s - %2$s</string>
+    <string name="global_date_earlier_today">Earlier today</string>
+    <string name="global_date_yesterday">Yesterday</string>
+    <string name="global_date_tomorrow_time_span">Tomorrow, %1$s - %2$s</string>
+    <string name="global_date_day_of_week_time_span">%1$s, %2$s - %3$s</string>
+    <string name="global_error">Something went wrong. Please try again later.</string>
+    <string name="global_retry">Retry</string>
+    <string name="global_network_offline_header">No internet connection</string>
+    <string name="global_network_offline">No or weak internet connection.\nCheck your connection and try again.</string>
+    <string name="global_placeholder_no_user_topics">You are not following any team or league.\nChoose at least one thing you love!</string>
+    <string name="global_empty_placeholder">No updates at the moment</string>
+    <string name="global_already_subscribed">You are already subscribed.</string>
+    <string name="global_select_all_that_apply">Select all that apply</string>
+    <string name="global_billing_error_init_failed">In-app billing service is unavailable. Please check that you have Android Market/Play installed in version 11.3.02 or newer.</string>
+    <string name="global_billing_error_internal">Error making purchase. Internal billing problem.</string>
+    <string name="global_stripe_fail"><annotation font="avenir_bold">Payment Failed:</annotation> Please update your payment details to avoid losing access to The Athletic.</string>
+    <string name="global_email_fail">We\'re having trouble contacting you. Please update your email address.</string>
+    <string name="global_comment_already_flagged">You cannot flag the same comment more than once.</string>
+    <string name="global_time_m">m</string>
+    <string name="global_time_m_span">%1$dm</string>
+    <string name="global_time_min">min</string>
+    <string name="global_time_minutes">Minutes</string>
+    <string name="global_time_minute">Minute</string>
+    <string name="global_time_h">h</string>
+    <string name="global_time_h_span">%1$dh</string>
+    <string name="global_time_hr">hr</string>
+    <string name="global_time_hours">Hours</string>
+    <string name="global_time_hour">Hour</string>
+    <string name="global_time_d_span">%1$dd</string>
+    <!-- TBC -> To be confirmed -->
+    <string name="global_tbc">TBC</string>
+    <!-- TBD -> To be decided -->
+    <string name="global_tbd">TBD</string>
+    <!-- This should be use as thousand appendix. For example for comments: 2k comments. -->
+    <string name="global_count_thousand">%1$sk</string>
+    <string name="global_day_d">d</string>
+    <string name="global_day_day">day</string>
+    <string name="global_day_days">days</string>
+    <string name="global_action_cancel">Cancel</string>
+    <string name="global_action_follow">Follow</string>
+    <string name="global_following">Following</string>
+    <string name="global_read_more">Read More</string>
+    <string name="global_stop">Stop</string>
+    <string name="global_bullet">\u2022</string>
+    <string name="global_bulleted_string">\u2022 %1$s</string>
+
+    <string name="global_clear">Clear</string>
+    <string name="global_you">You</string>
+    <string name="global_next">Next</string>
+    <string name="global_edit">Edit</string>
+    <string name="global_add">Add</string>
+
+    <string name="empty_string" />
+    <string name="single_dash">-</string>
+    <string name="time_min">%1$d min</string>
+
+    <!-- User name with the last name initialized, e.g. Matthew K. When using this, make sure to handle cases with an empty last name -->
+    <string name="global_name_full_first_initialized_last">%1$s %2$s.</string>
+
+    <string name="core_raw_parameterized_string">%1$s</string>
+
+    <!-- TT PLAY SERVICES -->
+    <string name="play_services_title">Google Services Installation Required</string>
+    <string name="play_services_body">It looks like you are missing Google Services. In order to use The Athletic, you need Google Services installed on your device.</string>
+    <string name="play_services_button">INSTALL NOW</string>
+
+
+    <!-- TT FORCE UPDATE -->
+    <string name="force_update_title">Update Required</string>
+    <string name="force_update_body">It looks like you have an outdated version of the app. Please update in order to continue using The Athletic uninterrupted.</string>
+    <string name="force_update_button">Update now</string>
+    <!-- Notifies user that an app update has been installed and asks user to reload the app to finish the installation -->
+    <string name="flexible_update_app_installed">New app version installed.\nReload for best experience.</string>
+    <!-- CTA that triggers an app restart -->
+    <string name="flexible_update_reload">Reload</string>
+
+    <!-- System Webview Update -->
+    <string name="webview_update_dialogue_title">Please update your System Webview</string>
+    <string name="webview_update_dialogue_message">The Athletic uses a rendering engine provided by ‘%1$s’ to display article text and the version on this device is outdated. Please update %1$s for the best possible viewing experience.</string>
+    <string name="webview_update_dialogue_cta_update">Update</string>
+    <string name="webview_update_dialogue_cta_dismiss">Dismiss</string>
+
+
+    <!-- TT MAIN NAVIGATION -->
+    <!-- Translation of this values should not be longer than 10 characters. This could result in smaller or cut-off text -->
+
+    <!-- Translation of this values should not be longer than 10 characters. This could result in smaller or cut-off text -->
+    <!-- Translation of this values should not be longer than 10 characters. This could result in smaller or cut-off text -->
+    <string name="main_navigation_feed">My Feed</string>
+    <!-- Translation of this values should not be longer than 10 characters. This could result in smaller or cut-off text -->
+    <string name="main_navigation_listen">Listen</string>
+    <!-- Translation of this values should not be longer than 10 characters. This could result in smaller or cut-off text -->
+    <string name="main_navigation_scores">Scores</string>
+    <string name="main_navigation_news">Front Page</string>
+    <string name="main_navigation_discover">Discover</string>
+    <string name="main_navigation_account">Account</string>
+
+
+    <!-- SECONDARY NAVIGATION -->
+    <!-- Displays secondary navigation item for list of all podcasts a user is following -->
+    <string name="secondary_navigation_podcast_following">Following</string>
+    <!-- Displays secondary navigation item for feed of podcasts the user currently does not follow and can discover -->
+    <string name="secondary_navigation_podcast_discover">Discover</string>
+
+    <!-- TT DRAWER -->
+    <!-- Title of section that displays teams and leagues the user might want to view -->
+    <string name="drawer_more_suggestions">More Suggestions</string>
+
+
+    <!-- TT AUTHENTICATION -->
+    <string name="auth_options_continue_fb">Continue with Facebook</string>
+    <string name="auth_options_continue_google">Continue with Google</string>
+    <string name="auth_options_continue_apple">Continue with Apple</string>
+    <string name="auth_options_continue_nyt">Continue with New York Times</string>
+    <string name="auth_options_or">or</string>
+    <string name="auth_sub_headline">Create an account to save your team, club, and league preferences.</string>
+    <string name="auth_purchase_sub_headline">Finish creating your account in order to access your subscription across devices.</string>
+    <string name="auth_already_have_account">Already have an account?</string>
+    <string name="auth_dont_have_account">Don\'t have an account?</string>
+    <string name="auth_sign_up">Sign up</string>
+    <string name="auth_link_account">Link account</string>
+
+    <string name="auth_options_signup_title">Create an Account</string>
+    <string name="auth_options_signup_purchase_title">Thank you for subscribing</string>
+    <string name="auth_options_signup_continue_email">Sign up with Email</string>
+
+    <string name="auth_options_login_title">Log in</string>
+    <string name="auth_options_login_email">Log in with Email</string>
+
+    <string name="auth_account_already_exists">Account already exists</string>
+
+    <!-- Text displayed atop the first view of the app for new users -->
+    <string name="authentication_banner_text">All the stories at the heart of the game.</string>
+    <!-- Button at the bottom of authentication screen -->
+    <string name="authentication_button_get_started">Start Reading</string>
+    <!-- Note at the bottom of authentication screen, containing spannable string to "log in" -->
+    <string name="authentication_text_note">Already a subscriber?\u0020\u0020\Log in</string>
+    <!-- This "Log in" text must match the "log in" translation from `authentication_text_note`. Event the case. This is critical! Otherwise it won't be clickable! -->
+    <string name="authentication_text_spannable_log_in">Log in</string>
+
+    <!-- Notification pre-prompt dialog call to action -->
+    <string name="notification_dialog_cta_positive">OK</string>
+    <string name="notification_dialog_cta_negative">NOT NOW</string>
+
+    <!-- Tt LOGIN -->
+    <string name="login_error_dialog_try_again">TRY AGAIN</string>
+    <string name="login_error_dialog_title">Log in failed</string>
+    <string name="login_email_pass_incorrect">Email or password is incorrect</string>
+    <string name="login_error_generic_message">We could not complete your request</string>
+    <string name="login_email_is_not_valid">Email address is not valid</string>
+    <string name="login_text_forgot_password">Forgot Password?</string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_button_login">Log in</string>
+
+    <!-- Tt REGISTRATION -->
+    <string name="registration_create_account_title">Create an Account</string>
+    <string name="registration_almost_done_title">You’re almost done!</string>
+    <string name="registration_hint_name_first">First Name</string>
+    <string name="registration_hint_name_last">Last Name</string>
+    <string name="registration_button_next">Next</string>
+    <!-- CTA text used to continue registration flow from email entry to name entry -->
+    <string name="registration_button_done">Done</string>
+
+    <!-- Body text describing terms and privacy agreement when creating an account -->
+    <string name="registration_terms_text">By creating an account above, you agree to The Athletic\’s Terms of Service and Privacy Policy.</string>
+    <!-- Text span that is matched and given a clickable link: must match exact substring in registration_terms_text -->
+    <string name="registration_terms_terms_span">Terms of Service</string>
+    <!-- Text span that is matched and given a clickable link: must match exact substring in registration_terms_text -->
+    <string name="registration_terms_privacy_span">Privacy Policy</string>
+    <!-- Descriptive callout above email address form entry to describe what we do with the given address -->
+    <string name="registration_error_email">Oops. Looks like there was an error. Please check again for spelling errors.</string>
+    <!-- Text displayed above checkbox to opt into promotional updates -->
+    <string name="registration_updates_checkbox">I would like to receive updates and promotions from The Athletic. I can unsubscribe at any time.</string>
+
+
+    <!-- TT ONBOARDING -->
+    <string name="onboarding_team_title">Follow Teams</string>
+    <string name="onboarding_league_title">Follow Leagues</string>
+    <string name="onboarding_podcast_title">Follow Podcasts</string>
+    <string name="onboarding_toolbar_skip">Skip</string>
+    <string name="onboarding_toolbar_next">Next</string>
+    <string name="onboarding_toolbar_done">Done</string>
+    <string name="onboarding_following_bar_title">Following</string>
+    <string name="onboarding_following_bar_empty">Follow at least one team.</string>
+    <string name="onboarding_title_league_follow">Get top stories for your favorite leagues in your feed</string>
+    <string name="onboarding_title_podcast_follow">Get exclusive audio content about teams you love</string>
+    <string name="onboarding_search_teams_hint">Search teams</string>
+    <string name="onboarding_search_leagues_hint">Search leagues</string>
+    <string name="onboarding_team_search_no_results">No results found.</string>
+    <string name="onboarding_error_loading_data">An error occurred, please try again later</string>
+
+    <!-- Tt ONBOARDING SUBSCRIBE -->
+    <!-- Title in Onboarding for new users to consider a free trial -->
+    <string name="onboarding_subscribe_title_trial">Read free for a week.</string>
+    <!-- Price breakdown in Onboarding for new users to consider a free trial -->
+    <string name="onboarding_subscribe_price_text_trial">Billed as %1$s/year after 7-day free trial ends. Cancel anytime during trial.</string>
+    <!-- CTA in Onboarding for new users to consider a free trial -->
+    <string name="onboarding_subscribe_button_text_trial">Start Free Trial</string>
+
+    <!-- Title in Onboarding for returning users to make a purchase -->
+    <string name="onboarding_subscribe_title">Get all access.</string>
+    <!-- Description in Onboarding for all users -->
+    <string name="onboarding_subscribe_note">Every sports story that matters.</string>
+    <!-- Price Breakdown in Onboarding for returning users to make a purchase -->
+    <string name="onboarding_subscribe_price_text">%1$s/year, billed annually.</string>
+    <!-- CTA in Onboarding for returning users to make a purchase -->
+    <string name="onboarding_subscribe_button_text">Subscribe</string>
+
+    <string name="onboarding_subscribe_vat">Applicable VAT included</string>
+
+    <!-- TT CREATE ACCOUNT WALL -->
+    <string name="create_account_wall_title">To participate, please create an account</string>
+    <string name="create_account_wall_note_title">Your account will allow you to:</string>
+    <string name="create_account_wall_note_1">Access The Athletic on the web</string>
+    <string name="create_account_wall_note_2">Participate in writer Q&amp;As and subscriber forums</string>
+    <string name="create_account_wall_note_3">Receive personalized newsletters</string>
+    <string name="create_account_wall_button_registration">Create Account</string>
+    <string name="create_account_wall_button_login">Already have an account?</string>
+    <string name="create_account_wall_button_cancel">No thanks</string>
+
+
+    <!-- TT MAIN -->
+    <string name="fragment_main_title_profile">Profile</string>
+    <string name="fragment_main_title_search">Search</string>
+    <string name="fragment_main_title_manage_account">Account Settings</string>
+
+    <!-- TT FEED ITEMS -->
+    <string name="feed_article_action_share">Share</string>
+    <string name="feed_offline_header">No internet connection</string>
+    <string name="feed_offline_text">Some content may not be available offline</string>
+    <string name="fragment_feed_save">Save</string>
+    <string name="fragment_feed_unsave">Unsave</string>
+    <string name="fragment_feed_item_read">Read</string>
+    <string name="fragment_feed_item_live_discussions_ends_in">%1$s Min Left</string>
+    <string name="feed_podcast_latest_episodes">Latest Episodes</string>
+    <!-- Title displayed above single headline in feed -->
+    <string name="feed_news">NEWS</string>
+    <!-- Indicates that a live blog in the feed is currently live -->
+    <string name="feed_live">LIVE</string>
+    <!-- Informs user they have reached the end of the feed -->
+    <string name="feed_you_reached_the_end">You\'ve reached the end of the list.</string>
+    <!-- CTA that scrolls user to the top of the feed -->
+    <string name="feed_back_to_top">Back to top</string>
+    <string name="feed_mark_read">Mark Read</string>
+    <string name="feed_mark_unread">Mark Unread</string>
+
+    <!-- TT PODCAST -->
+    <string name="podcast_share_title">Share this podcast!</string>
+    <string name="podcast_episode_share_title">Share this episode!</string>
+    <string name="podcast_state_playing">Playing</string>
+    <string name="podcast_state_loading">Loading…</string>
+    <string name="podcast_state_completed">Completed</string>
+    <string name="podcast_series_details">Series Details</string>
+    <string name="podcast_follow_series">Follow Series</string>
+    <string name="podcast_unfollow_series">Unfollow Series</string>
+    <string name="podcast_time_min_left">min left</string>
+    <string name="podcast_duration_minutes">%1$d min</string>
+    <string name="podcast_duration_minutes_left">%1$d min left</string>
+    <string name="podcast_notification_loading_player">Loading Podcast Player</string>
+    <string name="podcast_download_power_saving_warning">To ensure uninterrupted podcast download, please turn off the battery saver mode.</string>
+    <!-- Shows on the podcast following tab when user is not following any podcasts -->
+    <string name="podcast_following_empty_title">No Shows Yet</string>
+    <!-- Shows on the podcast following tab when user is not following any podcasts -->
+    <string name="podcast_following_empty_description">Use the Discover tab to access our extensive library of insider podcasts and follow shows for your favorite teams and leagues.</string>
+    <!-- Shows on the podcast following tab when user is not following any podcasts. Click to view the Discovery tab -->
+    <string name="podcast_following_empty_cta">Discover Recommended Shows</string>
+
+    <!-- Shows podcast duration in minutes, e.g. 52 minutes is 52m -->
+    <string name="podcast_tiny_player_duration_under_hour">%1$dm</string>
+    <!-- Shows podcast duration in hours and minutes, e.g. 1 hour, 52 minutes is 1h 52m -->
+    <string name="podcast_tiny_player_duration_over_hour">%1$dh %2$dm</string>
+    <!-- Shows remaining duration of podcast that user is listening to e.g. 42m left -->
+    <string name="podcast_time_left">%1$s left</string>
+    <!-- CTA which results in marking a podcast episode as played for the user -->
+    <string name="podcast_mark_as_played">Mark as Played</string>
+    <!-- Label that displayed next to podcast episodes that the user has played the entirety of -->
+    <string name="podcast_played">Played</string>
+    <!-- CTA which starts dowloading the selected podcast episode -->
+    <string name="podcast_download_episode">Download Episode</string>
+    <string name="podcast_remove_episode">Remove Episode</string>
+    <string name="podcast_cancel_episode_download">Cancel Download</string>
+    <string name="podcast_downloaded_size_label">Downloaded:</string>
+
+    <!-- TT PODCAST ANDROID AUTO -->
+    <string name="podcast_auto_following_title">Following</string>
+    <string name="podcast_auto_downloaded_title">Downloaded</string>
+
+    <!-- TT PODCAST FEED -->
+    <string name="podcast_feed_recommended">Recommended Shows</string>
+    <string name="podcast_feed_your_shows">Your Shows</string>
+    <string name="podcast_feed_my_downloads">My Downloads</string>
+    <string name="podcast_feed_metadata">%1$s | %2$s</string>
+    <string name="podcast_feed_browse_by_category">Browse by Category</string>
+    <string name="podcast_feed_see_all">See all</string>
+    <string name="podcast_general_download">Download</string>
+    <string name="podcast_general_downloading">Downloading…</string>
+    <string name="podcast_general_remove_download">Remove Download</string>
+
+
+    <!-- Tt PODCAST LEAGUE FEED -->
+    <string name="podcast_league_feed_national">National</string>
+    <string name="podcast_league_feed_team_podcasts">Teams</string>
+
+
+    <!-- Tt PODCAST CATEGORY FEED -->
+
+
+    <!-- Tt PODCAST YOUR FEED -->
+    <string name="podcast_your_feed_empty_state">You are not following any podcasts yet</string>
+
+
+    <!-- Tt PODCAST DOWNLOADED -->
+    <string name="podcast_downloaded_empty_state">You haven’t saved any podcasts yet</string>
+    <string name="podcast_downloaded_delete_button">Delete Podcast File</string>
+    <string name="podcast_downloaded_delete_error">Something went wrong during the file deletion.</string>
+    <!-- Description for the amount of disk space taken up by downloaded podcasts -->
+    <!-- The size of the downloaded podcasts in megabytes -->
+    <string name="podcast_downloaded_size_value">%,.1f MB</string>
+    <!-- Menu button for deleting all downloaded podcasts -->
+    <string name="podcast_clear">Clear</string>
+    <string name="podcast_clear_confirm_description">Clear all downloaded episodes?</string>
+
+    <!-- Tt PODCAST DETAIL -->
+    <string name="podcast_detail_follow">Follow</string>
+    <string name="podcast_detail_unfollow">Following</string>
+    <string name="podcast_item_download">Download</string>
+    <string name="podcast_item_remove_download">Remove Download</string>
+    <string name="podcast_item_share">Share</string>
+
+
+    <!-- Tt PODCAST EPISODE DETAIL -->
+    <!-- Short text that indicates that user can see more of the description -->
+    <string name="podcast_episode_detail_more">More</string>
+    <!-- CTA to navigate to the detail view for a given podcast in a list -->
+    <string name="podcast_episode_detail_view_details">View Details</string>
+
+    <!-- Tt PODCAST NOTIFICATION -->
+    <string name="podcast_notification_next">Next</string>
+    <string name="podcast_notification_play">Play</string>
+    <string name="podcast_notification_pause">Pause</string>
+    <string name="podcast_notification_previous">Previous</string>
+
+
+    <!-- Tt PODCAST MORE OPTIONS -->
+    <string name="podcast_more_options_button_share">Share</string>
+
+    <!-- Tt PODCAST SLEEP TIMER -->
+    <!-- Short title describing the feature, which will turn off podcast after some time -->
+    <string name="podcast_sleep_timer_title">Sleep Timer</string>
+    <!-- List of available options for leep timer delays -->
+    <string name="podcast_sleep_timer_turn_off">Turn Timer Off</string>
+    <string name="podcast_delay_5_minutes">In 5 Minutes</string>
+    <string name="podcast_delay_10_minutes">In 10 Minutes</string>
+    <string name="podcast_delay_15_minutes">In 15 Minutes</string>
+    <string name="podcast_delay_30_minutes">In 30 Minutes</string>
+    <string name="podcast_delay_45_minutes">In 45 Minutes</string>
+    <string name="podcast_delay_60_minutes">In One Hour</string>
+    <string name="podcast_delay_episode_end">When Current Episode Ends</string>
+    <string name="podcast_sleep_timer_button_episode_end">On episode end</string>
+
+
+    <!-- COMMUNITY -->
+    <string name="community_topic_tag_live">LIVE</string>
+    <string name="community_topic_tag_ended">ENDED</string>
+    <string name="community_topic_live_ends_in_m">Ends in %1$sm</string>
+    <string name="community_topic_live_ends_in_h">Ends in %1$sh</string>
+    <string name="community_qa_live_title">Live Q&amp;A</string>
+    <string name="community_qa_upcoming_title">Upcoming Q&amp;A</string>
+    <string name="community_qa_past_title">Past Q&amp;A</string>
+
+    <string name="scores_standing_relegation_champions_league_label">Champions League</string>
+    <string name="scores_standing_relegation_europa_league_label">Europa League</string>
+    <string name="scores_standing_relegation_r_16_label">Qualifies for Round of 16</string>
+    <string name="scores_standing_relegation_relegation_label">Relegation</string>
+    <string name="scores_standing_relegation_relegation_playoff_label">Relegation Playoffs</string>
+    <string name="scores_standing_relegation_europa_conference_league_qualifying_label">Europa Conference League Qualifying</string>
+    <string name="scores_standing_relegation_promotion_label">Promotion</string>
+    <string name="scores_standing_relegation_promotion_playoffs_label">Promotion Playoffs</string>
+    <string name="scores_standing_relegation_finals_label">Finals</string>
+    <string name="scores_standing_relegation_finals_playoffs_label">Finals Playoffs</string>
+
+    <string name="scores_standings_season_label">%1$s season</string>
+
+    <string name="game_status_scheduled_title">Scheduled</string>
+    <string name="game_status_in_progress_title">In Progress</string>
+    <string name="game_status_final_title">Final</string>
+    <string name="game_status_suspended_title">Suspended</string>
+    <string name="game_status_postponed_title">Postponed</string>
+    <string name="game_status_cancelled_title">Canceled</string>
+    <string name="game_status_delayed_title">Delayed</string>
+    <string name="game_status_if_necessary_title">If Required</string>
+    <string name="game_status_unnecessary_title">Not Required</string>
+
+    <string name="bracket_unscheduled_game_title">Upcoming</string>
+
+    <!-- Indicates how many addition author images there are above the 3 that are shown -->
+    <string name="realtime_author_reaction_excess">+%1$d</string>
+
+    <!-- TT PLANS -->
+    <string name="plans_button_subscribe">Subscribe</string>
+    <!-- Badge that inform user that the offer contains 7 day free trial -->
+    <string name="plans_annual_free_period">7-Day free trial</string>
+    <!-- Badge that inform user that the offer is today only -->
+    <string name="plans_special_today_only">TODAY ONLY</string>
+    <!-- Small badge saying how much user save. Should be a short string! -->
+    <string name="plans_annual_save_xx">Save %1$s%%\non all access</string>
+    <!-- Indicates how much user is going to pay per year -->
+    <string name="plans_annual_price">%1$s/year</string>
+    <!-- Indicates how much user is going to pay per month -->
+    <string name="plans_monthly_price">%1$s/mo</string>
+    <string name="plans_placeholder_empty">Ooops! There has been an error connecting to payments portal. This can be for several reasons. Please check that you have Google Play service installed, check your connection and try again.</string>
+    <string name="plans_thanks_for_subscribe">Your purchase was successful.</string>
+    <string name="plans_special_subtitle">Local expertise.\nLeague-wide perspective.</string>
+
+
+    <!-- TT ARTICLE -->
+
+    <string name="article_comments_preview_failed_to_load_message">Comments failed to load</string>
+    <string name="article_reload_comments_preview_button">Reload comments</string>
+    <string name="article_view_more_comments">View More Comments</string>
+    <string name="article_share_button">Share</string>
+    <string name="article_share_title">Share this article!</string>
+    <string name="article_rating_title_add_rating">What did you think of this story?</string>
+    <string name="article_rating_title_thanks_subscribe_trial">Thanks for your input!\nTry The Athletic Free for 7 Days</string>
+    <string name="article_rating_title_thanks_subscribe">Thanks for your input!\nSubscribe now to get unlimited access</string>
+    <string name="article_rating_title_thanks_meh">We\'re sorry you didn\'t like it.\nWe\'ll work harder next time.</string>
+    <string name="article_rating_title_thanks_solid">Thanks for your input, this will help us continuously improve our product.</string>
+    <string name="article_rating_title_thanks_awesome">Boom. Glad you really enjoyed it.</string>
+    <string name="article_rating_meh">Meh</string>
+    <string name="article_rating_solid">Solid</string>
+    <string name="article_rating_awesome">Awesome</string>
+    <string name="article_rating_button_subscribe_trial">Start free trial</string>
+    <string name="article_rating_button_subscribe">Subscribe Now</string>
+    <!-- Footnote of element, which informs about disabled comments -->
+    <string name="article_comments_moderation_footer">The Athletic Community Team</string>
+    <!-- Text explaining why comments are disabled. "Code of Conduct" must be translated exactly same as in article_comments_moderation_code_of_conduct_span to work properly  -->
+    <string name="article_comments_disabled_title">Editor’s note: Comments on this story are disabled. Please visit the <a href="https://theathletic.com/code-of-conduct/">Code of Conduct page</a> for additional information. If you wish to contact the editor, send a note to <a href="mailto:editor@theathletic.com">editor@theathletic.com.</a></string>
+    <!-- Text explaining why comments are locked. "Code of Conduct" must be translated exactly same as in article_comments_moderation_code_of_conduct_span to work properly  -->
+    <string name="article_comments_locked_title">Editor’s note: Comments for this story have been suspended. Please visit the <a href="https://theathletic.com/code-of-conduct/">Code of Conduct page</a> for additional information. If you wish to contact the editor, send a note to <a href="mailto:editor@theathletic.com">editor@theathletic.com.</a></string>
+    <!-- Text span that is matched and given a clickable link: must match exact translation of "Code of Conduct" in article_comments_disabled_title  and article_comments_locked_title -->
+    <string name="article_comments_moderation_code_of_conduct_span">Code of Conduct</string>
+    <string name="article_comments_moderation_email_editor_span">editor@theathletic.com</string>
+
+    <!-- TT PAYWALL ARTICLE PREVIEW -->
+    <!-- Button, which opens subscription confirmation and payment -->
+    <string name="paywall_article_preview_subscribe_button">Continue</string>
+    <string name="paywall_terms_of_service">Terms of Service</string>
+    <string name="paywall_privacy_policy">Privacy Policy</string>
+    <string name="paywall_annual">Annual</string>
+    <string name="paywall_annual_billing">Billed annually after trial.</string>
+    <string name="paywall_annual_billing_no_trial">Billed annually.</string>
+    <string name="paywall_monthly">Monthly</string>
+    <string name="paywall_monthly_billing">Billed monthly.</string>
+    <string name="paywall_title">Subscribe to get the full story.</string>
+    <string name="paywall_choose_your_plan">CHOOSE YOUR PLAN</string>
+    <!-- Text used on CTA button to start a free trial -->
+    <string name="article_paywall_start_trial">Start Free Trial</string>
+    <string name="switch_to_annual_billing">Switch to Annual Plan</string>
+
+    <string name="paywall_experiment_headline">Get unrivaled sports coverage.</string>
+    <string name="paywall_experiment_subheader">The stories you care about on your favorite teams.</string>
+    <string name="paywall_experiment_cta">Subscribe Now</string>
+
+    <string name="debug_billing_start_successful_purchase" translatable="false">Successful Purchase</string>
+    <string name="debug_billing_start_failed_purchase" translatable="false">Failed Purchase</string>
+    <string name="debug_billing_start_pending_purchase" translatable="false">Pending Purchase</string>
+    <string name="debug_billing_config_is_subscribed" translatable="false">Is subscribed</string>
+    <string name="debug_billing_config_is_trial_eligible" translatable="false">Is trial eligible</string>
+    <string name="debug_billing_config_is_gifts_response_success" translatable="false">Is gifts response successful</string>
+    <string name="debug_billing_config_currency" translatable="false">Currency</string>
+
+    <!-- TT DISCUSSION -->
+    <string name="comments_header_article">Comments</string>
+    <string name="comments_header_discussion">Discussion</string>
+    <string name="comments_commenting_on"><annotation color="dark500">Commenting on:</annotation> <annotation color="dark700">%1$s</annotation></string>
+    <string name="comments_replying_to"><annotation color="dark500">Replying to</annotation> <annotation color="dark700">%1$s</annotation></string>
+    <string name="comments_editing">Editing your own comment</string>
+    <string name="comments_editing_legacy">Editing comment</string>
+    <string name="comments_empty_placeholder">Be the first to comment on this story</string>
+    <string name="comments_settings_edit">Edit</string>
+    <string name="comments_settings_delete">Delete</string>
+    <string name="comments_settings_flag">Flag</string>
+    <string name="comments_settings_share">Share</string>
+    <string name="comments_hint_add_comment">Write a comment</string>
+    <string name="comments_flag_dialog_title">Comment Flag</string>
+    <string name="comments_flag_dialog_text_abusive">This comment is abusive or harmful</string>
+    <string name="comments_flag_dialog_text_trolling">This comment is trolling or baiting</string>
+    <string name="comments_flag_dialog_text_spam">This comment is spam</string>
+    <string name="comments_flag_dialog_text_report_user">Report User</string>
+    <string name="comments_flag_dialog_confirm">Confirm</string>
+    <string name="comments_flag_dialog_cancel">Cancel</string>
+    <string name="comments_flag_snackbar_success">Comment successfully reported!</string>
+    <string name="comments_delete_snackbar_success">Comment successfully deleted!</string>
+    <string name="comments_delete_snackbar_fail">Something went wrong. Comment could not be deleted!</string>
+    <string name="comments_send">Send</string>
+    <string name="comments_send_snackbar_success">Comment successfully saved!</string>
+    <string name="comments_send_snackbar_fail">Something went wrong. Comment could not be saved!</string>
+    <string name="comments_undo_action_label">Undo</string>
+    <string name="comments_undo_snackbar">Your comment draft was discarded</string>
+    <string name="comments_input_empty">Comment text cannot be empty</string>
+    <string name="comments_check_conduct_title">Code of Conduct</string>
+    <string name="comments_check_conduct_introduction">Great content. Great conversation. The Athletic publishes the very best storytelling in sports and our community sections give readers the chance to connect with each other and our writers via lively discussion and debate in a respectful and safe forum. Please help foster this community by abiding by the Code of Conduct.</string>
+    <string name="comments_check_conduct_subtitle_1">Respect other fans</string>
+    <string name="comments_check_conduct_text_1">Abuse, harassment, bullying and personal attacks are unacceptable.</string>
+    <string name="comments_check_conduct_subtitle_2">Respect the game</string>
+    <string name="comments_check_conduct_text_2">Racism, discrimination and hate speech are not permitted.</string>
+    <string name="comments_check_conduct_subtitle_3">Be a good sport</string>
+    <string name="comments_check_conduct_text_3">No trolling, flaming or baiting comments allowed.</string>
+    <string name="comments_check_conduct_subtitle_4">Be a team player</string>
+    <string name="comments_check_conduct_text_4">Don’t post spam, advertising, vulgarities, or irrelevant, illegal, inappropriate material.</string>
+    <string name="comments_check_conduct_epilogue">All Code of Conduct violations are taken seriously and can result in a loss of commenting or subscription privileges. To help maintain a safe place for all subscribers, we ask you to flag any violations in our community sections for moderator review. Have additional questions? View our \u0020</string>
+    <string name="comments_check_conduct_button_yes">I agree</string>
+    <string name="comments_check_conduct_button_no">I disagree</string>
+    <string name="comments_check_conduct_or_with_spacers">\u0020or\u0020</string>
+    <string name="comments_item_staff">Staff</string>
+    <string name="comments_sort_newest">Newest</string>
+    <string name="comments_sort_oldest">Oldest</string>
+    <string name="comments_sort_most_liked">Most Liked</string>
+    <string name="comments_sort_trending">Trending</string>
+    <!-- Message which informs user that this action can not be done, because comments are locked -->
+    <string name="comments_locked_message">Comments are suspended for this article.</string>
+    <!-- Text spans that is matched and given a clickable link in comments_check_conduct_epilogue -->
+    <string name="comments_code_of_conduct_faq_span">FAQ</string>
+    <string name="comments_code_of_conduct_reach_out_span">reach out to us here</string>
+    <string name="comments_commenting_disabled">Commenting Disabled</string>
+    <string name="comments_temp_ban_notification_legacy">Your account has been temporarily locked for violating <u><a href="code_of_conduct">The Athletic’s Code of Conduct</a></u>. Please try again in %1$s.</string>
+    <string name="comments_temp_ban_notification_part_1">Your account has been temporarily locked for violating <u><a href="code_of_conduct">The Athletic’s Code of Conduct</a></u>.</string>
+    <string name="comments_temp_ban_notification_part_2">Please try again in %1$s.</string>
+    <string name="comments_team_banner_change">Change</string>
+    <string name="comments_team_banner_followers">followers</string>
+
+    <!-- LIVE DISCUSSION -->
+    <string name="live_discussions_title">Q&amp;A</string>
+
+    <!-- TT AUTHOR DETAIL -->
+    <string name="fragment_author_detail_follow">Follow</string>
+    <string name="fragment_author_detail_following">Following</string>
+    <string name="fragment_author_detail_twitter">Twitter</string>
+    <string name="fragment_author_detail_stories_by">Stories By %1$s</string>
+
+    <!-- TT GAME DETAIL -->
+    <string name="game_detail_tab_box_score">Game</string>
+    <string name="game_detail_tab_box_score_stats">Stats</string>
+    <string name="game_detail_tab_box_score_discuss">Discuss</string>
+    <string name="game_detail_tab_box_score_live_blog">Live Blog</string>
+    <!-- Tab label for the Game Play by Play page -->
+    <string name="game_detail_tab_plays">Plays</string>
+    <!-- Tab label for soccer games -->
+    <string name="game_detail_tab_match">Match</string>
+
+    <!-- GAME FEED -->
+    <string name="game_feed_live_bullet_point">\u2022 Live</string>
+
+    <!-- TT BOX SCORE -->
+    <string name="box_score_scoring_summary_title">Scoring Summary</string>
+    <!-- BOX SCORE - Title for Down and Distance -->
+    <string name="box_score_down_and_distance_title">Down &amp; Distance</string>
+    <!-- BOX SCORE - Title for Baseball current inning -->
+    <string name="box_score_scoring_current_inning">Current Inning</string>
+    <string name="box_score_scoring_game_odds_title">Game Odds</string>
+
+    <!-- Tt Soccer -->
+    <string name="box_score_soccer_form_guide_letter_lose">L</string>
+    <string name="box_score_soccer_form_guide_letter_win">W</string>
+    <string name="box_score_soccer_form_guide_letter_draw">D</string>
+
+    <!-- The gray tag in the middle of header -->
+    <string name="box_score_soccer_timeline_title_displayed">Timeline</string>
+    <!-- abbreviation indicating end of game in a soccer game timeline -->
+    <string name="box_score_soccer_timeline_full">FT</string>
+<!--    Soccer Penalty Shootout title e.g. P1-->
+    <string name="box_score_soccer_penalty_play_title">P%1$s</string>
+    <string name="box_score_player_line_up_bubble_text">x%1$d</string>
+    <string name="box_score_player_line_up_title_live_final">Player Line-up</string>
+    <string name="box_score_line_up_title_starting_line_up">Starting</string>
+    <string name="box_score_line_up_title_substitutions">Substitutions</string>
+    <string name="box_score_line_up_title_manager">Manager</string>
+    <string name="box_score_line_up_team_switcher">%1$s\n%2$s</string>
+    <!-- xG -> expected Goals -->
+    <string name="box_score_expected_goals_label">xG</string>
+    <!-- Player line up when no formation image available for the team -->
+    <string name="box_score_player_line_no_formation_image">No formation available</string>
+    <!-- Player line up title when one team has no lineup -->
+    <string name="box_score_player_line_no_lineup">No Lineup</string>
+    <!-- Player line up message when one team has no lineup -->
+    <string name="box_score_player_line_no_lineup_message">The lineup for this team hasn\'t been announced quite yet.</string>
+
+    <!-- Soccer timeline item for player and penalty goal type: Pogba (P) -->
+    <string name="box_score_soccer_timeline_goal_penalty">%1$s (PEN)</string>
+    <!-- Soccer timeline item for player and own goal type: Pogba (OG) -->
+    <string name="box_score_soccer_timeline_goal_own">%1$s (OG)</string>
+    <!-- Soccer header aggregate score e.g. Agg. 1-2 -->
+    <string name="box_score_soccer_header_aggregate_score">Agg. %1$d-%2$d</string>
+    <!-- Box score Key moments title -->
+    <string name="box_score_key_moments_title">Key Moments</string>
+    <!-- Box score Timeline No Key moments title -->
+    <string name="box_score_timeline_no_key_moments_title">No Key Moments</string>
+    <!-- Box score Timeline No Key moments description -->
+    <string name="box_score_timeline_no_key_moments_description">Looks like there haven’t been any key moments during this half.</string>
+    <!-- Box score Recent moments title -->
+    <string name="box_score_recent_moments_title">Recent Moments</string>
+    <!-- Box score Recent moments full timeline title -->
+    <string name="box_score_recent_moments_full_timeline_title">Full Timeline</string>
+    <string name="box_score_game_odds_powered_by">Odds Powered by</string>
+    <string name="box_score_game_odds_spread_label">Spread</string>
+    <string name="box_score_game_odds_total_label">Total</string>
+    <string name="box_score_game_odds_money_label">Money</string>
+    <!-- Game Odds - O -90 -> Over value-->
+    <string name="box_score_game_odds_total_over">O %1$s</string>
+    <!-- Game Odds - U 90 -> Under value-->
+    <string name="box_score_game_odds_total_under">U %1$s</string>
+    <string name="box_score_last_games_title">Recent Games</string>
+    <string name="box_score_recent_matches_title">Recent Matches</string>
+    <string name="box_score_recent_matches_not_available">No Recent Matches Available</string>
+    <string name="box_score_recent_games_not_available">No Recent Games Available</string>
+    <!-- Format string for away game team eg @TB - No need to translate -->
+    <string name="box_score_away_team_game">\@%1$s</string>
+    <!-- Last game was a win - W -->
+    <string name="box_score_last_games_win">W</string>
+    <!-- Last game was a win that went to overtime- W/OT -->
+    <string name="box_score_last_games_win_in_overtime">W/OT</string>
+    <!-- Last game was a win that went to shootout- W/SO -->
+    <string name="box_score_last_games_win_in_shootout">W/SO</string>
+    <!-- Last game was lost - L -->
+    <string name="box_score_last_games_lose">L</string>
+    <!-- Last game was lost that went to overtime- L/OT -->
+    <string name="box_score_last_games_lose_in_overtime">L/OT</string>
+    <!-- Last game was lost that went to shootout- L/SO -->
+    <string name="box_score_last_games_lose_in_shootout">L/SO</string>
+    <!-- Last game was a tie - T -->
+    <string name="box_score_last_games_tie">T</string>
+    <!-- 1st quarter column title -->
+    <string name="box_score_scoring_1q_title">Q1</string>
+    <!-- 2nd quarter column title -->
+    <string name="box_score_scoring_2q_title">Q2</string>
+    <!-- 3rd quarter column title -->
+    <string name="box_score_scoring_3q_title">Q3</string>
+    <!-- 4th quarter column title -->
+    <string name="box_score_scoring_4q_title">Q4</string>
+    <!-- 1st period column title -->
+    <string name="box_score_scoring_1st_title">1ST</string>
+    <!-- 2nd period column title -->
+    <string name="box_score_scoring_2nd_title">2ND</string>
+    <!-- 3rd period column title -->
+    <string name="box_score_scoring_3rd_title">3RD</string>
+    <!-- Overtime column title -->
+    <string name="box_score_scoring_ot_title">OT</string>
+    <!-- Overtime column title when more then one overtime period eg NHL. 3OT-->
+    <string name="box_score_scoring_more_than_one_ot_title">%1$sOT</string>
+    <!-- Shootout column title -->
+    <string name="box_score_scoring_so_title">SO</string>
+    <!-- Totals column title -->
+    <string name="box_score_scoring_total_title">T</string>
+    <!-- Baseball inning half Bottom title format eg BOT 2 -->
+    <string name="box_score_baseball_play_title_bottom">Bot %1$s</string>
+    <!-- Baseball inning half Top title format eg TOP 2 -->
+    <string name="box_score_baseball_play_title_top">Top %1$s</string>
+    <!-- Baseball inning half Middle title format eg MID 2 -->
+    <string name="box_score_baseball_play_title_middle">Mid %1$s</string>
+    <!-- Baseball inning half End title format eg END 2 -->
+    <string name="box_score_baseball_play_title_end">End %1$s</string>
+    <!-- Baseball inning half Bottom long title format eg BOTTOM 2nd -->
+    <string name="box_score_baseball_play_title_bottom_long">Bottom %1$s</string>
+    <!-- Baseball inning half Top title format eg TOP 2nd -->
+    <string name="box_score_baseball_play_title_top_long">Top %1$s</string>
+    <!-- Baseball inning half Middle title format eg MID 2 -->
+    <string name="box_score_baseball_play_title_middle_long">Middle %1$s</string>
+    <!-- Baseball inning half End title format eg END 2 -->
+    <string name="box_score_baseball_play_title_end_long">End %1$s</string>
+    <!-- Baseball live status formatter balls-strikes, outs Out eg 1-2, 2 Out -->
+    <string name="box_score_baseball_live_status_formatter">%1$d-%2$d, %3$d Out</string>
+    <!-- Baseball live status formatter strikeout, outs Out eg K, 2 Out -->
+    <string name="box_score_baseball_live_status_strikeout_formatter">K, %1$d Out</string>
+    <!-- Baseball live status formatter walk, outs Out eg BB, 2 Out -->
+    <string name="box_score_baseball_live_status_walk_formatter">BB, %1$d Out</string>
+    <!-- Baseball Starting Pitchers title -->
+    <string name="box_score_baseball_starting_pitchers_title">Starting Pitchers</string>
+    <!-- Baseball Probable Pitchers title -->
+    <string name="box_score_baseball_probable_pitchers_title">Probable Pitchers</string>
+    <!-- Baseball Probable Pitchers Text -->
+    <string name="box_score_baseball_probable_pitchers">Probable</string>
+    <!-- Baseball Left Handed Pitcher, eg LHP -->
+    <string name="box_score_baseball_pitcher_lh">LHP</string>
+    <!-- Baseball Right Handed Pitcher, eg RHP -->
+    <string name="box_score_baseball_pitcher_rh">RHP</string>
+    <!-- Baseball Left Handed Pitcher, eg LHP -->
+    <string name="box_score_baseball_pitcher_lh_with_team">LHP, %1$s</string>
+    <!-- Baseball Right Handed Pitcher, eg RHP -->
+    <string name="box_score_baseball_pitcher_rh_with_team">RHP, %1$s</string>
+    <!-- Baseball Pitching -->
+    <string name="box_score_baseball_pitching">Pitching</string>
+    <!-- Baseball Batting -->
+    <string name="box_score_baseball_batting">Batting</string>
+    <!-- Baseball score table totals column header for Runs -->
+    <string name="box_score_baseball_score_table_runs_header">R</string>
+    <!-- Baseball score table totals column header for Hits -->
+    <string name="box_score_baseball_score_table_hits_header">H</string>
+    <!-- Baseball score table totals column header for Errors -->
+    <string name="box_score_baseball_score_table_errors_header">E</string>
+    <!-- Baseball pitcher Win -->
+    <string name="box_score_baseball_pitcher_win">Win</string>
+    <!-- Baseball pitcher Loss -->
+    <string name="box_score_baseball_pitcher_loss">Loss</string>
+    <!-- Baseball pitcher Save -->
+    <string name="box_score_baseball_pitcher_save">Save</string>
+    <!-- Baseball Current Inning Next Batter - eg On Deck: B. Nimmo CF -->
+    <string name="box_score_baseball_current_inning_next_batter">On Deck: %1$s %2$s</string>
+    <!-- Baseball Current Inning Batter Stats - eg 0-3, .375 -->
+    <string name="box_score_baseball_current_inning_batter_stats">%1$s-%2$s, %3$s</string>
+    <!-- Baseball Current Inning Pitcher Strikes - eg 27P - 12S -->
+    <string name="box_score_baseball_current_inning_pitcher_strikes">%1$sP - %2$sS</string>
+    <!-- Baseball Pitcher Stats Win and Loss -->
+    <string name="box_score_baseball_stats_win_loss">W-L</string>
+    <!-- Baseball Pitcher Stats Games Played -->
+    <string name="box_score_baseball_stats_games">G</string>
+
+    <!-- Top Comments component title -->
+    <string name="box_score_top_comments_title">Top Comments</string>
+    <!-- Team Leaders component title -->
+    <string name="box_score_team_leaders_title">Team Leaders</string>
+    <!-- Top Performers component title -->
+    <string name="box_score_top_performers_title">Top Performers</string>
+    <!-- Team Leader/Top Performer player details formatter -> position, team, number eg QB KC #15 -->
+    <string name="box_score_stats_leader_player_details_formatter">%1$s, %2$s #%3$s</string>
+    <!-- Team Leader/Top Performer player details formatter -> team, number eg KC #15 -->
+    <string name="box_score_stats_leader_player_details_no_pos_formatter">%1$s #%2$s</string>
+    <!-- Injury Report title -->
+    <string name="box_score_injury_report_title">Injury Report</string>
+    <!-- Game details summary eg PHI @ IND -->
+    <string name="box_score_game_details_summary">%1$s @ %2$s</string>
+    <!-- Injury type - D7 -->
+    <string name="box_score_injury_type_d7">Concussion List</string>
+    <!-- Injury type - D10, 10 day injury list -->
+    <string name="box_score_injury_type_d10">10-Day IL</string>
+    <!-- Injury type - D15, 15 day injury list -->
+    <string name="box_score_injury_type_d15">15-Day IL</string>
+    <!-- Injury type - D60, 60 day injury list -->
+    <string name="box_score_injury_type_d60">60-Day IL</string>
+    <!-- Injury type - Day -->
+    <string name="box_score_injury_type_day">Day</string>
+    <!-- Injury type - Day to Day -->
+    <string name="box_score_injury_type_day_to_day">Day-to-Day</string>
+    <!-- Injury type - Doubtful -->
+    <string name="box_score_injury_type_doubtful">Doubtful</string>
+    <!-- Injury type - Out -->
+    <string name="box_score_injury_type_out">Out</string>
+    <!-- Injury type - Out for Season -->
+    <string name="box_score_injury_type_out_for_season">Out for Season</string>
+    <!-- Injury type - Out Indefinitely -->
+    <string name="box_score_injury_type_out_indefinitely">Out Indefinitely</string>
+    <!-- Injury type - Questionable -->
+    <string name="box_score_injury_type_questionable">Questionable</string>
+    <!-- Injury type - Unknown -->
+    <string name="box_score_injury_type_unknown">Unknown</string>
+    <!-- No injuries message -->
+    <string name="box_score_no_injuries">No Injuries</string>
+    <!-- Injury and comment formatter, eg Knee - Will be out for a week -->
+    <string name="box_score_injury_comment_formatter">%1$s - %2$s</string>
+    <!-- 1 more injury label -->
+    <string name="box_score_one_more_injury">1 more injury</string>
+    <!-- More Injuries label - more than 1, eg 5 more injuries -->
+    <string name="box_score_more_injuries">%1$d more injuries</string>
+    <!-- Basketball current period scores eg SAS: 26 LAL: 24 -->
+    <string name="plays_basketball_period_scores">%1$s: %2$s  %3$s: %4$s</string>
+    <!-- Hockey current shots at goal eg SOG, SAS: 26 LAL: 24 -->
+    <string name="plays_hockey_shots_at_goal">SOG, %1$s: %2$s  %3$s: %4$s</string>
+    <!-- Hockey current shots at goal during a shootout eg 4 Shots -->
+    <string name="plays_hockey_shootout_shots_at_goal">%1$d Shots</string>
+    <!-- Hockey Plays tab title - All Plays -->
+    <string name="plays_hockey_plays_option_title_all_plays">All Plays</string>
+    <!-- Hockey Plays tab title - Scoring Plays -->
+    <string name="plays_hockey_plays_option_title_scoring_plays">Scoring Plays</string>
+    <!-- Baseball Inning stats formatter - eg 3 Runs, 1 Hits -->
+    <string name="plays_baseball_inning_stats_subtitle">%1$d Runs, %2$d Hits</string>
+    <!-- Baseball current inning indicator title - BALLS -->
+    <string name="box_score_current_inning_indicator_balls">Balls</string>
+    <!-- Baseball current inning indicator title - STRIKES -->
+    <string name="box_score_current_inning_indicator_strikes">Strikes</string>
+    <!-- Baseball current inning indicator title - OUTS -->
+    <string name="box_score_current_inning_indicator_outs">Outs</string>
+    <!-- American Football drive stats formatter - eg 17 Plays, 75 Yards, 11:18 -->
+    <string name="plays_american_football_drive_stats_subtitle">%1$d Plays, %2$d Yards, %3$s</string>
+    <!-- American Football Play tab title - All Drives -->
+    <string name="plays_american_football_plays_option_title_all_plays">All Drives</string>
+    <!-- American Football Plays tab title - Scoring Drives -->
+    <string name="plays_american_football_plays_option_title_scoring_plays">Scoring Drives</string>
+    <!-- Soccer Plays tab title - All Moments -->
+    <string name="plays_soccer_plays_option_title_all_moments">All Moments</string>
+    <!-- Soccer Plays Periods - First half -->
+    <string name="plays_soccer_plays_first_half_title">1st Half</string>
+    <!-- Soccer Plays tab title - All Moments -->
+    <string name="plays_soccer_plays_second_half_title">2nd Half</string>
+    <!-- Soccer Plays tab title - Penalty Shootout -->
+    <string name="plays_soccer_plays_penalty_shootout_title">Penalty Shootout</string>
+    <!-- Soccer Plays tab title - First Half Extra Time -->
+    <string name="plays_soccer_plays_first_half_extra_time_title">1st Half Extra Time</string>
+    <!-- Soccer Plays tab title - Second Half Extra Time -->
+    <string name="plays_soccer_plays_second_half_extra_time_title">2nd Half Extra Time</string>
+    <!-- Soccer Plays tab title - Half Time -->
+    <string name="plays_soccer_plays_half_time_title">Half Time</string>
+    <!-- Soccer Plays tab title - Full Time -->
+    <string name="plays_soccer_plays_full_time_title">Full Time</string>
+    <!-- Soccer Plays tab title - Kick Off -->
+    <string name="plays_soccer_plays_kick_off_title">Kick off</string>
+    <!-- Soccer Plays Periods - Chances Label e.g. Chances Created: CHE 0, MCI 8 -->
+    <string name="plays_soccer_plays_chances_title">Chances Created: %1$s %2$s, %3$s %4$s</string>
+    <!-- Statistics category labels -->
+    <string name="box_score_stats_category_advanced">Advanced</string>
+    <string name="box_score_stats_category_defense">Defense</string>
+    <string name="box_score_stats_category_eff_4th_down">Eff. 4th Down</string>
+    <string name="box_score_stats_category_eff_goal_to_go">Eff. Goal To Go</string>
+    <string name="box_score_stats_category_eff_red_zone">Eff. Red Zone</string>
+    <string name="box_score_stats_category_eff_3rd_down">Eff. 3rd Down</string>
+    <string name="box_score_stats_category_extra_points_convs">Extra Points Conversions</string>
+    <string name="box_score_stats_category_extra_points_kicks">Extra Points Kicks</string>
+    <string name="box_score_stats_category_field_goals">Field Goals</string>
+    <string name="box_score_stats_category_first_downs">1st Downs</string>
+    <string name="box_score_stats_category_fumbles">Fumbles</string>
+    <string name="box_score_stats_category_interceptions">Interceptions</string>
+    <string name="box_score_stats_category_int_returns">Int. Returns</string>
+    <string name="box_score_stats_category_kickoffs">Kickoffs</string>
+    <string name="box_score_stats_category_kicking">Kicking</string>
+    <string name="box_score_stats_category_kick_returns">Kick Returns</string>
+    <string name="box_score_stats_category_misc_returns">Misc. Returns</string>
+    <string name="box_score_stats_category_passing">Passing</string>
+    <string name="box_score_stats_category_penalties">Penalties</string>
+    <string name="box_score_stats_category_punts">Punting</string>
+    <string name="box_score_stats_category_punt_returns">Punt Returns</string>
+    <string name="box_score_stats_category_receiving">Receiving</string>
+    <string name="box_score_stats_category_rushing">Rushing</string>
+    <string name="box_score_stats_category_standard">Standard</string>
+    <string name="box_score_stats_category_summary">Summary</string>
+    <string name="box_score_stats_category_touchdowns">Touchdowns</string>
+    <string name="box_score_stats_category_unknown">Unknown</string>
+    <string name="box_score_stats_category_basketball_starters">Starters</string>
+    <string name="box_score_stats_category_basketball_bench">Bench</string>
+    <string name="box_score_stats_category_hockey_goalies">Goalies</string>
+    <string name="box_score_stats_category_hockey_skaters">Skaters</string>
+    <string name="box_score_stats_category_baseball_batting">Hitters</string>
+    <string name="box_score_stats_category_baseball_pitching">Pitchers</string>
+    <string name="box_score_top_comments_join_the_discussion">Join the Discussion</string>
+
+    <!-- Period titles -->
+    <string name="box_score_first_quarter">1st Quarter</string>
+    <string name="box_score_second_quarter">2nd Quarter</string>
+    <string name="box_score_third_quarter">3rd Quarter</string>
+    <string name="box_score_forth_quarter">4th Quarter</string>
+    <string name="box_score_first_period">Period 1</string>
+    <string name="box_score_second_period">Period 2</string>
+    <string name="box_score_third_period">Period 3</string>
+    <string name="box_score_overtime">Overtime</string>
+    <string name="box_score_shootout">Shootout</string>
+    <string name="box_score_unknown">Unknown</string>
+    <!-- Game Details - Title -->
+    <string name="box_score_game_details_title">Game Details</string>
+    <string name="box_score_match_details_title">Match Details</string>
+    <!-- Recent Plays - Title -->
+    <string name="box_score_recent_plays_title">Recent Plays</string>
+    <!-- Recent Plays - Full Play -->
+    <string name="box_score_recent_plays_full_play">Full Play by Play</string>
+    <!-- Game Details - Network or TV Channel/provider -->
+    <string name="box_score_game_details_network_label">Network</string>
+    <!-- Game Details - Games location -->
+    <string name="box_score_game_details_location_label">Location</string>
+    <!-- Game Details - Location -> venue, city -->
+    <string name="box_score_game_details_location">%1$s, %2$s</string>
+    <!-- Game Details - Weather at games location -->
+    <string name="box_score_game_details_weather_label">Weather</string>
+    <!-- Game Details - Officials of Soccer game -->
+    <string name="box_score_game_details_officials_label">Officials</string>
+    <!-- Game Details - Opening game odds -->
+    <string name="box_score_game_details_odds_label">Opening Odds</string>
+    <!-- Game Details - Line: PHI -8 Over/Under: 5.5 total-->
+    <string name="box_score_game_details_opening_odds_line">Line: %1$s %2$s\nOver/Under: %3$s</string>
+    <!-- Game Details - Line: Even Over/Under: 5.5 total-->
+    <string name="box_score_game_details_opening_odds_even">Line: Even\nOver/Under: %1$s</string>
+    <!-- Related Stories title -->
+    <string name="box_score_related_stories_title">Related Stories</string>
+    <!-- Relates Stories author names eg Author First and Author Second -->
+    <string name="box_score_related_stories_authors">%1$s and %2$s</string>
+    <!-- Relates Stories author - The Athletic Staff -->
+    <string name="box_score_related_stories_the_athletic_staff_author">The Athletic Staff</string>
+    <!-- Game Details - weather temp in fahrenheit and outlook, eg 76oF Sunny -->
+    <string name="box_score_game_details_weather_fahrenheit">%1$s&#730;F %2$s</string>
+    <!-- Game Details - weather temp in celsius and outlook, eg 25oC Sunny -->
+    <string name="box_score_game_details_weather_celsius">%1$s&#730;C %2$s</string>
+
+    <!-- Game Details toolbar header for non-soccer sports eg. MIA @ BUF -->
+    <string name="game_details_toolbar_american_football_label">%1$s @ %2$s</string>
+    <!-- Game Details toolbar header for non-soccer sports with first team a TBC eg. TBC @ BUF -->
+    <string name="game_details_toolbar_non_soccer_first_team_tbc_label">TBC @ %1$s</string>
+    <!-- Game Details toolbar header for non-soccer sports with second team a TBC eg. MIA @ TBC -->
+    <string name="game_details_toolbar_non_soccer_second_team_tbc_label">%1$s @ TBC</string>
+    <!-- Game Details toolbar header for non-soccer sports with both teams TBC eg. TBC @ TBC -->
+    <string name="game_details_toolbar_non_soccer_both_teams_tbc_label">TBC @ TBC</string>
+    <!-- Game Details toolbar header for Soccer eg. CHE v MNC -->
+    <string name="game_detail_toolbar_soccer_label">%1$s v %2$s</string>
+    <!-- Game Details toolbar header for Soccer with first team TBC eg. TBC v MNC -->
+    <string name="game_detail_toolbar_soccer_with_first_team_tbc_label">TBC v %1$s</string>
+    <!-- Game Details toolbar header for Soccer with second team TBC eg. CHE v TBC -->
+    <string name="game_detail_toolbar_soccer_with_second_team_tbc_label">%1$s v TBC</string>
+    <!-- Game Details toolbar header for Soccer with both team TBC eg. TBC v TBC -->
+    <string name="game_detail_toolbar_soccer_with_both_team_tbc_label">TBC v TBC</string>
+    <!-- Game Details  header for Soccer game title eg. Premier League, Matchweek 6 -->
+    <string name="game_detail_header_soccer_game_title">%1$s, %2$s</string>
+    <!-- Game Details  header for Soccer aggregate winner  title eg. Barcelona wins on aggregate -->
+    <string name="game_detail_header_soccer_agg_winner_title">%1$s wins on aggregate</string>
+    <!-- Game Details  header for Soccer penalty winner  title eg. Barcelona wins 9-4 on penalties -->
+    <string name="game_detail_header_soccer_penalty_winner_title">%1$s wins %2$d-%3$d on penalties</string>
+    <!-- Game Details game status - 1st Quarter -->
+    <string name="game_detail_post_game_1st_quarter_label">1st</string>
+    <!-- Game Details game status - 1st Quarter -->
+    <string name="game_detail_post_game_2nd_quarter_label">2nd</string>
+    <!-- Game Details game status - 1st Quarter -->
+    <string name="game_detail_post_game_3rd_quarter_label">3rd</string>
+    <!-- Game Details game status - 1st Quarter -->
+    <string name="game_detail_post_game_4th_quarter_label">4th</string>
+    <!-- Game Details game status - Half time -->
+    <string name="game_detail_post_game_halftime_label">Halftime</string>
+    <!-- Game Details game status - Overtime -->
+    <string name="game_detail_post_game_overtime_label">Overtime</string>
+    <!-- Game Details game status - Overtime with a number eg Overtime 3-->
+    <string name="game_detail_post_game_overtime_formatter">Overtime %1$d</string>
+    <!-- Game Details game status - Full time -->
+    <string name="game_detail_post_game_final_label">Final</string>
+    <!-- Game Details game status - Full time with overtime-->
+    <string name="game_detail_post_game_final_overtime_label">F/OT</string>
+    <!-- Game Details game status - Full time with overtime with a number eg Final/2OT-->
+    <string name="game_detail_post_game_final_overtime_formatter">F/%1$dOT</string>
+    <!-- Game Details game status - Shootout-->
+    <string name="game_detail_post_game_shootout_label">Shootout</string>
+    <string name="game_detail_post_game_final_shootout_label">F/SO</string>
+    <!-- Game Details game status - Canceled -->
+    <string name="game_detail_pre_game_canceled_label">Canceled</string>
+    <!-- Game Details game status - Postponed -->
+    <string name="game_detail_pre_game_postponed_label">Postponed</string>
+    <!-- Game Details game status - Suspended -->
+    <string name="game_detail_pre_game_suspended_label">Suspended</string>
+    <!-- Game Details game status - If Necessary -->
+    <string name="game_detail_pre_game_if_necessary_label">If Necessary</string>
+    <!-- Game Details game status - If Necessary but shorten version for scores ribbon on feed -->
+    <string name="game_detail_pre_game_if_necessary_shorten_label">If Nec.</string>
+    <!-- Game Details game status - Delayed -->
+    <string name="game_detail_delayed_label">Delayed</string>
+    <!-- Game Details game status - Delay -->
+    <string name="game_detail_delay_label">Delay</string>
+
+    <!-- Last Play formatter for 1st down eg 1st & 10 at MIA 25 -->
+    <string name="box_score_last_play_1st_down">1st &amp; %2$d at %3$s %4$d</string>
+    <!-- Last Play formatter for 2nd down eg 2nd & 10 at MIA 25 -->
+    <string name="box_score_last_play_2nd_down">2nd &amp; %2$d at %3$s %4$d</string>
+    <!-- Last Play formatter for 3rd down eg 3rd & 10 at MIA 25 -->
+    <string name="box_score_last_play_3rd_down">3rd &amp; %2$d at %3$s %4$d</string>
+    <!-- Last Play formatter for 4th down eg 4th & 10 at MIA 25 -->
+    <string name="box_score_last_play_4th_down">4th &amp; %2$d at %3$s %4$d</string>
+    <!-- Last Play formatter for 1st down eg 1st & Goal at MIA 25 -->
+    <string name="box_score_last_play_1st_down_with_goal">1st &amp; Goal at %1$s %2$d</string>
+    <!-- Last Play formatter for 2nd down eg 2nd & Goal at MIA 25 -->
+    <string name="box_score_last_play_2nd_down_with_goal">2nd &amp; Goal at %1$s %2$d</string>
+    <!-- Last Play formatter for 3rd down eg 3rd & Goal at MIA 25 -->
+    <string name="box_score_last_play_3rd_down_with_goal">3rd &amp; Goal at %1$s %2$d</string>
+    <!-- Last Play formatter for 4th down eg 4th & Goal at MIA 25 -->
+    <string name="box_score_last_play_4th_down_with_goal">4th &amp; Goal at %1$s %2$d</string>
+    <!-- Last Play formatter for 0 down and team name gets displayed only -->
+    <string name="box_score_last_play_no_down">%1$s</string>
+
+    <!-- Box Score Tickets -->
+    <string name="box_score_game_details_tickets">Tickets from %1$s</string>
+    <string name="box_score_game_details_buy_tickets">Buy Tickets</string>
+
+    <!-- Team Stats (Statistics) section title -->
+    <string name="box_scores_team_stats_title">Team Stats</string>
+    <!-- Team Stats stats type column heading -->
+    <string name="box_scores_team_stats_type_heading">Matchup</string>
+    <!-- Season Stats (Statistics) section title -->
+    <string name="box_scores_season_stats_title">Season Stats</string>
+    <string name="box_scores_season_stats_rank">(%1$s)</string>
+
+    <!-- Hockey shootout result is a goal -->
+    <string name="box_score_hockey_shootout_result_goal">Goal</string>
+    <!-- Hockey shootout result is a save -->
+    <string name="box_score_hockey_shootout_result_save">Save</string>
+
+    <!-- Live game status for scores banner -->
+    <string name="scores_banner_status_live">LIVE</string>
+
+    <!-- No current game updates available message -->
+    <string name="scores_schedule_no_game_information_message">No game information at the moment.</string>
+    <string name="scores_schedule_no_game_on_this_date_message">No games on this date.</string>
+
+    <!-- PLAYER GRADES -->
+    <!-- Tab title -->
+    <string name="game_detail_tab_box_score_grades">Grades</string>
+    <!-- Title -->
+    <string name="box_score_player_grade_title">Player Grades</string>
+    <!-- Grade awarded to player by user - eg Your Grade: 3 -->
+    <string name="player_grade_your_grades">Your Grade: %1$d</string>
+    <!-- Grade not yet awarded to player by user - eg Not Graded -->
+    <string name="player_grade_not_graded">Not Graded</string>
+    <!-- Player Grade Footer Title - Grade Players -->
+    <string name="player_grade_footer_title_grade_players">Grade Players</string>
+    <!-- Player Grade Footer Title - View Player Grade -->
+    <string name="player_grade_footer_title_view_player_grades">View Player Grades</string>
+    <string name="player_grades_show_more_stats">Show More Stats</string>
+    <string name="player_grades_show_less_stats">Show Less Stats</string>
+    <string name="player_grades_grade_performance">Grade this performance</string>
+    <string name="player_grades_grade_submitted">Grade submitted</string>
+    <string name="player_grades_see_all_grades">See all Player Grades</string>
+    <!-- Summary of the player's team alias, position and jersey number-->
+    <string name="player_grades_players_details">%1$s, %2$s #%3$s</string>
+    <string name="player_grade_not_applicable">N/A</string>
+    <string name="player_grade_grade_deleted">Grade deleted</string>
+    <!-- When no grades are available to be displayed, for GB English grades should be rating -->
+    <string name="player_grades_no_grades_available">No grades currently available</string>
+
+    <!-- LEAGUE HUBS -->
+    <string name="league_hub_tab_bracket_label_north_america">Bracket</string>
+    <string name="league_hub_tab_bracket_label_world">Knockouts</string>
+
+    <!-- TEAM HUBS -->
+    <string name="team_hub_tab_home_label">Home</string>
+    <string name="team_hub_tab_schedule_label">Schedule</string>
+    <string name="team_hub_tab_standings_label">Standings</string>
+    <string name="team_hub_tab_table_label">Table</string>
+    <string name="team_hub_tab_stats_label">Stats</string>
+    <string name="team_hub_tab_roster_label">Roster</string>
+    <string name="team_hub_tab_squad_label">Squad</string>
+    <string name="team_hub_stats_team_button_label">Team</string>
+    <string name="team_hub_stats_player_button_label">Player</string>
+
+    <string name="team_hub_unfollow_menu_label">Unfollow</string>
+    <string name="team_hub_notifications_menu_label">Notifications</string>
+    <!-- Follow or Unfollow team message shown to the user -->
+    <string name="team_hub_following_team_message">You are now following this team</string>
+    <string name="team_hub_unfollowing_team_message">You are no longer following this team</string>
+    <!-- Follow or Unfollow league message shown to the user -->
+    <string name="league_hub_following_league_message">You are now following this league</string>
+    <string name="league_hub_unfollowing_league_message">You are no longer following this league</string>
+
+    <!-- Roster position categories -->
+    <string name="team_hub_roster_category_label_offense">Offense</string>
+    <string name="team_hub_roster_category_label_defense">Defense</string>
+    <string name="team_hub_roster_category_label_special_teams">Special Teams</string>
+    <string name="team_hub_roster_category_label_goal_keeper">Goalkeeper</string>
+    <string name="team_hub_roster_category_label_outfield_players">Outfield Players</string>
+    <string name="team_hub_roster_category_label_pitchers">Pitchers</string>
+    <string name="team_hub_roster_category_label_catchers">Catchers</string>
+    <string name="team_hub_roster_category_label_infielders">Infielders</string>
+    <string name="team_hub_roster_category_label_outfielders">Outfielders</string>
+    <string name="team_hub_roster_category_label_designated_hitter">Designated Hitter</string>
+    <string name="team_hub_roster_category_label_centers">Centers</string>
+    <string name="team_hub_roster_category_label_left_wings">Left Wings</string>
+    <string name="team_hub_roster_category_label_right_wings">Right Wings</string>
+    <string name="team_hub_roster_category_label_goalies">Goalies</string>
+
+    <string name="team_hub_player_stats_column_title">Name</string>
+    <!-- Player jersey number eg #20 or #2 -->
+    <string name="team_hub_player_jersey_number_formatter">#%1$d</string>
+    <!-- Roster column heading, Position -->
+    <string name="team_hub_roster_column_heading_position">Pos</string>
+    <!-- Roster weight unit - pounds eg 201 lbs -->
+    <string name="team_hub_roster_weight_pounds">%1$d lbs</string>
+    <!-- Roster weight unit - kilograms eg 78 kg -->
+    <string name="team_hub_roster_weight_kilograms">%1$d kg</string>
+    <!-- Roster height unit - feet eg 5-10 -->
+    <string name="team_hub_roster_height_feet">%1$d-%2$d</string>
+    <!-- Roster height unit - meters eg 189 cm -->
+    <string name="team_hub_roster_height_meters">%1$.2f m</string>
+
+    <!-- Team Hub Player Stats category labels -->
+    <string name="team_hub_player_stats_category_passing">Passing</string>
+    <string name="team_hub_player_stats_category_rushing">Rushing</string>
+    <string name="team_hub_player_stats_category_receiving">Receiving</string>
+    <string name="team_hub_player_stats_category_defense">Defense</string>
+    <string name="team_hub_player_stats_category_kicking">Kicking</string>
+    <string name="team_hub_player_stats_category_punts">Punts</string>
+    <string name="team_hub_player_stats_category_kick_returns">Kick Returns</string>
+    <string name="team_hub_player_stats_category_punt_returns">Punt Returns</string>
+    <string name="team_hub_player_stats_category_batting">Batting</string>
+    <string name="team_hub_player_stats_category_pitching">Pitching</string>
+    <string name="team_hub_player_stats_category_skating">Skating</string>
+    <string name="team_hub_player_stats_category_goaltending">Goaltending</string>
+    <string name="team_hub_player_stats_category_goal_keepers">Goal Keepers</string>
+    <string name="team_hub_player_stats_category_outfield_players">Outfield Players</string>
+
+    <!-- Roster column heading, Height -->
+    <string name="team_hub_roster_column_heading_height">Ht</string>
+    <!-- Roster column heading, Weight -->
+    <string name="team_hub_roster_column_heading_weight">Wt</string>
+    <!-- Roster column heading, Date of Birth -->
+    <string name="team_hub_roster_column_heading_dob">Dob</string>
+    <!-- Roster column heading, Age -->
+    <string name="team_hub_roster_column_heading_age">Age</string>
+
+    <!-- Team Hub Stats empty state messages -->
+    <string name="team_hub_stats_empty_title">No Stats Available</string>
+    <string name="team_hub_stats_empty_subtitle">Sorry, we don’t have stats for this team right now</string>
+
+    <!-- Team Hub Standings empty state messages -->
+    <string name="team_hub_standings_empty_title">No Standings Available</string>
+    <string name="team_hub_standings_empty_subtitle">Sorry, we don’t have standings for this team right now</string>
+    <string name="league_hub_standings_empty_subtitle">Sorry, we don’t have standings for this league right now</string>
+
+    <!-- Team Hub Roster empty state messages -->
+    <string name="team_hub_roster_empty_title">No Roster Available</string>
+    <string name="team_hub_roster_empty_subtitle">Sorry, we don’t a roster for this team right now</string>
+
+    <!-- TT SEARCH -->
+    <string name="search_bar_hint">Search</string>
+    <string name="search_bar_cancel">Cancel</string>
+    <string name="search_tab_articles">Articles</string>
+    <string name="search_tab_authors">Authors</string>
+    <string name="search_tab_teams">Teams</string>
+    <string name="search_tab_leagues">Leagues</string>
+    <string name="search_header_most_popular">Most Popular</string>
+    <!-- Shows the number of results from a user's search ex- 15 Results: -->
+    <string name="search_header_results">%1$d Results:</string>
+    <string name="search_header_no_results">No results found.</string>
+    <string name="search_header_author_empty">Search for an author and your results will appear here</string>
+    <string name="search_header_team_empty">Search for a team and your results will appear here</string>
+    <string name="search_header_league_empty">Search for a league and your results will appear here</string>
+    <string name="search_item_discussions">Discussion</string>
+    <string name="search_teams_leagues_placeholder">Search teams or leagues</string>
+
+
+    <!-- TT SETTINGS -->
+    <string name="settings_manage_subscriptions">Manage Subscriptions</string>
+    <string name="setting_delete_my_account">Delete My Account</string>
+    <string name="setting_manage_privacy_preferences">Manage Privacy Preferences</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_terms_of_service">Terms of Service</string>
+    <string name="settings_debug_tools" translatable="false">Debug Tools</string>
+
+    <!-- Tt DEBUG TOOLS SETTINGS -->
+    <string name="debug_tools_section_feature_switches"
+        translatable="false">Feature Switches\nGrey = local w. undefined value</string>
+    <string name="debug_tools_section_custom_switches"
+        translatable="false">Custom Switches</string>
+    <string name="debug_tools_section_compass_switches"
+        translatable="false">Compass Switches</string>
+    <string name="debug_tools_section_advertising"
+        translatable="false">Advertisement</string>
+    <string name="debug_tools_ad_keyword_title"
+        translatable="false">Ad Keyword</string>
+    <string name="debug_tools_privacy"
+        translatable="false">Privacy</string>
+    <string name="debug_tools_privacy_country_code"
+        translatable="false">Country Code</string>
+    <string name="debug_tools_privacy_state"
+        translatable="false">State Abbreviation</string>
+    <string name="debug_tools_section_compass_dialog_title"
+        translatable="false">Apply Changes</string>
+    <string name="debug_tools_section_compass_dialog_message"
+        translatable="false">To safely apply the compass changes you need to restart the app. In case of testing the authentication screen or onboarding, please hit the Log Out and Restart button.</string>
+    <string name="debug_tools_section_compass_dialog_restart_the_app"
+        translatable="false">Restart</string>
+    <string name="debug_tools_section_compass_dialog_log_out_the_user"
+        translatable="false">Log Out and Restart</string>
+    <string name="debug_tools_section_custom_buttons_temporary"
+        translatable="false">Temporary Custom Buttons</string>
+    <string name="debug_tools_section_custom_buttons_permanent"
+        translatable="false">Permanent Custom Buttons</string>
+    <string name="debug_tools_compass_selected_variant"
+        translatable="false">Selected variant: %1$s</string>
+    <string name="debug_tools_compass_selected_variant_server_default"
+        translatable="false">Server Default</string>
+
+    <!-- Tt PODCAST PUSH SETTINGS -->
+    <string name="podcast_push_settings_title">Podcast Episodes</string>
+    <string name="podcast_push_settings_empty">Follow a podcast to set notifications</string>
+
+
+    <!-- Tt PUSH SETTINGS -->
+    <!-- Name displayed when Android system refers to Push Notification configuration. Should be terse. -->
+    <string name="push_settings_iterable_channel">General Notifications</string>
+
+    <!-- LIVE AUDIO ROOMS -->
+    <string name="rooms_leave">Leave</string>
+    <string name="rooms_ask_to_speak">Ask to Speak</string>
+    <string name="rooms_ask_cancel">Cancel Ask</string>
+    <string name="rooms_leave_stage">Leave Stage</string>
+    <string name="rooms_stage_queue">Stage Queue</string>
+    <string name="rooms_other_count">Others in the room (%1$d)</string>
+    <string name="rooms_request_pending">Your request is pending host approval</string>
+    <string name="rooms_request_approved">Request Granted. You are now on stage</string>
+    <string name="rooms_request_removed">The host has removed you from the stage</string>
+    <string name="rooms_user_locked">You’ve been locked from speaking or commenting for violating The Athletic’s Code of Conduct</string>
+    <string name="rooms_auto_push_sent">Push Notification has been sent to users.</string>
+    <string name="rooms_on_stage">On Stage</string>
+    <string name="rooms_requested">Requested</string>
+    <string name="rooms_host">Host</string>
+    <string name="rooms_staff">Staff</string>
+    <string name="rooms_moderator_name">The Athletic</string>
+    <string name="rooms_audience">Audience</string>
+    <string name="rooms_subscriber">Subscriber</string>
+    <!-- Title for the Stage tab in Live Rooms where you can see who is talking and who is in the audience -->
+    <string name="rooms_stage_tab_title">Stage</string>
+    <!-- Title for the Chat tab in Live Rooms where you can send text chats to the room -->
+    <string name="rooms_chat_tab_title">Chat</string>
+    <string name="rooms_notification_channel_title">The Athletic Audio Rooms</string>
+    <string name="rooms_host_profile_twitter_handle">\@%1$s</string>
+    <string name="rooms_host_menu_end_room">End Room</string>
+    <string name="rooms_host_menu_edit_room">Edit Room</string>
+    <string name="rooms_host_menu_leave_room_warning">Leaving the room will end the room. Are you sure you want to leave?</string>
+    <string name="rooms_create_title">Create Audio Room</string>
+    <string name="rooms_create_type_title">Room Type</string>
+    <string name="rooms_scheduled_title">Scheduled Audio Rooms</string>
+    <string name="rooms_scheduled_copy_deeplink">Copy Deeplink</string>
+    <string name="rooms_scheduled_copy_universal_link">Copy Universal Link</string>
+    <string name="rooms_scheduled_copied_toast">Copied to Clipboard</string>
+    <string name="rooms_edit_title">Edit Audio Room</string>
+    <string name="rooms_create_input_hint_title">Room Title</string>
+    <string name="rooms_create_input_hint_description">Description</string>
+    <string name="rooms_create_input_character_limit">%1$d/%2$d</string>
+    <string name="rooms_create_input_record">Record</string>
+    <!-- Setting toggle for staff when creating a Live Room, whether they want a push notification to get automatically sent to users -->
+    <string name="rooms_create_input_auto_push">Send Auto Push</string>
+    <!-- Setting toggle for staff when creating a Live Room, whether they want to disable the text chat -->
+    <string name="rooms_create_input_disable_chat">Disable Chat</string>
+    <string name="rooms_create_room">Create Room</string>
+    <string name="rooms_save_room">Save</string>
+    <string name="rooms_create_go_live">Go Live</string>
+    <string name="rooms_create_add_tags">Add tags</string>
+    <string name="rooms_create_add_hosts">Add additional hosts (optional)</string>
+    <string name="rooms_create_add_room_type">Add room type (optional)</string>
+    <string name="rooms_create_add_tags_title">Add Tags</string>
+    <string name="rooms_create_add_tags_search_hint">Select or enter a tag...</string>
+    <string name="rooms_create_add_hosts_title">Add Hosts</string>
+    <!-- Toggle title for employee-only tool when creating a live room. Setting to true means the creator of the Live Room should be set as a host. -->
+    <string name="rooms_create_add_self_host">Add Self as Host</string>
+    <string name="rooms_create_advanced_options">Advanced options</string>
+    <string name="rooms_recording_indicator_title">Room recording in progress</string>
+    <string name="rooms_recording_indicator_message">This indicator means the host has chosen to record this room for future use. They will be provided a copy of the audio when the room is closed.</string>
+    <string name="rooms_ended_dialog_title">This room has ended</string>
+    <string name="rooms_ended_dialog_message">It looks like the host just ended this live audio room. Thank you for tuning in.</string>
+    <string name="rooms_at_capacity_dialog_title">Live Room is Full</string>
+    <string name="rooms_at_capacity_dialog_message">This live audio room is at max capacity. Please try again later.</string>
+    <string name="rooms_mic_on">Mic on</string>
+    <string name="rooms_mic_off">Mic off</string>
+    <!-- Menu item for a host to mute another user on stage -->
+    <string name="rooms_mute_user">Mute User</string>
+    <!-- Menu item for a host to remove a user from the stage so they can no longer speak -->
+    <string name="rooms_demote_user">Remove from Stage</string>
+    <!-- Name we use for the live room audience overflow bubble to indicate how many other people are in the room -->
+    <string name="rooms_overflow_name">Others</string>
+    <!-- Indicates how many more people are in a live room than our max value, e.g. +40 -->
+    <string name="rooms_overflow_count">+%1$d</string>
+    <!-- Shows the relative datetime of when this live room was created, for internal tooling (e.g. "Created: 3 hours ago") -->
+    <string name="rooms_created_datetime">Created: %1$s</string>
+    <string name="rooms_chat_input_hint">Write a comment</string>
+    <string name="rooms_chat_empty_title">Start the Conversation!</string>
+    <string name="rooms_chat_empty_subtitle">The fans want to hear from you</string>
+    <string name="rooms_chat_code_of_conduct_title">Code of Conduct</string>
+    <string name="rooms_chat_code_of_conduct">Our chat sections give users the chance to connect with each other and our writers in a respectful and troll-free setting. Here are some ground rules:\n\nTreat others with respect.\nNo abuse or hateful conduct.\nNo trolling or baiting.\nNo spam or self-promotion.\n\nAll Code of Conduct violations are taken seriously and can result in a loss of commenting or subscription privileges. Please flag any violations for moderator review. For more info, visit our Code of Conduct page.</string>
+    <string name="rooms_chat_code_of_conduct_accept">Accept</string>
+    <string name="rooms_chat_code_of_conduct_view">View</string>
+    <!-- Text shown in a user's profile when they are not following any teams, leagues or authors -->
+    <string name="rooms_user_profile_empty_following">%1$s is not following anyone right now.</string>
+    <string name="rooms_category_q_and_a">Q&amp;A</string>
+    <string name="rooms_category_breaking_news">Breaking News</string>
+    <string name="rooms_category_game_preview_1">Game Preview (1 team)</string>
+    <string name="rooms_category_game_preview_2">Game Preview (2 team)</string>
+    <string name="rooms_category_game_recap">Game Recap</string>
+    <string name="rooms_category_recurring">Recurring</string>
+    <string name="rooms_category_live_podcast">Live Podcast</string>
+    <!-- Text shown in live room title bar to indicate how many people are listening to the live room currently -->
+    <string name="rooms_listener_count">%1$d Listeners</string>
+    <string name="rooms_hosts">Hosts</string>
+    <!-- Header for a section which shows the items a live room is tagged to (e.g. teams or leagues) -->
+    <string name="rooms_tags">Tags</string>
+    <string name="rooms_live_recording">Live Rec</string>
+    <string name="rooms_awaiting_host">Awaiting Host&#8230;</string>
+
+    <!-- Text for a moderator to delete a user's inappropriate message from the chatroom -->
+    <string name="chat_moderation_remove_comment">Remove Comment</string>
+    <!-- Menu item for a user to report a message that they believe is spam on inappropriate -->
+    <string name="chat_moderation_flag_comment">Flag Comment</string>
+    <string name="chat_moderation_lock_user">Lock User</string>
+    <string name="chat_moderation_unlock_user">Unlock User</string>
+    <string name="chat_moderation_lock_user_confirmation_title">Lock User?</string>
+    <string name="chat_moderation_lock_user_confirmation_description">Are you sure you want to lock this user?</string>
+
+    <string name="chat_flag_title">Report Abuse</string>
+    <string name="chat_flag_reason_abuse">This comment is abusive or harmful</string>
+    <string name="chat_flag_reason_trolling">This comment is trolling or baiting</string>
+    <string name="chat_flag_reason_spam">This comment is spam</string>
+
+    <!-- TT Referrals -->
+    <string name="referrals_card_subtitle">30-Day Guest Pass</string>
+
+    <string name="referrals_cta_send_guest_pass">Send Guest Pass</string>
+    <string name="referrals_cta_request_more_passes">Request More Passes</string>
+    <string name="referrals_cta_request_sent">Request Sent</string>
+
+    <string name="referrals_passes_redeemed">passes redeemed</string>
+    <string name="referrals_title">Share a 30-day guest pass with up to 5 friends</string>
+    <string name="referrals_subtitle">Give a friend unlimited access to The Athletic, free for 30 days.</string>
+    <string name="referrals_subtitle_out_of_passes">You\'re all out of guest passes. Request more and we\'ll let you know when they\'re available.</string>
+
+    <string name="referrals_share_subject">Free guest pass to The Athletic</string>
+    <string name="referrals_share_body">I read The Athletic to keep up with my favorite teams. Here\'s a guest pass so you can check it out for 30 days for free:\n %1$s</string>
+
+    <!-- TT PROFILE -->
+    <string name="profile_subscribed_member">Subscribed Member</string>
+    <string name="profile_fname">First Name</string>
+    <string name="profile_lname">Last Name</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_account_linked_fb">Account linked via Facebook</string>
+    <string name="profile_linked_account_note">Changes to your Facebook profile will appear here.</string>
+    <string name="profile_account">Account</string>
+    <string name="profile_account_settings">Account Settings</string>
+
+    <!-- TT PROFILE V2 -->
+    <string name="profile_create_account">Create Account</string>
+    <string name="profile_saved_stories">Saved Stories</string>
+    <string name="profile_podcasts">My Podcasts</string>
+    <string name="profile_email_preferences">Email Preferences</string>
+    <string name="profile_notification_preferences">Notifications</string>
+    <string name="profile_region_preferences">Region</string>
+    <string name="profile_give_gift">Give a Gift</string>
+    <string name="profile_rate_app">Rate App</string>
+    <string name="profile_faq">FAQ</string>
+    <!-- CTA in profile so users can contact our support team with a help form -->
+    <string name="profile_email_support">Contact Support</string>
+    <string name="profile_debug_tools">Debug Tools</string>
+    <string name="profile_log_out">Log Out</string>
+    <string name="profile_following">Following</string>
+    <string name="profile_edit">Edit</string>
+    <string name="profile_display_theme">Display Theme</string>
+    <!-- CTA text to set the phone theme to Dark mode -->
+    <string name="profile_daynight_dark">Dark</string>
+    <!-- CTA text to set the phone theme to Light mode -->
+    <string name="profile_daynight_light">Light</string>
+    <!-- CTA text to set the phone theme to follow the device system mode -->
+    <string name="profile_daynight_system">System</string>
+    <string name="profile_guest_pass">My Guest Passes</string>
+    <string name="profile_guest_pass_note">%1$s of %2$s passes redeemed</string>
+    <string name="profile_subscribe">Subscribe</string>
+    <string name="profile_start_free_trial">Start Free Trial</string>
+    <string name="profile_podcast_discover">Discover New Shows</string>
+    <string name="profile_podcast_episodes_badge_single">%1$d New episode</string>
+    <string name="profile_podcast_episodes_badge_plural">%1$d New episodes</string>
+    <string name="profile_saved_stories_badge">%1$d Unread</string>
+
+    <!-- TT PREFERENCES -->
+    <string name="preferences_title">Email Preferences</string>
+    <!-- List section title for turning push notifications on/off -->
+    <string name="preferences_section_push_notifs">Manage Push Notifications</string>
+    <!-- List section title for turning email newsletter subscriptions on/off -->
+    <string name="preferences_section_newsletters">Newsletter Subscriptions</string>
+    <!-- List section title for turning video settings on/off -->
+    <!-- List section title for push notification settings -->
+    <string name="preferences_section_topic_push_notifs">Push Notifications</string>
+    <string name="preferences_comment_replies">Comment Replies</string>
+    <!-- Setting for getting push notifications for stories related to teams, leagues or from specific authors -->
+    <string name="preferences_stories">Stories</string>
+    <!-- Setting for getting push notifications for team game results -->
+    <string name="preferences_game_results">Game Results</string>
+    <!-- Setting for getting push notifications for team game start -->
+    <string name="preferences_game_start">Game Start</string>
+    <!-- Setting for getting push notifications for top sports news -->
+    <string name="preferences_top_sports_news">Top Sports News</string>
+    <string name="preferences_top_sports_news_description">All of the biggest stories in sports, regardless of which teams and leagues you follow</string>
+    <string name="preferences_top_sports_news_modal_enable_success_1">You will now receive Top Sports News notifications. View</string>
+    <string name="preferences_top_sports_news_modal_enable_success_2">for more.</string>
+    <string name="preferences_top_sports_news_modal_enable_failure_1">Failed to enable Top Sports News notifications. View</string>
+    <string name="preferences_top_sports_news_modal_enable_failure_2">to try again.</string>
+    <string name="preferences_top_sports_news_modal_notification_settings">Notification Settings</string>
+
+    <!-- TT MANAGE USER TOPICS -->
+    <string name="user_topic_search_title">Filter</string>
+    <string name="user_topic_search_hint">Search teams, leagues, or authors…</string>
+    <string name="user_topic_search_for_scores_hint">Search teams or leagues…</string>
+
+    <!-- TT MANAGE ACCOUNT -->
+    <string name="account_discard_changes_title">Discard Changes?</string>
+    <string name="account_discard_changes_message">If you go back now, you will lose your changes</string>
+    <string name="account_action_cancel">Cancel</string>
+    <string name="account_action_discard">Discard</string>
+
+    <!-- TT SAVED STORIES -->
+    <string name="saved_stories_title">Saved Stories</string>
+    <string name="saved_stories_empty">Saved stories will appear here</string>
+    <string name="saved_stories_dialog_title">Clear</string>
+    <string name="saved_stories_dialog_text">Do you really want to remove all saved stories?</string>
+
+
+    <!-- TT GIFTS -->
+    <string name="gifts_toolbar_title">Give a Gift</string>
+    <string name="gifts_header">Gift The Athletic.</string>
+    <string name="gifts_plans_popular">Popular</string>
+    <!--Text of the notification, which is displayed, when transaction is finished in background. -->
+    <string name="gifts_pending_payment_ready">Your pending gift purchase is ready! Please continue here.</string>
+
+    <!-- Text for REGION settings-->
+    <string name="region_note">This affects suggested sports and teams based on the selected region. Your followed teams, leagues, and authors will not be affected.</string>
+    <string name="region_option_north_america">North America</string>
+    <string name="region_option_international">International</string>
+
+    <string name="gifts_error_check_required_fields_recipient_delivery">Please check that your Recipient &amp; Delivery fields are filled and valid!</string>
+    <string name="gifts_error_check_required_fields_your_info">Please check that your Your Info fields are filled and valid!</string>
+    <string name="gifts_error_check_required_fields_address">Please check that your Address fields are filled and valid!</string>
+    <string name="gifts_error_billing_purchase">There was a problem purchasing selected item. Please try again later.</string>
+    <!--Text of the plan description. For example: $59.99 $39.99 ($20 off). First value should be cross out -->
+    <string name="gifts_plan_description"><strike>%1$s</strike> %2$s (%3$s off)</string>
+    <!-- Message, that shows up, when payment is processed, but not validated on our side. -->
+    <string name="gifts_error_billing_validation">There was a problem with payment validation. Check your internet connection and try again.</string>
+    <!-- Label for button - pushing it will retry payment validation. -->
+    <string name="gifts_button_billing_validation_retry">Retry</string>
+    <!-- Message announcing, that payment will be processed in background and gift purchase flow ic completed. -->
+    <string name="gifts_payment_pending_processing">Payment is being processed, you will be notified when it\'s done. Please check the app later to confirm the purchase.</string>
+    <!-- Confirmation in dialog. -->
+    <string name="gifts_payment_pending_processing_confirmation">OK</string>
+
+    <string name="gifts_recipient_delivery_title">Recipient &amp; Delivery</string>
+    <string name="gifts_recipient_delivery_text">Let us know where we should send your gift.</string>
+    <string name="gifts_recipient_delivery_name_title">Recipient Name:</string>
+    <string name="gifts_recipient_delivery_name_hint">Recipient Name</string>
+    <string name="gifts_recipient_delivery_message_title">Message:</string>
+    <string name="gifts_recipient_delivery_message_hint">Add a Note (Optional)</string>
+    <string name="gifts_recipient_delivery_method_title">Delivery Method:</string>
+    <string name="gifts_recipient_delivery_method_print_title">Print at Home Only</string>
+    <string name="gifts_recipient_delivery_method_print_description">We will email you a PDF to print and hand-deliver to the recipient. The PDF will include a one-time redemption code to enter on theathletic.com</string>
+    <string name="gifts_recipient_delivery_method_email_title">Email and Print</string>
+    <string name="gifts_recipient_delivery_method_email_description">We will provide both a PDF for you to print at home, and we will email the recipient on a date of your choosing.</string>
+    <string name="gifts_recipient_delivery_recipient_email_title">Recipient Email Address:</string>
+    <string name="gifts_recipient_delivery_recipient_email_hint">i.e. johnsmith@gmail.com</string>
+    <string name="gifts_recipient_delivery_date_title">Select a Delivery Date:</string>
+    <string name="gifts_recipient_delivery_date_edit_button">Edit</string>
+
+    <string name="gifts_confirm_info_title">Confirm Your Info</string>
+    <string name="gifts_confirm_info_description">We will send your purchase confirmation and gift PDF to the Email address connected to your The Athletic account, unless otherwise noted.</string>
+    <string name="gifts_confirm_info_your_name_hint">Your Name</string>
+    <string name="gifts_confirm_info_your_email_hint">Your Email</string>
+
+    <string name="gifts_shirt_title">Your Free T-Shirt</string>
+    <string name="gifts_shirt_description">With the purchase of your gift subscription, you\'re set to receive a free The Athletic t–shirt. All sizes are unisex. Please allow 3–4 weeks for delivery.</string>
+    <string name="gifts_shirt_size_title">T-Shirt Size:</string>
+    <string name="gifts_shirt_address_title">Your Delivery Address:</string>
+    <string name="gifts_shirt_address_name_hint">Name</string>
+    <string name="gifts_shirt_address1_hint">Address 1</string>
+    <string name="gifts_shirt_address2_hint">Address 2</string>
+    <string name="gifts_shirt_address_city_hint">City</string>
+    <string name="gifts_shirt_address_state_hint">State/Province</string>
+    <string name="gifts_shirt_address_zip_hint">ZIP/Postal</string>
+    <string name="gifts_shirt_address_country_us">US</string>
+    <string name="gifts_shirt_address_country_ca">CA</string>
+    <string name="gifts_shirt_address_country_uk">UK</string>
+    <string name="gifts_shirt_pay_button">Finish and Pay</string>
+
+    <string name="scores_standings_team_header_default">Team</string>
+
+    <!-- Toolbar label to thank subscriber after buying gift. Should be terse -->
+    <string name="gifts_success_header">Thank You</string>
+    <!-- Title string to thank subscriber after buying gift -->
+    <string name="gifts_success_title_thank_you">Thank you for giving the gift of The Athletic!</string>
+    <!-- Section label to indicate recipient of a gift -->
+    <string name="gifts_success_label_recipient">Gift Recipient</string>
+    <!-- Section label to indicate plan given as a gift -->
+    <string name="gifts_success_label_plan">Gift Plan</string>
+    <!-- String displaying actual price and amount, which was saved because of discount -->
+    <string name="gifts_success_price_with_discount">%1$s (%2$s off)</string>
+    <!-- String for concatenation of two different strings - not translatable -->
+    <string name="gifts_success_plan_name_with_price" translatable="false">%1$s - %2$s</string>
+    <!-- String for concatenation of state, city and ZIP code - not translatable -->
+    <string name="gifts_success_state_city_zip" translatable="false">%1$s, %2$s %3$s</string>
+    <!-- String for concatenation of first nad second part of delivery info - not translatable -->
+    <string name="gifts_success_delivery_option_info" translatable="false">%1$s: %2$s</string>
+    <!-- Option, which indicates, that gift will be sent to recipient at certain day -->
+    <string name="gifts_success_delivery_option_email">Email on</string>
+    <!-- Option, which indicates, that gift needs to be printed by gift sender -->
+    <string name="gifts_success_delivery_option_print">Print at Home</string>
+    <!-- Label for tshirt size - e.g. Size: 3X-Large -->
+    <string name="gifts_success_size_label">Size: %1$s</string>
+    <!-- Section label to indicate delivery type (email or print) for a gift -->
+    <string name="gifts_success_label_delivery">Gift Delivery</string>
+    <!-- Section label to indicate mailing address for t-shirt recipient -->
+    <string name="gifts_success_label_shirt">T-Shirt Recipient</string>
+    <!-- Footnote text to indicate estimated shipping time -->
+    <string name="gifts_success_label_shirt_delivery_time">Est. 3–4 weeks for delivery</string>
+    <!-- CTA text to purchase another gift -->
+    <string name="gifts_success_button_give_another">Give Another Gift</string>
+
+    <!-- News -->
+    <string name="news_container_age">AGO</string>
+    <string name="news_container_share_title">Share this headline!</string>
+
+    <!-- Two-part string formula that is dash-delimited e.g. "52m - Something happened" -->
+    <string name="time_prefixed_two_part_string">%1$s\u00A0\u2500\u00A0%2$s</string>
+
+    <string name="news_comments_submitting_comment">Submitting comment…</string>
+
+    <!--Slide Stories-->
+    <string name="slide_quote_starting_comma">“</string>
+    <string name="slide_quote_ending_comma">”</string>
+    <string name="slide_loading_error_message">Something has gone wrong.\nPlease try again later.</string>
+
+    <!-- TT GDPR -->
+    <!-- Header atop GDPR dialog indicating we have new legal terms -->
+    <!-- Body text describing that we updated our legal terms - meant for non-GDPR countries -->
+    <!-- Body text describing that we updated our legal terms -->
+    <!-- Text span that is matched and given a clickable link: must match exact substring in dialog_gdpr_new_terms_text -->
+    <!-- Text span that is matched and given a clickable link: must match exact substring in dialog_gdpr_new_terms_text -->
+    <!-- Title text displayed over a dialog section containing a Privacy Policy description -->
+    <string name="dialog_gdpr_privacy_title">Privacy Policy</string>
+    <!-- Summary text in a dialog that describes our basic Privacy Policy -->
+    <!-- Title text displayed over a dialog section containing a Terms of Service description -->
+    <string name="dialog_gdpr_terms_title">Terms of Service</string>
+
+    <string name="dialog_privacy_refresh_title_default">Updated Policies</string>
+    <string name="dialog_privacy_refresh_message_default">We have made some changes to our Terms of Service and Privacy Policy. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies, click\u00A0here.</string>
+    <string name="dialog_privacy_refresh_link_text_default">click\u00A0here</string>
+    <string name="dialog_privacy_refresh_cta_default">I Accept</string>
+
+    <string name="dialog_privacy_refresh_title_uk">Updated Policies</string>
+    <string name="dialog_privacy_refresh_message_uk">We have made some changes to our Terms of Service and Privacy Policy. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies, click\u00A0here.</string>
+    <string name="dialog_privacy_refresh_link_text_uk">click\u00A0here</string>
+    <string name="dialog_privacy_refresh_cta_uk">I Accept</string>
+
+    <string name="dialog_privacy_refresh_title_ca">New Policies</string>
+    <string name="dialog_privacy_refresh_message_ca">We have updated our Terms of Service and Privacy Policy to reflect the regulations in your country of residence. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies, click\u00A0here.</string>
+    <string name="dialog_privacy_refresh_link_text_ca">click\u00A0here</string>
+    <string name="dialog_privacy_refresh_cta_ca">I Accept</string>
+
+    <string name="dialog_privacy_refresh_title_aus">New Policies</string>
+    <string name="dialog_privacy_refresh_message_aus">We have updated our Terms of Service and Privacy Policy to reflect the regulations in your country of residence. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies, click\u00A0here.</string>
+    <string name="dialog_privacy_refresh_link_text_aus">click\u00A0here</string>
+    <string name="dialog_privacy_refresh_cta_aus">I Accept</string>
+
+    <!-- Manage Subscriptions dialog: title -->
+    <string name="dialog_manage_subscription_title">Manage Subscriptions</string>
+    <!-- Manage Subscriptions dialog: description -->
+    <string name="dialog_manage_subscription_description">Please visit %1$s in a browser to manage your subscription.</string>
+
+    <!-- Delete My Account dialog: title -->
+    <string name="dialog_delete_account_title">Delete My Account</string>
+    <!-- Delete My Account dialog: description -->
+    <string name="dialog_delete_account_confirmation_message">By selecting “Continue” you are requesting that your account, any associated subscription, and all personal data (subject to some exceptions as required or permitted by applicable law) be scheduled for deletion.\n\nAccount deletion is a permanent action. Once your account is deleted, your account and any associated subscription will no longer be available to you and cannot be restored. If you decide later that you would like to use our services, you will need to create a new account.\n\nPlease note that account deletion requests can take 30–45 days to process, depending on your jurisdiction. You will continue to be billed for any applicable subscriptions until the process is completed. If you want to avoid any auto-renew charges, you must cancel your subscription before continuing.</string>
+    <string name="dialog_delete_account_continue">Continue</string>
+    <string name="dialog_delete_account_cancel">Cancel</string>
+    <string name="dialog_delete_account_confirmation_title">Are you sure?</string>
+    <string name="dialog_delete_account_confirmation_description">Once your data is deleted, you will no longer have access to your account or any associated subscription.</string>
+    <string name="dialog_delete_account_confirmation">Delete Account</string>
+    <string name="dialog_delete_account_success_title">Request Received</string>
+    <string name="dialog_delete_account_success_message">We are in receipt of your request and will notify you of any updates to the status of your request via email. You will now be logged out of your account.</string>
+    <string name="dialog_delete_account_success_ok">OK</string>
+
+    <string name="time_now_updated">Updated now</string>
+    <string name="time_minutes_ago_updated">Updated %1$dm ago</string>
+    <string name="time_hours_ago_updated">Updated %1$dh ago</string>
+    <string name="time_days_ago_updated">Updated %1$dd ago</string>
+
+    <!-- Light mode feature intro -->
+    <string name="new_tag">New</string>
+
+
+    <string name="feature_intro_title_nba">Elevated NBA game hubs</string>
+    <string name="feature_intro_title_nhl">Top shelf NHL game hubs</string>
+    <string name="feature_intro_description">Discuss the game, get real-time stats &amp; grade performances – all within the box score</string>
+    <string name="feature_intro_cta_label">Explore Now</string>
+    <string name="feature_intro_title_top_sports_news">Get informed as important sports news breaks</string>
+    <string name="feature_intro_description_top_sports_news">Be the first to know when the biggest moments across all sports happen with Top Sports News alerts.</string>
+    <string name="feature_intro_cta_top_sports_news">Enable Top Sports News notifications</string>
+
+    <!-- Add Following Screen -->
+    <!-- Label displayed in empty search text box -->
+    <string name="following_search_placeholder">Search for teams, leagues, or authors</string>
+    <!-- Header above list of teams, leagues, and authors the user has added to their following -->
+    <string name="added_header">Added</string>
+    <!-- Header above list of suggested teams and leagues for the user to follow -->
+    <string name="suggested_header">Suggested</string>
+    <!-- Header above list of search results -->
+    <string name="results_header">Results</string>
+
+    <!-- SCORES FEED LANDING PAGE AND SCHEDULES -->
+    <string name="scores_feed_top_games_top_label">TOP</string>
+    <string name="scores_feed_top_games_games_label">GAMES</string>
+
+    <!-- TT PLURALS -->
+    <string name="plural_comments_empty">No Comments</string>
+    <plurals name="plural_comments">
+        <item quantity="one">%1$s Comment</item>
+        <item quantity="other">%1$s Comments</item>
+    </plurals>
+
+    <string name="plural_time_now">Now</string>
+    <plurals name="plural_time_minutes_ago">
+        <item quantity="one">%1$d minute ago</item>
+        <item quantity="other">%1$d minutes ago</item>
+    </plurals>
+    <string name="time_minutes_ago">%1$dm ago</string>
+
+    <plurals name="plural_time_hours_ago">
+        <item quantity="one">%1$d hour ago</item>
+        <item quantity="other">%1$d hours ago</item>
+    </plurals>
+    <string name="time_hours_ago">%1$dh ago</string>
+    <string name="time_days_ago">%1$dd ago</string>
+    <string name="time_ago_just_now">Just Now</string>
+
+    <plurals name="plural_new_update">
+        <item quantity="one">%1$d New Update</item>
+        <item quantity="other">%1$d New Updates</item>
+    </plurals>
+
+    <plurals name="plural_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <plurals name="plural_average_grades">
+        <item quantity="one">Average of %1$d Grade</item>
+        <item quantity="other">Average of %1$d Grades</item>
+    </plurals>
+
+    <!-- Player Grade total grades for player - eg 999 Grades -->
+    <plurals name="plural_grades">
+        <item quantity="one">%1$d Grade</item>
+        <item quantity="other">%1$d Grades</item>
+    </plurals>
+
+
+    <!-- Search results - eg 12 Results -->
+    <plurals name="search_results">
+        <item quantity="one">%1$d Result</item>
+        <item quantity="other">%1$d Results</item>
+    </plurals>
+
+</resources>

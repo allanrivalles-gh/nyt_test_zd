@@ -1,0 +1,14 @@
+<svg width="343" height="237" viewBox="0 0 343 237" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="343" y="237" width="343" height="237" transform="rotate(-180 343 237)" fill="#1F6F36"/>
+<g opacity="0.15">
+<path d="M14.9551 222.436L14.9551 14.9538L328.048 14.9539L328.048 222.436L14.9551 222.436Z" stroke="white"/>
+<line x1="171" y1="222.436" x2="171" y2="14.9538" stroke="white"/>
+<ellipse cx="171.502" cy="118.163" rx="29.7923" ry="29.8183" transform="rotate(-90 171.502 118.163)" stroke="white"/>
+<path d="M87.9043 118.34C87.9043 106.293 78.1301 96.5278 66.073 96.5278L66.073 140.152C78.1301 140.152 87.9043 130.387 87.9043 118.34Z" stroke="white"/>
+<path d="M255.1 118.163C255.1 130.209 264.874 139.975 276.931 139.975L276.931 96.3504C264.874 96.3504 255.1 106.116 255.1 118.163Z" stroke="white"/>
+<rect x="14.9551" y="170.3" width="103.209" height="51.1172" transform="rotate(-90 14.9551 170.3)" stroke="white"/>
+<rect x="328.049" y="67.0903" width="103.209" height="51.1172" transform="rotate(90 328.049 67.0903)" stroke="white"/>
+<rect x="14.9551" y="142.636" width="47.8805" height="17.0391" transform="rotate(-90 14.9551 142.636)" stroke="white"/>
+<rect x="328.049" y="94.7546" width="47.8805" height="17.0391" transform="rotate(90 328.049 94.7546)" stroke="white"/>
+</g>
+</svg>

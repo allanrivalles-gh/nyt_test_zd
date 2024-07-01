@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:gravity="center_vertical"
+    tools:backgroundTint="?attr/colorOnBackground"
+    tools:maxHeight="32dp"
+    >
+
+    <ImageView
+        android:id="@+id/tiny_podcast_icon"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:tint="@color/ath_grey_10"
+        android:src="@drawable/ic_play_2"
+        />
+
+    <TextView
+        android:id="@+id/tiny_podcast_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/ath_grey_10"
+        android:fontFamily="@font/calibre_medium"
+        android:textSize="15sp"
+        tools:text="23m"
+        />
+
+</LinearLayout>

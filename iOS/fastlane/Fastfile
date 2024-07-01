@@ -1,0 +1,287 @@
+default_platform(:ios)
+
+##
+## Modules
+##
+
+module Targets
+  PRODUCTION = "Production"
+  STAGING = "Staging"
+  NIGHTLY = "Nightly"
+  HEADLINES_WIDGET = "HeadlinesWidgetExtension"
+  UNIT_TESTS = "theathletic-iosTests"
+
+  def self.bundle_id(target:)
+    case target
+    when PRODUCTION
+      return "com.theathletic.news"
+    when STAGING
+      return "com.theathletic.news-staging"
+    when NIGHTLY
+      return "com.theathletic.news-dev"
+    when HEADLINES_WIDGET
+      return "com.theathletic.news.HeadlinesWidget"
+    when UNIT_TESTS
+      return "com.theathletic.theathletic-iosTests"
+    else
+      UI.user_error!("Unknown target.")
+    end
+  end
+
+  def self.external_testing_groups(target:)
+    case target
+    when PRODUCTION
+      return ["Freelancers","Internal","Marketing","Public Beta","VIP External"]
+    when STAGING
+      return ["Internal"]
+    when NIGHTLY
+      return ["External"]
+    else
+      UI.user_error!("Target not eligible for beta testing.")
+    end
+  end
+end
+
+module ApiEnvironments
+  PRODUCTION = "api.theathletic.com"
+  STAGING = "api-staging.theathletic.com"
+end
+
+@github_api_token = ENV["GITHUB_ACCESS_TOKEN"]
+@compass_auth_token = ENV["COMPASS_AUTH_TOKEN"]
+@embrace_api_token = ENV["EMBRACE_API_TOKEN"]
+
+desc "Generate Apollo code"
+desc " - `refresh`: Refresh the schema.\n"
+lane :generateApollo do |options|
+  ENV["FASTLANE_SKIP_ACTION_SUMMARY"] = "true"
+  hasReRunBefore = options[:hasReRunBefore] || false
+  callback = lambda do |result|
+    if hasReRunBefore == false
+      UI.error result
+      UI.error ("It looks like there was an error so I refreshed the schema and re-ran the lane for you with verbose:true")
+      generateApollo(refresh: true, hasReRunBefore: true)
+      UI.error result
+      UI.user_error!("Please check the output above")
+    end
+  end
+
+  codegenOutput = ""
+
+  Dir.chdir("../App/Packages/AthleticApolloTypes") do
+    puts Dir.pwd
+    if options[:refresh]
+      # Download schema first
+      UI.important "Refreshing Apollo schema."
+      sh("swift", "run", "ApolloCodegen", "downloadSchema", log: false)
+      UI.success "Successfully refreshed schema"
+    end
+    UI.important "Generating new Apollo code"
+    codegenOutput = sh("swift", "run", "ApolloCodegen", "generate", log: false, error_callback: callback)
+  end
+
+  if codegenOutput.include? "Validation of GraphQL query document failed"
+    UI.important codegenOutput
+    UI.user_error!("There was an issue validating the schema. This can lead to query failures and unpredictable results. See above output for details.")
+  else
+    if !hasReRunBefore
+      UI.success "Successfully generated Apollo code"
+    end
+  end
+end
+
+desc "Prepare a production build for release"
+desc " - `version`: The version for which a new release is being created.\n"
+lane :release_prepare do |options|
+  UI.user_error!("You must be on the 'main' branch to prepare a release") unless git_branch == 'main'
+
+  cut_release(options)
+end
+
+desc "Prepare a hotfix for release"
+desc " - `version`: The version for which a new hotfix is being created.\n"
+desc " - `from_tag`: The tag at which to create the hotfix.\n"
+lane :hotfix_prepare do |options|
+  UI.user_error!("You must be on the 'main' branch to prepare a release") unless git_branch == 'main'
+  UI.user_error!("You must supply the tag from which to prepare a hotfix") unless options.key?(:from_tag)
+
+  cut_release(options)
+end
+
+desc "Finalize a release"
+lane :release_finalize do |options|
+  UI.user_error!("Supply a version as a parameter in the form version:10.0.0") unless options.key?(:version)
+  UI.user_error!("You must be on the current 'stable' branch to finalize a release") unless git_branch == "stable/#{options[:version]}"
+  UI.user_error!("You need to set your \"GITHUB_ACCESS_TOKEN\" environment variable") unless @github_api_token
+
+  git_pull
+  version = get_version_number(target: Targets::PRODUCTION)
+
+  UI.user_error!("Your project's version doesn't match the version for which you are trying to finalize a release") unless version == options[:version]
+
+  # generate changelog to last tag
+  changelog = construct_changelog()
+  tag_name  = version
+
+  # create tag and release on github
+  add_git_tag(tag: tag_name)
+  push_git_tags(tag: tag_name)
+  set_github_release(
+    repository_name: "TheAthletic/iOS",
+    api_token: @github_api_token,
+    tag_name: tag_name,
+    name: tag_name,
+    description: changelog
+  )
+end
+
+desc "Distribute a target's most recent build to beta testers"
+desc " - `targets`: Comma-separated target(s) to distribute for testing.\n"
+lane :distribute_beta do |options|
+  UI.user_error!("Supply targets as a parameter in the form `targets:Staging,Nightly`") unless options.key?(:targets)
+
+  options[:targets].split(',').each do |target|
+    bundle_id = Targets.bundle_id(target: target)
+    groups = Targets.external_testing_groups(target: target)
+
+    version = get_version_number(
+      xcodeproj: "theathletic-ios.xcodeproj",
+      target: target
+    )
+
+    pilot(                                                                                                                                            
+      app_identifier: bundle_id,                                                                                               
+      app_version: version,
+      app_platform: "ios",                                                                                                                 
+      distribute_external: true,                                                                                                                      
+      groups: groups,                                                                                                                                                                                                                                           
+      distribute_only: true,
+      wait_processing_timeout_duration: 300  ## Wait up to 5 minutes for new build processing                                                                                                                      
+    ) 
+  end
+end
+
+def cut_release(options = nil)
+  UI.user_error!("Supply a version as a parameter in the form version:10.0.0") unless options.key?(:version)
+  UI.user_error!("You need to set your \"GITHUB_ACCESS_TOKEN\" environment variable") unless @github_api_token
+
+  git_pull
+
+  version = options[:version]
+  new_branch = "stable/#{version}"
+
+  git_new_branch(branch_name: new_branch, from_tag: options[:from_tag])
+  increment_version_number(
+    version_number: version
+  )
+  git_commit(path: "**/*.plist", message: "Bumped version number to #{version}")
+  push_to_git_remote()
+end
+
+##
+## Release Notes
+##
+
+desc "Determine the changelog between two git tags. Supplying no tags will draft a changelog from the previous tag."
+desc " - `from_tag`: The starting tag from which to search for commit changes."
+desc " - `to_tag`: The ending tag at which to stop searching for commit changes."
+desc " - `embed_links`: `true` if JIRA links should be added to commit messages. Default is `true`.\n"
+lane :release_notes do |options|
+
+  embed_links = true
+
+  if options[:embed_links] != nil
+  	embed_links = options[:embed_links]
+  end
+
+  changelog = construct_changelog(options[:from_tag], options[:to_tag], embed_links)
+
+  puts "====================================="
+  puts "==============CHANGELOG=============="
+  puts "====================================="
+  puts changelog.empty? ? "No Changelog" : changelog
+  puts "====================================="
+end
+
+def construct_changelog(from_tag = nil, to_tag = nil, embed_links = true)
+  changelog = nil
+  pretty_format = "%s"
+
+  if from_tag != nil && to_tag != nil
+    changelog = changelog_from_git_commits(between: [from_tag, to_tag], pretty: pretty_format, quiet: true)
+  else
+    changelog = changelog_from_git_commits(pretty: pretty_format, quiet: true)
+  end
+
+  if !embed_links
+  	return	changelog
+  end
+
+  jira_story_regex = /^\[(ATH\-\d+)\]\s*([^$]+)/
+  no_story_regex = /^(?!\[ATH\-\d+\])/
+
+  changelog_with_jira_stories = changelog.split("\n")
+    .select { |line| line =~ jira_story_regex }
+    .map { |line| "\[[#{jira_story_regex.match(line)[1]}](https://theathletic.atlassian.net/browse/#{jira_story_regex.match(line)[1]})\] #{jira_story_regex.match(line)[2]}"}
+    .join("\n")
+
+  changelog_without_jira_stories = changelog.split("\n")
+    .select { |line| line =~ no_story_regex }
+    .join("\n")
+
+  return [changelog_with_jira_stories, changelog_without_jira_stories].join("\n")
+end
+
+##
+## Compass
+##
+
+desc "Fetch current Compass configuration"
+desc " - `config`: The file containing URL query parameters. Defaults to `fastlane/actions/compass_query_parameters`.\n"
+desc " - `environment`: The API environment.\n"
+lane :get_compass_config do |options|
+  UI.user_error!("Supply the name of the API environment from which to fetch. (production|staging)") unless options.key?(:environment)
+
+  config_file = options[:config] != nil ? options[:config] : "fastlane/actions/compass_query_parameters"
+  environment = api_environment(options[:environment])
+
+  fetch_compass_config(config_file: config_file, environment: environment)
+end
+
+desc "Add feature flag to Compass"
+desc " - `json_file`: The JSON file containing feature flag options.\nSee https://theathletic.atlassian.net/wiki/spaces/ENG/pages/1664811009/Feature+Flags for details.\n"
+desc " - `environment`: The API environment.\n"
+lane :add_feature_flag do |options|
+  UI.user_error!("You need to supply an input JSON file for the new feature flag.") unless options.key?(:json_file)
+  UI.user_error!("Supply the name of the API environment you want to modify. (production|staging)") unless options.key?(:environment)
+
+  environment = api_environment(options[:environment])
+
+  add_compass_feature_flag(json_file: options[:json_file], environment: environment, auth_token: @compass_auth_token)
+end
+
+desc "Update Compass feature flag"
+desc " - `name`: The name/key of the feature flag to update.\n"
+desc " - `value`: The new value. (optional, remains unchanged if omitted.)\n"
+desc " - `is_live`: Whether or not the feature flag is live. (optional, remains unchanged if omitted.)\n"
+desc " - `environment`: The API environment.\n"
+lane :update_feature_flag do |options|
+  UI.user_error!("You need to supply the name of the feature flag you want to update.") unless options.key?(:name)
+  UI.user_error!("You need to supply a new value or is_live status in order to update this feature flag.") unless options.key?(:value) || options.key?(:is_live)
+  UI.user_error!("Supply the name of the API environment you want to modify. (production|staging)") unless options.key?(:environment)
+
+  environment = api_environment(options[:environment])
+
+  update_compass_feature_flag(name: options[:name], value: options[:value].to_s, is_live: options[:is_live], environment: environment, auth_token: @compass_auth_token)
+end
+
+def api_environment(option)
+  case option
+  when "production"
+    return ApiEnvironments::PRODUCTION
+  when "staging"
+    return ApiEnvironments::STAGING
+  else
+    UI.user_error!("Choose either the `production` or `staging` environment.")
+  end
+end

@@ -1,0 +1,56 @@
+query ScoresLandingFeed($timeZone: String!) {
+    scoresFeed(time_zone: $timeZone) {
+        ...ScoresFeedSafe
+    }
+}
+
+# ScoresLandingFeedDay to be replaced by ScoresFeedGroups in subsequent PR
+query ScoresLandingFeedDay($timeZone: String!, $day: Date!)  {
+    scoresFeedDay(time_zone: $timeZone, day: $day) {
+        ...ScoresFeedGroupSafe
+    }
+}
+
+query ScoresFeedGroups($timeZone: String!, $groupingId: ID!, $filterIds: [ID!]!)  {
+    scoresFeedGroups(time_zone: $timeZone, grouping_id: $groupingId, filter_ids: $filterIds) {
+        ...ScoresFeedGroupSafe
+    }
+}
+
+query ScheduleFeed($timeZone: String!, $leagueCode: LeagueCode, $teamId: ID)  {
+    scheduleFeed(time_zone: $timeZone, league_code: $leagueCode, team_id: $teamId) {
+        ...ScoresFeedSafe
+    }
+}
+
+query TeamSchedule($teamId: ID!) {
+    teamSchedule(team_id: $teamId) {
+        ...GameScheduleGroupingWrapper
+    }
+}
+
+query SeasonSchedule($leagueCode: LeagueCode!) {
+    currentSeason(league_code: $leagueCode) {
+        starts_at
+        finishes_at
+        schedule {
+            ...GameScheduleGroupingWrapper
+        }
+    }
+}
+
+query SeasonFixedGroupSchedule($leagueCode: LeagueCode!, $seasonType: SeasonTypeCode!, $week: Int) {
+    currentSeason(league_code: $leagueCode) {
+        schedule(season_type: $seasonType, week: $week) {
+            ...GameScheduleGroupingWrapper
+        }
+    }
+}
+
+query SeasonDaySchedule($leagueCode: LeagueCode!, $aroundIsoDate: String!, $timeZone: String!) {
+    currentSeason(league_code: $leagueCode) {
+        schedule(around_day_iso: $aroundIsoDate, time_zone: $timeZone) {
+            ...GameScheduleGroupingWrapper
+        }
+    }
+}

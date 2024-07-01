@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsGroupTitleUiModel.Interactor" />
+        <variable
+            name="data"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsGroupTitleUiModel" />
+    </data>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:paddingHorizontal="8dp"
+        android:layout_marginBottom="10dp"
+        android:parameterizedString="@{data.title}"
+        android:textColor="@{data.selected ? @color/ath_grey_10 : @color/ath_grey_45}"
+        android:onClick="@{() -> interactor.onGroupClick(data.index)}"
+        android:foreground="?selectableItemBackground"
+        style="@style/TextAppearance.Ath.Navigation"
+        tools:text="Conference"
+        />
+</layout>

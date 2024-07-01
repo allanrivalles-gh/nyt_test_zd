@@ -1,0 +1,38 @@
+name: Linter
+
+on:
+  pull_request:
+    branches:
+      - main
+      - stable/**
+  workflow_dispatch:
+
+jobs:
+  swift-format:
+    runs-on: buildjet-4vcpu-ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+          
+      - name: Restore build cache (if available)
+        uses: buildjet/cache@v3
+        with:
+          path: swift-format
+          key: ${{ runner.os }}-swift-format-5.9
+          restore-keys: |
+            ${{ runner.os }}-swift-format-5.9
+          
+      - name: Install swift-format
+        run: |
+          if [ -d "swift-format/.build" ]; then
+            echo "Build directory exists"
+          else
+            git clone -b 509.0.0 https://github.com/apple/swift-format.git
+            cd swift-format
+            swift build --disable-sandbox -c release
+            cd ..
+          fi
+          
+      - name: Run swift-format
+        run: |
+          swift-format/.build/release/swift-format lint -prs App/Packages/AthleticAnalytics App/Packages/AthleticApolloNetworking App/Packages/AthleticBrackets App/Packages/AthleticComments App/Packages/AthleticFoundation App/Packages/AthleticGameSchedules App/Packages/AthleticNavigation App/Packages/AthleticNotificationCenter App/Packages/AthleticRestNetwork App/Packages/AthleticScoresFoundation App/Packages/AthleticStorage App/Packages/AthleticTestUtils App/Packages/AthleticUI App/Source Widgets theathletic-iosTests theathletic-iosUITests

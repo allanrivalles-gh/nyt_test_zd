@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="HardcodedText"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="data" type="com.theathletic.debugtools.DebugToolsBaseUrlOverride" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_spacing_88"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/selector_clickable_item_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{data.title}"
+            tools:text="Athletic Base rest Url"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/url_override"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="@={data.currentValue}"
+                tools:text="theathletic.com"
+                style="@style/TextAppearance.Athletic.Body1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/set_button"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="Set"
+                style="@style/Widget.Ath.Button.Core.Secondary"
+                android:onClick="@{() -> view.onSetClick(data.onSetClick, data.currentValue) }" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reset_button"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="Reset"
+                style="@style/Widget.Ath.Button.Core.Secondary"
+                android:onClick="@{() -> view.onResetClick(data.onResetClick, data.currentValue) }" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

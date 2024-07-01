@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexMethod:AdConfig.kt$AdConfig.Builder$fun build(pageViewId: String, shouldSetUserAccessPoint: Boolean = false): AdConfig</ID>
+    <ID>LongMethod:AdConfigTest.kt$AdConfigTest$@Test fun `adconfig with kvps set are equal and ignore sov`()</ID>
+  </CurrentIssues>
+</SmellBaseline>

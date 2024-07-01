@@ -1,0 +1,51 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appId": "X5U5MPSSEX.com.theathletic.news",
+                "paths": [
+                    "/*/201?/*",
+                    "/*/202?/*",
+                    "/podcast/*",
+                    "/podcasts",
+                    "/share",
+                    "/video*",
+                    "/a/*",
+                    "NOT /a*",
+                    "NOT /b*",
+                    "NOT /c*",
+                    "NOT /d*",
+                    "NOT /e*",
+                    "NOT /f*",
+                    "NOT /g*",
+                    "NOT /h*",
+                    "NOT /i*",
+                    "NOT /j*",
+                    "NOT /k*",
+                    "NOT /l*",
+                    "NOT /m*",
+                    "NOT /n*",
+                    "NOT /o*",
+                    "NOT /p*",
+                    "NOT /q*",
+                    "NOT /r*",
+                    "NOT /s*",
+                    "NOT /t*",
+                    "NOT /u*",
+                    "NOT /v*",
+                    "NOT /w*",
+                    "NOT /x*",
+                    "NOT /y*",
+                    "NOT /z*",
+                    "*"
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "X5U5MPSSEX.com.theathletic.news"
+        ]
+    }
+}

@@ -1,0 +1,163 @@
+{
+    "project_info": {
+        "project_number": "51213443559",
+        "firebase_url": "https://the-athletic-staging.firebaseio.com",
+        "project_id": "the-athletic-staging",
+        "storage_bucket": "the-athletic-staging.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:51213443559:android:15490a01e89e9ff4",
+                "android_client_info": {
+                    "package_name": "com.theathletic"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "51213443559-ddtdnguupcg54qm4rd56m9qgdg18pr0h.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.theathletic",
+                        "certificate_hash": "846b48b603fb811562afd19a251feaf2a5759f9a"
+                    }
+                },
+                {
+                    "client_id": "51213443559-v3fmnrebkcgoe75n9e1kndjma2l7flt5.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBxztY6-ZFY8tdkC9hB8b01ipQJ2R-6Q3Q"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "51213443559-t961qfoavmaraj4nju68me46o3ce5a5b.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "51213443559-9akiac9khqch3hkhli51r9fp6bg6k77i.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.theathletic.news-dev"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:51213443559:android:e3e241871ce373635d9d42",
+                "android_client_info": {
+                    "package_name": "com.theathletic.debug"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "51213443559-v3fmnrebkcgoe75n9e1kndjma2l7flt5.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBxztY6-ZFY8tdkC9hB8b01ipQJ2R-6Q3Q"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "51213443559-t961qfoavmaraj4nju68me46o3ce5a5b.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "51213443559-9akiac9khqch3hkhli51r9fp6bg6k77i.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.theathletic.news-dev"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:51213443559:android:018ae85111163abe5d9d42",
+                "android_client_info": {
+                    "package_name": "com.theathletic.dev"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "51213443559-v3fmnrebkcgoe75n9e1kndjma2l7flt5.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBxztY6-ZFY8tdkC9hB8b01ipQJ2R-6Q3Q"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "51213443559-t961qfoavmaraj4nju68me46o3ce5a5b.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "51213443559-9akiac9khqch3hkhli51r9fp6bg6k77i.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.theathletic.news-dev"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:51213443559:android:1d15ee78a3555e975d9d42",
+                "android_client_info": {
+                    "package_name": "com.theathletic.dev.debug"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "51213443559-v3fmnrebkcgoe75n9e1kndjma2l7flt5.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBxztY6-ZFY8tdkC9hB8b01ipQJ2R-6Q3Q"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "51213443559-t961qfoavmaraj4nju68me46o3ce5a5b.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "51213443559-9akiac9khqch3hkhli51r9fp6bg6k77i.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.theathletic.news-dev"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

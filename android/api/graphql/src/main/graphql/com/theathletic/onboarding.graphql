@@ -1,0 +1,48 @@
+# QUERIES
+
+query OnboardingFollowableItems {
+    teams {
+        ...UserTopicTeamFragment
+    }
+    leagues {
+        ...UserTopicLeagueFragment
+    }
+    recommendedPodcastsForUser {
+        ...Podcast
+    }
+}
+
+query OnboardingRecommendedTeams {
+    onboardingRecommendedTeams {
+        ...UserTopicTeamFragment
+    }
+}
+
+query OnboardingLeagues($countryCode: String) {
+    onboardingLeagues(country_code: $countryCode) {
+        ...UserTopicLeagueFragment
+    }
+}
+
+query GetUserAttributionSurvey {
+    getUserAttributionSurvey {
+        cta_text
+        header_text
+        subheader_text
+        attribution_survey_options {
+            display_name
+            display_order
+            value
+        }
+    }
+}
+
+# Mutations
+
+mutation MarkUserAttributionSurveyAsSeen {
+    setUserAttributionSurveySeen
+}
+
+mutation SubmitUserAttributionSurvey($value: String!, $displayOrder: Int!) {
+    submitUserAttributionSurvey(value: $value, display_order: $displayOrder)
+}

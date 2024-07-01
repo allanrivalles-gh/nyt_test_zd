@@ -1,0 +1,264 @@
+fragment BaseballCurrentInning on BaseballGame {
+    sport
+    inning_half
+    inning
+    away_team {
+        ...BaseballPlayerTeam
+    }
+    home_team {
+        ...BaseballPlayerTeam
+    }
+    outcome {
+        balls
+        strikes
+        outs
+        pitcher {
+            id
+            player {
+                id
+                ...BaseballPlayer
+            }
+            player_game_stats: game_stats {
+                ...GameStat
+            }
+        }
+        batter {
+            id
+            position
+            player {
+                id
+                ...BaseballPlayer
+            }
+            player_game_stats: game_stats {
+                ...GameStat
+            }
+            season_average: season_avg {
+                ...GameStat
+            }
+        }
+        next_batter {
+            player {
+                display_name
+            }
+            position
+        }
+    }
+    inning_plays: play_by_play(current_inning_only: true) {
+        ...BaseballPlay
+        ...BaseballTeamPlay
+        ...BaseballLineupChangePlay
+    }
+}
+
+fragment BaseballPlayerTeam on GameTeam {
+    team {
+        alias
+        color_primary
+    }
+    ...on BaseballGameTeam {
+        players {
+            player {
+                id
+            }
+        }
+    }
+}
+
+fragment BaseballStartingPitchers on BaseballGame {
+    away_team {
+        ...BaseballStartingPitcherTeam
+    }
+    home_team {
+        ...BaseballStartingPitcherTeam
+    }
+}
+
+fragment BaseballStartingPitcherTeam on BaseballGameTeam {
+    id
+    team {
+        alias
+        color_primary
+        logos {
+            ...TeamLogo
+        }
+    }
+    is_starting_pitcher_confirmed: starting_pitcher_confirmed
+    starting_pitcher {
+        ...BaseballPitcher
+    }
+}
+
+fragment BaseballPitcher on BaseballPitcher {
+    player {
+        id
+        ...BaseballPlayer
+        season_stats {
+            ...GameStat
+        }
+    }
+}
+
+fragment BaseballPlayer on TeamMember {
+    id
+    display_name
+    headshots {
+        ...PlayerHeadshot
+    }
+    throw_hand
+}
+
+fragment BaseballInningPlaysTeam on GameTeam {
+    team {
+        id
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment BaseballPlay on BaseballPlay {
+    id
+    occurred_at
+    occurred_at_str
+    inning
+    inning_half
+    description
+    plays {
+        ...BaseballGenericSubPlay
+    }
+}
+
+fragment BaseballTeamPlay on BaseballTeamPlay {
+    id
+    occurred_at
+    occurred_at_str
+    inning
+    inning_half
+    header
+    description
+    away_score
+    home_score
+    plays {
+        ...BaseballGenericSubPlay
+    }
+    team {
+        color_accent
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment BaseballLineupChangePlay on BaseballLineupChangePlay {
+    id
+    occurred_at
+    occurred_at_str
+    inning
+    inning_half
+    description
+}
+
+fragment BaseballPitchSubPlay on BaseballPitchPlay {
+    id
+    description
+    number
+    pitch_description
+    pitch_outcome
+    bases
+    hit_zone
+    pitch_zone
+}
+
+fragment BaseballGenericSubPlay on Play {
+    ...BaseballSubPlay
+    ...BaseballPitchSubPlay
+}
+
+fragment BaseballSubPlay on BaseballPlay {
+    id
+    description
+}
+
+fragment BaseballScoring on BaseballGame {
+    status
+    started_at
+    inning
+    inning_half
+    league {
+        id
+    }
+    away_team {
+        ...BaseballScoringTeam
+    }
+    home_team {
+        ...BaseballScoringTeam
+    }
+    scoring_plays {
+        ...BaseballScoringPlay
+    }
+}
+
+fragment BaseballScoringTeam on BaseballGameTeam {
+    team {
+        alias
+        logos {
+            ...TeamLogo
+        }
+    }
+    runs
+    hits
+    errors
+    scoring {
+        id
+        inning
+        runs
+    }
+}
+
+fragment BaseballScoringPlay on BaseballTeamPlay {
+    id
+    home_score
+    away_score
+    header
+    description
+    inning
+    inning_half
+    occurred_at
+    occurred_at_str
+    team {
+        color_accent
+        logos {
+            ...TeamLogo
+        }
+    }
+}
+
+fragment BaseballFinalPlayers on BaseballGame {
+    home_team {
+        ...BaseballPlayerTeam
+    }
+    away_team {
+        ...BaseballPlayerTeam
+    }
+    pitching {
+        win {
+            ...BaseballFinalPitcher
+        }
+        loss {
+            ...BaseballFinalPitcher
+        }
+        save {
+            ...BaseballFinalPitcher
+        }
+    }
+}
+
+fragment BaseballFinalPitcher on BaseballPitcher {
+    player {
+        id
+        ...BaseballPlayer
+    }
+    player_game_stats: game_stats {
+        ...GameStat
+    }
+}

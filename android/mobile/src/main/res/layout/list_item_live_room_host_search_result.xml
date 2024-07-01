@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.rooms.create.ui.LiveRoomHostSearchResultUiModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.rooms.create.ui.LiveRoomHostSearchResultUiModel.Interactor" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_spacing_64"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> interactor.onHostClicked(data.id)}"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal"
+        tools:background="@color/ath_grey_80"
+        >
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@null"
+            app:imageUrl="@{data.avatarUrl}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imageCircular="@{true}"
+            tools:src="@drawable/ic_profile_v2"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:text="@{data.name}"
+            android:textColor="@color/ath_grey_10"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_marginEnd="16dp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            tools:text="Matt Kula"
+            />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_check_2"
+            android:visibility="@{data.isChecked}"
+            android:tint="@color/ath_grey_10"
+            />
+
+    </LinearLayout>
+</layout>

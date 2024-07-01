@@ -1,0 +1,38 @@
+query TeamHubHeader($teamId: ID!) {
+    teamv2(id: $teamId) {
+        ...TeamHubHeader
+    }
+}
+
+query TeamStats($teamId: ID!) {
+    teamStats(team_id: $teamId) {
+        members {
+            ...SeasonStatsPlayer
+        }
+        stats {
+            ...RankedStat
+        }
+    }
+    teamv2(id: $teamId) {
+        ...PlayerStatsTeam
+        ...StatLeadersTeam
+    }
+}
+
+query TeamRoster($teamId: ID!) {
+    teamv2(id: $teamId) {
+        ...TeamRosterTeam
+    }
+}
+
+query TeamMember($teamMemberId: ID!) {
+    teamMember(id: $teamMemberId) {
+        ...PlayerHubPlayer
+    }
+}
+
+query TeamMemberFromSlug($slug: String!, $leagueCode: LeagueCode, $sport: Sport) {
+    slugToTeamMemberv2(slug: $slug, league_code: $leagueCode, sport: $sport){
+        ...PlayerHubPlayer
+    }
+}

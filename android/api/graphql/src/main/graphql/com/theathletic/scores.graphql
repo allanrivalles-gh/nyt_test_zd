@@ -1,0 +1,818 @@
+# QUERIES
+
+query TeamSchedule($teamId: ID!) {
+    teamSchedule(team_id: $teamId) {
+        id
+        format
+        season_type
+        title
+        subtitle
+        week
+        games {
+            ... GameLiteFragment
+        }
+    }
+}
+
+query GetGameSummary($id: ID!) {
+    game(id: $id) {
+        ... GameSummary
+    }
+}
+
+query GetStandings($league_code: LeagueCode!) {
+    currentSeason(league_code: $league_code) {
+        id
+        name
+        standings (new_format : true) {
+            ... StandingsGrouping
+        }
+    }
+}
+
+query GetPlayerStats($id: ID!) {
+    game(id: $id) {
+        ... PlayerStats
+    }
+}
+
+query GetGameArticles($id: ID!, $league_id: ID!) {
+    gameArticles(game_id:$id, league_id:$league_id, limit: 3) {
+        id
+        title
+        image_uri
+        authors {
+            ... ArticleAuthorFragment
+        }
+        comment_count
+    }
+}
+
+query GetTeamDetails($id: ID!) {
+    teamv2(id: $id) {
+        id
+        league {
+            id
+            legacy_id
+            is_primary
+        }
+        logos {
+            ... LogoFragment
+        }
+        legacy_team {
+            id
+        }
+        sport
+        current_standing
+        type
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription GameSummaryUpdates($id:ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription PlayerStatsUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... PlayerStats
+    }
+}
+
+subscription LiveGames($ids: [ID!]!) {
+    liveScoreUpdates(game_ids: $ids) {
+        ... GameLiteFragment
+    }
+}
+
+# MUTATIONS
+
+mutation GradePlayer($gameId: ID!, $playerId: ID!, $grade: Int!) {
+    gradePlayer(game_id: $gameId, player_id: $playerId, grade: $grade) {
+        ... PlayerGrade
+    }
+}
+
+mutation UngradePlayer($gameId: ID!, $playerId: ID!) {
+    ungradePlayer(game_id: $gameId, player_id: $playerId) {
+        ... PlayerGrade
+    }
+}
+
+# FRAGMENTS
+
+# A slimmed down version of GameFragment that should be used when querying for multiple games.
+# GameFragment gets all stats, key events, lineups, etc. which is a lot of data if you are querying
+# for more than one game, so for things like scores feeds, use GameLiteFragment
+fragment GameLiteFragment on Gamev2 {
+    id
+    status
+    scheduled_at
+    match_time_display
+    group
+    time_tbd
+    league {
+        id
+        alias
+    }
+    away_team {
+        ... ScheduleGameTeam
+    }
+    home_team {
+        ... ScheduleGameTeam
+    }
+    coverage {
+        available_data
+    }
+}
+
+# todo (Mark): Remove when removing feature switch for game detail compose refactoring
+fragment GameDetailsFragment on Gamev2 {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    away_team {
+        id
+        score
+        team {
+            ... Team
+        }
+    }
+    home_team {
+        id
+        score
+        team {
+            ... Team
+        }
+    }
+}
+
+fragment GameSummary on Gamev2 {
+    ... AmericanFootballGameSummary
+    ... SoccerGameSummary
+    ... BasketballGameSummary
+    ... BaseballGameSummary
+    ... HockeyGameSummary
+
+    live_blog {
+        ... LiveBlogLinksFragment
+    }
+}
+
+fragment ScheduleGameTeam on GameTeam {
+    score
+    penalty_score
+    current_record
+    team {
+        id
+        name
+        alias
+        display_name
+        logos {
+            ... LogoFragment
+        }
+        legacy_team {
+            id
+        }
+    }
+    ... on AmericanFootballGameTeam {
+        current_ranking
+    }
+    ... on BasketballGameTeam {
+        current_ranking
+    }
+}
+
+fragment Team on Teamv2 {
+    id
+    alias
+    name
+    league {
+        ... League
+    }
+    logos {
+        ... LogoFragment
+    }
+    display_name
+    color_primary
+    color_accent
+    current_ranking
+    injuries {
+        ... Injury
+    }
+}
+
+fragment TeamLite on Teamv2 {
+    id
+    alias
+    name
+    league {
+        ... League
+    }
+    logos {
+        ... LogoFragment
+    }
+    legacy_team {
+        id
+    }
+    display_name
+    color_primary
+    color_accent
+}
+
+fragment League on Leaguev2 {
+    id
+    alias
+    name
+    display_name
+}
+
+fragment LineUp on LineUp {
+    formation
+    image_uri
+    manager
+    players {
+        ... Player
+    }
+}
+
+fragment Player on GamePlayer {
+    id
+    display_name
+    jersey_number
+    place
+    position
+    position_side
+    regular_position
+    captain
+    stats {
+        ... GameStat
+    }
+    starter
+}
+
+fragment SeasonStats on GameSeasonStats {
+    season {
+        active
+        name
+    }
+    season_type {
+        name
+    }
+}
+
+fragment GameStat on GameStat {
+    ... DecimalGameStat
+    ... IntegerGameStat
+    ... PercentageGameStat
+    ... StringGameStat
+    ... FractionGameStat
+    ... TimeGameStat
+}
+
+
+fragment RankedStat on RankedStat {
+    id
+    parent_stat_type
+    parent_stat_category
+    rank
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    stat_value
+    stat_groups
+    stat_long_header_label
+}
+
+fragment DecimalGameStat on DecimalGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    decimal_value
+    less_is_best
+    string_value
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment IntegerGameStat on IntegerGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    int_value
+    less_is_best
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment PercentageGameStat on PercentageGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    decimal_value
+    less_is_best
+    string_value
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment StringGameStat on StringGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    string_value
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment FractionGameStat on FractionGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    denominator_value
+    numerator_value
+    separator
+    less_is_best
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment TimeGameStat on TimeGameStat {
+    id
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+    hours_value
+    minutes_value
+    seconds_value
+    string_value
+    less_is_best
+    parent_stat_type
+    reference_only
+    stat_groups
+    stat_long_header_label
+}
+
+fragment TeamMember on TeamMember {
+    id
+    country
+    display_name
+    first_name
+    last_name
+    role {
+        position
+        type
+    }
+}
+
+fragment StandingsGrouping on StandingsGrouping {
+    id
+    grouping_type
+    grouping_label
+    groups {
+        ... StandingsGroup
+    }
+    headers {
+        ...StandingsGroupHeader
+    }
+    show_rank
+}
+
+fragment StandingsGroup on StandingsGroup {
+    id
+    name
+    columns {
+        ... StandingsColumn
+    }
+    segments {
+        ... StandingsSegment
+    }
+    standings {
+        ... Standing
+    }
+}
+
+fragment StandingsGroupHeader on StandingsGroupHeader {
+    id
+    header
+    group_ids
+}
+
+fragment StandingsColumn on StandingsColumn {
+    field
+    label
+}
+
+fragment Standing on Standing {
+    id
+    team {
+        ... Team
+    }
+    rank
+    rank_status
+    points
+    played
+    won
+    lost
+    drawn
+    for
+    against
+    difference
+    win_pct
+    div_record
+    conf_record
+    streak
+    lost_overtime
+    away_record
+    home_record
+    last_ten_record
+    games_behind
+    elimination_number
+    last_six
+}
+
+fragment StandingsSegment on StandingsSegment {
+    ... StandingsRangeClosedSegment
+    ... StandingsRangeFromSegment
+    ... StandingsRangeToSegment
+}
+
+fragment StandingsRangeClosedSegment on StandingsRangeClosedSegment {
+    id
+    from_rank
+    to_rank
+    segment_type
+}
+
+fragment StandingsRangeFromSegment on StandingsRangeFromSegment {
+    id
+    from_rank
+    segment_type
+}
+
+fragment StandingsRangeToSegment on StandingsRangeToSegment {
+    id
+    to_rank
+    segment_type
+}
+
+fragment PossessionFragment on Possession {
+    down
+    location_team {
+        ... TeamLite
+    }
+    location_yardline
+    team {
+        ... TeamLite
+    }
+    yfd
+    goal_to_go
+    drive_info {
+        duration
+        play_count
+        yards
+    }
+}
+
+fragment GameOddsMoneylineMarketFragment on GameOddsMoneylineMarket {
+    id
+    balanced_line
+    betting_open
+    bet_period
+    line
+    price {
+        ... GameOddsPriceFragment
+    }
+    team {
+        ... Team
+    }
+}
+
+fragment GameOddsSpreadMarketFragment on GameOddsSpreadMarket {
+    id
+    balanced_line
+    betting_open
+    bet_period
+    line
+    price {
+        ... GameOddsPriceFragment
+    }
+    team {
+        ... Team
+    }
+}
+
+fragment GameOddsTotalsMarketFragment on GameOddsTotalsMarket {
+    id
+    balanced_line
+    betting_open
+    bet_period
+    line
+    price {
+        ... GameOddsPriceFragment
+    }
+    direction
+}
+
+fragment GameOddsMarketFragment on GameOddsMarket {
+    ... GameOddsMoneylineMarketFragment
+    ... GameOddsSpreadMarketFragment
+    ... GameOddsTotalsMarketFragment
+}
+
+fragment GameOddsPriceFragment on GameOddsPrice {
+    fraction_odds
+    decimal_odds
+    us_odds
+}
+
+fragment ScoringPlayFragment on ScoringPlay {
+    id
+    away_score
+    clock
+    description
+    header
+    home_score
+    occurred_at
+    period_id
+    plays
+    score_type
+    team {
+        ... TeamLite
+    }
+    yards
+}
+
+fragment ArticleAuthorFragment on ArticleAuthor{
+    author {
+        ... User
+    }
+    display_order
+}
+
+fragment RecentGameFragment on Gamev2 {
+    id
+    scheduled_at
+    period_id
+    away_team {
+        ... RecentGameTeamFragment
+    }
+    home_team {
+        ... RecentGameTeamFragment
+    }
+}
+
+fragment RecentGameTeamFragment on GameTeam {
+    id
+    score
+    current_record
+    team {
+        ... Team
+    }
+}
+
+fragment WeatherFragment on Weather {
+    id
+    outlook
+    temp_celsius
+    temp_fahrenheit
+}
+
+fragment TodaysGameLegacyFragment on Game {
+    id
+    status
+    leagues {
+        id
+        shortname
+    }
+    score_status_text
+    game_time
+    game_type
+    away_team_id
+    away_team {
+        ... TodaysGameTeamLegacyFragment
+    }
+    away_score
+    away_team_details
+    home_team_id
+    home_team {
+        ... TodaysGameTeamLegacyFragment
+    }
+    home_score
+    home_team_details
+}
+
+fragment TodaysGameTeamLegacyFragment on Team {
+    long_display_name
+    short_display_name
+    url
+}
+
+fragment LogoFragment on TeamLogo {
+    uri
+    width
+    height
+}
+
+fragment Headshot on Headshot {
+    uri
+    width
+    height
+}
+
+fragment LineUpAndStatsFragment on Gamev2 {
+    sport
+    away_team {
+        line_up {
+            ... LineUp
+        }
+        stats {
+            ... GameStat
+        }
+    }
+    home_team {
+        line_up {
+            ... LineUp
+        }
+        stats {
+            ... GameStat
+        }
+    }
+}
+
+fragment PlayerStats on Gamev2 {
+    sport
+    away_team {
+        line_up {
+            ... LineUp
+        }
+    }
+    home_team {
+        line_up {
+            ... LineUp
+        }
+    }
+}
+
+fragment PeriodScoreFragment on PeriodScore {
+    id
+    period_id
+    score_str
+}
+
+fragment TeamLeader on TeamLeader {
+    id
+    player {
+        id
+        display_name
+        full_name
+        headshots {
+            ... Headshot
+        }
+        role {
+            jersey_number
+            position
+        }
+    }
+    stats {
+        ... GameStat
+    }
+    stats_label
+}
+
+fragment TopPerformer on TopPerformer {
+    id
+    player {
+        id
+        display_name
+        player {
+            headshots {
+                ... Headshot
+            }
+        }
+        jersey_number
+        position
+    }
+    stats {
+        ... GameStat
+    }
+    stats_label
+}
+
+fragment Injury on Injury {
+    injury
+    comment
+    player {
+        id
+        display_name
+        headshots {
+            ... Headshot
+        }
+        position
+    }
+    status
+}
+
+fragment PlayerGradesTeam on GameTeam {
+    score
+    team {
+        ... TeamLite
+    }
+    line_up {
+        players(grades: true) {
+            ... GradablePlayer
+        }
+    }
+}
+
+fragment PlayerGrade on PlayerGrade {
+    player_id
+    avg
+    avg_str
+    grade
+    total
+    order
+    updated_at
+}
+
+fragment GradablePlayer on GamePlayer {
+    display_name
+    position
+    jersey_number
+    grade {
+        ... PlayerGrade
+    }
+    player {
+        id
+        headshots {
+            ... Headshot
+        }
+    }
+    grades_stats: stats( stat_groups: [grades_summary, grades_default, grades_extra]){
+        ... GameStat
+    }
+}
+
+fragment GameTicket on GameTickets {
+    logos_dark_mode {
+        ... GameTicketLogo
+    }
+    logos_light_mode {
+        ... GameTicketLogo
+    }
+    min_price {
+        ... GameTicketPrice
+    }
+    uri
+    provider
+}
+
+fragment GameTicketLogo on GameTicketsLogo {
+    height
+    uri
+    width
+}
+
+fragment GameTicketPrice on GameTicketsPrice {
+    amount
+    currency
+}
+
+fragment GameState on GameStatus {
+    main
+    extra
+}

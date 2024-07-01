@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.widget.StatefulLayout" />
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <import type="com.theathletic.utility.RecyclerDecoration" />
+        <import type="com.theathletic.entity.main.PodcastExtKt" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastEpisodeDetailView" />
+        <variable
+            name="viewModel" type="com.theathletic.viewmodel.main.PodcastEpisodeDetailViewModel" />
+    </data>
+
+    <com.theathletic.widget.StatefulLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyLayout="@layout/placeholder_empty"
+        app:offlineLayout="@layout/placeholder_offline"
+        app:progressLayout="@layout/placeholder_progress"
+        app:state="@{viewModel.state}">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- TT small toolbar -->
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                app:layout_behavior="com.theathletic.widget.behavior.FixAppBarLayoutScrollableBehavior">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/ath_grey_70"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/global_spacing_120"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical|start"
+                        android:maxLines="1"
+                        android:text="@{viewModel.episode.title}"
+                        style="@style/TextAppearance.Ath.Headline.ExtraSmall"
+                        android:textColor="@color/ath_grey_10"
+                        app:autoSizeMaxTextSize="18sp"
+                        app:autoSizeMinTextSize="12sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
+
+                    <ImageView
+                        android:id="@+id/share_button"
+                        android:layout_width="?attr/actionBarSize"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="end"
+                        android:background="@drawable/selector_clickable_item_circular_bg"
+                        android:contentDescription="@null"
+                        android:onClick="@{() -> view.onShareClick()}"
+                        android:padding="18dp"
+                        android:tint="@color/ath_grey_10"
+                        android:visibility="@{viewModel.state == StatefulLayout.CONTENT}"
+                        app:srcCompat="@drawable/ic_share" />
+
+                    <FrameLayout
+                        android:layout_width="?attr/actionBarSize"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="end"
+                        android:visibility="@{viewModel.state == StatefulLayout.CONTENT}">
+
+                        <ImageView
+                            android:id="@+id/download_button"
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"
+                            android:animatedSrc="@{viewModel.episode == null ? null : PodcastExtKt.podcastEpisodeDetailDownloadDrawable(viewModel.episode, context)}"
+                            android:background="@drawable/selector_clickable_item_circular_bg"
+                            android:contentDescription="@null"
+                            android:onClick="@{() -> view.onPodcastDownloadClick(viewModel.episode)}"
+                            android:padding="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/play_progress"
+                            tools:src="@drawable/ic_podcast_episode_detail_download" />
+
+                        <ProgressBar
+                            android:id="@+id/download_progress"
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"
+                            android:animatedBindableProgressSlow="@{viewModel.episode.downloadProgress}"
+                            android:max="100"
+                            android:padding="12dp"
+                            android:progressDrawable="@drawable/shape_progress_bar_podcast_circle"
+                            android:rotation="270"
+                            android:visibility="@{(viewModel.episode.downloadProgress != 100)}"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/play_progress" />
+
+                    </FrameLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:refreshing="@{viewModel.isDataReloading}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/episode_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingBottom="16dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:recyclerDecoration="@{RecyclerDecoration.LINEAR_SPACE_SMALL}"
+                    app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+                    tools:listitem="@layout/fragment_podcast_episode_detail_track_item" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.theathletic.widget.StatefulLayout>
+</layout>

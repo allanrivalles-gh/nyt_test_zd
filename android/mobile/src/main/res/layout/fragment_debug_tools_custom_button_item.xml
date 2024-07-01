@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <import type="com.theathletic.utility.LogoUtility" />
+
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="data" type="com.theathletic.debugtools.DebugToolsCustomButton" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_spacing_64"
+        android:background="@drawable/selector_clickable_item_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/aciton_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@{data.backgroundColor}"
+                android:text="@{data.title}"
+                android:textAllCaps="false"
+                android:onClick="@{() -> view.onCustomButtonClick(data.onButtonClick) }"
+                tools:text="Action!"
+                style="@style/TextAppearance.Athletic.Body1" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>

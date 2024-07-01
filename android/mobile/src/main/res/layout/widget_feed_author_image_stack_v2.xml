@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.ui.widgets.AuthorImageStackModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="24dp">
+
+        <ImageView
+            android:id="@+id/image_3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:paddingEnd="2dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@color/ath_grey_60"
+            android:visibility="@{3 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="@id/image_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage3}"
+            imageCircular="@{true}"
+            tools:src="@sample/nfl_logos"
+            />
+
+        <ImageView
+            android:id="@+id/image_2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@color/ath_grey_60"
+            android:paddingEnd="2dp"
+            android:visibility="@{2 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="@id/image_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage2}"
+            imageCircular="@{true}"
+            tools:src="@sample/nfl_logos"
+            />
+
+        <ImageView
+            android:id="@+id/image_1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/widget_author_image_bg"
+            android:backgroundTint="@color/ath_grey_60"
+            android:paddingEnd="2dp"
+            android:visibility="@{1 &lt;= data.displayImageCount}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageError="@{@drawable/ic_profile_v2}"
+            app:imagePlaceholder="@{@drawable/ic_profile_v2}"
+            imageUrl="@{data.authorImage1}"
+            imageCircular="@{true}"
+            tools:src="@sample/nfl_logos"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

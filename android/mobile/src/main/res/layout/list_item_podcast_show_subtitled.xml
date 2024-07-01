@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="view" type="com.theathletic.podcast.ui.IPodcastShowItemView" />
+        <variable
+            name="data" type="com.theathletic.podcast.ui.PodcastListItem" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="@{data != null ? View.VISIBLE : View.INVISIBLE}"
+        android:onClick="@{() -> view.onPodcastItemClick(data)}"
+        android:foreground="?selectableItemBackground"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+
+        <FrameLayout
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="1dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                app:imageUrl="@{data.imageUrl}"
+                app:centerCrop="@{true}"
+                tools:src="@sample/podcast"
+                tools:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/badge"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="bottom|end"
+                android:gravity="center"
+                android:text="@{String.valueOf(data.badge)}"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_podcast_unlistened_badge"
+                android:visibility="@{data.badge != 0}"
+                style="@style/TA.Ath.Body4.Medium"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:gravity="center_horizontal"
+            android:text="@{data.title}"
+            android:singleLine="true"
+            android:ellipsize="end"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Football Fact Shek"/>
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:gravity="center_horizontal"
+            android:text="@{data.category}"
+            android:textColor="@color/ath_grey_45"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:visibility="@{data.category != null &amp;&amp; !data.category.isEmpty()}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Fantasy Baseball"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

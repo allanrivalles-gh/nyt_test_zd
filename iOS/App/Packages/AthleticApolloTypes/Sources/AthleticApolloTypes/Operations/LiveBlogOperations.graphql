@@ -1,0 +1,20 @@
+query LiveBlogLinks($liveBlogId: ID!) {
+    liveBlog(id: $liveBlogId) {
+        permalink
+        permalinkForEmbed
+    }
+}
+
+query LiveBlogDetails($liveBlogId: ID!) {
+    liveBlog(id: $liveBlogId) {
+        ...LiveBlogDetails
+    }
+}
+
+subscription LiveBlogBannerInfoUpdates($id: ID!) {
+    updatedLiveBlog(id: $id) {
+        id
+        title: short_title
+        lastActivityAt
+    }
+}

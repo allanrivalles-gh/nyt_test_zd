@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="18dp"
+        android:height="18dp"
+        android:viewportWidth="18"
+        android:viewportHeight="18">
+    <group
+        android:translateX="1.500000" android:translateY="1.000000">
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:strokeWidth="1"
+            android:pathData="M 0.0438888889 16 L 4.94033333 16 L 4.94033333 15.1344444 L 0.0438888889 15.1344444 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:strokeWidth="1"
+            android:pathData="M 10.2818889 16 L 15.1783333 16 L 15.1783333 15.1344444 L 10.2818889 15.1344444 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:strokeWidth="1"
+            android:pathData="M9.78732778,8.90261667 L5.44199444,8.90261667 L7.61166111,3.13922778 L9.78732778,8.90261667 Z M6.20816111,2.42350556 L6.95627222,2.42350556 L4.19132778,9.76817222 L11.0392167,9.76817222 L7.93988333,1.55795 L3.58016111,1.55795 L3.58016111,2.42350556 L5.28321667,2.42350556 L1.07988333,13.5765056 L0.0438833333,13.5765056 L0.0438833333,14.4420056 L1.67866111,14.4420056 L6.20816111,2.42350556 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:strokeWidth="1"
+            android:pathData="M 14.1423611 13.5765 L 9.02658333 0 L 3.58019444 0 L 3.58019444 0.865555556 L 8.42780556 0.865555556 L 13.5435833 14.4420556 L 15.1783056 14.4420556 L 15.1783056 13.5765 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:strokeWidth="1"
+            android:pathData="M 10.2829833 14.4420278 L 12.8005389 14.4358611 L 11.3003722 10.4605833 L 3.92181667 10.4605833 L 2.42165 14.4358611 L 4.93920556 14.4420278 L 4.94142778 13.5764722 L 3.67226111 13.5734167 L 4.52026111 11.3261389 L 10.7019278 11.3261389 L 11.5499833 13.5734167 L 10.2808167 13.5764722 Z" />
+    </group>
+</vector>

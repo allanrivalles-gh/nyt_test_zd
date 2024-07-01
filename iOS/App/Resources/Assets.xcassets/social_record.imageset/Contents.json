@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "social_record.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

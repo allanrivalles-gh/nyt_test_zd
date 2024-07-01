@@ -1,0 +1,128 @@
+fragment TournamentTeam on Teamv2 {
+    id
+    legacy_team {
+        id
+    }
+    alias
+    color_accent
+    logos {
+        ...TeamLogo
+    }
+}
+
+fragment TournamentGameTeam on GameTeam {
+    score
+    penalty_score
+    team {
+        ...TournamentTeam
+    }
+    ... on BasketballGameTeam {
+        seed
+        current_record
+    }
+}
+
+fragment TournamentPlaceholderTeam on TournamentPlaceholderGameTeam {
+    name
+}
+
+fragment TournamentGame on Gamev2 {
+    id
+    started_at
+    scheduled_at
+    status
+    match_time_display
+    time_tbd
+    sport
+    home_team {
+        ...TournamentGameTeam
+    }
+    away_team {
+        ...TournamentGameTeam
+    }
+    venue {
+        name
+    }
+    tickets {
+        ...GameTickets
+    }
+    ... on SoccerGame {
+        key_events {
+            ... on CardEvent {
+                card_type
+                team {
+                    id
+                }
+            }
+        }
+    }
+    ... on BaseballGame {
+        inning
+        inning_half
+    }
+    ... on BasketballGame {
+        bracket {
+            name
+        }
+    }
+}
+
+fragment TournamentSeries on TournamentSeries {
+    id
+    series_title {
+        ... on TournamentSeriesDateTitle {
+            date
+        }
+        ... on TournamentSeriesTextTitle {
+            text
+        }
+    }
+    is_live: live
+    conference
+    best_of
+    home_team_rank
+    home_team_record
+    home_team {
+        ...TournamentTeam
+    }
+    away_team_rank
+    away_team_record
+    away_team {
+        ...TournamentTeam
+    }
+    games {
+        ...TournamentGame
+        ...TournamentPlaceholderGame
+    }
+}
+
+fragment TournamentPlaceholderGame on TournamentPlaceholderGame {
+    id
+    conference
+    home_team {
+        ...TournamentPlaceholderTeam
+        ...TournamentTeam
+    }
+    away_team {
+        ...TournamentPlaceholderTeam
+        ...TournamentTeam
+    }
+}
+
+fragment TournamentStage on TournamentStage {
+    id
+    name
+    live
+    type
+    placeholder_game_teams {
+        home_team_name
+        away_team_name
+    }
+    bracket_games {
+        ...TournamentGame
+        ...TournamentPlaceholderGame
+    }
+    series {
+        ...TournamentSeries
+    }
+}

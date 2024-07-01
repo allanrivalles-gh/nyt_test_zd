@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="data"
+            type="com.theathletic.attributionsurvey.ui.SurveyHeaderUiModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Ath.Slab.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="30dp"
+            android:maxLines="3"
+            android:text="@{data.title}"
+            android:gravity="center"
+            tools:text="Welcome to The Athletic" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="5"
+            android:text="@{data.subtitle}"
+            android:gravity="center"
+            android:paddingBottom="32dp"
+            tools:text="Quick pre-game interview question: how did you hear about us?" />
+
+    </LinearLayout>
+
+</layout>

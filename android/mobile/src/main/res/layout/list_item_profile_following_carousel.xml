@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+
+        <variable
+            name="view"
+            type="com.theathletic.profile.ui.ProfileFollowingListItem.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_70"
+        >
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/global_spacing_16"
+            android:layout_marginTop="16dp"
+            android:text="@string/profile_following"
+            android:textColor="@color/ath_grey_40"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            />
+
+        <TextView
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/global_spacing_8"
+            android:text="@string/profile_edit"
+            android:textColor="@color/ath_grey_40"
+            android:onClick="@{() -> view.onEditClicked()}"
+            android:paddingStart="@dimen/global_spacing_8"
+            android:paddingEnd="@dimen/global_spacing_8"
+            app:layout_constraintTop_toTopOf="@id/text"
+            app:layout_constraintBottom_toBottomOf="@id/text"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_profile_followables"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:layout_marginTop="@dimen/global_spacing_4"
+            app:layout_constraintTop_toBottomOf="@id/edit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

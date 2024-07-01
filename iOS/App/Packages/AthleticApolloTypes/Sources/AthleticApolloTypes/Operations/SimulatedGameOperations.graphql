@@ -1,0 +1,9 @@
+mutation StartGameSimulation($delay: Int) {
+    startSimulation(initial_delay: $delay)
+}
+
+mutation StartGameReplay($id: ID!) {
+    triggerReplay(id: $id) {
+        ok
+    }
+}

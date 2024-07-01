@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedAnnouncement"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedAnnouncement.Interactor"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:imageError="@{@drawable/ic_athletic_a_logo_gray}"
+            app:imageUrl="@{data.backgroundImageUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_athletic_a_logo_gray"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_feed_item_background"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@{data.title}"
+            android:textColor="@color/ath_grey_10_raw"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            style="@style/TextAppearance.Ath.Slab.Medium"
+            tools:text="GOLF COVERAGE NOW AVAILABLE"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/close"
+            app:layout_constraintBottom_toTopOf="@+id/subtitle"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="@{data.subtext}"
+            android:textColor="@color/ath_grey_45_raw"
+            android:ellipsize="end"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small"
+            tools:text="Smart, in-depth golf coverage from a team of All-Star writers, and many more!"
+            app:layout_goneMarginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/close"
+            app:layout_constraintBottom_toTopOf="@+id/cta_text" />
+
+        <TextView
+            android:id="@+id/cta_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@{data.ctaText}"
+            android:textColor="@color/ath_grey_80_raw"
+            android:background="@drawable/button_background_white_rounded"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:visibility="@{!data.ctaText.isEmpty()}"
+            style="@style/TextAppearance.Ath.Navigation"
+            tools:text="Check It Out"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{() -> interactor.onAnnouncementClick(data.id, data.analyticsPayload)}"
+            android:background="@drawable/selector_clickable_item_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="8dp"
+            android:contentDescription="@null"
+            android:background="@drawable/selector_clickable_item_bg"
+            android:onClick="@{() -> interactor.onAnnouncementDismiss(data.id)}"
+            app:srcCompat="@drawable/ic_feed_announcement_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

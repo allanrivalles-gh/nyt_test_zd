@@ -1,0 +1,118 @@
+query ArticleQuery($id: ID!, $plat: String, $prop: String, $isAdsEnabled: Boolean! = false) {
+    articleById(id: $id) {
+        id
+        title
+        published_at
+        type
+        league_urls
+        league_ids
+        team_urls
+        team_ids
+        post_type_id
+        image_uri
+        is_teaser
+        disable_comments
+        lock_comments
+        news_topics
+        disable_nps
+        comment_count
+        permalink
+        article_body @skip(if: $isAdsEnabled)
+        article_body_mobile @include(if: $isAdsEnabled)
+        ad_unit_path @include(if: $isAdsEnabled)
+        entity_keywords
+        excerpt_plaintext
+        primary_tag
+        author {
+            ... on Staff {
+                id
+                name
+                avatar_uri
+            }
+        }
+        authors {
+            id
+            author {
+                id
+                name
+            }
+        }
+        primary_league_details {
+            sport_type
+            url
+            shortname
+        }
+        ad_targeting_params(plat: $plat, prop: $prop) @include(if: $isAdsEnabled) {
+            als_test_clientside
+            auth
+            byline
+            coll
+            gscat
+            id
+            keywords
+            org
+            plat
+            prop
+            tags
+            typ
+            tt
+        }
+    }
+}
+
+query ArticleComments($input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            id
+            author_name
+            author_user_level
+            comment
+            commented_at
+            comment_permalink
+            likes_count
+            total_replies
+        }
+    }
+}
+
+query ArticleRelatedContent($tags: TagsInput!, $excludeIds: [ID!]!) {
+  articleRelatedContent(tags: $tags, exclude_ids: $excludeIds) {
+    ...FeedArticleLite
+    ...LiveBlogLite
+  }
+}
+
+query ArticleId($articleByIdId: ID!) {
+    articleById(id: $articleByIdId) {
+        title
+        id
+    }
+}
+
+query UserArticles {
+    userArticles {
+        ...SavedArticle
+    }
+}
+
+fragment SavedArticle on Article {
+    id
+    title
+    image_uri
+    published_at
+    comment_count
+    author {
+        name
+    }
+}
+
+fragment LiveBlogLite on LiveBlog {
+    id
+    title
+    liveStatus
+    lastActivityAt
+    images {
+        thumbnail_uri
+    }
+}

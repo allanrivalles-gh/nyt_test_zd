@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    These are legacy colors that we should discontinue. If a new color is proposed by
+    design, it should be discussed and added to the palette defined in colors.xml
+    -->
+    <color name="transparent">#0000</color>
+    <color name="black">#000</color>
+    <color name="black_1">#181818</color>
+    <color name="black_2">#222</color>
+    <color name="black_3">#242424</color>
+    <color name="gray">#666</color>
+    <color name="gray_1">#999</color>
+    <color name="dark_grey_2">#1B1C1D</color>
+    <color name="white">#fff</color>
+    <color name="white_2">#f2f2f2</color>
+    <color name="red">#f24a4a</color>
+    <color name="green">#01DB99</color>
+
+    <color name="text_gray_2">#888</color>
+
+    <color name="global_color_primary">@color/black</color>
+    <color name="global_color_primary_dark">#000000</color>
+    <color name="global_color_accent">#999999</color>
+    <color name="global_color_control_normal">@color/gray</color>
+    <color name="global_color_control_highlight">#2000</color>
+
+    <color name="global_text_primary">#fff</color>
+    <color name="global_text_primary_inverse">#000000</color>
+    <color name="global_text_secondary">#cdffffff</color>
+
+    <color name="global_bg_back">@color/black</color>
+    <color name="global_bg_back_inverse">#ffffff</color>
+
+    <color name="global_color_button">#ccffffff</color>
+    <color name="global_color_button_disabled">#cc555555</color>
+    <color name="global_color_button_dark">#777</color>
+    <color name="global_color_button_dark_disabled">#bbb</color>
+    <color name="global_color_button_dark_ripple">#8999</color>
+
+    <color name="global_switch_color">#7ED321</color>
+
+    <color name="global_divider">#60CCCCCC</color>
+
+    <color name="community_fab">#f24a4a</color>
+
+    <color name="comments_input_cursor">#F24A4A</color>
+
+    <!-- News -->
+    <color name="news_comment">#8E8E93</color>
+</resources>

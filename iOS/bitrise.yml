@@ -1,0 +1,398 @@
+format_version: "8"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+workflows:
+  Beta-Distribution:
+    steps:
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@8: {}
+    - fastlane@3:
+        inputs:
+        - update_fastlane: "false"
+        - verbose_log: "yes"
+        - lane: distribute_beta targets:Nightly,Staging
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
+    - opts:
+        is_expand: false
+      BITRISE_SCHEME: Stage
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_PATH: theathletic-ios.xcodeproj
+    - XCODE_PLIST: $XCODE_MAIN_FOLDER/dev-Info.plist
+    - BUNDLE_ID: com.theathletic.news-dev
+  Nightly:
+    steps:
+    - generic-file-storage@0.9: {}
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - script@1:
+        title: Setup NYT Bitrise Steps
+        inputs:
+        - content: |-
+            git clone git@github.com:nytimes/ap-bitrise-steps.git
+            ./ap-bitrise-steps/setup_bitrise.sh
+    - git-clone@8.1: {}
+    - cache-pull: {}
+    - restore-spm-cache@1: {}
+    - script:
+        inputs:
+        - content: |+
+            #!/usr/bin/env bash
+            set -ex
+
+            cd $APOLLO_CODEGEN_PATH
+            envman add --key APOLLO_BUILD_PATH --value "$(pwd)/.build"
+            xcrun -sdk macosx swift run ApolloCodegen downloadSchema
+            xcrun -sdk macosx swift run ApolloCodegen generate
+            cd ..
+
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_NOTIFICATIONS_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_WIDGET_PLIST
+    - xcode-archive@4.8:
+        inputs:
+        - team_id: X5U5MPSSEX
+        - is_clean_build: "yes"
+        - export_method: app-store
+        - compile_bitcode: "no"
+        - xcodebuild_options: SHOULD_USE_NEW_NAV='true' IS_NEW_PROFILE_ENABLED='true'
+        - automatic_code_signing: api-key
+        - icloud_container_environment: Production
+        - distribution_method: app-store
+        - configuration: Release
+    - deploy-to-itunesconnect-deliver@2.21:
+        inputs:
+        - bundle_id: $BUNDLE_ID
+        - skip_app_version_update: "yes"
+        - app_id: "1169450229"
+    - path::${BITRISE_SOURCE_DIR}/ap-bitrise-steps/ap-dsym-upload-embrace:
+        title: Upload DSYM Files To Embrace
+    - save-spm-cache@1: {}
+    - deploy-to-bitrise-io:
+        run_if: true
+    - cache-push:
+        run_if: true
+        inputs:
+        - fingerprint_method: file-mod-time
+        - ignore_check_on_paths: ~/Library/Developer/Xcode/DerivedData
+        - cache_paths: |
+            $BITRISE_CACHE_DIR
+            ~/Library/Developer/Xcode/DerivedData
+        is_always_run: true
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
+    - opts:
+        is_expand: false
+      BITRISE_SCHEME: Nightly
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_PATH: theathletic-ios.xcodeproj
+    - XCODE_PLIST: $XCODE_MAIN_FOLDER/Nightly-Info.plist
+    - BUNDLE_ID: com.theathletic.news-dev
+    - EMBRACE_APP_ID: 6cygi
+  Nightly-No-Deploy:
+    steps:
+    - generic-file-storage@0: {}
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6.2: {}
+    - cache-pull: {}
+    - script@1:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -ex
+
+            # write your script here
+            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
+
+            for FILE in $(grep -Ril "git@github.com:" .); do
+                sed -i '' "s/git@github.com:/https:\/\/$GITHUB_PAT@github.com\//g" ${FILE}
+            done
+
+
+            cd $APOLLO_CODEGEN_PATH
+            xcrun -sdk macosx swift run ApolloCodegen generate
+            cd ..
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_NOTIFICATIONS_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_WIDGET_PLIST
+    - xcode-archive:
+        inputs:
+        - team_id: X5U5MPSSEX
+        - is_clean_build: "yes"
+        - export_method: app-store
+        - compile_bitcode: "no"
+        - xcodebuild_options: SHOULD_USE_NEW_NAV='true' IS_NEW_PROFILE_ENABLED='true'
+        - automatic_code_signing: api-key
+        - icloud_container_environment: Production
+        - configuration: Release
+    - deploy-to-bitrise-io:
+        run_if: true
+    - cache-push:
+        run_if: true
+        inputs:
+        - fingerprint_method: file-mod-time
+        - ignore_check_on_paths: ~/Library/Developer/Xcode/DerivedData
+        - cache_paths: |
+            $BITRISE_CACHE_DIR
+            ~/Library/Developer/Xcode/DerivedData
+        is_always_run: true
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
+    - opts:
+        is_expand: false
+      BITRISE_SCHEME: Stage
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_PATH: theathletic-ios.xcodeproj
+    - XCODE_PLIST: $XCODE_MAIN_FOLDER/dev-Info.plist
+    - BUNDLE_ID: com.theathletic.news-dev
+  Staging:
+    steps:
+    - generic-file-storage@0.9: {}
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - script:
+        title: Setup NYT Bitrise Steps
+        inputs:
+        - content: |-
+            git clone git@github.com:nytimes/ap-bitrise-steps.git
+            ./ap-bitrise-steps/setup_bitrise.sh
+    - git-clone@8.1: {}
+    - cache-pull: {}
+    - restore-spm-cache@1: {}
+    - script:
+        inputs:
+        - content: |+
+            #!/usr/bin/env bash
+            set -ex
+
+            cd $APOLLO_CODEGEN_PATH
+            envman add --key APOLLO_BUILD_PATH --value "$(pwd)/.build"
+            xcrun -sdk macosx swift run ApolloCodegen downloadSchema
+            xcrun -sdk macosx swift run ApolloCodegen generate
+            cd ..
+
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_NOTIFICATIONS_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: ""
+        - plist_path: $XCODE_WIDGET_PLIST
+    - xcode-archive@4.8:
+        inputs:
+        - team_id: X5U5MPSSEX
+        - is_clean_build: "yes"
+        - export_method: app-store
+        - compile_bitcode: "no"
+        - xcodebuild_options: SHOULD_USE_NEW_NAV='true' IS_NEW_PROFILE_ENABLED='true'
+        - automatic_code_signing: api-key
+        - icloud_container_environment: Production
+        - distribution_method: app-store
+        - configuration: Release
+    - deploy-to-itunesconnect-deliver@2.21:
+        inputs:
+        - bundle_id: $BUNDLE_ID
+        - skip_app_version_update: "yes"
+        - app_id: "1169450229"
+    - path::${BITRISE_SOURCE_DIR}/ap-bitrise-steps/ap-dsym-upload-embrace:
+        title: Upload DSYM Files To Embrace
+    - save-spm-cache@1: {}
+    - deploy-to-bitrise-io:
+        run_if: true
+    - cache-push:
+        run_if: true
+        inputs:
+        - fingerprint_method: file-mod-time
+        - ignore_check_on_paths: ~/Library/Developer/Xcode/DerivedData
+        - cache_paths: |
+            $BITRISE_CACHE_DIR
+            ~/Library/Developer/Xcode/DerivedData
+        is_always_run: true
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
+    - opts:
+        is_expand: false
+      BITRISE_SCHEME: Stage
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_PATH: theathletic-ios.xcodeproj
+    - XCODE_PLIST: $XCODE_MAIN_FOLDER/Staging-Info.plist
+    - BUNDLE_ID: com.theathletic.news-staging
+    - EMBRACE_APP_ID: 6cygi
+  Tested-Release:
+    steps:
+    - activate-ssh-key@4: {}
+    - script@1:
+        title: Setup NYT Bitrise Steps
+        inputs:
+        - content: |-
+            git clone git@github.com:nytimes/ap-bitrise-steps.git
+            ./ap-bitrise-steps/setup_bitrise.sh
+    - git-clone@8.1: {}
+    - script@1.2:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -ex
+
+            cd $APOLLO_CODEGEN_PATH
+            xcrun -sdk macosx swift run ApolloCodegen generate
+            cd ..
+        title: Setup Environment
+    - xcode-test@5.0:
+        inputs:
+        - destination: platform=iOS Simulator,name=iPhone 15,OS=latest
+    - deploy-to-bitrise-io@2.3:
+        inputs:
+        - is_compress: "true"
+        - is_enable_public_page: "false"
+    - generic-file-storage@0: {}
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: $BITRISE_GIT_TAG
+        - plist_path: $XCODE_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: $BITRISE_GIT_TAG
+        - plist_path: $XCODE_NOTIFICATIONS_PLIST
+    - set-xcode-build-number:
+        inputs:
+        - build_short_version_string: $BITRISE_GIT_TAG
+        - plist_path: $XCODE_WIDGET_PLIST
+    - manage-ios-code-signing@1:
+        inputs:
+        - configuration: Release
+        - distribution_method: app-store
+    - xcode-archive@4.8:
+        inputs:
+        - team_id: X5U5MPSSEX
+        - is_clean_build: "yes"
+        - export_method: app-store
+        - compile_bitcode: "no"
+        - xcodebuild_options: SHOULD_USE_NEW_NAV='true' IS_NEW_PROFILE_ENABLED='true'
+        - distribution_method: app-store
+        - icloud_container_environment: Production
+        - configuration: Release
+    - deploy-to-itunesconnect-deliver@2:
+        inputs:
+        - bundle_id: $BUNDLE_ID
+        - connection: api_key
+        - skip_app_version_update: "yes"
+    - path::${BITRISE_SOURCE_DIR}/ap-bitrise-steps/ap-dsym-upload-embrace:
+        title: Upload DSYM Files To Embrace
+    - deploy-to-bitrise-io@2: {}
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
+    - XCODE_MAIN_FOLDER: ./theathletic-ios
+    - EMBRACE_APP_ID: SNrgm
+    before_run: []
+  Tester:
+    steps:
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - cache-pull@2.7: {}
+    - restore-spm-cache@1: {}
+    - git-clone: {}
+    - script:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -ex
+
+            cd $APOLLO_CODEGEN_PATH
+            envman add --key APOLLO_BUILD_PATH --value "$(pwd)/.build"
+            xcrun -sdk macosx swift run ApolloCodegen generate
+            cd ..
+        title: Apollo codegen
+    - xcode-test@5.0:
+        timeout: 1200
+        inputs:
+        - should_build_before_test: "no"
+        - verbose: "yes"
+        - is_clean_build: "yes"
+        - xcodebuild_test_options: -disableAutomaticPackageResolution
+        - test_repetition_mode: retry_on_failure
+        - test_plan: ""
+        - destination: platform=iOS Simulator,name=iPhone 15,OS=latest
+        - single_build: "true"
+    - save-spm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
+    envs:
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: development
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: theathletic-ios.xcodeproj
+  - BITRISE_SCHEME: Production
+    opts:
+      is_expand: false
+  - opts:
+      is_expand: false
+    BITRISE_EXPORT_METHOD: app-store
+  - opts:
+      is_expand: false
+    BITRISE_BUILD_CONFIG: Release
+  - opts:
+      is_expand: false
+    XCODE_MAIN_FOLDER: ./App
+  - XCODE_PLIST: $XCODE_MAIN_FOLDER/Info.plist
+  - XCODE_NOTIFICATIONS_PLIST: ./notifications/Info.plist
+  - XCODE_WIDGET_PLIST: ./Widgets/Info.plist
+  - BUNDLE_ID: com.theathletic.news
+  - APOLLO_CODEGEN_PATH: App/Packages/AthleticApolloTypes
+  - EMBRACE_API_TOKEN: da31ca614b4546eebad0dda296ef657d
+  - EMBRACE_UPLOAD_BIN_PATH: ${BITRISE_SOURCE_DIR}/App/Resources/Embrace/upload
+meta:
+  bitrise.io:
+    machine_type: standard
+    stack: osx-xcode-15.0.x
+    machine_type_id: g2-m1.8core
+trigger_map:
+- push_branch: stable/*
+  workflow: Tested-Release
+- push_branch: main
+  workflow: Staging
+- pull_request_source_branch: '*'
+  workflow: Tester
+  pull_request_target_branch: main

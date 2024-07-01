@@ -1,0 +1,161 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.entity.main.PodcastExtKt" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastDetailView" />
+        <variable
+            name="episode" type="com.theathletic.entity.main.PodcastEpisodeItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#242424"
+        app:bring_to_clamp="no"
+        app:clamp="180dp"
+        app:gravity="right">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/right_container"
+            android:layout_width="180dp"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/download_button_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@{(episode.downloadProgress == 100) ? @color/red : @color/green}"
+                tools:background="@color/green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <View
+                android:id="@+id/share_button_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="#27252b"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_black_fade_left"
+                android:alpha="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- TT Bookmark -->
+            <ProgressBar
+                android:id="@+id/download_progress"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:alpha="0.3"
+                android:max="100"
+                android:progressDrawable="@drawable/shape_progress_bar_podcast_detail"
+                android:animatedBindableProgressSlow="@{episode.downloadProgress}"
+                android:rotation="270"
+                android:visibility="@{(episode.downloadProgress != 100)}"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                app:layout_constraintTop_toTopOf="@id/button_download"
+                app:layout_constraintStart_toStartOf="@id/button_download" />
+
+            <ImageView
+                android:id="@+id/button_download"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:contentDescription="@null"
+                android:animatedSrc="@{PodcastExtKt.getPodcastDetailDownloadDrawable(episode)}"
+                android:background="@drawable/selector_clickable_item_circular_bg"
+                tools:src="@drawable/ic_podcast_detail_download"
+                app:layout_constraintBottom_toTopOf="@id/text_download"
+                app:layout_constraintEnd_toEndOf="@id/download_button_container"
+                app:layout_constraintStart_toStartOf="@+id/download_button_container"
+                app:layout_constraintTop_toTopOf="@id/download_button_container"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_download"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:text="@{PodcastExtKt.getPodcastDetailDownloadText(episode)}"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.Athletic.Body1"
+                tools:text="Download"
+                app:layout_constraintBottom_toBottomOf="@id/download_button_container"
+                app:layout_constraintEnd_toEndOf="@id/download_button_container"
+                app:layout_constraintStart_toStartOf="@+id/download_button_container"
+                app:layout_constraintTop_toBottomOf="@id/button_download" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:onClick="@{() -> view.onPodcastEpisodeDownloadClick(episode)}"
+                app:layout_constraintBottom_toBottomOf="@id/download_button_container"
+                app:layout_constraintEnd_toEndOf="@id/download_button_container"
+                app:layout_constraintStart_toStartOf="@id/download_button_container"
+                app:layout_constraintTop_toTopOf="@id/download_button_container" />
+
+            <!-- TT Share -->
+            <ImageView
+                android:id="@+id/button_share"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/gray"
+                android:contentDescription="@null"
+                android:padding="14dp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_share"
+                app:layout_constraintBottom_toTopOf="@id/text_share"
+                app:layout_constraintStart_toStartOf="@id/share_button_container"
+                app:layout_constraintEnd_toEndOf="@id/share_button_container"
+                app:layout_constraintTop_toTopOf="@id/share_button_container"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_share"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:text="@string/podcast_item_share"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.Athletic.Body1"
+                app:layout_constraintBottom_toBottomOf="@id/share_button_container"
+                app:layout_constraintStart_toStartOf="@id/share_button_container"
+                app:layout_constraintEnd_toEndOf="@id/share_button_container"
+                app:layout_constraintTop_toBottomOf="@id/button_share" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:contentDescription="@null"
+                android:onClick="@{() -> view.onPodcastEpisodeShareClick(episode)}"
+                app:layout_constraintBottom_toBottomOf="@id/share_button_container"
+                app:layout_constraintEnd_toEndOf="@id/share_button_container"
+                app:layout_constraintStart_toStartOf="@id/share_button_container"
+                app:layout_constraintTop_toTopOf="@id/share_button_container" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

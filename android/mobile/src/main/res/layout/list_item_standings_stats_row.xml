@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="data"
+            type="com.theathletic.scores.standings.ui.ScoreStandingsStatsRowUiModel" />
+        <variable
+            name="interactor"
+            type="com.theathletic.scores.standings.ui.ScoresStandingsRowUiModel.Interactor" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:onClick="@{() -> interactor.onTeamRowClick(data.teamId, data.teamDisplayName, data.analyticsPayload)}"
+            android:background="@{(data.showHighlighted == true) ?  @color/ath_grey_60 : @color/ath_grey_65 }"
+            android:orientation="horizontal"
+            tools:background="@color/ath_grey_65" >
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 0 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[0]}"
+                bind:useExpandedWidth="@{data.extraColWidth[0]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 1 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[1]}"
+                bind:useExpandedWidth="@{data.extraColWidth[1]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 2 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[2]}"
+                bind:useExpandedWidth="@{data.extraColWidth[2]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 3 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[3]}"
+                bind:useExpandedWidth="@{data.extraColWidth[3]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 4 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[4]}"
+                bind:useExpandedWidth="@{data.extraColWidth[4]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 5 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[5]}"
+                bind:useExpandedWidth="@{data.extraColWidth[5]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 6 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[6]}"
+                bind:useExpandedWidth="@{data.extraColWidth[6]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 7 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[7]}"
+                bind:useExpandedWidth="@{data.extraColWidth[7]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 8 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[8]}"
+                bind:useExpandedWidth="@{data.extraColWidth[8]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 9 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[9]}"
+                bind:useExpandedWidth="@{data.extraColWidth[9]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 10 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[10]}"
+                bind:useExpandedWidth="@{data.extraColWidth[10]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 11 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[11]}"
+                bind:useExpandedWidth="@{data.extraColWidth[11]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 12 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[12]}"
+                bind:useExpandedWidth="@{data.extraColWidth[12]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 13 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[13]}"
+                bind:useExpandedWidth="@{data.extraColWidth[13]}"
+                />
+
+            <include
+                layout="@layout/list_item_standings_stats_cell_label"
+                android:visibility="@{data.labels.size > 14 ? View.VISIBLE : View.GONE}"
+                bind:label="@{data.labels[14]}"
+                bind:useExpandedWidth="@{data.extraColWidth[14]}"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="top"
+            android:visibility="@{!data.showDottedPlayoffDivider &amp;&amp; !data.showSolidPlayoffDivider}"
+            android:background="@color/ath_grey_60"
+            tools:visibility="gone"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/ath_grey_30"
+            android:visibility="@{data.showSolidPlayoffDivider}"
+            android:layout_gravity="top"
+            tools:visibility="gone"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/dotted_playoff_divider"
+            android:visibility="@{data.showDottedPlayoffDivider}"
+            android:layout_gravity="top" />
+
+    </FrameLayout>
+</layout>

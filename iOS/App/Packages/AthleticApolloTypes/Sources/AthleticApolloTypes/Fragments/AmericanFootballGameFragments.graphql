@@ -1,0 +1,132 @@
+fragment AmericanFootballScoring on AmericanFootballGame {
+    __typename
+    home_team {
+        ...AmericanFootballScoringTeam
+    }
+    away_team {
+        ...AmericanFootballScoringTeam
+    }
+    possession {
+        ...AmericanFootballPossession
+    }
+    scoring_plays {
+        ...AmericanFootballScoringPlay
+    }
+}
+
+fragment AmericanFootballRecentPlays on AmericanFootballGame {
+    __typename
+    sport
+    away_team {
+        ...GameV2RecentPlaysTeam
+    }
+    home_team {
+        ...GameV2RecentPlaysTeam
+    }
+    american_football_recent_plays: recent_plays(size: 4) {
+        ...AmericanFootballPlay
+    }
+}
+
+fragment AmericanFootballPlay on AmericanFootballPlay {
+    __typename
+    id
+    away_score
+    home_score
+    header
+    description
+    clock
+    occurred_at
+    occurred_at_str
+    possession {
+        ...AmericanFootballPossession
+    }
+    team {
+        id
+        color_accent
+        logos {
+            ...TeamLogo
+        }
+    }
+    is_scoring_play: scoring_play
+}
+
+fragment AmericanFootballDownAndDistance on AmericanFootballGame {
+    possession {
+        ...AmericanFootballPossession
+        ...AmericanFootballPossessionDriveInfo
+    }
+}
+
+fragment AmericanFootballPossession on Possession {
+    __typename
+    down
+    location_team {
+        id
+        alias
+        name
+    }
+    location_yardline
+    team {
+        ...TeamV2
+    }
+    yards_first_down: yfd
+    goal_to_go
+}
+
+fragment AmericanFootballPossessionDriveInfo on Possession {
+    drive_info {
+        duration
+        play_count
+        yards
+    }
+}
+
+fragment AmericanFootballScoringPlay on ScoringPlay {
+    __typename
+    id
+    occurred_at
+    occurred_at_str
+    team {
+        ...TeamV2
+    }
+    home_score
+    away_score
+    period_id
+    header
+    description
+    clock
+    possession {
+        ...AmericanFootballPossession
+    }
+    score_type
+}
+
+fragment AmericanFootballScoringTeam on AmericanFootballGameTeam {
+    __typename
+    scoring {
+        ...PeriodScore
+    }
+}
+
+fragment PeriodScore on PeriodScore {
+    __typename
+    id
+    period_id
+    score
+    score_string: score_str
+}
+
+fragment AmericanFootballTimeouts on AmericanFootballGame {
+    away_team {
+        ...AmericanFootballTimeoutsTeam
+    }
+    home_team {
+        ...AmericanFootballTimeoutsTeam
+    }
+}
+
+fragment AmericanFootballTimeoutsTeam on AmericanFootballGameTeam {
+    used_timeouts
+    remaining_timeouts
+}

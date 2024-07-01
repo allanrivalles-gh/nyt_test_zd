@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/ath_grey_70"
+              android:orientation="vertical"
+              android:gravity="center">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:contentDescription="@null"
+        android:tint="@color/ath_grey_10"
+        app:srcCompat="@drawable/wifi_offline_light_bg" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/global_spacing_64"
+        android:text="@string/global_network_offline_header"
+        android:textColor="@color/ath_grey_10"
+        android:gravity="center_horizontal"
+        style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/placeholder_empty_margin_bottom"
+        android:layout_marginTop="@dimen/global_spacing_16"
+        android:text="@string/global_network_offline"
+        android:textColor="@color/ath_grey_45"
+        android:gravity="center_horizontal" />
+
+</LinearLayout>

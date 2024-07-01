@@ -1,0 +1,106 @@
+# QUERIES
+
+query TeamStats($teamId: ID!) {
+    teamStats(team_id: $teamId) {
+        members {
+            ...SeasonStatsPlayer
+        }
+        season_stats {
+            ...GameStat
+        }
+    }
+    teamv2(id: $teamId) {
+        id
+        sport
+        color_primary
+        logos {
+            ... LogoFragment
+        }
+        ... StatLeadersTeam
+    }
+}
+
+query TeamRoster($teamId: ID!) {
+    teamv2(id: $teamId) {
+        id
+        sport
+        color_primary
+        logos {
+            ... LogoFragment
+        }
+        members {
+            ... PlayerRosterDetails
+        }
+    }
+}
+
+query TeamStandings($teamId: ID!) {
+    teamv2(id: $teamId) {
+        league_standings(
+            primary_only: true
+            full_standings: true
+            default_grouping_only: false
+        ) {
+            season {
+                id
+                name
+                league {
+                    ... League
+                }
+            }
+            standings {
+                ... StandingsGrouping
+            }
+        }
+    }
+}
+
+# FRAGMENTS
+
+fragment StatLeadersTeam on Teamv2 {
+    stat_leaders {
+        id
+        leaders {
+            id
+            player {
+                display_name
+                headshots {
+                    ... Headshot
+                }
+                position
+            }
+            stats {
+                ... GameStat
+            }
+            stats_label
+            stats_short_label
+        }
+        stats_category
+    }
+}
+
+fragment SeasonStatsPlayer on TeamMember {
+    id
+    display_name
+    headshots {
+        ... Headshot
+    }
+    jersey_number
+    position
+    season_stats {
+        ...GameStat
+    }
+}
+
+fragment PlayerRosterDetails on TeamMember {
+    id
+    display_name
+    position
+    jersey_number
+    height
+    weight
+    birth_date
+    headshots {
+        ... Headshot
+    }
+}

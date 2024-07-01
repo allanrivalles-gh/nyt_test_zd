@@ -1,0 +1,17 @@
+query GetTournament($league_code: LeagueCode!, $season_id: ID) {
+    getTournament(league_code: $league_code, season_id: $season_id) {
+        id
+        extra_stages {
+            ...TournamentStage
+        }
+        stages {
+            ...TournamentStage
+        }
+    }
+}
+
+subscription TournamentGameUpdates($gameIds: [ID!]!) {
+    liveScoreUpdates(game_ids: $gameIds) {
+        ...TournamentGame
+    }
+}

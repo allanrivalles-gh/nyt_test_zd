@@ -1,0 +1,17 @@
+query LeagueStandings($leagueCode: LeagueCode!) {
+    currentSeason(league_code: $leagueCode) {
+        ...SeasonStandings
+    }
+}
+
+query TeamStandings($teamId: ID!) {
+    teamv2(id: $teamId) {
+        ...TeamStandings
+    }
+}
+
+query SeasonStandings($seasonId: ID!) {
+    season(id: $seasonId) {
+        ...SeasonStandings
+    }
+}

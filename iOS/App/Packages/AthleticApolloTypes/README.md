@@ -1,0 +1,3 @@
+# AthleticApolloTypes
+
+`fastlane generateApollo`

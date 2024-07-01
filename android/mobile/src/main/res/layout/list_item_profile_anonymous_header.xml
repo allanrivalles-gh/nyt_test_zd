@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view"
+            type="com.theathletic.profile.ui.ProfileAnonymousHeaderItem.Interactor" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_70">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:onClick="@{() -> view.onAnonymousHeaderClicked()}"
+            android:text="@string/profile_create_account"
+            tools:text="Create Account"
+            style="@style/Widget.Ath.Button.Branded.Small"
+            />
+
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,291 @@
+{
+  "identifier" : "DFF9761C",
+  "nonRenewingSubscriptions" : [
+    {
+      "displayPrice" : "29.99",
+      "familyShareable" : false,
+      "internalID" : "62335065",
+      "localizations" : [
+        {
+          "description" : "3-Month Subscription",
+          "displayName" : "3-Month Subscription",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "gift_subscription_3_month_non_renew",
+      "referenceName" : "Gift 3 month Subscription",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "74.99",
+      "familyShareable" : false,
+      "internalID" : "27BDACCC",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "1-Year Subscription",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "gift_subscription_1_year_non_renew",
+      "referenceName" : "Gift 1 year subscription",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "99.99",
+      "familyShareable" : false,
+      "internalID" : "59E559F1",
+      "localizations" : [
+        {
+          "description" : "2-Year Subscription",
+          "displayName" : "2-Year Subscription",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "gift_subscription_2_year_non_renew",
+      "referenceName" : "Gift 2 year subscription",
+      "type" : "NonRenewingSubscription"
+    }
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_compatibilityTimeRate" : 6,
+    "_timeRate" : 15
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "1512D747",
+      "localizations" : [
+
+      ],
+      "name" : "The Athletic Subscriptions 2021",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+            {
+              "displayPrice" : "42.99",
+              "internalID" : "C6E86E84",
+              "offerID" : "com.theathletic.annual.72.promo.1",
+              "paymentMode" : "payUpFront",
+              "referenceName" : "40% off",
+              "subscriptionPeriod" : "P1Y"
+            },
+            {
+              "displayPrice" : "35.99",
+              "internalID" : "570E59C2",
+              "numberOfPeriods" : 1,
+              "offerID" : "com.theathletic.annual.72.promo.2",
+              "paymentMode" : "payUpFront",
+              "referenceName" : "50% off",
+              "subscriptionPeriod" : "P1Y"
+            },
+            {
+              "displayPrice" : "28.99",
+              "internalID" : "4B5FA99F",
+              "offerID" : "com.theathletic.annual.72.promo.3",
+              "paymentMode" : "payUpFront",
+              "referenceName" : "60% off",
+              "subscriptionPeriod" : "P1Y"
+            },
+            {
+              "displayPrice" : "21.99",
+              "internalID" : "B0B71523",
+              "offerID" : "com.theathletic.annual.72.promo.4",
+              "paymentMode" : "payUpFront",
+              "referenceName" : "70% off",
+              "subscriptionPeriod" : "P1Y"
+            }
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "669D027A",
+          "introductoryOffer" : {
+            "internalID" : "405143B8",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "7-day Free Trial",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "7.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "407183D7",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.monthly.7",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "F9935B63",
+          "introductoryOffer" : {
+            "displayPrice" : "42.99",
+            "internalID" : "7B2EC22A",
+            "paymentMode" : "payUpFront",
+            "subscriptionPeriod" : "P1Y"
+          },
+          "localizations" : [
+            {
+              "description" : "40% off",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72.intro.1",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual Intro 1",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "0E6A9F0F",
+          "introductoryOffer" : {
+            "displayPrice" : "35.99",
+            "internalID" : "BD70BF7E",
+            "paymentMode" : "payUpFront",
+            "subscriptionPeriod" : "P1Y"
+          },
+          "localizations" : [
+            {
+              "description" : "50% off",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72.intro.2",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual Intro 2",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "AC3B35E7",
+          "introductoryOffer" : {
+            "displayPrice" : "28.99",
+            "internalID" : "D3F847B3",
+            "paymentMode" : "payUpFront",
+            "subscriptionPeriod" : "P1M"
+          },
+          "localizations" : [
+            {
+              "description" : "60% off",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72.intro.3",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual Intro 3",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "8D3E8956",
+          "introductoryOffer" : {
+            "displayPrice" : "21.99",
+            "internalID" : "01B2B114",
+            "paymentMode" : "payUpFront",
+            "subscriptionPeriod" : "P1Y"
+          },
+          "localizations" : [
+            {
+              "description" : "70% off",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72.intro.4",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Annual Intro 4",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "71.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "9C424DC9",
+          "introductoryOffer" : {
+            "internalID" : "CF3120CD",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P6M"
+          },
+          "localizations" : [
+            {
+              "description" : "6 months free",
+              "displayName" : "TMobile Tuesday Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.theathletic.annual.72.tmobile",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "TMobile Tuesday",
+          "subscriptionGroupID" : "1512D747",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "AB9CA0FD",
+    "privateKey" : "MF8CAQEEGKIK+hpoyAtD+SE5IW6XmnbxwXzst6PFg6AKBggqhkjOPQMBAaE0AzIA\nBPK/5tDzqwUzs5WYhkhcRmtPyA2Oo5gvEXqrL5QVOHsBTVUNguo+4VYb2SQB0zOo\n/g==",
+    "publicKey" : "MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAE8r/m0POrBTOzlZiGSFxGa0/IDY6j\nmC8ReqsvlBU4ewFNVQ2C6j7hVhvZJAHTM6j+"
+  },
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- This is the starting point for our rebrand theming -->
+    <style name="Theme.Ath.Base" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/ath_grey_80</item>
+        <item name="colorPrimaryVariant">@color/ath_grey_70</item>
+        <item name="colorOnPrimary">@color/ath_grey_20</item>
+        <item name="colorSecondary">@color/ath_grey_50</item>
+        <item name="colorSecondaryVariant">@color/ath_grey_70</item>
+        <item name="colorOnSecondary">@color/ath_grey_20</item>
+        <item name="colorError">@color/ath_red</item>
+        <item name="colorOnError">@color/ath_grey_20</item>
+        <item name="colorSurface">@color/ath_grey_70</item>
+        <item name="colorOnSurface">@color/ath_grey_10</item>
+        <item name="android:colorBackground">@color/ath_grey_80</item>
+        <item name="colorOnBackground">@color/ath_grey_20</item>
+        <item name="colorOnBackgroundVariant1">@color/ath_grey_40</item>
+        <item name="colorOnBackgroundVariant2">@color/ath_grey_50</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:actionMenuTextColor">@color/ath_red</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Ath.ButtonDefault</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Ath.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Ath.MediumComponent</item>
+        <item name="android:statusBarColor">@color/ath_grey_70</item>
+        <item name="android:windowLightStatusBar">@bool/is_in_light_mode</item>
+
+        <!-- Material Component Styles -->
+        <item name="drawerArrowStyle">@style/Widget.Athletic.Drawer</item>
+        <item name="appBarLayoutStyle">@style/Widget.Ath.AppBarLayout</item>
+        <item name="tabStyle">@style/Widget.Ath.TabLayout</item>
+        <item name="textInputStyle">@style/Widget.Ath.TextInputLayout</item>
+        <item name="actionMenuTextAppearance">@style/TextAppearance.Ath.Navigation</item>
+        <item name="switchStyle">@style/Widget.Ath.Switch</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Ath.MaterialAlertDialog</item>
+
+        <item name="materialButtonStyle">@style/Widget.Ath.Button.Core.Primary</item>
+    </style>
+
+    <style name="Theme.Ath.Rebrand" parent="Theme.Ath.Base"/>
+
+    <style name="Theme.Ath.Rebrand.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Ath.Rebrand.Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Theme.Ath.Rebrand.Light" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/ath_grey_10</item>
+        <item name="colorPrimaryVariant">@color/ath_grey_20</item>
+        <item name="colorOnPrimary">@color/ath_grey_60</item>
+        <item name="colorSecondary">@color/ath_grey_40</item>
+        <item name="colorSecondaryVariant">@color/ath_grey_20</item>
+        <item name="colorOnSecondary">@color/ath_grey_60</item>
+        <item name="colorError">@color/ath_red</item>
+        <item name="colorOnError">@color/ath_grey_10</item>
+        <item name="colorSurface">@color/ath_grey_20</item>
+        <item name="colorOnSurface">@color/ath_grey_80</item>
+        <item name="android:colorBackground">@color/ath_grey_10</item>
+        <item name="colorOnBackground">@color/ath_grey_60</item>
+        <item name="colorOnBackgroundVariant1">@color/ath_grey_50</item>
+        <item name="colorOnBackgroundVariant2">@color/ath_grey_40</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Ath.ButtonDefault</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Ath.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Ath.MediumComponent</item>
+
+        <!-- Material Component Styles -->
+        <item name="drawerArrowStyle">@style/Widget.Athletic.Drawer</item>
+        <item name="appBarLayoutStyle">@style/Widget.Ath.AppBarLayout</item>
+        <item name="tabStyle">@style/Widget.Ath.TabLayout</item>
+        <item name="textInputStyle">@style/Widget.Ath.TextInputLayout</item>
+        <item name="actionMenuTextAppearance">@style/TextAppearance.Ath.Navigation</item>
+        <item name="switchStyle">@style/Widget.Ath.Switch</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Ath.MaterialAlertDialog</item>
+
+        <item name="materialButtonStyle">@style/Widget.Ath.Button.Core.Primary</item>
+    </style>
+
+    <style name="Theme.Ath.Rebrand.Desert" parent="Theme.Ath.Rebrand.Light">
+        <item name="backgroundColor">@color/ath_grey_40</item>
+        <item name="colorOnBackground">@color/ath_grey_80</item>
+        <item name="colorOnBackgroundVariant1">@color/ath_grey_50</item>
+        <item name="colorOnSurface">@color/ath_grey_80</item>
+    </style>
+
+</resources>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.gifts.ui.GiftPurchaseSuccessView" />
+        <variable
+            name="viewModel" type="com.theathletic.gifts.ui.GiftPurchaseSuccessViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TT Toolbar -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/shape_gift_sheet_dialog_bg"
+            android:elevation="4dp">
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/gifts_success_header"
+                style="@style/TA.Ath.SubHeadline.Medium" />
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:background="@drawable/selector_clickable_item_circular_bg"
+                android:contentDescription="@null"
+                android:onClick="@{() -> view.onCloseClick()}"
+                android:padding="14dp"
+                app:srcCompat="@drawable/ic_close" />
+
+        </FrameLayout>
+
+        <com.theathletic.widget.FlingableNestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gutter_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/global_spacing_24" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gutter_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/global_spacing_24" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="#242424"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/gradient_black_fade_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_thank_you"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/card_image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/global_spacing_52"
+                    android:contentDescription="@null"
+                    android:elevation="4dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/logo_gift_card"
+                    app:layout_constraintDimensionRatio="1.6:1"
+                    app:layout_constraintStart_toStartOf="@id/gutter_start"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.6" />
+
+
+                <TextView
+                    android:id="@+id/title_thank_you"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/gifts_success_title_thank_you"
+                    style="@style/TA.Ath.Gifts.Success.Title"
+                    app:layout_constraintEnd_toEndOf="@id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/card_image" />
+
+                <TextView
+                    android:id="@+id/label_gift_recipient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/gifts_success_label_recipient"
+                    style="@style/TA.Ath.Gifts.Success.SubTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/title_thank_you" />
+
+                <TextView
+                    android:id="@+id/label_gift_recipient_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@{viewModel.recipientFullname}"
+                    style="@style/TA.Ath.Gifts.Success.Body"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_recipient"
+                    tools:text="John Smith" />
+
+                <TextView
+                    android:id="@+id/label_gift_recipient_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@{viewModel.recipientEmail}"
+                    android:visibility="@{viewModel.recipientEmail.length() > 0}"
+                    style="@style/TA.Ath.Gifts.Success.Body"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_recipient_name"
+                    tools:text="johnsmith@gmail.com" />
+
+                <View
+                    android:id="@+id/divider_plan"
+                    android:layout_width="0dp" android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#444"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_recipient_email" />
+
+
+                <TextView
+                    android:id="@+id/label_gift_plan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/gifts_success_label_plan"
+                    style="@style/TA.Ath.Gifts.Success.SubTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/divider_plan" />
+
+                <TextView
+                    android:id="@+id/label_gift_plan_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@{viewModel.giftPlanDescription}"
+                    style="@style/TA.Ath.Gifts.Success.Body"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_plan"
+                    tools:text="1-Year Subscription - $39.99 ($20 Off)" />
+
+
+                <View
+                    android:id="@+id/divider_delivery"
+                    android:layout_width="0dp" android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#444"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_plan_name" />
+
+                <TextView
+                    android:id="@+id/label_gift_delivery"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/gifts_success_label_delivery"
+                    style="@style/TA.Ath.Gifts.Success.SubTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_plan_name" />
+
+                <TextView
+                    android:id="@+id/label_gift_delivery_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@{viewModel.deliveryDescription}"
+                    style="@style/TA.Ath.Gifts.Success.Body"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_delivery"
+                    tools:text="Email to Recipient: Wednesday, October 30, 2019" />
+
+
+                <LinearLayout
+                    android:id="@+id/shirt_section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.shirtSectionVisible}"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/label_gift_delivery_type">
+
+                    <View
+                        android:id="@+id/divider_shirt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="24dp"
+                        android:background="#444" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/gifts_success_label_shirt"
+                        style="@style/TA.Ath.Gifts.Success.SubTitle" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@{viewModel.shirtFullname}"
+                        style="@style/TA.Ath.Gifts.Success.Body"
+                        tools:text="John Smith" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_address1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@{viewModel.shirtAddress1}"
+                        style="@style/TA.Ath.Gifts.Success.Body"
+                        tools:text="123 Main Street" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_address2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@{viewModel.shirtAddress2}"
+                        style="@style/TA.Ath.Gifts.Success.Body"
+                        tools:text="Apt 13" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_state_country_zip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@{viewModel.shirtAddressStateCountryZip}"
+                        style="@style/TA.Ath.Gifts.Success.Body"
+                        tools:text="New York, New York 12345" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@{viewModel.shirtSize}"
+                        style="@style/TA.Ath.Gifts.Success.Body"
+                        tools:text="Size: Large" />
+
+                    <TextView
+                        android:id="@+id/label_gift_shirt_delivery_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/gifts_success_label_shirt_delivery_time"
+                        style="@style/TA.Ath.Gifts.Success.Footnote" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider_give_another"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#444"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintTop_toBottomOf="@id/shirt_section" />
+
+                <TextView
+                    android:id="@+id/button_give_another"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="50dp"
+                    android:padding="4dp"
+                    android:background="@drawable/selector_clickable_item_bg"
+                    android:gravity="center"
+                    android:onClick="@{() -> view.onGiveAnotherGiftClick()}"
+                    android:text="@string/gifts_success_button_give_another"
+                    android:textColor="@color/red"
+                    android:textSize="17sp"
+                    style="@style/TA.Ath.Gifts.Success.Body"
+                    app:layout_constraintEnd_toEndOf="@+id/gutter_end"
+                    app:layout_constraintStart_toStartOf="@+id/gutter_start"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_give_another" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.theathletic.widget.FlingableNestedScrollView>
+    </LinearLayout>
+</layout>

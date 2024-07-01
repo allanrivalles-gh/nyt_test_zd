@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools" >
+
+    <!-- Dangerous Permissions -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+        tools:ignore="SystemPermissionTypo" />
+
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+
+    <!-- Soft Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.theathletic.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <queries>
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".AthleticApplication"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:resizeableActivity="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.Athletic"
+        tools:replace="android:allowBackup,android:supportsRtl"
+        tools:targetApi="n">
+
+        <profileable android:shell="true" tools:targetApi="q" />
+
+        <activity
+            android:name=".activity.DeepLinkDispatcherActivity"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:theme="@style/Theme.Ath.Rebrand.Transparent"
+            android:exported="true" >
+            <!-- Filter for article deepLinks -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="links.theathletic.com" />
+                <data android:host="links.e1.theathletic.com" />
+                <data android:host="links.e2.theathletic.com" />
+                <data android:pathPattern="/a/..*" />
+            </intent-filter>
+
+            <!-- Kochava SmartLinks -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="theathletic.smart.link" />
+                <data android:host="theathletic.testing.smart.link" />
+
+                <data android:pathPattern="/..*" />
+            </intent-filter>
+
+            <!-- theathletic:// deeplinks -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="theathletic" />
+            </intent-filter>
+
+            <!-- www.theathletic.com/ deeplinks -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="www.theathletic.com" />
+                <data android:host="theathletic.com" />
+                <data android:host="staging2.theathletic.com" />
+
+                <data android:pathPattern="/..*/20../..*" />
+                <data android:pathPattern="/.*/game/.*" />
+                <data android:pathPattern="/podcast/..*" />
+                <data android:pathPattern="/podcasts" />
+                <data android:pathPattern="/community" />
+                <data android:pathPattern="/share" />
+                <data android:pathPattern="/community/..*" />
+                <data android:pathPattern="/discussions/..*" />
+                <data android:pathPattern="/livediscussions/..*" />
+                <data android:pathPattern="/headline/..*" />
+                <data android:pathPattern="/reactions/..*" />
+                <data android:pathPattern="/gift" />
+                <data android:pathPattern="/tag/..*" />
+                <data android:pathPattern="/boxscore/..*" />
+                <data android:pathPattern="/frontpage" />
+                <data android:pathPattern="/live-blogs/..*/..*" />
+                <data android:pathPattern="/live-blogs/..*/match/..*" />
+                <data android:pathPattern="/live-rooms/..*" />
+                <data android:pathPattern="/culture"/>
+                <data android:pathPattern="/manage-teams"/>
+
+                <!-- League and Team Hub support -->
+                <data android:pathPattern="/.*/player/.*" />
+                <data android:pathPattern="/team/.*" />
+                <data android:pathPattern="/.*/feed" />
+                <data android:pathPattern="/.*/schedule" />
+                <data android:pathPattern="/.*/standings" />
+                <data android:pathPattern="/.*/brackets" />
+                <data android:pathPattern="/.*/stats" />
+                <data android:pathPattern="/.*/roster" />
+
+                <!-- Support leagues and league v2 codes -->
+                <data android:pathPattern="/boxing/.*" />
+                <data android:pathPattern="/bundesliga/.*" />
+                <data android:pathPattern="/cdr/.*" />
+                <data android:pathPattern="/cha/.*" />
+                <data android:pathPattern="/champions-league/.*" />
+                <data android:pathPattern="/college-basketball/.*" />
+                <data android:pathPattern="/college-football/.*" />
+                <data android:pathPattern="/copa-del-rey/.*" />
+                <data android:pathPattern="/culture/.*" />
+                <data android:pathPattern="/efl-championship/.*" />
+                <data android:pathPattern="/efl-league-cup/.*" />
+                <data android:pathPattern="/efl-league-one/.*" />
+                <data android:pathPattern="/efl-league-two/.*" />
+                <data android:pathPattern="/epl/.*" />
+                <data android:pathPattern="/euc/.*" />
+                <data android:pathPattern="/europa-league/.*" />
+                <data android:pathPattern="/fa-cup/.*" />
+                <data android:pathPattern="/fac/.*" />
+                <data android:pathPattern="/fantasy-baseball/.*" />
+                <data android:pathPattern="/fantasy-basketball/.*" />
+                <data android:pathPattern="/fantasy-football/.*" />
+                <data android:pathPattern="/fantasy-hockey/.*" />
+                <data android:pathPattern="/fantasy-premier-league/.*" />
+                <data android:pathPattern="/football/.*" />
+                <data android:pathPattern="/formula-1/.*" />
+                <data android:pathPattern="/fri/.*" />
+                <data android:pathPattern="/gaming/.*" />
+                <data android:pathPattern="/golf/.*" />
+                <data android:pathPattern="/international-football/.*" />
+                <data android:pathPattern="/la-liga/.*" />
+                <data android:pathPattern="/lec/.*" />
+                <data android:pathPattern="/leo/.*" />
+                <data android:pathPattern="/let/.*" />
+                <data android:pathPattern="/lnh/.*" />
+                <data android:pathPattern="/mlb/.*" />
+                <data android:pathPattern="/mls/.*" />
+                <data android:pathPattern="/mma/.*" />
+                <data android:pathPattern="/motorsports/.*" />
+                <data android:pathPattern="/nba/.*" />
+                <data android:pathPattern="/ncaafb/.*" />
+                <data android:pathPattern="/ncaamb/.*" />
+                <data android:pathPattern="/ncaawb/.*" />
+                <data android:pathPattern="/nfl/.*" />
+                <data android:pathPattern="/nhl/.*" />
+                <data android:pathPattern="/nws/.*" />
+                <data android:pathPattern="/nwsl/.*" />
+                <data android:pathPattern="/olympics/.*" />
+                <data android:pathPattern="/opinion/.*" />
+                <data android:pathPattern="/prd/.*" />
+                <data android:pathPattern="/pre/.*" />
+                <data android:pathPattern="/premier-league/.*" />
+                <data android:pathPattern="/scottish-premiership/.*" />
+                <data android:pathPattern="/serie-a/.*" />
+                <data android:pathPattern="/sports-betting/.*" />
+                <data android:pathPattern="/sports-business/.*" />
+                <data android:pathPattern="/tennis/.*" />
+                <data android:pathPattern="/ucl/.*" />
+                <data android:pathPattern="/uel/.*" />
+                <data android:pathPattern="/uwc/.*" />
+                <data android:pathPattern="/wnba/.*" />
+                <data android:pathPattern="/woc/.*" />
+                <data android:pathPattern="/womens-college-basketball/.*" />
+                <data android:pathPattern="/womens-euros/.*" />
+                <data android:pathPattern="/womens-football/.*" />
+                <data android:pathPattern="/womens-hockey/.*" />
+                <data android:pathPattern="/womens-world-cup-soccer/.*" />
+                <data android:pathPattern="/world-cup/.*" />
+                <data android:pathPattern="/wwc/.*" />
+
+                <!-- universal link with numbers support -->
+                <data android:pathPattern="/0.*" />
+                <data android:pathPattern="/1.*" />
+                <data android:pathPattern="/2.*" />
+                <data android:pathPattern="/3.*" />
+                <data android:pathPattern="/4.*" />
+                <data android:pathPattern="/5.*" />
+                <data android:pathPattern="/6.*" />
+                <data android:pathPattern="/7.*" />
+                <data android:pathPattern="/8.*" />
+                <data android:pathPattern="/9.*" />
+            </intent-filter>
+
+            <!-- nytimes.com/athletic links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="nytimes.com" />
+                <data android:host="www.nytimes.com" />
+
+                <data android:pathPattern="/athletic/.*" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"
+            android:exported="true"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".main.ui.MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Ath.Rebrand.Feed"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".auth.AuthenticationActivity"
+            android:theme="@style/Theme.Ath.Rebrand.Onboarding"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
+            android:name=".activity.FullscreenPhotoActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:theme="@style/Theme.Athletic.Dark">
+            <intent-filter>
+                <data android:scheme="athleticimage" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.GoogleServicesUnavailableActivity"
+            android:configChanges="screenSize"
+            android:theme="@style/Theme.Athletic.Light" />
+
+        <activity
+            android:name=".debugtools.logs.ui.AnalyticsLogActivity"
+            android:configChanges="screenSize"
+            android:theme="@style/Theme.Athletic.Light" />
+
+        <activity
+            android:name=".activity.ForceUpdateActivity"
+            android:configChanges="screenSize"
+            android:theme="@style/Theme.Athletic.Light" />
+
+        <activity
+            android:name=".activity.main.StandaloneFeedActivity"
+            android:configChanges="screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"/>
+
+        <activity
+            android:name=".auth.CreateAccountWallActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Athletic.Light" />
+
+        <activity
+            android:name=".article.ui.ArticleActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:parentActivityName=".main.ui.MainActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".profile.ui.ProfileActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/fragment_main_title_profile"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".podcast.downloaded.ui.PodcastDownloadedActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/podcast_feed_my_downloads"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".fragment.main.PodcastDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".fragment.main.PodcastEpisodeDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".podcast.browse.BrowsePodcastActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/podcast_league_feed_national"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".main.ui.SearchActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/fragment_main_title_search"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".preferences.ui.NewsletterPreferencesActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/profile_email_preferences"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".preferences.ui.NotificationPreferenceActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/profile_notification_preferences"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".preferences.ui.RegionSelectionActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/profile_region_preferences"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".preferences.ui.UserTopicNotificationsActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/preferences_title"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".profile.legacy.account.ui.LegacyManageAccountActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/fragment_main_title_manage_account"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".profile.ManageAccountActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/fragment_main_title_manage_account"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".profile.ui.consent.ConsentWebViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/setting_manage_privacy_preferences"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+
+        <activity
+            android:name=".savedstories.ui.SavedStoriesActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/saved_stories_title"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".debugtools.DebugToolsActivity"
+            android:configChanges="orientation|screenSize" />
+
+       <activity
+            android:name=".hub.game.ui.GameHubActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"/>
+
+       <activity
+            android:name=".gamedetail.ui.GameDetailActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"/>
+
+        <activity
+            android:name=".conduct.CodeOfConductSheetActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Athletic.Transparent.Dark" />
+
+        <activity android:name=".debugtools.userinfo.ui.DebugUserInfoActivity"
+                  android:configChanges="orientation|screenSize"
+                  android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".referrals.ReferralsActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".attributionsurvey.ui.SurveyActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Athletic.Dark" />
+
+        <activity
+            android:name=".comments.ui.CommentsActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+       <activity
+            android:name="com.theathletic.ui.gallery.ImageGalleryActivity"
+            android:configChanges="screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+       <activity
+            android:name=".scores.standings.ui.ScoresStandingsActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".liveblog.ui.LiveBlogActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".rooms.ui.LiveAudioRoomActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".rooms.create.ui.CreateLiveRoomActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".rooms.schedule.ui.ScheduledLiveRoomsActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".rooms.create.ui.LiveRoomTaggingActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".rooms.create.ui.LiveRoomCategoriesActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".debugtools.designsystem.DesignSystemActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.Ath.Rebrand"/>
+
+        <activity android:name=".gamedetail.boxscore.ui.injuryreport.BoxScoreInjuryReportActivity"
+                  android:configChanges="orientation|screenSize"
+                  android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".gamedetail.playergrades.ui.PlayerGradesDetailActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity
+            android:name=".debugtools.billingconfig.BillingConfigActivity"
+            android:theme="@style/Theme.Ath.Rebrand"/>
+
+        <activity android:name=".subscriptionplans.SubscriptionPlansActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity android:name=".featureintro.ui.FeatureIntroActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity android:name=".profile.following.ManageFollowingActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity android:name=".profile.addfollowing.AddFollowingActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"/>
+
+        <activity android:name=".onboarding.ui.OnboardingMvpActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity android:name=".onboarding.paywall.ui.OnboardingPaywallActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar"/>
+
+        <activity android:name=".hub.ui.HubActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <activity android:name=".slidestories.ui.SlideStoriesActivity"
+            android:theme="@style/Theme.Ath.Rebrand.NoActionBar" />
+
+        <!-- Services -->
+        <service
+            android:name="com.theathletic.notifications.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.PodcastService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.browse.MediaBrowserService" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.LiveAudioRoomService"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <service
+            android:name=".service.PodcastDownloadService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Receiver -->
+        <receiver android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.SleepTimerAlarmReceiver" />
+        <receiver android:name=".notifications.AthleticNotificationOpenReceiver" />
+
+
+        <!-- Meta-Data -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification_small" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/black_1" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/fcm_channel" />
+
+        <meta-data
+            android:name="iterable_notification_channel_name"
+            android:resource="@string/push_settings_iterable_channel" />
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
+        <!-- Use this meta data to override the theme from which Android Auto will
+             look for colors. If you don't set this, Android Auto will look
+             for color attributes in your application theme. -->
+        <meta-data
+            android:name="com.google.android.gms.car.application.theme"
+            android:resource="@style/Theme.Ath.Rebrand" />
+
+        <!--Used by Android Auto-->
+        <meta-data
+            android:name="com.google.android.gms.car.notification.SmallIcon"
+            android:resource="@drawable/ic_athletic_logo" />
+
+    </application>
+</manifest>

@@ -1,0 +1,393 @@
+query NewFeedQuery(
+    $feed: String!
+    $feed_id: Int
+    $feed_url: String
+    $filter: FeedFilterV2
+    $locale: String
+    $page: Int!
+) {
+    feedMulligan(
+        feed: $feed
+        feed_id: $feed_id
+        feed_url: $feed_url
+        filter: $filter
+        is_mobile_web: false
+        locale: $locale
+        page: $page
+    ) {
+        id
+        ad_unit_path
+        layouts {
+            id
+            type
+            title {
+                app_text
+            }
+            tag {
+                image_url
+            }
+            action {
+                app_linked_string
+                raw_string
+            }
+            dropzone_id
+            contents {
+                ... on ConsumableV2 {
+                    ... ArticleContent
+                    ... BriefContent
+                    ... LiveBlogContent
+                    ... A1Content
+                    ... HeadlineContent
+                    ... PodcastEpisodeContent
+                    ... FeaturedGameContent
+                    ... GameContent
+                    id
+                    type
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            hasNextPage
+        }
+    }
+}
+
+subscription FeedLiveGames($ids: [ID!]!) {
+    liveScoreUpdates(game_ids: $ids) {
+        ... FeedGameAmericanFootball
+        ... FeedGameHockey
+        ... FeedGameBasketball
+        ... FeedGameSoccer
+    }
+}
+
+fragment ArticleContent on ArticleConsumable {
+    consumable_id
+    title
+    excerpt
+    image_uri
+    comments_count:comment_count
+    is_read
+    is_saved
+    started_at
+    ended_at
+    permalink
+    author {
+        first_name
+        last_name
+    }
+    permalink
+    post_type_id
+}
+
+fragment BriefContent on BriefConsumable {
+    consumable_id
+    last_activity_at
+    text
+    comment_count
+    permalink
+    likes
+    current_user_has_liked
+    images {
+        thumbnail_uri
+    }
+    user {
+        id
+        name
+        full_description
+        avatar_uri
+    }
+    reactions {
+        user {
+            avatar_uri
+        }
+    }
+}
+
+fragment LiveBlogContent on LiveBlogConsumable {
+    consumable_id
+    title
+    description
+    image_uri
+    status
+    last_activity_at
+    permalink
+}
+
+fragment A1Content on SpotlightConsumable {
+    consumable_id
+    article {
+        id
+        title
+        excerpt
+        image_uri
+        comment_count
+        is_read
+        is_saved
+        permalink
+        post_type_id
+        published_at
+        author{
+            first_name,
+            last_name
+        }
+        authors {
+            author {
+                ...Author
+            }
+            display_order
+        }
+    }
+    created_at
+    type
+    updated_at
+}
+
+fragment HeadlineContent on NewsConsumable {
+    consumable_id
+    title
+    image_uri
+    permalink
+    type
+}
+
+fragment Author on User {
+    id
+    name
+    ... on Staff {
+        avatar_uri
+    }
+}
+
+fragment PodcastEpisodeContent on PodcastEpisodeConsumable {
+    id
+    title
+    description
+    published_at
+    image_url
+    duration
+    permalink
+}
+
+fragment GameContent on GameConsumable {
+    id
+    index
+    type
+    game {
+        ... FeedGameAmericanFootball
+        ... FeedGameHockey
+        ... FeedGameBasketball
+        ... FeedGameBaseball
+        ... FeedGameSoccer
+    }
+}
+
+fragment FeaturedGameContent on FeaturedGameConsumable {
+    id
+    type
+    game_title_parts
+    series_title
+    links {
+        app_linked_string
+        raw_string
+    }
+    game {
+        ... FeedGameAmericanFootball
+        ... FeedGameHockey
+        ... FeedGameBasketball
+        ... FeedGameSoccer
+    }
+    featured_content {
+        ... FeaturedGameArticle
+        ... FeaturedGameLiveBlog
+        ... FeaturedGameComment
+    }
+}
+
+fragment FeedGameAmericanFootball on AmericanFootballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    game_title
+    permalink
+    first_team: away_team {
+        ... FeedGameGenericTeam
+    }
+    second_team: home_team {
+        ... FeedGameGenericTeam
+    }
+    possession {
+        team {
+            id
+        }
+    }
+    game_status {
+        main
+        extra
+    }
+    coverage {
+        available_data
+    }
+}
+
+fragment FeedGameHockey on HockeyGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    game_title
+    permalink
+    first_team: away_team {
+        ... FeedGameGenericTeam
+    }
+    second_team: home_team {
+        ... FeedGameGenericTeam
+    }
+    game_status {
+        main
+        extra
+    }
+    coverage {
+        available_data
+    }
+}
+
+fragment FeedGameBasketball on BasketballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    game_title
+    permalink
+    first_team: away_team {
+        ... FeedGameGenericTeam
+    }
+    second_team: home_team {
+        ... FeedGameGenericTeam
+    }
+    game_status {
+        main
+        extra
+    }
+    coverage {
+        available_data
+    }
+}
+
+fragment FeedGameBaseball on BaseballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    game_title
+    permalink
+    first_team: away_team {
+        ... FeedGameGenericTeam
+    }
+    second_team: home_team {
+        ... FeedGameGenericTeam
+    }
+    game_status {
+        main
+        extra
+    }
+    coverage {
+        available_data
+    }
+}
+
+fragment FeedGameSoccer on SoccerGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    game_title
+    permalink
+    second_team: away_team {
+        ... FeedGameSoccerTeam
+    }
+    first_team: home_team {
+        ... FeedGameSoccerTeam
+    }
+    game_status {
+        main
+        extra
+    }
+    related_game {
+        scheduled_at
+    }
+    coverage {
+        available_data
+    }
+}
+
+fragment FeedGameGenericTeam on GameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+}
+
+fragment FeedGameSoccerTeam on SoccerGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+    aggregate_score
+    last_six
+    penalty_score
+}
+
+fragment FeaturedGameArticle on Article {
+    id
+    type
+    title
+    image_uri
+    permalink
+    author {
+        first_name
+        last_name
+    }
+}
+
+fragment FeaturedGameLiveBlog on LiveBlog {
+    id
+    type
+    title
+    images {
+        image_uri
+    }
+    byline_authors {
+        first_name
+        last_name
+    }
+    permalink
+}
+
+fragment FeaturedGameComment on FeaturedComment {
+    id
+    type
+    comment {
+        author_name
+        avatar_url
+        author_user_level
+        author_game_flairs {
+            name
+            icon_contrast_color
+        }
+        comment
+        comment_permalink
+        commented_at
+    }
+}

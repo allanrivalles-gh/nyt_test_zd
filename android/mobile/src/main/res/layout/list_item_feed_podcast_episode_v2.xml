@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedPodcastEpisodeGrouped" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedPodcastEpisodeGrouped.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_65"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> interactor.onPodcastEpisodeClicked(data.id, data.analyticsPayload)}"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="24dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{data.imageUrl}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@sample/podcast" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:parameterizedString="@{data.date}"
+            android:textColor="@color/ath_grey_45"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image"
+            tools:text="Today"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{data.title}"
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            android:layout_marginStart="16dp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="The Damaging MLB Negotiations with Jayson Stark" />
+
+        <com.theathletic.podcast.ui.widget.TinyPodcastPlayer
+            android:id="@+id/player"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> interactor.onPodcastControlClicked(data.id, data.analyticsPayload)}"
+            app:viewState="@{data.podcastPlayerState}"
+            app:iconSize="8dp"
+            app:showDuration="false"
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintBottom_toBottomOf="@id/image" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:max="@{data.durationSeconds}"
+            android:progress="@{data.elapsedSeconds}"
+            android:progressTint="@color/ath_grey_10"
+            android:visibility="@{data.isDurationTimeRemaining &amp;&amp; !data.finished}"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintStart_toEndOf="@id/player"
+            app:layout_constraintTop_toTopOf="@id/player"
+            app:layout_constraintBottom_toBottomOf="@id/player" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:parameterizedString="@{data.duration}"
+            android:visibility="@{!data.finished}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintStart_toEndOf="@id/progress"
+            app:layout_constraintTop_toTopOf="@id/player"
+            app:layout_constraintBottom_toBottomOf="@id/player"
+            tools:text="1h 24m"/>
+
+        <TextView
+            android:id="@+id/played"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/podcast_played"
+            android:textColor="@color/ath_grey_45"
+            android:visibility="@{data.finished}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintStart_toEndOf="@id/player"
+            app:layout_constraintTop_toTopOf="@id/player"
+            app:layout_constraintBottom_toBottomOf="@id/player"/>
+
+        <ProgressBar
+            android:id="@+id/download_progress"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:animatedBindableProgressSlow="@{data.downloadProgress}"
+            android:visibility="@{data.isDownloading}"
+            android:progressDrawable="@drawable/shape_progress_bar_podcast_circle_thick"
+            android:background="@drawable/shape_progress_bar_podcast_bg"
+            android:rotation="270"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintTop_toTopOf="@id/options"
+            app:layout_constraintBottom_toBottomOf="@id/options"
+            app:layout_constraintEnd_toStartOf="@id/options"/>
+
+        <ImageView
+            android:id="@+id/dowloaded_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="@{data.isDownloaded}"
+            android:src="@drawable/ic_feed_podcast_downloaded"
+            app:layout_constraintTop_toTopOf="@id/options"
+            app:layout_constraintBottom_toBottomOf="@id/options"
+            app:layout_constraintEnd_toStartOf="@id/options"/>
+
+        <ImageView
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:tint="@color/ath_grey_30"
+            android:src="@drawable/ic_three_dot"
+            android:onClick="@{() -> interactor.onPodcastEpisodeOptionsClicked(data.id, data.finished, data.isDownloaded)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/player"
+            app:layout_constraintBottom_toBottomOf="@id/player"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:alpha="0.5"
+            android:tint="@color/ath_grey_10"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_podcast_download" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/placeholder_empty_margin_bottom"
+            android:layout_marginTop="@dimen/global_spacing_24"
+            android:alpha="0.5"
+            android:text="@string/podcast_downloaded_empty_state"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+</layout>

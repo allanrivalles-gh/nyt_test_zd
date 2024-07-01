@@ -1,0 +1,116 @@
+fragment GameStat on GameStat {
+    ...DecimalGameStat
+    ...IntegerGameStat
+    ...PercentageGameStat
+    ...StringGameStat
+    ...FractionGameStat
+    ...TimeGameStat
+}
+
+fragment IntegerGameStat on IntegerGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    int_value
+    is_less_best: less_is_best
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment DecimalGameStat on DecimalGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    decimal_value
+    string_value
+    is_less_best: less_is_best
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment StringGameStat on StringGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    string_value
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment PercentageGameStat on PercentageGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    string_value
+    is_less_best: less_is_best
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment FractionGameStat on FractionGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    numerator_value
+    denominator_value
+    separator
+    is_less_best: less_is_best
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment TimeGameStat on TimeGameStat {
+    __typename
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    hours_value
+    minutes_value
+    seconds_value
+    string_value
+    is_less_best: less_is_best
+    parent_stat_type
+    parent_stat_category
+    is_reference_only: reference_only
+}
+
+fragment RankedStat on RankedStat {
+    id
+    stat_header_label
+    stat_long_header_label
+    stat_label
+    stat_type
+    stat_category
+    stat_value
+    rank
+    parent_stat_type
+    parent_stat_category
+}

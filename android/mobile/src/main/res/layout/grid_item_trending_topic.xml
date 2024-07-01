@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.frontpage.ui.trendingtopics.TrendingTopicGridItem"
+            />
+        <variable
+            name="interactor"
+            type="com.theathletic.frontpage.ui.trendingtopics.TrendingTopicGridItem.Interactor"
+            />
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/grid_item_trending_topic_background"
+        android:onClick="@{() -> interactor.onTopicClicked(data.id, data.title, data.analyticsPayload)}"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            app:imageCircular="@{true}"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageError="@{@drawable/ic_placeholder_offline_tiny}"
+            tools:background="@drawable/bg_welcome_title"
+            android:contentDescription="@null" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.title}"
+            android:layout_marginStart="10dp"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small"
+            tools:text="MLB Season Preview"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{Integer.toString(data.storyCount)}"
+            android:includeFontPadding="false"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large.Variant1"
+            tools:text="74"
+            />
+
+    </LinearLayout>
+</layout>

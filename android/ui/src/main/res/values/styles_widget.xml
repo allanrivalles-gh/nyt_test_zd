@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Athletic Design System Widget Styles:
+    These are the approved, reusable styles for all non-text widgets.
+    -->
+
+    <style name="Widget.Ath.MenuSheet" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="colorSurface">@color/ath_grey_65</item>
+    </style>
+
+</resources>

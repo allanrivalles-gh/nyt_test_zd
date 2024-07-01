@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="data" type="com.theathletic.debugtools.DebugToolsSectionSubHeader" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_spacing_40"
+        android:background="@color/black_2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/global_text_secondary"
+            android:text="@{data.title}"
+            style="@style/TA.Ath.Body2.Medium"
+            tools:text="@string/debug_tools_section_feature_switches" />
+
+    </FrameLayout>
+</layout>

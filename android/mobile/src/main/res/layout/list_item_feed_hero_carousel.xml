@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedHeroCarousel" />
+    </data>
+
+    <com.theathletic.utility.ui.NestedScrollableHost
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:blockAllParallelIntercepts="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ath_grey_65"
+            android:paddingEnd="@dimen/feed_hero_carousel_end_padding"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:clipToPadding="false"
+            app:itemSnap="@{true}"
+            app:recyclerLayout="@{data.recyclerLayout}"/>
+
+    </com.theathletic.utility.ui.NestedScrollableHost>
+</layout>

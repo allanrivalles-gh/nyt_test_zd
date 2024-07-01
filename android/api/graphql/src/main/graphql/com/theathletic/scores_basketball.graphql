@@ -1,0 +1,222 @@
+# QUERIES
+
+query GetBasketballGame($id: ID!) {
+    game(id: $id) {
+        ... BasketballGameFragment
+    }
+}
+
+query GetBasketballPlayByPlays($id: ID!) {
+    game(id: $id) {
+        ... BasketballPlayByPlays
+    }
+}
+
+query GetBasketballPlayerGrades($id: ID!) {
+    game(id: $id) {
+        ... BasketballPlayerGradesGame
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription AllGameUpdatesForBasketball($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BasketballGameFragment
+    }
+    liveScoreUpdates(game_ids: [$id]) {
+        ... GameSummary
+    }
+}
+
+subscription BasketballPlayUpdates($id: ID!) {
+    liveScoreUpdates(game_ids: [$id]) {
+        ... BasketballPlayByPlays
+    }
+}
+
+subscription BasketballPlayerGradesUpdates($id: ID!) {
+    liveScoreUpdates(game_ids:[$id]) {
+        ... BasketballPlayerGradesGame
+    }
+}
+
+# FRAGMENTS
+
+fragment BasketballGameFragment on BasketballGame {
+    id
+    status
+    scheduled_at
+    time_tbd
+    away_team {
+        ... BasketballGameTeamFragment
+    }
+    home_team {
+        ... BasketballGameTeamFragment
+    }
+    league {
+        ... League
+    }
+    recent_plays(size:3) {
+        ... BasketballPlayFragment
+    }
+    venue {
+        name
+        city
+    }
+    sport
+    clock
+    period_id
+    permalink
+    coverage {
+        available_data
+    }
+    broadcast_network
+    odds_pregame {
+        ... GameOddsMarketFragment
+    }
+    grade_status
+    tickets {
+        ... GameTicket
+    }
+    season_stats {
+        ... SeasonStats
+    }
+    top_comments {
+        ... ScoresTopComment
+    }
+    is_comments_discoverable
+}
+
+fragment BasketballGameTeamFragment on BasketballGameTeam {
+    id
+    team {
+        ... Team
+    }
+    scoring {
+        ... PeriodScoreFragment
+    }
+    score
+    last_games(size: 5) {
+        ... RecentGameFragment
+    }
+    stats {
+        ... GameStat
+    }
+    season_stats {
+        ... RankedStat
+    }
+    stat_leaders {
+        ... TeamLeader
+    }
+    top_performers {
+        ... TopPerformer
+    }
+    current_ranking
+    current_record
+    remaining_timeouts
+    used_timeouts
+    line_up {
+        players (grades: true) {
+            ... GradablePlayer
+        }
+    }
+}
+
+fragment BasketballGameSummary on BasketballGame {
+    id
+    scheduled_at
+    time_tbd
+    sport
+    status
+    period_id
+    clock
+    league {
+        ... League
+    }
+    coverage {
+        available_data
+    }
+    permalink
+    away_team {
+        ... BasketballGameSummaryTeam
+    }
+    home_team {
+        ... BasketballGameSummaryTeam
+    }
+    is_comments_discoverable
+    comments_on
+    grade_status
+    game_status {
+        ... GameState
+    }
+    game_title
+}
+
+fragment BasketballGameSummaryTeam on BasketballGameTeam {
+    id
+    score
+    team {
+        ... TeamLite
+    }
+    current_record
+    current_ranking
+    remaining_timeouts
+    used_timeouts
+}
+
+fragment BasketballPlayFragment on BasketballPlay {
+    id
+    away_score
+    home_score
+    clock
+    description
+    header
+    occurred_at
+    period_id
+    team {
+        ... TeamLite
+    }
+    type
+}
+
+fragment BasketballPlayByPlays on BasketballGame {
+    id
+    away_team {
+        ... BasketballPlayByPlaysTeam
+    }
+    home_team {
+        ... BasketballPlayByPlaysTeam
+    }
+    status
+    play_by_play {
+        ... BasketballPlayFragment
+    }
+}
+
+fragment BasketballPlayByPlaysTeam on BasketballGameTeam {
+    team {
+        ... TeamLite
+    }
+    scoring(aggregated: false) {
+        ... PeriodScoreFragment
+    }
+}
+
+fragment BasketballPlayerGradesGame on BasketballGame {
+    id
+    status
+    period_id
+    clock
+    scheduled_at
+    grade_status
+    away_team {
+        ... PlayerGradesTeam
+    }
+    home_team {
+        ... PlayerGradesTeam
+    }
+    game_status {
+        ... GameState
+    }
+}

@@ -1,0 +1,112 @@
+fragment CustomerDetail on Customer {
+    __typename
+    id
+    email
+    name
+    first_name
+    last_name
+    end_date
+    registration_date
+    is_nyt
+    is_anonymous
+    user_level
+    comments_activated
+    referrals_redeemed
+    referrals_total
+    has_invalid_email
+    is_in_grace_period
+    is_shadow_ban
+    attribution_survey_eligible
+    terms_and_conditions
+    privacy_policy
+    stripe_customer_id
+    braintree_customer_id
+    braintree_subscription_id
+    notify_comments
+    notify_top_sports_news
+    social_name
+    fb_id
+    avatar_uri
+    can_host_live_rooms
+    code_of_conduct
+    code_of_conduct_2022
+    content_edition
+    following {
+        ...UserFollowing
+    }
+    temporary_ban_end_date: temp_ban_end_date
+    transcend_settings {
+        saleOfInfo
+    }
+}
+
+fragment Staff on Staff {
+    __typename
+    avatar_uri
+    insider_avatar_uri
+    description
+    full_description
+    id
+    league_id
+    league_avatar_uri
+    name
+    first_name
+    last_name
+    role
+    slack_user_id
+    team_id
+    team_avatar_uri
+    bio
+    twitter
+}
+
+
+fragment UserDetailWrapper on User {
+    ... on Customer {
+        ...UserDetail
+    }
+    ... on Staff {
+        ...UserDetail
+    }
+}
+
+fragment UserDetail on User {
+    __typename
+    id
+    name
+    first_name
+    last_name
+    ... on Staff {
+        ...Staff
+    }
+    ... on Customer {
+        following {
+            ...UserProfileFollowing
+        }
+    }
+}
+
+fragment UserLiteWrapper on User {
+    ... on Customer {
+        ...UserLite
+    }
+    ... on Staff {
+        ...UserLite
+    }
+}
+
+fragment UserLite on User {
+    __typename
+    id
+    name
+}
+
+fragment UserCredentials on UserCredentials {
+    access_token
+    expires_in
+    token_type
+    user {
+        ...CustomerDetail
+    }
+}
+

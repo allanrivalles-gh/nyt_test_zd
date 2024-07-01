@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp">
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="24dp"
+                android:height="24dp" />
+            <solid
+                android:color="@color/ath_grey_80_raw"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_athletic_a_logo"
+        android:height="15dp"
+        android:width="15dp"
+        android:gravity="center">
+    </item>
+</layer-list>

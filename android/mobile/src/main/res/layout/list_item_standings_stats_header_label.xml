@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="label" type="String" />
+        <variable
+            name="useExpandedWidth" type="Boolean" />
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="bottom"
+        android:text="@{label}"
+        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+        android:textColor="@color/ath_grey_45"
+        tools:text="P"
+        app:layoutWidth="@{(useExpandedWidth == true) ? @dimen/global_spacing_48 : @dimen/global_spacing_40}"/>
+
+</layout>

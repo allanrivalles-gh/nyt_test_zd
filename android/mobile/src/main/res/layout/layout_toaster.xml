@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.graphics.drawable.Drawable"/>
+
+        <variable name="text" type="String" />
+        <variable name="icon" type="Integer" />
+        <variable name="iconMask" type="Drawable" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/snackbar_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="?attr/toasterBackground"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:orientation="vertical"
+        app:statusBarTopPadding="@{true}"
+        tools:background="@color/ath_red"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:minHeight="92dp"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <com.theathletic.ui.widgets.BlendableImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@{icon != null ? context.getDrawable(icon) : null}"
+                android:layout_marginEnd="8dp"
+                android:visibility="@{icon != null}"
+                app:drawableMask="@{iconMask}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/cta_checkmark"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/toasterTextColor"
+                android:text="@{text}"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                tools:text="Your request is pending host approval"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

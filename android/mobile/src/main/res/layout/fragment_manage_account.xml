@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view"
+            type="com.theathletic.profile.legacy.account.ui.ManageAccountView" />
+
+        <variable
+            name="viewModel"
+            type="com.theathletic.profile.legacy.account.ui.ManageAccountViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- TT Toolbar -->
+        <include
+            android:id="@+id/toolbar_brand"
+            layout="@layout/toolbar_grey_65" />
+
+        <!-- TT Content -->
+        <com.theathletic.widget.StatefulLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:state="@{viewModel.state}"
+            app:emptyLayout="@layout/placeholder_empty"
+            app:progressLayout="@layout/placeholder_progress"
+            app:offlineLayout="@layout/placeholder_offline"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.theathletic.widget.FlingableNestedScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ath_theme_gray_700"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:gravity="center_vertical"
+                        android:visibility="@{viewModel.isAccountInfoEditable}"
+                        android:background="@color/ath_grey_65"
+                        app:hintTextColor="@color/ath_grey_40"
+                        style="@style/Widget.Ath.ManageAccountTextInputLayout" >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/profile_fname"
+                            android:text="@={viewModel.currentFirstName.value}"
+                            android:inputType="textCapWords"
+                            style="@style/Widget.Ath.ManageAccountEditText"
+                            tools:text="@tools:sample/first_names"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="@{viewModel.isAccountInfoEditable}"
+                        android:background="@color/ath_grey_60"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:gravity="center_vertical"
+                        android:visibility="@{viewModel.isAccountInfoEditable}"
+                        android:background="@color/ath_grey_65"
+                        app:hintTextColor="@color/ath_grey_40"
+                        style="@style/Widget.Ath.ManageAccountTextInputLayout" >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/profile_lname"
+                            android:text="@={viewModel.currentLastName.value}"
+                            android:inputType="textCapWords"
+                            style="@style/Widget.Ath.ManageAccountEditText"
+                            tools:text="@tools:sample/last_names"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="@{viewModel.isAccountInfoEditable}"
+                        android:background="@color/ath_grey_60"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_vertical"
+                        android:visibility="@{!viewModel.isAnonymousAccount}"
+                        android:background="@color/ath_grey_65"
+                        app:hintTextColor="@color/ath_grey_40"
+                        style="@style/Widget.Ath.ManageAccountTextInputLayout" >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/profile_email"
+                            android:text="@={viewModel.currentEmail.value}"
+                            android:inputType="textEmailAddress"
+                            style="@style/Widget.Ath.ManageAccountEditText"
+                            tools:text="test@theathletic.com" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@color/ath_grey_65"
+                        android:visibility="@{viewModel.isFbLinked}">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_height="24dp"
+                            android:scaleType="center"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/auth_fb"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Athletic.Body1"
+                            android:text="@string/profile_account_linked_fb"
+                            style="@style/TA.Ath.Body2" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="@dimen/global_spacing_4"
+                        android:text="@string/profile_linked_account_note"
+                        android:textColor="@color/ath_grey_40"
+                        android:visibility="@{(viewModel.isFbLinked == true)}"
+                        android:background="@color/ath_grey_65"
+                        tools:text="@string/profile_linked_account_note"
+                        style="@style/TA.Ath.Caption2" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/ath_grey_60"
+                        android:visibility="@{viewModel.isFbLinked}"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        style="@style/TextAppearance.Ath.Navigation"
+                        android:gravity="center_vertical"
+                        android:text="@string/switch_to_annual_billing"
+                        app:drawableEndCompat="@drawable/ic_chevron_right"
+                        app:drawableTint="?attr/colorOnBackground"
+                        android:background="@color/ath_grey_65"
+                        android:foreground="?selectableItemBackground"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="12dp"
+                        android:visibility="@{viewModel.isMonthlySubscriber}"
+                        android:onClick="@{() -> view.onSwitchSubscriptionClicked()}"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/ath_grey_60"
+                        android:visibility="@{viewModel.isMonthlySubscriber}"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        style="@style/TextAppearance.Ath.Navigation"
+                        android:gravity="center_vertical"
+                        android:text="@string/settings_manage_subscriptions"
+                        android:background="@color/ath_grey_65"
+                        app:drawableEndCompat="@drawable/ic_chevron_right"
+                        app:drawableTint="?attr/colorOnBackground"
+                        android:foreground="?selectableItemBackground"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="12dp"
+                        android:visibility="@{viewModel.manageAccountsVisible}"
+                        android:onClick="@{() -> view.onManageAccountsClicked()}"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/ath_grey_60"
+                        android:visibility="@{viewModel.showManagePrivacySettings}"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        style="@style/TextAppearance.Ath.Navigation"
+                        android:gravity="center_vertical"
+                        android:text="@string/setting_manage_privacy_preferences"
+                        android:background="@color/ath_grey_65"
+                        android:foreground="?selectableItemBackground"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="12dp"
+                        android:visibility="@{viewModel.showManagePrivacySettings}"
+                        android:onClick="@{() -> view.onManagePrivacySettingsClicked()}"
+                        app:drawableEndCompat="@drawable/ic_chevron_right"
+                        app:drawableTint="?attr/colorOnBackground"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/ath_grey_60"
+                        android:visibility="@{!viewModel.isAnonymousAccount}"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        style="@style/TextAppearance.Ath.Navigation"
+                        android:gravity="center_vertical"
+                        android:text="@string/setting_delete_my_account"
+                        android:background="@color/ath_grey_65"
+                        android:foreground="?selectableItemBackground"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="12dp"
+                        android:visibility="@{!viewModel.isAnonymousAccount}"
+                        android:onClick="@{() -> view.onDeleteAccountClicked()}"
+                        app:drawableEndCompat="@drawable/ic_chevron_right"
+                        app:drawableTint="?attr/colorOnBackground"
+                        />
+
+                </LinearLayout>
+            </com.theathletic.widget.FlingableNestedScrollView>
+        </com.theathletic.widget.StatefulLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticleRatingButtons" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticleRatingButtons.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="54dp"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:id="@+id/meh"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_horizontal"
+            android:textAllCaps="true"
+            android:text="@string/article_rating_meh"
+            android:onClick="@{() -> interactor.onMehRating()}"
+            android:drawablePadding="16dp"
+            app:drawableTopCompat="@drawable/ic_article_head_meh"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/left_divider" />
+
+        <View
+            android:id="@+id/left_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:background="@color/ath_grey_60"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintStart_toEndOf="@id/meh"
+            app:layout_constraintEnd_toStartOf="@id/solid"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/solid"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_horizontal"
+            android:textAllCaps="true"
+            android:text="@string/article_rating_solid"
+            android:onClick="@{() -> interactor.onSolidRating()}"
+            android:drawablePadding="16dp"
+            app:drawableTopCompat="@drawable/ic_article_head_solid"
+            app:layout_constraintStart_toEndOf="@id/left_divider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/right_divider" />
+
+        <View
+            android:id="@+id/right_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:background="@color/ath_grey_60"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintStart_toEndOf="@id/solid"
+            app:layout_constraintEnd_toStartOf="@id/awesome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/awesome"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_horizontal"
+            android:textAllCaps="true"
+            android:text="@string/article_rating_awesome"
+            android:onClick="@{() -> interactor.onAwesomeRating()}"
+            android:drawablePadding="16dp"
+            app:drawableTopCompat="@drawable/ic_article_head_awesome"
+            app:layout_constraintStart_toEndOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

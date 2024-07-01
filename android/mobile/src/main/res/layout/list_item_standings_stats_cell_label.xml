@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="label" type="com.theathletic.scores.standings.ui.StandingsLabelModel" />
+        <variable
+            name="useExpandedWidth" type="Boolean" />
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@{label.labelText}"
+        app:textColorResource="@{label.labelColour}"
+        style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+        tools:text="38"
+        app:layoutWidth="@{(useExpandedWidth == true) ? @dimen/global_spacing_48 : @dimen/global_spacing_40}"/>
+
+</layout>

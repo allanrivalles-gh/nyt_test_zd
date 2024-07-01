@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_profile"
+            layout="@layout/toolbar_grey_65" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:supportsChangeAnimations="@{false}"
+            tools:listitem="@layout/list_item_profile_row"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

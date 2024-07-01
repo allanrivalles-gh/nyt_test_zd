@@ -1,0 +1,9 @@
+{
+	"value": "false",
+	"key": "myFeatureFlag",	
+	"explorer_types": [
+		"ios", "android"
+	],
+	"type": "bool",
+	"is_live": true
+}

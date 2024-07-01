@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+
+        <variable
+            name="data"
+            type="com.theathletic.rooms.ui.LiveRoomHostControlsContract.ViewState"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.rooms.ui.LiveRoomHostControlsContract.Presenter"
+            />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_live_room_drawer"
+        android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="4dp"
+            android:background="@color/ath_grey_60"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rooms_audience"
+            android:textColor="@color/ath_grey_10"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            style="@style/TA.Ath.SubHeadline.Bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <!--
+        RelativeLayout is needed to wrap the RecyclerView for measuring purposes when used
+        in a BottomSheetDialogFragment. Otherwise the dialog fragment just wraps to size and
+        ignores any match_parent sizing.
+        -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+                app:supportsChangeAnimations="@{false}"
+                tools:listitem="@layout/list_item_host_controls_audience_request" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

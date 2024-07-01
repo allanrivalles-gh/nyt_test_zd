@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.theathletic.ui.DayNightMode" />
+        <variable
+            name="data"
+            type="com.theathletic.profile.ui.DayNightToggleItem" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.profile.ui.DayNightToggleItem.Interactor" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@color/ath_grey_70" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{data.text}"
+            android:maxLines="1"
+            style="@style/TextAppearance.Ath.Navigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/toggle_button_group"
+            tools:text="@tools:sample/lorem[3]" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_button_group"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginEnd="16dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/light_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.DAY_MODE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.DAY_MODE)}"
+                android:text="@string/profile_daynight_light"
+                style="@style/Widget.Ath.Button.ToggleItem"
+                android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dark_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.NIGHT_MODE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.NIGHT_MODE)}"
+                android:text="@string/profile_daynight_dark"
+                style="@style/Widget.Ath.Button.ToggleItem"
+                android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/system_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{data.selectedMode != DayNightMode.SYSTEM}"
+                android:visibility="@{data.displaySystemThemeButton ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> interactor.onDayNightToggle(DayNightMode.SYSTEM)}"
+                android:text="@string/profile_daynight_system"
+                style="@style/Widget.Ath.Button.ToggleItem"
+                android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"/>
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

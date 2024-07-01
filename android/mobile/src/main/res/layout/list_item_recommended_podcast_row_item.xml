@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.RecommendedPodcastSeriesGridItem"
+            />
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.RecommendedPodcastSeriesGridItem.Interactor"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="24dp"
+        android:contentDescription="@null"
+        android:background="?selectableItemBackground"
+        android:onClick="@{() -> interactor.onPodcastSeriesClicked(data.id, data.analyticsPayload)}"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:invisibility="@{data != null}"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="98dp"
+            android:layout_height="98dp"
+            android:contentDescription="@null"
+            app:imageUrl="@{data.imageUrl}"
+            app:centerCrop="@{true}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@sample/podcast"
+            tools:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxWidth="98dp"
+            android:gravity="start"
+            android:text="@{data.title}"
+            android:textColor="@color/ath_grey_30"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            tools:text="Dunks &amp; Dimes" />
+
+        <TextView
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:visibility="@{!data.category.empty}"
+            android:singleLine="true"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:gravity="start"
+            android:text="@{data.category}"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="NFL" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

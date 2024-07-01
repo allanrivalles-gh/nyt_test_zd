@@ -1,0 +1,137 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+                 xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="64dp"
+            android:height="64dp"
+            android:viewportWidth="64"
+            android:viewportHeight="64">
+            <path
+                android:name="path"
+                android:pathData="M 16 32 L 16 32"
+                android:fillColor="#ffffff"
+                android:strokeColor="#ffffff"
+                android:strokeWidth="4"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:fillType="evenOdd" />
+            <path
+                android:name="path_1"
+                android:pathData="M 24 32 L 24 32"
+                android:fillColor="#ffffff"
+                android:strokeColor="#ffffff"
+                android:strokeWidth="4"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:fillType="evenOdd" />
+            <path
+                android:name="path_2"
+                android:pathData="M 32 32 L 32 32"
+                android:fillColor="#ffffff"
+                android:strokeColor="#ffffff"
+                android:strokeWidth="4"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:fillType="evenOdd" />
+            <path
+                android:name="path_3"
+                android:pathData="M 40 32 L 40 32"
+                android:fillColor="#ffffff"
+                android:strokeColor="#ffffff"
+                android:strokeWidth="4"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:fillType="evenOdd" />
+            <path
+                android:name="path_4"
+                android:pathData="M 48 32 L 48 32"
+                android:fillColor="#ffffff"
+                android:strokeColor="#ffffff"
+                android:strokeWidth="4"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:fillType="evenOdd" />
+        </vector>
+    </aapt:attr>
+    <target android:name="path">
+        <aapt:attr
+            android:oneshot="false" name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="355"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueFrom="M 16 32 L 16 32"
+                    android:valueTo="M 16 26 L 16 38"
+                    android:valueType="pathType"
+                    android:interpolator="@android:interpolator/anticipate" />
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="path_1">
+        <aapt:attr
+            android:oneshot="false" name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="335"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueFrom="M 24 32 L 24 32"
+                    android:valueTo="M 24 20 L 24 44"
+                    android:valueType="pathType"
+                    android:interpolator="@android:interpolator/anticipate" />
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="path_2">
+        <aapt:attr
+            android:oneshot="false" name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="310"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueFrom="M 32 32 L 32 32"
+                    android:valueTo="M 32 16 L 32 48"
+                    android:valueType="pathType"
+                    android:interpolator="@android:interpolator/anticipate" />
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="path_3">
+        <aapt:attr
+            android:oneshot="false" name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="325"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueFrom="M 40 32 L 40 32"
+                    android:valueTo="M 40 20 L 40 44"
+                    android:valueType="pathType"
+                    android:interpolator="@android:interpolator/anticipate" />
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="path_4">
+        <aapt:attr
+            android:oneshot="false" name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="345"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueFrom="M 48 32 L 48 32"
+                    android:valueTo="M 48 26 L 48 38"
+                    android:valueType="pathType"
+                    android:interpolator="@android:interpolator/anticipate" />
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>

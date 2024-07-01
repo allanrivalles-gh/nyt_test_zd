@@ -1,0 +1,2544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.0.0" type="baseline" client="gradle" dependencies="true" name="AGP (8.0.0)" variant="all" version="8.0.0">
+
+    <issue
+        id="CheckResult"
+        message="The result of `doOnSubscribe` is not used"
+        errorLine1="        resourceSubject.doOnSubscribe { resourceSubject.onNext(Resource.loading(null)) }"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/repository/resource/NetworkBoundResource.kt"
+            line="47"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="CheckResult"
+        message="The result of `subscribe` is not used"
+        errorLine1="        PodcastManager.getTransportControlsSingle().subscribe("
+        errorLine2="        ^">
+        <location
+            file="src/main/java/com/theathletic/receiver/SleepTimerAlarmReceiver.kt"
+            line="23"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="DuplicateIncludedIds"
+        message="Duplicate id @+id/title_text, defined or included multiple times in layout/fragment_gift.xml: [layout/fragment_gift.xml defines @+id/title_text, layout/fragment_gift.xml => layout/fragment_gift_section_t_shirt.xml => layout/fragment_gift_section_t_shirt_country_item.xml defines @+id/title_text]"
+        errorLine1="                                &lt;include"
+        errorLine2="                                ^">
+        <location
+            file="src/main/res/layout/fragment_gift.xml"
+            line="232"
+            column="33"
+            message="Duplicate id @+id/title_text, defined or included multiple times in layout/fragment_gift.xml: [layout/fragment_gift.xml defines @+id/title_text, layout/fragment_gift.xml => layout/fragment_gift_section_t_shirt.xml => layout/fragment_gift_section_t_shirt_country_item.xml defines @+id/title_text]"/>
+        <location
+            file="src/main/res/layout/fragment_gift.xml"
+            line="33"
+            column="21"
+            message="Defined here"/>
+        <location
+            file="src/main/res/layout/fragment_gift_section_t_shirt_country_item.xml"
+            line="38"
+            column="13"
+            message="Defined here, included via layout/fragment_gift.xml => layout/fragment_gift_section_t_shirt.xml => layout/fragment_gift_section_t_shirt_country_item.xml defines @+id/title_text"/>
+    </issue>
+
+    <issue
+        id="DuplicateIncludedIds"
+        message="Duplicate id @+id/divider, defined or included multiple times in layout/list_item_feed_topper_module_v2.xml: [layout/list_item_feed_topper_module_v2.xml defines @+id/divider, layout/list_item_feed_topper_module_v2.xml => layout/list_item_feed_topper_hero_v2.xml defines @+id/divider]"
+        errorLine1="        &lt;include"
+        errorLine2="        ^">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_module_v2.xml"
+            line="22"
+            column="9"
+            message="Duplicate id @+id/divider, defined or included multiple times in layout/list_item_feed_topper_module_v2.xml: [layout/list_item_feed_topper_module_v2.xml defines @+id/divider, layout/list_item_feed_topper_module_v2.xml => layout/list_item_feed_topper_hero_v2.xml defines @+id/divider]"/>
+        <location
+            file="src/main/res/layout/list_item_feed_topper_module_v2.xml"
+            line="67"
+            column="13"
+            message="Defined here"/>
+        <location
+            file="src/main/res/layout/list_item_feed_topper_hero_v2.xml"
+            line="168"
+            column="13"
+            message="Defined here, included via layout/list_item_feed_topper_module_v2.xml => layout/list_item_feed_topper_hero_v2.xml defines @+id/divider"/>
+    </issue>
+
+    <issue
+        id="CustomSplashScreen"
+        message="The application should not provide its own launch screen"
+        errorLine1="class SplashActivity : AppCompatActivity() {"
+        errorLine2="      ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/activity/SplashActivity.kt"
+            line="62"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_attribution_survey.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_browse_podcast.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_debug_tools.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_fullscreen_photo.xml"
+            line="9"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_manage_account.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_newsletter_preferences.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_notification_preference.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_podcast_downloaded.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_saved_stories.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_search.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_user_topic_notifications.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="MissingId"
+        message="This `&lt;fragment>` tag should specify an id or a tag to preserve state across activity restarts"
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_attribution_survey.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="MissingId"
+        message="This `&lt;fragment>` tag should specify an id or a tag to preserve state across activity restarts"
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_browse_podcast.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="MissingId"
+        message="This `&lt;fragment>` tag should specify an id or a tag to preserve state across activity restarts"
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_notification_preference.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="MissingId"
+        message="This `&lt;fragment>` tag should specify an id or a tag to preserve state across activity restarts"
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_podcast_downloaded.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="MissingId"
+        message="This `&lt;fragment>` tag should specify an id or a tag to preserve state across activity restarts"
+        errorLine1="    &lt;fragment"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_saved_stories.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="UseCompatTextViewDrawableXml"
+        message="Use `app:drawableStartCompat` instead of `android:drawableStart`"
+        errorLine1="            android:drawableStart=&quot;@drawable/ic_news_comment&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/carousel_item_feed_insider.xml"
+            line="134"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseCompatTextViewDrawableXml"
+        message="Use `app:drawableTint` instead of `android:drawableTint`"
+        errorLine1="            android:drawableTint=&quot;?attr/colorOnBackground&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/carousel_item_feed_insider.xml"
+            line="136"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseCompatTextViewDrawableXml"
+        message="Use `app:drawableStartCompat` instead of `android:drawableStart`"
+        errorLine1="            android:drawableStart=&quot;@drawable/ic_comment&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="139"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseCompatTextViewDrawableXml"
+        message="Use `app:drawableTint` instead of `android:drawableTint`"
+        errorLine1="            android:drawableTint=&quot;@color/ath_grey_45&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="141"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseCompatTextViewDrawableXml"
+        message="Use `app:drawableStartCompat` instead of `android:drawableStart`"
+        errorLine1="            android:drawableStart=&quot;@drawable/ic_live_indicator&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="180"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_1st_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_1st_down&quot;>1st &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="866"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_1st_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_1st_down&quot;>1er &amp;amp; %2$d au %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="866"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_2nd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_2nd_down&quot;>2nd &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="868"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_2nd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_2nd_down&quot;>2e &amp;amp; %2$d au %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="868"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_3rd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_3rd_down&quot;>3rd &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="870"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_3rd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_3rd_down&quot;>3e &amp;amp; %2$d au %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="870"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_4th_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_4th_down&quot;>4th &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="872"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_4th_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_4th_down&quot;>4e &amp;amp; %2$d au %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="872"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_1st_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_1st_down&quot;>1st &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="956"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_2nd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_2nd_down&quot;>2nd &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="958"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_3rd_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_3rd_down&quot;>3rd &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="960"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Formatting string &apos;`box_score_last_play_4th_down`&apos; is not referencing numbered arguments [1]"
+        errorLine1="    &lt;string name=&quot;box_score_last_play_4th_down&quot;>4th &amp;amp; %2$d at %3$s %4$d&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="962"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SetJavaScriptEnabled"
+        message="Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully"
+        errorLine1="                    javaScriptEnabled = true"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/ui/widgets/TweetView.kt"
+            line="56"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="AcceptsUserCertificates"
+        message="The Network Security Configuration allows the use of user certificates in the release version of your app"
+        errorLine1="            &lt;certificates"
+        errorLine2="            ^">
+        <location
+            file="src/devRelease/res/xml/network_security_config.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="DataExtractionRules"
+        message="The attribute `android:fullBackupContent` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher."
+        errorLine1="        android:fullBackupContent=&quot;@xml/backup_rules&quot;"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="48"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="72"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="    &lt;LinearLayout"
+        errorLine2="     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/empty_podcast_downloads.xml"
+            line="7"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_basic_row_uri_drawable.xml"
+            line="24"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_preferences_user_topic.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_user_topic.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2=" ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_tiny_podcast_player.xml"
+            line="2"
+            column="2"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/activity_authentication.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/activity_comments.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/activity_images_gallery.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/activity_search.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_gift_section_t_shirt.xml"
+            line="181"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="FrequentlyChangedStateReadInComposition"
+        message="Frequently changing state should not be directly read in composable function"
+        errorLine1="    listState.layoutInfo.visibleItemsInfo.forEachIndexed { localIndex, composable ->"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/feed/ui/ImpressionTracker.kt"
+            line="52"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="FrequentlyChangedStateReadInComposition"
+        message="Frequently changing state should not be directly read in composable function"
+        errorLine1="    listState.layoutInfo.visibleItemsInfo.forEachIndexed { localIndex, composable ->"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/feed/ui/ImpressionTrackerV2.kt"
+            line="52"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/ath_grey_10` with a theme that also paints a background (inferred theme is `@style/Theme_Athletic_Light`)"
+        errorLine1="    android:background=&quot;@color/ath_grey_10&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_force_update.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/white` with a theme that also paints a background (inferred theme is `@style/Theme_Athletic_Light`)"
+        errorLine1="                                                   android:background=&quot;@color/white&quot;>"
+        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_google_services_unavailable.xml"
+            line="6"
+            column="52"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `FrameLayout` view is unnecessary (no children, no `background`, no `id`, no `style`)"
+        errorLine1="    &lt;FrameLayout"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/release/res/layout/list_item_missing.xml"
+            line="4"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `FrameLayout` parent is unnecessary; transfer the `background` attribute to the other view"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_custom_button_item.xml"
+            line="22"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `FrameLayout` parent is unnecessary; transfer the `background` attribute to the other view"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_custom_switch_item.xml"
+            line="22"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `FrameLayout` layout or its `LinearLayout` parent is unnecessary"
+        errorLine1="        &lt;FrameLayout"
+        errorLine2="         ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_gift_section_pay.xml"
+            line="16"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="RedundantNamespace"
+        message="This namespace declaration is redundant"
+        errorLine1="        &lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/grid_item_trending_topic_background.xml"
+            line="12"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="TypographyDashes"
+        message="Replace &quot;-&quot; with an &quot;en dash&quot; character (–, &amp;#8211;) ?"
+        errorLine1="    &lt;string name=&quot;gifts_shirt_description&quot;>With the purchase of your gift subscription, you\&apos;re set to receive a free The Athletic t-shirt. All sizes are unisex. Please allow 3-4 weeks for delivery.&lt;/string>"
+        errorLine2="                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="1270"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;rooms_create_add_tags_search_hint&quot;>Choisir ou entrer un tag...&lt;/string>"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="1085"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;rooms_create_add_tags_search_hint&quot;>Select or enter a tag...&lt;/string>"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-en-rGB/strings.xml"
+            line="1086"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;rooms_create_add_tags_search_hint&quot;>Select or enter a tag...&lt;/string>"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="1234"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/devRelease/res/mipmap/ic_launcher_dev.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/bg_onboarding_subscribe.webp` in densityless folder">
+        <location
+            file="src/main/res/drawable/bg_onboarding_subscribe.webp"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_glide_progress_1.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_glide_progress_1.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_glide_progress_2.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_glide_progress_2.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_glide_progress_3.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_glide_progress_3.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_headshot_placeholder.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_headshot_placeholder.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_headshot_placeholder.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_headshot_placeholder.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/live_room_rings.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/live_room_rings.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/logo_bet_mgm_lion.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/logo_bet_mgm_lion.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/logo_bet_mgm_lion.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/logo_bet_mgm_lion.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/logo_bet_mgm_text.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/logo_bet_mgm_text.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/logo_bet_mgm_text.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/logo_bet_mgm_text.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/soccer_field_placeholder.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/soccer_field_placeholder.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/soccer_field_placeholder.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/soccer_field_placeholder.png"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="This text field does not specify an `inputType`"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_base_url_override_item.xml"
+            line="36"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="This text field does not specify an `inputType`"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_deeplink_item.xml"
+            line="35"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_base_url_override_item.xml"
+            line="36"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_deeplink_item.xml"
+            line="35"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_live_room_tagging.xml"
+            line="32"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="                &lt;EditText"
+        errorLine2="                 ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_search.xml"
+            line="45"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_topic_search.xml"
+            line="67"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="KtxExtensionAvailable"
+        message="Add suffix `-ktx` to enable the Kotlin extensions for this library"
+        errorLine1="    implementation(&quot;com.google.android.play:core:1.8.0&quot;)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle.kts"
+            line="333"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` lambda should call `View#performClick` when a click is detected"
+        errorLine1="            setOnTouchListener { _, _ -> true }"
+        errorLine2="                               ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/article/ui/ArticleAdapter.kt"
+            line="315"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `DraggableFrameLayout` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    override fun onTouchEvent(ev: MotionEvent): Boolean {"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/ui/widgets/DraggableFrameLayout.kt"
+            line="68"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `NestedScrollWebView` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    public boolean onTouchEvent(MotionEvent ev) {"
+        errorLine2="                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/widget/webview/NestedScrollWebView.java"
+            line="142"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `NonSwipeableViewPager` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    public boolean onTouchEvent(MotionEvent event)"
+        errorLine2="                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/widget/NonSwipeableViewPager.java"
+            line="41"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` lambda should call `View#performClick` when a click is detected"
+        errorLine1="        layout.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/ui/toaster/Toaster.kt"
+            line="73"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` lambda should call `View#performClick` when a click is detected"
+        errorLine1="                setOnTouchListener { _: View?, event: MotionEvent -> event.action == MotionEvent.ACTION_MOVE }"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/ui/widgets/TweetView.kt"
+            line="67"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `VideoEnabledWebView` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    public boolean onTouchEvent(MotionEvent event)"
+        errorLine2="                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/widget/webview/VideoEnabledWebView.java"
+            line="113"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_referrals.xml"
+            line="17"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="43"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="57"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="86"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/article_mvp_toolbar.xml"
+            line="104"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/athletic_menu_sheet_row.xml"
+            line="23"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/carousel_item_feed_insider.xml"
+            line="37"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/carousel_item_topic_search_following.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/feed_item_notification.xml"
+            line="28"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;com.google.android.material.floatingactionbutton.FloatingActionButton"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/fragment_authentication.xml"
+            line="95"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;com.google.android.material.floatingactionbutton.FloatingActionButton"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_authentication.xml"
+            line="95"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_gift.xml"
+            line="78"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-land/fragment_image_gallery.xml"
+            line="23"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_image_gallery.xml"
+            line="23"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_live_room_host_profile_sheet.xml"
+            line="23"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_live_room_host_profile_sheet.xml"
+            line="69"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_podcast_episode_detail_header_item.xml"
+            line="20"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_privacy_policy_dialog.xml"
+            line="15"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_scores_standings_mvp.xml"
+            line="61"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_scores_standings_mvp_header_item.xml"
+            line="25"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_scores_standings_mvp_header_item.xml"
+            line="36"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_search_item_league.xml"
+            line="53"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_search_item_team.xml"
+            line="56"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_topic_search.xml"
+            line="44"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_article_comment_disabled.xml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_basic_row.xml"
+            line="39"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_basic_section_header.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="44"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="44"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="55"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="55"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="66"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="66"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="96"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="96"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_carousel_item.xml"
+            line="128"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_carousel_item.xml"
+            line="128"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_group_item_v2.xml"
+            line="24"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_group_item_v2.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_group_item_v2.xml"
+            line="39"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_group_item_v2.xml"
+            line="39"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_group_item_v2.xml"
+            line="67"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_group_item_v2.xml"
+            line="69"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_curated_group_item_v2.xml"
+            line="111"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_curated_group_item_v2.xml"
+            line="114"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_item_v2.xml"
+            line="26"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_item_v2.xml"
+            line="67"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_item_v2.xml"
+            line="78"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_item_v2.xml"
+            line="104"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_item_v2.xml"
+            line="134"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="26"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="26"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="45"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="45"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="56"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="56"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="67"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="67"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="96"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="96"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="127"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_hero_side_by_side_item_v2.xml"
+            line="128"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="47"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="58"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="68"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="98"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_hero_tablet_item_v2.xml"
+            line="126"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="24"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="48"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="59"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="73"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image.xml"
+            line="102"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="24"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="48"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="59"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="73"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="101"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_left_image_v2.xml"
+            line="129"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_most_popular_article_v2.xml"
+            line="48"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_podcast_episode_v2.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_podcast_episode_v2.xml"
+            line="134"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_podcast_episode_v2.xml"
+            line="145"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_scores.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_scores.xml"
+            line="85"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_see_all.xml"
+            line="36"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_spotlight.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_spotlight.xml"
+            line="89"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight.xml"
+            line="99"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight.xml"
+            line="132"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout-sw720dp/list_item_feed_spotlight.xml"
+            line="134"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight_v2.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight_v2.xml"
+            line="70"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight_v2.xml"
+            line="109"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_spotlight_v2.xml"
+            line="143"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_grouped_item.xml"
+            line="44"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_grouped_item.xml"
+            line="55"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_grouped_item.xml"
+            line="66"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_grouped_item.xml"
+            line="113"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_feed_topper_hero_v2.xml"
+            line="108"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_audience_request.xml"
+            line="54"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_audience_request.xml"
+            line="91"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_audience_request.xml"
+            line="106"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_audience_request.xml"
+            line="126"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_host_on_stage.xml"
+            line="49"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_host_on_stage.xml"
+            line="83"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_user_on_stage.xml"
+            line="54"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_user_on_stage.xml"
+            line="91"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_host_controls_user_on_stage.xml"
+            line="106"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_preferences_switch.xml"
+            line="25"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_profile_row.xml"
+            line="27"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_profile_row_secondary.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_saved_story.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_section_header_with_description.xml"
+            line="21"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_standings_legend_item.xml"
+            line="16"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_standings_rank_team_details.xml"
+            line="47"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_author_image_stack.xml"
+            line="21"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_author_image_stack.xml"
+            line="38"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_author_image_stack.xml"
+            line="56"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_author_image_stack.xml"
+            line="74"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack.xml"
+            line="17"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack.xml"
+            line="34"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack.xml"
+            line="51"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack_v2.xml"
+            line="17"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack_v2.xml"
+            line="35"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_feed_author_image_stack_v2.xml"
+            line="53"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_live_audio_room_mini_player.xml"
+            line="36"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_live_room_tag_chip.xml"
+            line="45"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_tiny_podcast_player.xml"
+            line="14"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="LabelFor"
+        message="Missing accessibility label: provide either a view with an `android:labelFor` that references this view or provide an `android:hint`"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_base_url_override_item.xml"
+            line="36"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="LabelFor"
+        message="Missing accessibility label: provide either a view with an `android:labelFor` that references this view or provide an `android:hint`"
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_debug_tools_deeplink_item.xml"
+            line="35"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    setText(&quot;24jI9dvaOqBN&quot;)"
+        errorLine2="                             ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/theathletic/debugtools/DebugToolsFragment.kt"
+            line="112"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="IgnoreWithoutReason"
+        message="Test is ignored without giving any explanation"
+        errorLine1="    @Ignore"
+        errorLine2="    ~~~~~~~">
+        <location
+            file="src/test/kotlin/com/theathletic/utility/InAppUpdateHelperImplTest.kt"
+            line="74"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="IgnoreWithoutReason"
+        message="Test is ignored without giving any explanation"
+        errorLine1="    @Ignore"
+        errorLine2="    ~~~~~~~">
+        <location
+            file="src/test/kotlin/com/theathletic/utility/InAppUpdateHelperImplTest.kt"
+            line="165"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="IgnoreWithoutReason"
+        message="Test is ignored without giving any explanation"
+        errorLine1="    @Ignore"
+        errorLine2="    ~~~~~~~">
+        <location
+            file="src/test/kotlin/com/theathletic/utility/InAppUpdateHelperImplTest.kt"
+            line="173"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="IgnoreWithoutReason"
+        message="Test is ignored without giving any explanation"
+        errorLine1="    @Ignore"
+        errorLine2="    ~~~~~~~">
+        <location
+            file="src/test/kotlin/com/theathletic/utility/InAppUpdateHelperImplTest.kt"
+            line="181"
+            column="5"/>
+    </issue>
+
+</issues>

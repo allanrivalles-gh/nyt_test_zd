@@ -1,0 +1,252 @@
+fragment GameScheduleGroupingWrapper on GameScheduleGrouping {
+    ... on DefaultGameScheduleGrouping {
+        ...GameScheduleGrouping
+    }
+    ... on LegacyGameScheduleGrouping {
+        ...GameScheduleGrouping
+    }
+}
+
+fragment GameScheduleGrouping on GameScheduleGrouping {
+    __typename
+    id
+    title
+    subtitle
+    format
+    week
+    season_type
+    games {
+        ...GameV2Lite
+    }
+}
+
+fragment ScoresFeedSafe on ScoresFeed {
+    id
+    groupings {
+        ... on ScoresFeedDayGrouping {
+            ...ScoresFeedDayGrouping
+        }
+        ... on ScoresFeedDefaultGrouping {
+            ...ScoresFeedDefaultGrouping
+        }
+    }
+    filters {
+        ...ScoresFeedFilter
+    }
+    nav {
+        id
+        ... on ScoresFeedLeagueNavItem {
+            league {
+                id
+                alias
+                display_name
+                legacy_id
+            }
+        }
+        ... on ScoresFeedTeamNavItem {
+            team {
+                id
+                alias
+                display_name
+                legacy_team {
+                    id
+                }
+                logos {
+                    ...TeamLogo
+                }
+            }
+        }
+    }
+}
+
+fragment ScoresFeedDayGrouping on ScoresFeedDayGrouping {
+    id
+    day
+    is_default_grouping: default_grouping
+    groups {
+        ...ScoresFeedGroupSafe
+    }
+}
+
+fragment ScoresFeedDefaultGrouping on ScoresFeedDefaultGrouping {
+    id
+    is_default_grouping: default_grouping
+    title
+    subtitle
+    groups {
+        ...ScoresFeedGroupSafe
+    }
+}
+
+fragment ScoresFeedGroupSafe on ScoresFeedGroup {
+    ... on ScoresFeedBaseGroup {
+        ...ScoresFeedGroup
+    }
+    ... on ScoresFeedLeagueGroup {
+        ...ScoresFeedGroup
+        ...ScoresFeedGroupLeague
+    }
+}
+
+fragment ScoresFeedGroup on ScoresFeedGroup {
+    id
+    title
+    subtitle
+    widget {
+        ...ScoresFeedGroupWidget
+    }
+    blocks {
+        ...ScoresFeedBlock
+    }
+}
+
+fragment ScoresFeedGroupLeague on ScoresFeedLeagueGroup {
+    league {
+        id
+    }
+    widget {
+        ... on ScoresFeedAllGamesWidgetBlock {
+            ...ScoresFeedAllGamesWidgetBlock
+        }
+    }
+}
+
+fragment ScoresFeedBlock on ScoresFeedBlock {
+    id
+    game_id
+    header
+    footer
+    game_block {
+        ...ScoresFeedGameBlock
+    }
+    info_block {
+        ...ScoresFeedInfoBlock
+    }
+    widget {
+        ... on ScoresFeedDiscussionWidgetBlock {
+            ...ScoresFeedDiscussionWidgetBlock
+        }
+    }
+    will_update
+}
+
+fragment ScoresFeedGroupWidget on ScoresFeedWidgetBlock {
+    ... on ScoresFeedGameTicketsWidgetBlock {
+        ...ScoresFeedGameTicketsWidgetBlock
+    }
+}
+
+fragment ScoresFeedGameTicketsWidgetBlock on ScoresFeedGameTicketsWidgetBlock {
+    id
+    text
+    uri
+    provider
+    logos_light_mode {
+        ...TicketLogo
+    }
+    logos_dark_mode {
+        ...TicketLogo
+    }
+}
+
+fragment ScoresFeedGameBlock on ScoresFeedGameBlock {
+    id
+    game_state
+    team1 {
+        ...ScoresFeedTeamBlock
+    }
+    team2 {
+        ...ScoresFeedTeamBlock
+    }
+}
+
+fragment ScoresFeedInfoBlock on ScoresFeedInfoBlock {
+    id
+    text {
+        ... on ScoresFeedStandardTextBlock {
+            ...ScoresFeedStandardTextBlock
+        }
+        ... on ScoresFeedDateTimeTextBlock {
+            ...ScoresFeedDateTimeTextBlock
+        }
+        ... on ScoresFeedOddsTextBlock {
+            ...ScoresFeedOddsTextBlock
+        }
+    }
+    widget {
+        ... on ScoresFeedBaseballWidgetBlock {
+            ...ScoresFeedBaseballWidgetBlock
+        }
+    }
+}
+
+fragment ScoresFeedStandardTextBlock on ScoresFeedStandardTextBlock {
+    id
+    type
+    text
+}
+
+fragment ScoresFeedDateTimeTextBlock on ScoresFeedDateTimeTextBlock {
+    id
+    type
+    is_time_to_be_determined: time_tbd
+    timestamp
+    format
+}
+
+fragment ScoresFeedOddsTextBlock on ScoresFeedOddsTextBlock {
+    id
+    type
+    odds {
+        us_odds
+        decimal_odds
+        fraction_odds
+    }
+}
+
+fragment ScoresFeedBaseballWidgetBlock on ScoresFeedBaseballWidgetBlock {
+    id
+    loaded_bases
+}
+
+fragment ScoresFeedTeamBlock on ScoresFeedTeamBlock {
+    id
+    is_to_be_determined: is_tbd
+    name
+    icons
+    team_info {
+        ... on ScoresFeedTeamPregameInfoBlock {
+            id
+            text
+        }
+        ... on ScoresFeedTeamGameInfoBlock {
+            id
+            score
+            penalty_score
+            is_winner
+        }
+    }
+    ranking
+    logos {
+        ...TeamLogo
+    }
+}
+
+fragment ScoresFeedAllGamesWidgetBlock on ScoresFeedAllGamesWidgetBlock {
+    id
+    link_text
+}
+
+fragment ScoresFeedDiscussionWidgetBlock on ScoresFeedDiscussionWidgetBlock {
+    id
+    text
+}
+
+fragment ScoresFeedFilter on ScoresFeedFilter {
+    id
+    values {
+        id
+        label
+        is_default
+    }
+}

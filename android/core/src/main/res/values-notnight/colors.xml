@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Athletic Light Design System Common Palette:
+    These are the approved colors of The Athletic Design System
+    -->
+    <color name="ath_grey_80">#F0F0EE</color>
+    <color name="ath_grey_80_00">#00F0F0EE</color>
+    <color name="ath_grey_80_10">#1AF0F0EE</color>
+    <color name="ath_grey_70">#FFFFFF</color>
+    <color name="ath_theme_gray_700">#F0F0EE</color>
+    <color name="ath_grey_70_70">#B4FFFFFF</color>
+    <color name="ath_grey_65">#FFFFFF</color>
+    <color name="ath_grey_65_00">#00FFFFFF</color>
+    <color name="ath_grey_62">#DBDBD9</color>
+    <color name="ath_grey_60">#F0F0EE</color>
+    <color name="ath_grey_50">#969693</color>
+    <color name="ath_grey_45">#52524F</color>
+    <color name="ath_grey_40">#323232</color>
+    <color name="ath_grey_30">#121212</color>
+    <color name="ath_grey_20">#000000</color>
+    <color name="ath_grey_10">#000000</color>
+    <color name="ath_grey_10_40">#66000000</color>
+
+    <!-- One-off Colors:
+    The Section below may contain a limited number of one-off colors
+    -->
+
+    <!-- Live Rooms one-offs -->
+    <color name="live_room_avatar_border">#DFDFDD</color>
+    <color name="live_room_text_on_red">@color/ath_grey_60</color>
+    <color name="social_button_stroke_color">#C4C4C0</color>
+
+</resources>

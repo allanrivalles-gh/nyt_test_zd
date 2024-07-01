@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="backgroundColor" format="color" />
+
+    <!-- Athletic Design System Attributes:
+    These attributes map to parts of our app where we apply design system attributes.
+    Ideally, most of our app would leverage these.
+    -->
+    <attr name="colorOnBackgroundVariant1" format="color" />
+    <attr name="colorOnBackgroundVariant2" format="color" />
+
+    <!-- End Design System Attributes -->
+
+    <!-- Toaster Theme Attributes -->
+
+    <attr name="toasterBackground" format="reference" />
+    <attr name="toasterTextColor" format="color" />
+
+    <!-- End Toaster Theme Attributes -->
+
+    <declare-styleable name="LineGraph">
+        <attr name="lineAxisColor" format="color" />
+        <attr name="lineUseDip" format="boolean" />
+        <attr name="lineBackground" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeRefreshLayout">
+        <attr name="refreshing" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedGroup">
+        <attr name="sc_corner_radius" format="dimension" />
+        <attr name="sc_border_width" format="dimension" />
+        <attr name="sc_tint_color" format="color" />
+        <attr name="sc_checked_text_color" format="color" />
+        <attr name="sc_unchecked_tint_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontalSpacing" format="dimension" />
+        <attr name="verticalSpacing" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout_LayoutParams">
+        <attr name="layout_breakLine" format="boolean" />
+        <attr name="layout_horizontalSpacing" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="StatefulLayout">
+        <attr name="state" format="enum">
+            <enum name="content" value="0" />
+            <enum name="progress" value="1" />
+            <enum name="offline" value="2" />
+            <enum name="empty" value="3" />
+        </attr>
+        <attr name="progressLayout" format="reference" />
+        <attr name="offlineLayout" format="reference" />
+        <attr name="emptyLayout" format="reference" />
+        <attr name="invisibleWhenHidden" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SearchStatefulLayout">
+        <attr name="searchState" format="enum">
+            <enum name="content" value="0" />
+            <enum name="progress" value="1" />
+            <enum name="offline" value="2" />
+            <enum name="author_empty" value="3" />
+            <enum name="team_empty" value="4" />
+            <enum name="not_found" value="5" />
+        </attr>
+        <attr name="searchProgressLayout" format="reference" />
+        <attr name="searchOfflineLayout" format="reference" />
+        <attr name="searchAuthorEmptyLayout" format="reference" />
+        <attr name="searchTeamEmptyLayout" format="reference" />
+        <attr name="searchLeagueEmptyLayout" format="reference" />
+        <attr name="searchNotFoundLayout" format="reference" />
+        <attr name="searchInvisibleWhenHidden" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="GiftsStatefulLayout">
+        <attr name="giftsState" format="enum">
+            <enum name="content" value="0" />
+            <enum name="progress" value="1" />
+            <enum name="offline" value="2" />
+            <enum name="pending" value="3" />
+        </attr>
+        <attr name="giftsProgressLayout" format="reference" />
+        <attr name="giftsOfflineLayout" format="reference" />
+        <attr name="giftsEmptyLayout" format="reference" />
+        <attr name="giftsPendingLayout" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StepProgressBar">
+        <attr name="inactiveDotColor" format="color" />
+        <attr name="activeDotColor" format="color" />
+        <attr name="inactiveDotIcon" format="reference" />
+        <attr name="activeDotIcon" format="reference" />
+        <attr name="dotSize" format="dimension" />
+        <attr name="spacing" format="dimension" />
+        <attr name="activeDotIndex" format="integer" />
+        <attr name="cumulativeDots" format="boolean" />
+        <attr name="numberDots" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="LinkableCollapsibleTextView">
+        <attr name="withGradient" format="boolean" />
+        <attr name="collapsedLineCount" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TweetView">
+        <attr name="tweetUrl" format="string" />
+        <attr name="tweetBackgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TinyPodcastPlayer">
+        <attr name="durationTextSize" format="dimension" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="showDuration" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="TapPagingFrameLayout">
+        <attr name="tapZoneWidth" format="dimension" />
+        <attr name="tapZoneTopMargin" format="dimension" />
+        <attr name="tapZoneBottomMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="EllipsizeTextView">
+        <attr name="ellipsizeText" format="string" />
+        <attr name="ellipsizeFormattableText" format="string" />
+        <attr name="ellipsizeFormatTextColor" format="color" />
+        <attr name="ellipsizeFormatTextSize" format="dimension" />
+        <attr name="ellipsizeFormatFontFamily" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="NestedScrollableHost">
+        <attr name="blockAllParallelIntercepts" format="boolean" />
+    </declare-styleable>
+</resources>

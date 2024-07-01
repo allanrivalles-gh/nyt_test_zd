@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "nhl_feature_promo.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

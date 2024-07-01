@@ -1,0 +1,172 @@
+query FollowableItems {
+    followableItems {
+        leagues {
+            id
+            league_code
+            name
+            url
+            sport_type
+            shortname
+            has_gqlscores
+            current_season {
+                active_bracket
+            }
+            leaguev2 {
+                id
+                alias
+                name
+                display_name
+            }
+        }
+        teams {
+            id
+            ath_team_id
+            name
+            url
+            shortname
+            search_text
+            color_primary
+            icon_contrast_color
+            league_id
+            teamv2 {
+                id
+                name
+                alias
+                display_name
+                league {
+                    id
+                }
+            }
+        }
+        authors {
+            id
+            name
+            url
+            image_url
+            shortname
+            search_text
+        }
+    }
+}
+
+query UserFollowing {
+    customer {
+        ... on Customer {
+            following {
+                teams {
+                    id
+                    ath_team_id
+                    notif_stories
+                    notif_games
+                    notif_games_start
+                    league_id
+                    teamv2 {
+                        id
+                        alias
+                        display_name
+                        league {
+                            id
+                        }
+                    }
+                    nav_order
+                }
+                leagues {
+                    id
+                    league_code
+                    notif_stories
+                    has_scores
+                    leaguev2 {
+                        id
+                        alias
+                        display_name
+                    }
+                    nav_order
+                }
+                authors {
+                    id
+                    notif_stories
+                    nav_order
+                }
+            }
+        }
+    }
+}
+
+# MUTATIONS
+
+mutation FollowTopic($topic: UserFollow!) {
+    addUserFollow(input: $topic) {
+        appNav {
+            ...TabNavigationItem
+        }
+        ...FollowResponseFragment
+    }
+}
+
+mutation UnfollowTopic($topic: UserFollow!) {
+    removeUserFollow(input: $topic) {
+        appNav {
+            ...TabNavigationItem
+        }
+        ...FollowResponseFragment
+    }
+}
+
+# FRAGMENTS
+
+fragment FollowResponseFragment on UserFollowResponse {
+    following {
+        teams {
+            ...UserTopicTeamFragment
+        }
+        leagues {
+            ...UserTopicLeagueFragment
+        }
+        authors {
+            ...UserTopicAuthorFragment
+        }
+    }
+}
+
+fragment UserTopicTeamFragment on Team {
+    id
+    ath_team_id
+    name
+    league_id
+    shortname
+    cityname
+    color_primary
+    color_gradient
+    icon_contrast_color
+    shortname
+    notif_games
+    notif_stories
+    search_text
+    teamv2 {
+        id
+        alias
+        display_name
+    }
+}
+
+fragment UserTopicLeagueFragment on League {
+    id
+    name
+    title
+    shortname
+    has_scores
+    notif_stories
+    sport_type
+    url
+}
+
+fragment UserTopicAuthorFragment on Author {
+    id
+    name
+    shortname
+    image_url
+    notif_stories
+    search_text
+    url
+}
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>6cygi</string>
+	<key>ENABLE_WK_AUTO_RELOAD</key>
+	<true/>
+	<key>CRASH_REPORT_ENABLED</key>
+	<true/>
+	<key>CUSTOM_PATH_HEADER_INFO</key>
+	<dict>
+		<key>HEADER</key>
+		<string>X-APOLLO-OPERATION-NAME</string>
+		<key>RELATIVE_URL_PATH</key>
+		<string>graphql</string>
+	</dict>
+</dict>
+</plist>

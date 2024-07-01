@@ -1,0 +1,89 @@
+fragment BoxScoreContent on BoxScore {
+    id
+    sections {
+        ...BoxScoreSection
+    }
+}
+
+fragment BoxScoreSection on BoxScoreSection {
+    id
+    modules {
+        ...BoxScoreLatestNewsModule
+        ...BoxScoreSlideStoryModule
+    }
+    type
+}
+
+fragment BoxScoreBasicModuleHeader on BoxScoreBasicModuleHeader {
+    id
+    title
+}
+
+fragment BoxScoreLatestNewsModule on BoxScoreLatestNewsModule {
+    id
+    blocks {
+        ...BoxScoreArticleBlock
+        ...BoxScorePodcastEpisodeBlock
+    }
+    header {
+        ...BoxScoreBasicModuleHeader
+    }
+}
+
+fragment BoxScoreArticleBlock on BoxScoreArticleBlock {
+    id
+    article_id
+    title
+    authors
+    image_uri
+    permalink
+    comment_count
+}
+
+fragment BoxScorePodcastEpisodeBlock on BoxScorePodcastEpisodeBlock {
+    id
+    episode_id
+    title
+    description
+    disable_comments
+    comment_count
+    image_url
+    mp3_url
+    permalink
+    published_at
+    duration
+    clips {
+        ...BoxScorePodcastEpisodeClip
+    }
+    podcast_id
+    podcast_title
+    user_data {
+        is_finished: finished
+        time_elapsed
+    }
+}
+
+fragment BoxScorePodcastEpisodeClip on BoxScorePodcastEpisodeClip {
+    id
+    title
+    start_position
+    end_position
+}
+
+fragment BoxScoreSlideStoryModule on BoxScoreSlideStoryModule {
+    id
+    blocks {
+        ...BoxScoreSlideStory
+    }
+}
+
+fragment BoxScoreSlideStory on BoxScoreSlideStoryBlock {
+    id
+    slide_story_id
+    title
+    image_uri
+    byline
+    author_image_urls
+    caption_text
+    cta_title
+}

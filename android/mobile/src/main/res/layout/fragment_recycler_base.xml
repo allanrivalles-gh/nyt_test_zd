@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <import type="android.view.View" />
+        <import type="com.theathletic.ui.LoadingState" />
+
+        <variable
+            name="view"
+            type="com.theathletic.ui.list.IBaseListView" />
+
+        <variable
+            name="viewModel"
+            type="com.theathletic.ui.list.LegacyAthleticListViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/toolbar_brand"
+            layout="@layout/toolbar_brand"
+            android:visibility="@{view.showActionBar ? View.VISIBLE : View.GONE}"
+            />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:enabled="@{viewModel.refreshable}"
+            app:refreshing="@{viewModel.loadingState == LoadingState.RELOADING}"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@{view.backgroundColor}"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/list_item_profile_row"
+                    />
+
+            </FrameLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

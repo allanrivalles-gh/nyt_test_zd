@@ -1,0 +1,90 @@
+query PodcastFeed {
+    podcastFeed {
+        has_live_rooms
+        user_live_rooms {
+            ...LiveRoomDetails
+        }
+        discover_live_rooms {
+            ...LiveRoomDetails
+        }
+        user_podcast_episodes {
+            ...PodcastEpisodeDetail
+        }
+        user_podcasts {
+            ...PodcastDetail
+        }
+        recommended_podcasts {
+            ...PodcastDetail
+        }
+        podcast_channels: discover {
+            id
+            image_url
+            mobile_image_url
+            name
+            type
+            url
+        }
+    }
+}
+
+query PodcastSeriesById($podcastSeriesById: ID!) {
+    podcastSeriesById(id: $podcastSeriesById) {
+        ...PodcastDetail
+        episodes {
+            ...PodcastEpisodeDetail
+        }
+    }
+}
+
+query PodcastEpisodeById($podcastEpisodeById: ID!) {
+    podcastEpisodeById(id: $podcastEpisodeById) {
+        ...PodcastEpisodeDetail
+    }
+}
+
+query PodcastEpisodeByNumber($podcastId: ID!, $episodeNumber: Int!) {
+    podcastEpisodeByNumber(podcast_id: $podcastId, episode_number: $episodeNumber) {
+        ...PodcastEpisodeDetail
+    }
+}
+
+query PodcastLeagueFeed($podcastLeagueFeedId: ID) {
+    podcastLeagueFeed(id: $podcastLeagueFeedId) {
+        title
+        league_id
+        national {
+            ...PodcastDetail
+        }
+        local {
+            ...PodcastDetail
+        }
+    }
+}
+
+query RecommendedPodcastsForUser {
+    recommendedPodcastsForUser {
+        ...PodcastDetail
+    }
+}
+
+mutation LogPodcastListen($episodeId: ID!, $finished: Boolean, $timeElapsed: Int) {
+    logPodcastListen(episode_id: $episodeId, finished: $finished, time_elapsed: $timeElapsed)
+}
+
+mutation FollowPodcast($followPodcastId: ID!) {
+    followPodcast(id: $followPodcastId) {
+        success
+        following {
+            ...PodcastDetail
+        }
+    }
+}
+
+mutation UnfollowPodcast($unfollowPodcastId: ID!) {
+    unfollowPodcast(id: $unfollowPodcastId) {
+        success
+        following {
+            ...PodcastDetail
+        }
+    }
+}

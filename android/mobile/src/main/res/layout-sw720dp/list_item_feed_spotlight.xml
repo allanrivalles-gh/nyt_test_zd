@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedSpotlightModel"
+            />
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedSpotlightModel.Interactor"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:onClick="@{() -> interactor.onArticleClicked(data.id, data.analyticsPayload, data.title)}"
+        android:onLongClick="@{() -> interactor.onArticleLongClicked(data.id)}"
+        android:background="@color/ath_grey_65"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/spotlight_image"
+            android:layout_width="420dp"
+            android:layout_height="280dp"
+            android:scaleType="centerCrop"
+            android:paddingEnd="12dp"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageError="@{@drawable/ic_placeholder_offline_large}"
+            app:withErrorBackground="@{true}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/read_icon"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:visibility="@{data.isRead}"
+            android:textColor="@color/ath_grey_50_raw"
+            android:text="@string/fragment_feed_item_read"
+            android:background="@drawable/feed_read_background"
+            android:drawablePadding="5dp"
+            app:layout_constraintEnd_toEndOf="@id/spotlight_image"
+            app:layout_constraintTop_toTopOf="@id/spotlight_image"
+            app:drawableStartCompat="@drawable/ic_read_check"
+            app:drawableTint="@color/ath_grey_50" />
+
+        <TextView
+            android:id="@+id/spotlight_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:maxHeight="140dp"
+            android:ellipsize="end"
+            android:text="@{data.title}"
+            style="@style/TextAppearance.Ath.Headline.ExtraSmall"
+            app:layout_constraintTop_toTopOf="@+id/spotlight_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/spotlight_image"
+            app:layout_constraintBottom_toTopOf="@id/spotlight_body"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/spotlight_body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{data.excerpt}"
+            style="@style/TextAppearance.Ath.ContentBody.Regular.Small.Variant1"
+            app:layout_constraintTop_toBottomOf="@id/spotlight_title"
+            app:layout_constraintStart_toEndOf="@id/spotlight_image"
+            app:layout_constraintBottom_toTopOf="@id/author_name_stack"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/bookmark_icon"
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_feed_bookmark"
+            android:visibility="@{data.isBookmarked}"
+            app:layout_constraintStart_toEndOf="@id/spotlight_image"
+            app:layout_constraintTop_toTopOf="@id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@id/author_name_stack"
+            app:layout_constraintEnd_toStartOf="@id/image_stack" />
+
+        <include
+            android:id="@+id/image_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:visibility="@{data.avatarModel.displayImageCount &lt; 4 ? View.VISIBLE : View.GONE}"
+            app:data="@{data.avatarModel}"
+            layout="@layout/widget_feed_author_image_stack"
+            app:layout_constraintStart_toEndOf="@id/bookmark_icon"
+            app:layout_constraintTop_toTopOf="@id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@id/author_name_stack" />
+
+        <TextView
+            android:id="@+id/author_name_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            app:layout_constrainedWidth="true"
+            android:text="@{data.authorsNames}"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_stack"
+            app:layout_constraintEnd_toStartOf="@+id/comment_icon"
+            app:layout_constraintTop_toBottomOf="@id/spotlight_body"
+            app:layout_constraintBottom_toBottomOf="@id/spotlight_image"
+            tools:text="@tools:sample/lorem[12]" />
+
+        <ImageView
+            android:id="@+id/comment_icon"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:src="@drawable/ic_news_comment"
+            android:tint="@color/ath_grey_45"
+            app:layout_constraintStart_toEndOf="@+id/author_name_stack"
+            app:layout_constraintTop_toTopOf="@id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@id/author_name_stack"
+            app:layout_constraintEnd_toStartOf="@+id/comment_count"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+        <TextView
+            android:id="@+id/comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="6dp"
+            android:text="@{data.commentNumber}"
+            android:gravity="center_vertical"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            app:layout_constraintStart_toEndOf="@+id/comment_icon"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/author_name_stack"
+            app:layout_constraintBottom_toBottomOf="@+id/author_name_stack"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{data.showComment}"
+            app:constraint_referenced_ids="comment_icon,comment_count" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

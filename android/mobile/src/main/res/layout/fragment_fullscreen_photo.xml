@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.ui.FullscreenPhotoView" />
+        <variable
+            name="viewModel" type="com.theathletic.viewmodel.FullscreenPhotoViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:contentDescription="@null"
+            app:imageUrl="@{viewModel.imageUrl}"
+            app:imagePlaceholder="@{@drawable/ic_glide_progress}"
+            app:withTransition="@{false}" />
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Ath.Rebrand" parent="Theme.Ath.Base">
+        <item name="android:navigationBarColor">@color/ath_grey_70</item>
+        <item name="android:windowLightNavigationBar">@bool/is_in_light_mode</item>
+    </style>
+</resources>

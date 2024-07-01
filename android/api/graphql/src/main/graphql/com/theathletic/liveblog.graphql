@@ -1,0 +1,248 @@
+# QUERIES
+
+query LiveBlog($id: ID!, $page: Int, $perPage: Int, $includeAds: Boolean = false) {
+    liveBlog(id: $id) {
+        ... LiveBlogFragment
+    }
+}
+
+query LiveBlogLinks($id: ID!) {
+    liveBlog(id: $id) {
+        ... LiveBlogLinksFragment
+    }
+}
+
+query LiveBlogPosts($id: ID!, $page: Int, $perPage: Int, $includeAds: Boolean = false) {
+    liveBlog(id: $id) {
+        posts(page: $page, perPage: $perPage, sort: { direction: desc, field: "published_at" }, includeAds: $includeAds) {
+            pageInfo {
+                currentPage
+                hasNextPage
+            }
+            items {
+                ... on LiveBlogPost {
+                    ... LiveBlogPostFragment
+                }
+                ... on LiveBlogDropzone {
+                    ... LiveBlogDropzone
+                }
+            }
+        }
+    }
+}
+
+query GameFeed($id: ID!) {
+    gameFeed(id: $id) {
+        ... GameFeedItemFragment
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription PublishedPostToLiveBlog($publishedPostToLiveBlogId: ID!) {
+    publishedPostToLiveBlog(id: $publishedPostToLiveBlogId) {
+        ... LiveBlogPostFragment
+    }
+}
+
+subscription LiveBlogBanner($id: ID!) {
+    updatedLiveBlog(id: $id) {
+        id
+        title: short_title
+        liveStatus
+        lastActivityAt
+    }
+}
+
+# FRAGMENTS
+
+fragment LiveBlogLinksFragment on LiveBlog {
+    id
+    permalink
+    permalinkForEmbed
+}
+
+fragment LiveBlogFragment on LiveBlog {
+    id
+    title
+    description
+    description_as_markdown
+    game_id
+    status
+    permalink
+    permalinkForEmbed
+    publishedAt
+    lastActivityAt
+    ad_unit_path @include(if: $includeAds)
+    ad_targeting_params @include(if: $includeAds) {
+        auth
+        byline
+        coll
+        id
+        keywords
+        org
+        tags
+    }
+    primaryLeague {
+        shortname
+        sport_type
+    }
+    tags {
+        type
+        id
+        shortname
+        name
+    }
+    images {
+        image_uri
+    }
+    sponsor {
+        presented_by {
+            ...LiveBlogSponsorPresentedBy
+        }
+        cobranded_header {
+            mobile_image {
+                dark_image_uri
+                image_uri
+            }
+        }
+    }
+    byline_linkable {
+        raw_string
+    }
+    byline_authors {
+        id
+    }
+    posts(
+        page: $page,
+        perPage: $perPage,
+        sort: { direction: desc, field: "published_at" },
+        includeAds: $includeAds
+    ) {
+        pageInfo {
+            currentPage
+            hasNextPage
+        }
+        items {
+            __typename
+            ...LiveBlogPostFragment
+            ...LiveBlogPostInlineBanner
+            ...LiveBlogPostSponsored
+            ...LiveBlogDropzone
+        }
+    }
+    tweets
+    liveStatus
+}
+
+fragment LiveBlogAuthor on Staff {
+    __typename
+    id
+    name
+    description
+    avatar_uri
+}
+
+fragment LiveBlogPostFragment on LiveBlogPost {
+    id
+    title
+    body
+    author: user {
+        ... LiveBlogAuthor
+    }
+    publishedAt
+    updatedAt
+    articles {
+        ...LiveBlogPostArticle
+    }
+    images {
+        image_uri
+    }
+    tweets
+}
+
+fragment LiveBlogDropzone on LiveBlogDropzone {
+    id
+    dropzone_id
+    type
+}
+
+fragment LiveBlogPostArticle on Article {
+    id
+    title
+    comment_count
+    image_uri
+    author {
+        name
+    }
+    excerpt
+}
+
+fragment LiveBlogSponsorPresentedBy on LiveBlogSponsorPresentedBy {
+    image {
+        image_uri
+        dark_image_uri
+    }
+    label
+}
+
+fragment LiveBlogPostInlineBanner on LiveBlogPostInlineBanner {
+    __typename
+    id
+    mobile_image {
+        image_uri
+        dark_image_uri
+    }
+    published_at
+}
+
+fragment LiveBlogPostSponsored on LiveBlogPostSponsored {
+    __typename
+    id
+    published_at
+    presented_by {
+        ...LiveBlogSponsorPresentedBy
+    }
+    article {
+        ...LiveBlogPostArticle
+    }
+}
+
+fragment LiveBlogLiteFragment on LiveBlog {
+    id
+    title
+    description
+    status
+    permalink
+    permalinkForEmbed
+    lastActivityAt
+    imgs: images {
+        image_uri
+    }
+}
+
+fragment LiveBlogPostLiteFragment on LiveBlogPost {
+    id
+    title
+    body
+    user {
+        name
+    }
+    occurred_at
+    articles {
+        id
+        title
+    }
+    imgs: images {
+        image_uri
+    }
+}
+
+fragment GameFeedItemFragment on GameFeedItem {
+    ... on LiveBlog {
+        ... LiveBlogLiteFragment
+    }
+    ... on LiveBlogPost {
+        ... LiveBlogPostLiteFragment
+    }
+}

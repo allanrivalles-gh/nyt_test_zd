@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.search.ui.UserTopicSearch.Interactor" />
+
+        <variable
+            name="data"
+            type="com.theathletic.feed.search.ui.UserTopicSearch.ViewState" />
+    </data>
+
+    <LinearLayout
+        android:background="@color/ath_grey_80"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:background="@color/ath_grey_70">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_topic_search_title"
+                android:textColor="@color/ath_grey_20"
+                android:layout_marginTop="16dp"
+                style="@style/TextAppearance.Ath.Slab.Small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Filter"
+                />
+
+            <ImageView
+                android:id="@+id/close_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> interactor.onCloseClick()}"
+                android:padding="@dimen/global_spacing_16"
+                app:srcCompat="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/clear_button"
+                style="@style/TextAppearance.Ath.Navigation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> interactor.onCloseClick()}"
+                android:padding="16dp"
+                android:textColor="@color/ath_red"
+                android:text="@string/global_clear"
+                android:visibility="@{data.showClearSelected}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/topic_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/global_spacing_40"
+                android:layout_marginStart="@dimen/global_spacing_20"
+                android:layout_marginEnd="@dimen/global_spacing_20"
+                android:layout_marginTop="@dimen/global_spacing_16"
+                android:layout_marginBottom="@dimen/global_spacing_16"
+                android:paddingStart="@dimen/global_spacing_8"
+                android:paddingEnd="@dimen/global_spacing_8"
+                android:drawableStart="@drawable/ic_search"
+                android:drawableTint="@color/ath_grey_45"
+                android:drawablePadding="@dimen/global_spacing_8"
+                android:hint="@{data.searchEntryHint}"
+                android:textColorHint="@color/ath_grey_45"
+                android:textColor="@color/ath_grey_45"
+                android:imeOptions="actionDone"
+                android:background="@color/ath_grey_60"
+                android:maxLines="1"
+                android:inputType="text"
+                app:onTextChanged="@{(text) -> interactor.onQueryChanged(text)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                tools:hint="@string/user_topic_search_hint" />
+
+            <ImageView
+                android:id="@+id/cancel_search"
+                android:layout_width="@dimen/global_spacing_40"
+                android:layout_height="@dimen/global_spacing_40"
+                android:layout_marginEnd="@dimen/global_spacing_20"
+                android:layout_gravity="center|end"
+                android:padding="@dimen/global_spacing_8"
+                android:onClick="@{() -> interactor.onSearchClearClick()}"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:tint="@color/ath_grey_45"
+                android:visibility="@{data.showSearchClearButton}"
+                android:contentDescription="@null"
+                app:layout_constraintEnd_toEndOf="@id/topic_search"
+                app:layout_constraintTop_toTopOf="@id/topic_search"
+                app:layout_constraintBottom_toBottomOf="@id/topic_search"
+                app:srcCompat="@drawable/ic_close" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+                app:supportsChangeAnimations="@{false}"
+                tools:listitem="@layout/list_item_basic_row_uri_drawable" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

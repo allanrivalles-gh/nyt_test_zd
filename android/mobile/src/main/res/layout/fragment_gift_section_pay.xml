@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="view" type="com.theathletic.gifts.ui.GiftSheetDialogView" />
+        <variable
+            name="viewModel" type="com.theathletic.gifts.ui.GiftSheetDialogViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="56dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/button_background_red_square"
+                android:padding="16dp"
+                android:contentDescription="@null"
+                android:text="@string/gifts_shirt_pay_button"
+                android:textSize="@dimen/global_text_size_subhead"
+                style="@style/TA.Ath.Button.Dark" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_clickable_item_bg_gray"
+                android:onClick="@{() -> view.onPayClick()}" />
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>

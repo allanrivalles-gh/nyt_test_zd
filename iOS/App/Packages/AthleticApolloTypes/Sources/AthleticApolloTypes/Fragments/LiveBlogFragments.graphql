@@ -1,0 +1,29 @@
+fragment LiveBlogContent on LiveBlog {
+    __typename
+    id
+    permalink
+    permalinkForEmbed
+    live_blog_status: status
+    title
+    short_title
+    liveBlogDescription: description
+    liveBlogMarkdown: description_as_markdown
+    lastActivityAt
+    publishedAt
+    updatedAt
+    contentImages: images {
+        image_uri
+    }
+    user {
+        name
+    }
+    liveBlogTags: tags {
+        id
+        type
+    }
+}
+
+fragment LiveBlogDetails on LiveBlog {
+    id
+    title
+}

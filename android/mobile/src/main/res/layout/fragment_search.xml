@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <import type="com.theathletic.viewmodel.main.SearchType" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.SearchView" />
+        <variable
+            name="viewModel" type="com.theathletic.viewmodel.main.SearchViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/ath_grey_70"
+        >
+
+        <include
+            layout="@layout/toolbar_grey_70"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            />
+
+        <LinearLayout
+            android:id="@+id/tabs_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/global_list_gutter_padding"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/title_box_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:animateLayoutChanges="true"
+                app:elevation="0dp">
+
+                <EditText
+                    android:id="@+id/search_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="16dp"
+                    android:paddingStart="8dp"
+                    android:drawableStart="@drawable/ic_search_black"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/ath_grey_45"
+                    android:hint="@string/search_bar_hint"
+                    android:textColorHint="@color/ath_grey_45"
+                    android:textColor="@color/ath_grey_45"
+                    android:text="@={viewModel.searchText}"
+                    android:background="@drawable/shape_search_bar_bg"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large" />
+
+                <TextView
+                    android:id="@+id/cancel_button"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingEnd="16dp"
+                    android:text="@string/search_bar_cancel"
+                    android:textColor="@color/ath_grey_30"
+                    android:onClick="@{() -> view.onCancelClick()}"
+                    android:visibility="@{!viewModel.searchText.isEmpty()}"
+                    />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggle_button_group"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/articles_button"
+                    style="@style/Widget.Ath.Button.ToggleItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/search_tab_articles"
+                    android:backgroundTint="@color/search_tab_background_color"
+                    android:textColor="@color/search_tab_text_color"
+                    android:enabled="@{viewModel.searchType != SearchType.ARTICLE}"
+                    android:onClick="@{() -> view.onArticleTabClick()}"
+                    tools:enabled="false"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/teams_button"
+                    style="@style/Widget.Ath.Button.ToggleItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/search_tab_teams"
+                    android:backgroundTint="@color/search_tab_background_color"
+                    android:textColor="@color/search_tab_text_color"
+                    android:enabled="@{viewModel.searchType != SearchType.TEAM}"
+                    android:onClick="@{() -> view.onTeamTabClick()}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/leagues_button"
+                    style="@style/Widget.Ath.Button.ToggleItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/search_tab_leagues"
+                    android:backgroundTint="@color/search_tab_background_color"
+                    android:textColor="@color/search_tab_text_color"
+                    android:enabled="@{viewModel.searchType != SearchType.LEAGUE}"
+                    android:onClick="@{() -> view.onLeagueTabClick()}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/authors_button"
+                    style="@style/Widget.Ath.Button.ToggleItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/search_tab_authors"
+                    android:backgroundTint="@color/search_tab_background_color"
+                    android:textColor="@color/search_tab_text_color"
+                    android:enabled="@{viewModel.searchType != SearchType.AUTHOR}"
+                    android:onClick="@{() -> view.onAuthorTabClick()}" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/global_list_gutter_padding" >
+
+            <com.theathletic.widget.SearchStatefulLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:state="@{viewModel.state}"
+                app:searchNotFoundLayout="@layout/placeholder_search_not_found"
+                app:searchAuthorEmptyLayout="@layout/placeholder_search_author_empty"
+                app:searchTeamEmptyLayout="@layout/placeholder_search_team_empty"
+                app:searchLeagueEmptyLayout="@layout/placeholder_search_league_empty"
+                app:searchProgressLayout="@layout/placeholder_progress"
+                app:searchOfflineLayout="@layout/placeholder_offline_compact">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+                    tools:listitem="@layout/fragment_search_item_article"
+                    />
+
+            </com.theathletic.widget.SearchStatefulLayout>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

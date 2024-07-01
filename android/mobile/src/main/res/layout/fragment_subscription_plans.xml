@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="interactor"
+            type="com.theathletic.subscriptionplans.SubscriptionPlansContract.Presenter" />
+
+        <variable
+            name="data"
+            type="com.theathletic.subscriptionplans.SubscriptionPlansContract.SubscriptionPlansViewState" />
+    </data>
+
+    <com.theathletic.widget.StatefulLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.Ath.Rebrand"
+        android:background="@color/ath_grey_65"
+        app:state="@{data.state}"
+        app:emptyLayout="@layout/placeholder_plans_empty"
+        app:progressLayout="@layout/placeholder_progress"
+        app:offlineLayout="@layout/placeholder_offline">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/exit_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="10dp"
+                    android:contentDescription="@null"
+                    android:background="@drawable/selector_clickable_item_bg"
+                    android:tint="@color/ath_grey_30"
+                    android:onClick="@{() -> interactor.onCloseClick()}"
+                    app:srcCompat="@drawable/ic_close"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/paywall_title"
+                    android:textColor="@color/ath_grey_30"
+                    style="@style/TextAppearance.Ath.Slab.Large"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMaxTextSize="42sp"
+                    app:autoSizeMinTextSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/exit_button" />
+
+                <TextView
+                    android:id="@+id/choose_plan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/paywall_choose_your_plan"
+                    android:textColor="@color/ath_grey_30"
+                    style="@style/TextAppearance.Ath.TAGS.SANS.MEDIUM.LARGE"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/line"
+                    app:layout_constraintTop_toBottomOf="@id/headline" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/ath_grey_30"
+                    app:layout_constraintStart_toEndOf="@id/choose_plan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/choose_plan"
+                    app:layout_constraintBottom_toBottomOf="@id/choose_plan" />
+
+                <View
+                    android:id="@+id/annual_plan_border"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{() -> interactor.onAnnualPlanClick()}"
+                    android:background="@drawable/ic_paywall_selectable"
+                    app:selected="@{data.isAnnualPlanSelected}"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintDimensionRatio="13:15"
+                    app:layout_constraintWidth_percent=".45"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/monthly_plan_border"
+                    app:layout_constraintTop_toBottomOf="@id/choose_plan" />
+
+                <TextView
+                    android:id="@+id/annual_plan_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/paywall_annual"
+                    android:textColor="@color/paywall_text_color"
+                    style="@style/TextAppearance.Ath.Slab.Medium"
+                    app:selected="@{data.isAnnualPlanSelected}"
+                    app:layout_constraintStart_toStartOf="@id/annual_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/annual_plan_border"
+                    app:layout_constraintTop_toTopOf="@id/annual_plan_border" />
+
+                <TextView
+                    android:id="@+id/annual_plan_trial"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:parameterizedString="@{data.annualPlanSpecial}"
+                    android:textColor="@color/paywall_text_color"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    app:selected="@{data.isAnnualPlanSelected}"
+                    app:layout_constraintStart_toStartOf="@id/annual_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/annual_plan_border"
+                    app:layout_constraintTop_toBottomOf="@id/annual_plan_name" />
+
+                <TextView
+                    android:id="@+id/annual_plan_strikethrough_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{data.strikethroughPrice}"
+                    android:textColor="@color/ath_grey_45"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    isStrikethrough="@{true}"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/annual_plan_border"
+                    app:layout_constraintEnd_toStartOf="@id/annual_plan_price"
+                    app:layout_constraintBottom_toTopOf="@id/annual_plan_note"
+                    tools:text="$9.99" />
+
+                <TextView
+                    android:id="@+id/annual_plan_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:parameterizedString="@{data.annualPlanPrice}"
+                    android:textColor="@color/paywall_text_color"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    app:selected="@{data.isAnnualPlanSelected}"
+                    app:layout_constraintStart_toEndOf="@id/annual_plan_strikethrough_price"
+                    app:layout_constraintEnd_toEndOf="@id/annual_plan_border"
+                    app:layout_constraintBottom_toTopOf="@id/annual_plan_note"
+                    tools:text="$4.99" />
+
+                <TextView
+                    android:id="@+id/annual_plan_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@{data.annualPlanNoteRes}"
+                    android:textColor="@color/ath_grey_45"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant2"
+                    app:layout_constraintStart_toStartOf="@id/annual_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/annual_plan_border"
+                    app:layout_constraintBottom_toBottomOf="@id/annual_plan_border"
+                    tools:text="@string/paywall_annual_billing" />
+
+                <View
+                    android:id="@+id/monthly_plan_border"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="@{() -> interactor.onMonthlyPlanClick()}"
+                    android:background="@drawable/ic_paywall_selectable"
+                    app:selected="@{!data.isAnnualPlanSelected}"
+                    app:layout_constraintWidth_percent=".45"
+                    app:layout_constraintDimensionRatio="13:15"
+                    app:layout_constraintStart_toEndOf="@id/annual_plan_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/annual_plan_border"
+                    app:layout_constraintBottom_toBottomOf="@id/annual_plan_border" />
+
+                <TextView
+                    android:id="@+id/monthly_plan_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/paywall_monthly"
+                    android:textColor="@color/paywall_text_color"
+                    style="@style/TextAppearance.Ath.Slab.Medium"
+                    app:selected="@{!data.isAnnualPlanSelected}"
+                    app:layout_constraintStart_toStartOf="@id/monthly_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/monthly_plan_border"
+                    app:layout_constraintTop_toTopOf="@id/monthly_plan_border" />
+
+                <TextView
+                    android:id="@+id/monthly_plan_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:parameterizedString="@{data.monthlyPlanPrice}"
+                    android:textColor="@color/paywall_text_color"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                    app:selected="@{!data.isAnnualPlanSelected}"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/monthly_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/monthly_plan_border"
+                    app:layout_constraintBottom_toTopOf="@id/monthly_plan_note"
+                    tools:text="$9.99/mo" />
+
+                <TextView
+                    android:id="@+id/monthly_plan_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/paywall_monthly_billing"
+                    android:textColor="@color/ath_grey_45"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant2"
+                    app:layout_constraintStart_toStartOf="@id/monthly_plan_border"
+                    app:layout_constraintEnd_toEndOf="@id/monthly_plan_border"
+                    app:layout_constraintBottom_toBottomOf="@id/monthly_plan_border" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_continue"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{data.subscribeButtonRes}"
+                    android:onClick="@{() -> interactor.onContinueClick()}"
+                    tools:text="Continue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/annual_plan_border" />
+
+                <TextView
+                    android:id="@+id/terms_of_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:text="@string/paywall_terms_of_service"
+                    android:textColor="@color/ath_grey_45"
+                    android:onClick="@{() -> interactor.onTermsOfServiceClick()}"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant2"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/privacy_policy"
+                    app:layout_constraintTop_toBottomOf="@id/button_continue"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/privacy_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/paywall_privacy_policy"
+                    android:textColor="@color/ath_grey_45"
+                    android:onClick="@{() -> interactor.onPrivacyPolicyClick()}"
+                    style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant2"
+                    app:layout_constraintStart_toEndOf="@id/terms_of_service"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/terms_of_service"
+                    app:layout_constraintBottom_toBottomOf="@id/terms_of_service" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </com.theathletic.widget.StatefulLayout>
+
+</layout>

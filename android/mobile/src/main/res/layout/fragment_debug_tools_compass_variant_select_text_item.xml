@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.LogoUtility" />
+
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="data" type="com.theathletic.debugtools.DebugToolsCompassVariantSelectText" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            android:text="@{@string/debug_tools_compass_selected_variant(data.selectedVariant)}"
+            android:background="@drawable/selector_clickable_item_bg"
+            android:onClick="@{(v) -> view.onCompassVariantTextClick(v, data) }"
+            tools:text="@string/debug_tools_compass_selected_variant"
+            style="@style/TextAppearance.Athletic.Body1" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/global_divider" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.manager.PodcastManager" />
+        <import type="android.support.v4.media.session.PlaybackStateCompat" />
+        <import type="com.theathletic.user.UserManager" />
+        <import type="com.theathletic.entity.main.PodcastExtKt" />
+
+        <variable
+            name="view" type="com.theathletic.ui.main.PodcastDetailView" />
+        <variable
+            name="data" type="com.theathletic.entity.main.PodcastEpisodeItem" />
+    </data>
+
+    <ru.rambler.libs.swipe_layout.SwipeLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_80"
+        app:left_swipe_enabled="false"
+        app:right_swipe_enabled="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ath_grey_65"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/podcast_episode_item_image_size"
+                android:layout_height="@dimen/podcast_episode_item_image_size"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="12dp"
+                android:contentDescription="@null"
+                android:foreground="@color/podcast_image_overlay"
+                app:imageUrl="@{data.imageUrl}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:background="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/play_button"
+                android:layout_width="@dimen/podcast_episode_item_image_size"
+                android:layout_height="@dimen/podcast_episode_item_image_size"
+                android:padding="16dp"
+                android:contentDescription="@null"
+                android:clickable="@{!safeUnbox(PodcastExtKt.isConnecting(data))}"
+                android:onClick="@{() -> view.onPodcastPlayClick(data)}"
+                android:background="@drawable/selector_clickable_item_bg"
+                app:srcCompat="@{PodcastExtKt.getPlayDrawable(data)}"
+                tools:src="@drawable/ic_podcast_play"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                app:layout_constraintStart_toStartOf="@id/image"
+                app:layout_constraintEnd_toEndOf="@id/image" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="@{data.title}"
+                android:textColor="@{(data.observableIsFinished == true) ? @color/ath_grey_45 : @color/ath_grey_10}"
+                android:maxLines="3"
+                android:ellipsize="end"
+                tools:text="Really long episode title that goes  to two lines. Really long episode title that goes  to three lines."
+                style="@style/TextAppearance.Ath.Navigation"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/lock"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="12dp"
+                android:visibility="@{data.isTeaser == true &amp;&amp; !UserManager.isUserSubscribedStatic()}"
+                android:tint="@color/ath_grey_45"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ic_lock"
+                app:layout_constraintTop_toTopOf="@id/text_date"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintBottom_toBottomOf="@id/text_date" />
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="12dp"
+                android:text="@{PodcastExtKt.getFormattedDate(data)}"
+                android:textColor="@color/ath_grey_45"
+                android:maxLines="1"
+                tools:text="Today"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                app:layout_goneMarginStart="12dp"
+                app:layout_constraintTop_toBottomOf="@id/text_title"
+                app:layout_constraintStart_toEndOf="@id/lock" />
+
+            <TextView
+                android:id="@+id/space_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/global_bullet"
+                android:textColor="@color/gray_1"
+                android:maxLines="1"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                app:layout_constraintStart_toEndOf="@id/text_date"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_date" />
+
+            <TextView
+                android:id="@+id/play_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{PodcastExtKt.getFormattedDuration(data)}"
+                android:textColor="@color/ath_grey_45"
+                android:maxLines="1"
+                tools:text="39 MIN"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                app:layout_constraintStart_toEndOf="@id/space_dot"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_date" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@null"
+                android:visibility="@{(data.downloadProgress == 100)}"
+                app:srcCompat="@drawable/ic_podcast_detail_download_tag"
+                app:layout_constraintStart_toEndOf="@id/play_time"
+                app:layout_constraintTop_toTopOf="@id/play_time"
+                app:layout_constraintBottom_toBottomOf="@id/play_time" />
+
+            <ProgressBar
+                android:id="@+id/play_progress"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:max="@{(int) data.duration * 1000}"
+                android:progressDrawable="@drawable/shape_progress_bar_podcast_line"
+                android:bindableProgress="@{(PodcastManager.INSTANCE.activeTrack.episodeId == data.id) ? PodcastManager.INSTANCE.currentProgress : data.timeElapsed * 1000}"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_description" />
+
+            <com.theathletic.widget.LinkableCollapsibleTextView
+                android:id="@+id/text_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="12dp"
+                android:text="@{data.description}"
+                android:textColor="@color/ath_grey_45"
+                android:ellipsize="end"
+                app:collapsedLineCount="2"
+                app:withGradient="false"
+                tools:text="Podcast desciption orem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit dui sit amet enim interdum, ut sodales dolor porttitor. Etiam efficitur quis libero eu finibus."
+                style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/play_progress" />
+
+            <TextView
+                android:id="@+id/view_detail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="@string/podcast_episode_detail_view_details"
+                android:textAllCaps="true"
+                android:textColor="@{(data.observableIsFinished == true) ? @color/ath_grey_45 : @color/ath_grey_10}"
+                android:onClick="@{() -> view.onPodcastEpisodeItemClick(data)}"
+                android:background="?attr/selectableItemBackground"
+                style="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                app:layout_constraintTop_toBottomOf="@id/play_progress" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- TT RIGHT -->
+        <include
+            layout="@layout/fragment_podcast_detail_episode_menu"
+            bind:view="@{view}"
+            bind:episode="@{data}" />
+    </ru.rambler.libs.swipe_layout.SwipeLayout>
+</layout>

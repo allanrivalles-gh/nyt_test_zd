@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedSeeAllButton"
+            />
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedSeeAllButton.Interactor"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_65"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:onClick="@{() -> interactor.onSeeAllClicked(data.deeplink, data.analyticsPayload)}">
+
+        <TextView
+            android:id="@+id/text"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large.Variant1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.actionText}"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/arrow"/>
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/ath_grey_50"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintStart_toEndOf="@id/text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

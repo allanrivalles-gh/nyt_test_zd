@@ -1,0 +1,949 @@
+/*
+  theathletic-ios
+
+  Created by Jan Remes on 01/09/2017.
+  Copyright © 2017 The Athletic. All rights reserved.
+*/
+
+// MARK: - General
+"yes" = "Yes";
+"theAthletic" = "The Athletic";
+"add" = "add";
+"continue" = "Continue";
+
+"last_updated" = "Last Updated";
+"generic_error" = "Something has gone wrong.\nPlease try again later.";
+"tryAgainLaterErrorMessage" = "Something went wrong, try again later.";
+"invalidUrl" = "The link failed to open";
+
+"league" = "league";
+"team" = "team";
+
+// MARK: - Team Hubs
+"hubFeedTabTitle" = "Home";
+"hubThreadsTabTitle" = "Threads";
+"hubScheduleTabTitle" = "Schedule";
+"hubStandingsTabDefaultTitle" = "Standings";
+"hubStandingsTabSoccerTitle" = "Table";
+"hubRosterTabTitle" = "Roster";
+"hubStatsTabTitle" = "Stats";
+"hubSquadTabTitle" = "Squad";
+"hubThreadsMoreButton" = "More";
+"hubBracketTabTitleNorthAmerica" = "Bracket";
+"hubBracketTabTitleWorld" = "Knockouts";
+
+"unfollow" = "Unfollow";
+"pushNotifications" = "Push Notifications";
+"unfollowAlertConfirmationTitle" = "Are you sure you want to unfollow?";
+
+"youreNowFollowingTeam" = "You’re now following this team";
+"youreNowFollowingLeague" = "You’re now following this league";
+"youreNowFollowingAuthor" = "You’re now following this author";
+"youreNoLongerFollowingTeam" = "You’re no longer following this team";
+"youreNoLongerFollowingLeague" = "You’re no longer following this league";
+"youreNoLongerFollowingAuthor" = "You’re no longer following this author";
+
+"standingsNoData" = "No Standings Available";
+"standingsNoDataExtraFormat" = "It looks like this %@ doesn’t have any standings data available at the moment";
+
+"hubSchedulesNoGamesForSelectedFilter" = "No games on this date";
+
+// MARK: - Player Hubs
+"playerBio" = "Player Bio";
+"age" = "Age";
+"born" = "Born";
+"nationality" = "Nationality";
+"handedness" = "Handedness";
+"college" = "College";
+"height" = "Height";
+"weight" = "Weight";
+
+// MARK: - Team Stats
+"teamStatsTeamTitle" = "Team";
+"teamStatsPlayerTitle" = "Player";
+"playerStatsNameTitle" = "Name";
+"playerStatsGoalkeeperPlayersTitle" = "Goalkeepers";
+"playerStatsOutfieldPlayersTitle" = "Outfield Players";
+"playerStatsSkatingPlayersTitle" = "Skating";
+"playerStatsGoaltendingPlayersTitle" = "Goaltending";
+"playerStatsNoDataTitle" = "No Team Stats Available";
+"playerStatsNoDataBody" = "It looks like this team doesn’t have any stats data available at the moment";
+
+// MARK: - Team Roster
+"teamRosterNoDataTitle" = "No Team Roster Available";
+"teamRosterNoDataBody" = "It looks like this team doesn’t have any roster data available at the moment";
+"teamRosterPositionAbbreviation" = "POS";
+"teamRosterHeightAbbreviation" = "HT";
+"teamRosterWeightAbbreviation" = "WT";
+"teamRosterDateOfBirthAbbreviation" = "DOB";
+"teamRosterAgeAbbreviation" = "AGE";
+"teamRosterPitchersTitle" = "Pitchers";
+"teamRosterCatchersTitle" = "Catchers";
+"teamRosterInfieldersTitle" = "Infielders";
+"teamRosterOutfieldersTitle" = "Outfielders";
+"teamRosterDesignatedHittersTitle" = "Designated Hitters";
+"teamRosterOffenseTitle" = "Offense";
+"teamRosterDefenseTitle" = "Defense";
+"teamRosterSpecialTeamsTitle" = "Special Teams";
+"teamRosterForwardTitle" = "Forward";
+"teamRosterCentersTitle" = "Centers";
+"teamRosterLeftWingsTitle" = "Left Wings";
+"teamRosterRightWingsTitle" = "Right Wings";
+"teamRosterGoaliesTitle" = "Goalies";
+"teamRosterGoalkeepersTitle" = "Goalkeepers";
+"teamRosterOutfieldPlayersTitle" = "Outfield Players";
+
+// MARK: - Leagues
+"leagueNcaaf" = "NCAAF";
+"leagueNcaamb" = "NCAAM";
+"leagueNcaawb" = "NCAAW";
+
+// MARK: Stats
+"expectedGoalsAbbreviation" = "xG";
+"goalkeeperAbbreviation" = "GK";
+"defenderAbbreviation" = "D";
+"wingBackAbbreviation" = "WB";
+"defensiveMidfielderAbbreviation" = "DM";
+"midfielderAbbreviation" = "MF";
+"attackingMidfielderAbbreviation" = "AM";
+"attackerAbbreviation" = "A";
+"strikerAbbreviation" = "S";
+"substituteAbbreviation" = "SUB";
+"centerAbbreviation" = "C";
+"cornerbackAbbreviation" = "CB";
+"defensiveBackAbbreviation" = "DB";
+"defensiveEndAbbreviation" = "DE";
+"defensiveLinemanAbbreviation" = "DL";
+"defensiveTackleAbbreviation" = "DT";
+"fullbackAbbreviation" = "FB";
+"freeSafetyAbbreviation" = "FS";
+"kickerAbbreviation" = "K";
+"insideLinebackerAbbreviation" = "ILB";
+"linebackerAbbreviation" = "LB";
+"longSnapperAbbreviation" = "LS";
+"middleLinebackerAbbreviation" = "MLB";
+"noseTackleAbbreviation" = "NT";
+"offensiveGuardAbbreviation" = "OG";
+"offensiveLinemanAbbreviation" = "OL";
+"outsideLinebackerAbbreviation" = "OLB";
+"offensiveTackleAbbreviation" = "T";
+"punterAbbreviation" = "P";
+"quarterbackAbbreviation" = "QB";
+"runningBackAbbreviation" = "RB";
+"safetyAbbreviation" = "S";
+"strongSafetyAbbreviation" = "SS";
+"tightEndAbbreviation" = "TE";
+"wideReceiverAbbreviation" = "WR";
+"smallForwardAbbreviation" = "SF";
+"shootingGuardAbbreviation" = "SG";
+"powerForwardAbbreviation" = "PF";
+"goalieAbbreviation" = "G";
+"defenseAbbreviation" = "D";
+"forwardAbbreviation" = "F";
+"leftWingAbbreviation" = "LW";
+"rightWingAbbreviation" = "RW";
+"pointGuardAbbreviation" = "PG";
+"catcherAbbreviation" = "C";
+"centerFieldAbbreviation" = "CF";
+"designatedHitterAbbreviation" = "DH";
+"firstBaseAbbreviation" = "1B";
+"leftFieldAbbreviation" = "LF";
+"pinchHitterAbbreviation" = "PH";
+"pinchRunnerAbbreviation" = "PR";
+"pitcherAbbreviation" = "P";
+"reliefPitcherAbbreviation" = "RP";
+"rightFieldAbbreviation" = "RF";
+"secondBaseAbbreviation" = "2B";
+"shortStopAbbreviation" = "SS";
+"startingPitcherAbbreviation" = "SP";
+"thirdBaseAbbreviation" = "3B";
+"centerForwardAbbreviation" = "CF";
+"forwardCenterAbbreviation" = "C";
+"forwardGuardAbbreviation" = "SG";
+"guardAbbreviation" = "G";
+"guardForwardAbbreviation" = "SG";
+
+// MARK: Stats category
+"statCategoryStandardTitle" = "Standard";
+"statCategoryAdvancedTitle" = "Advanced";
+"statCategorySummaryTitle" = "Summary";
+"statCategoryPassingTitle" = "Passing";
+"statCategoryRushingTitle" = "Rushing";
+"statCategoryReceivingTitle" = "Receiving";
+"statCategoryPuntsTitle" = "Punting";
+"statCategoryPuntReturnsTitle" = "Punt Returns";
+"statCategoryPenaltiesTitle" = "Penalties";
+"statCategoryMiscReturnsTitle" = "Misc. Returns";
+"statCategoryKickoffsTitle" = "Kickoffs";
+"statCategoryKickReturnsTitle" = "Kick Returns";
+"statCategoryIntReturnsTitle" = "Int. Returns";
+"statCategoryFumblesTitle" = "Fumbles";
+"statCategoryFieldGoalsTitle" = "Field Goals";
+"statCategoryExtraPointsKicksTitle" = "Extra Points Kicks";
+"statCategoryExtraPointsConversionsTitle" = "Extra Points Conversions";
+"statCategoryDefenseTitle" = "Defense";
+"statCategoryEfficiencyGoalToGoTitle" = "Eff. Goal To Go";
+"statCategoryEfficiencyRedzoneTitle" = "Eff. Redzone";
+"statCategoryEfficiencyThirdDownTitle" = "Eff. 3rd Down";
+"statCategoryEfficiencyFourthDownTitle" = "Eff. 4th Down";
+"statCategoryFirstDownsTitle" = "1st Downs";
+"statCategoryInterceptionsTitle" = "Interceptions";
+"statCategoryTouchdownsTitle" = "Touchdowns";
+"statCategoryKickingTitle" = "Kicking";
+"statCategoryBattingTitle" = "Batting";
+"statCategoryPitchingTitle" = "Pitching";
+"statCategoryFieldingTitle" = "Fielding";
+
+// MARK: - Scores Today/Landing
+"scoresSearchResultSingularFormat" = "%d Result";
+"scoresSearchResultPluralFormat" = "%d Results";
+"scoresSearchPlaceholder" = "Search teams or leagues";
+"scoresTopGamesTitle" = "Top";
+"scoresTopGamesSubtitle" = "Games";
+"standingsTeamHeading" = "Team";
+
+// MARK: - Standings
+"standingsNameDefault" = "Standings";
+"standingsNameSoccerSingular" = "Table";
+"standingsNameSoccerPlural" = "Tables";
+"seasonNameFormat" = "%@ season";
+"standingsChampionsLeagueLegendTitle" = "Champions League";
+"standingsEuropaLeagueLegendTitle" = "Europa League";
+"standingsEuropaConferenceLeagueLegendTitle" = "Europa Conference League Qualifying";
+"standingsPromotionLegendTitle" = "Promotion";
+"standingsPromotionPlayoffsLegendTitle" = "Promotion Playoffs";
+"standingsRelegationLegendTitle" = "Relegation";
+"standingsRelegationPlayoffsLegendTitle" = "Relegation Playoffs";
+"standingsRoundOf16QualificationLegendTitle" = "Qualifies for Round of 16";
+
+// MARK: - Box score
+
+"gameBoxScoreTabTitle" = "Game";
+"gameDiscussTabTitle" = "Discuss";
+"gameMatchTabTitle" = "Match";
+"gameGradesTabTitle" = "Grades";
+"loadingFailed" = "Loading failed";
+"previousGamesTitle" = "Recent Games";
+"recentMatchesTitle" = "Recent Matches";
+"noRecentGames" = "No Recent Games Available";
+"noRecentMatches" = "No Recent Matches Available";
+"gameOdds" = "Game Odds";
+"gameOddsPoweredByTitle" = "Odds Powered by";
+"result" = "RESULT";
+"winSymbol" = "W";
+"lossSymbol" = "L";
+"tieSymbol" = "T";
+"drawSymbol" = "D";
+"aggregateScoreAbbreviationFormat" = "Agg. %d-%d";
+"spread" = "Spread";
+"total" = "Total";
+"money" = "Money";
+"scoringSummary" = "Scoring Summary";
+"totalLongAbbreviation" = "TOT";
+"totalShortAbbreviation" = "T";
+"oddsLine" = "Line";
+"oddsDirectionOver" = "Over";
+"oddsDirectionOverAbbreviation" = "O";
+"oddsDirectionUnder" = "Under";
+"oddsDirectionUnderAbbreviation" = "U";
+"oddsEven" = "EVEN";
+"gameDetailsTitle" = "Game Details";
+"gameDetailsNetworkTitle" = "Network";
+"gameDetailsLocationTitle" = "Location";
+"gameDetailsWeatherTitle" = "Weather";
+"gameDetailsOpeningOddsTitle" = "Opening Odds";
+"gameDetailsOfficialsTitle" = "Officials";
+"gameDetailsSoccerOfficialRefereeTitle" = "Referee";
+"gameDetailsSoccerOfficialAssistantTitle" = "Assistant";
+"gameDetailsSoccerOfficialFourthTitle" = "Fourth";
+"gameDetailsSoccerOfficialVARTitle" = "VAR";
+"gameDetailsSoccerOfficialAssistantVARTitle" = "Assistant VAR";
+"gameTeamComparisonTitle" = "Team Stats";
+"seasonStatsTitle" = "Season Stats";
+"teamComparisonMatchupTitle" = "Matchup";
+"playerLineUpTitle" = "Player Line-up";
+"relatedArticlesTitle" = "Related Stories";
+"americanFootballPossessionSummaryFormat" = "%@ & %@ at %@ %@";
+"americanFootballPossessionGoal" = "Goal";
+"recentPlaysTitle" = "Recent Plays";
+"recentMomentsTitle" = "Recent Moments";
+"recentKeyMomentsTitle" = "Key Moments";
+"recentPlaysAllPlaysTitle" = "Full Play by Play";
+"recentMomentsAllMomentsTitle" = "Full Timeline";
+"shotGoalTitle" = "Goal";
+"shotSaveTitle" = "Save";
+"mlbOutTitle" = "Out";
+"mlbGamesPlayedAbbreviation" = "G";
+"winLossAbbreviation" = "W-L";
+"startingPitchersTitle" = "Starting Pitchers";
+"probablePitchersTitle" = "Probable Pitchers";
+"probable" = "Probable";
+"teamLeadersTitle" = "Team Leaders";
+"topPerformersTitle" = "Top Performers";
+"injuryReport" = "Injury Report";
+"noInjuries" = "No Injuries";
+"oneMoreInjury" = "1 more injury";
+"multipleMoreInjuriesFormat" = "%d more injuries";
+"injuryStatusD7" = "Concussion List";
+"injuryStatusD10" = "10-Day IL";
+"injuryStatusD15" = "15-Day IL";
+"injuryStatusD60" = "60-Day IL";
+"injuryStatusDay" = "Day";
+"injuryStatusDayToDay" = "Day-to-Day";
+"injuryStatusDoubtful" = "Doubtful";
+"injuryStatusQuestionable" = "Questionable";
+"injuryStatusOut" = "Out";
+"injuryStatusOutForSeason" = "Out for Season";
+"injuryStatusOutIndefinitely" = "Out Indefinitely";
+"mlbRunsAbbreviation" = "R";
+"mlbHitsAbbreviation" = "H";
+"mlbErrorsAbbreviation" = "E";
+"mlbRightHandPitcherAbbreviation" = "RHP";
+"mlbLeftHandPitcherAbbreviation" = "LHP";
+"mlbRightHandBatterAbbreviation" = "R";
+"mlbLeftHandBatterAbbreviation" = "L";
+"mlbStrikeoutAbbreviation" = "K";
+"mlbWalkAbbreviation" = "BB";
+"mlbWinTitle" = "Win";
+"mlbLossTitle" = "Loss";
+"mlbSaveTitle" = "Save";
+"baseballCurrentInningTitle" = "Current Inning";
+"baseballCurrentInningBallsTitle" = "Balls";
+"baseballCurrentInningStrikesTitle" = "Strikes";
+"baseballCurrentInningOutsTitle" = "Outs";
+"baseballCurrentInningNextBatterFormat" = "On Deck: %@";
+
+"teamWinsOnAggregateFormat" = "%@ wins on aggregate";
+"teamWinsOnPenaltiesFormat" = "%@ wins %d-%d on penalties";
+"discussPlayOption" = "Discuss";
+"delay" = "Delay";
+"downAndDistanceTitle" = "Down & Distance";
+
+// MARK: - Grades
+"gradesNotAvailable" = "No grades currently available";
+"gradesYourGradeFormat" = "Your Grade: %d";
+"gradesNotGraded" = "Not Graded";
+"gradedAllPlayers" = "You’ve graded all available players for this team.";
+"gradesTotalGradesSingularFormat" = "%d Grade";
+"gradesTotalGradesPluralFormat" = "%d Grades";
+"gradeThisPerformance" = "Grade this performance";
+"showMoreStats" = "Show More Stats";
+"showLessStats" = "Show Less Stats";
+"gradeSubmitted" = "Grade submitted";
+"gradeDeleted" = "Grade Deleted";
+"averageOfGradesPluralFormat" = "Average of %@ Grades";
+"averageOfGradesSingularFormat" = "Average of %@ Grade";
+"gradePlayers" = "Grade Players";
+"viewPlayerGrades" = "View Player Grades";
+"seeAllPlayerGrades" = "See all Player Grades";
+"playerGradesTitle" = "Player Grades";
+"notApplicableAbbreviation" = "N/A";
+
+// MARK: - Game Stats
+"gameStatsTabTitle" = "Stats";
+"gameStatsStartersTitle" = "Starters";
+"gameStatsBenchTitle" = "Bench";
+"gameStatsGoaliesTitle" = "Goalies";
+"gameStatsSkatersTitle" = "Skaters";
+"gameStatsNotAvailable" = "No stats currently available";
+
+// MARK: - Game Plays
+"gamePlayByPlayTabTitle" = "Plays";
+"gameTimelineTabTitle" = "Timeline";
+"playByPlayNotAvailable" = "No plays currently available";
+"playByPlayAllPlaysTitle" = "All Plays";
+"playByPlayScoringPlaysTitle" = "Scoring Plays";
+"playByPlayAllDrivesTitle" = "All Drives";
+"playByPlayScoringDrivesTitle" = "Scoring Drives";
+"playByPlayAllMomentsTitle" = "All Moments";
+"playByPlayKeyMomentsTitle" = "Key Moments";
+"playByPlayShotsOnGoalAbbreviation" = "SOG";
+"playByPlayTotalShotsFormat" = "%d shots";
+"playByPlayRunFormat" = "%d Run";
+"playByPlayRunsFormat" = "%d Runs";
+"playByPlayHitFormat" = "%d Hit";
+"playByPlayHitsFormat" = "%d Hits";
+"playByPlaySingularPlayFormat" = "%d Play";
+"playByPlayPluralPlaysFormat" = "%d Plays";
+"playByPlaySingularYardFormat" = "%d Yard";
+"playByPlayPluralYardsFormat" = "%d Yards";
+"playByPlayPenaltyShootoutRoundFormat" = "P%d";
+"playByPlayChancesCreatedFormat" = "Chances Created: %@ %d, %@ %d";
+"soccerNoKeyMoments" = "No Key Moments";
+"soccerNoKeyMomentsInPeriod" = "Looks like there haven’t been any key moments during this half.";
+
+// MARK: - Game Live Blog
+"gameLiveBlogTabTitle" = "Live Blog";
+
+"error" = "Error";
+"cancel" = "Cancel";
+
+// MARK: - Comments
+"comment" = "comment";
+"comments" = "comments";
+"actions" = "Actions";
+"edit" = "Edit";
+"areYouSure" = "Are you sure?";
+"commentsReviewInfo" = "The Athletic will review this comment and should it deem a violation of our community code of conduct, we will take appropriate measures to remove it.";
+"staff" = "STAFF";
+"topComments" = "Top Comments";
+
+// MARK: - Article
+
+"ok" = "Ok";
+"whatDidYouThinkOfThisStory" = "What did you think of this story?";
+"purchaseError" = "Purchase Error";
+"meh" = "MEH";
+"solid" = "SOLID";
+"awesome" = "AWESOME";
+"wereSorry" = "We're sorry you didn't like it. We'll work harder next time.";
+"thanksForYourInputTryFree" = "Thanks for your input! Try The Athletic Free for 7 Days";
+"boomGladYouReallyEnjoyedIt" = "Boom. Glad you really enjoyed it.";
+"thanksForYourInput" = "Thanks for your input, this will help us continuously improve our product.";
+"justNow" = "Just now";
+"yesterday" = "Yesterday";
+"earlierToday" = "Earlier today";
+
+// Feed
+
+"feedToday" = "Today";
+
+"reload" = "Reload";
+"seeAll" = "See all";
+
+"outdate" = "Mark as outdated";
+"outdateConfirmation" = "Marking content as outdated will move it down all users' home feeds significantly and not impact the league, team, or logged out feeds.";
+"outdateSuccess" = "This piece has been marked as outdated";
+"topComment" = "TOP COMMENT";
+
+// Topics
+
+"done" = "Done";
+"next" = "Next";
+"skip" = "Skip";
+
+// Login
+// for bolds segment
+"privacyPolicy" = "Privacy Policy";
+
+"email" = "EMAIL";
+"password" =  "PASSWORD";
+"logIn" = "Log In";
+"or" = "or";
+"firstName" = "First Name";
+"lastName" = "Last Name";
+
+"registrationFailed" = "Registration failed";
+"loginFailed" = "Login failed";
+"pleaseEnterAValidEmail" = "Please enter a valid email address.";
+
+"initialLoadingFailureMessage" = "We're having trouble starting up. Please check your internet connection and if the problem persists try restarting The Athletic.";
+
+
+// MARK: - Settings
+"deleteAccount" = "Delete Account";
+"restorePurchases" = "Restore Purchases";
+"manageSubscriptions" = "Manage Subscriptions";
+"subscribe" = "Subscribe";
+"termsOfService" = "Terms of Service";
+"logOut" = "Log Out";
+"search" = "Search";
+"leagues" = "Leagues";
+"notifications" = "Notifications";
+"notificationSettings" = "Notification Settings";
+"notificationsAreDisabled" = "Notifications are disabled for this app. Please enable them in Settings to continue.";
+"goToSettings" = "Go To Settings";
+"changesToYourFacebookProfileWillAppearHere" = "Changes to your Facebook profile will appear here.";
+"deleteMessage" = "Once your data is deleted, you will no longer have access to your account or any associated subscription.";
+"normal" = "Normal";
+"medium" = "Medium";
+"large" = "Large";
+"extraLarge" = "Extra Large";
+"personalizeFeed" = "Personalize your feed";
+"followTeamsLeaguesAuthors" = "Follow teams, leagues, authors";
+"managePrivacyPreferences" = "Manage Privacy Preferences";
+
+// underscore
+
+"dismiss" = "Dismiss";
+"loginEmail" = "Sign up with Email";
+"loginWelcome" = "Welcome Back";
+"loginTitleEmail" = "Log in with Email";
+"loginTitleApple" = "Continue with Apple";
+"loginTitleGoogle" = "Continue with Google";
+"loginTitleNewYorkTimes" = "Continue with The Times";
+
+"loginTitleFacebook" = "Log in with Facebook";
+"loginForgotPass" = "Forgot password?";
+"loginResetPasswordTitle" = "Reset your password";
+"loginResetPasswordInstruction" = "Enter your email address below and we’ll send you a link with instructions.";
+"loginResetPasswordAccountNotFound" = "We couldn't find an account with that email address. Please try again.";
+"loginResetPasswordFailedTitle" = "Reset password failed";
+"loginResetPasswordEmailSentTitle" = "Email Sent";
+"loginResetPasswordEmailSentInstruction" = "Check your email for instructions on how to reset your password.";
+"subscriptionMonthly" = "Monthly";
+"subscriptionAnnual" = "Annual";
+"notificationStories" = "Stories";
+"notificationResults" = "Game Results";
+"notificationGameStart" = "Game Start";
+"noComments" = "No Comments";
+"markUnread" = "Mark Unread";
+"tabTitleListen" = "Listen";
+"tabTitleScoresLanding" = "Scores";
+"authors" = "Authors";
+"articles" = "Articles";
+"teams" = "Teams";
+"markRead" = "Mark Read";
+"myFeed" = "My Feed";
+"results" = "Results";
+"mostPopular" = "Most Popular";
+"follow" = "Follow";
+"savedStoriesTitle" = "Saved Stories";
+"savedStoriesEmpty" = "Saved stories will appear here";
+"readStory" = "Read Story";
+"listen" = "Listen";
+"speechRate" = "Speech rate:";
+
+// article by
+"textSizeSettings" = "Text Size Settings";
+"learnMoreTextSize" = "Learn More";
+"learnMoreTextSizeAdjust" = "To adjust your text size, please visit Settings > Display & Brightness > Text Size on your device.";
+
+"clear" = "Clear";
+"clearAllSavedStories" = "Clear all saved stories?";
+"speakArticle" = "Speak Article";
+"play" = "Play";
+"pause" = "Pause";
+"fastRewind" = "Fast Rewind";
+"fastForward" = "Fast Forward";
+
+"restorePurchasesCompleted" = "Restore Purchases Completed";
+"saveStory" = "Save";
+"unsaveStory" = "Unsave";
+"viewMoreComments" = "View more comments";
+
+"podcasts" = "Podcasts";
+
+"updateNow" = "Update Now";
+"updateRequired" = "Update Required";
+"forceUpdateInfo" = "It looks like you have an outdated version of the app. Please update in order to continue using The Athletic uninterrupted.";
+
+"freetrialLongInfo" = "%@/year after trial, billed annually. Cancel anytime during trial.";
+"freetrialLongInfoMonthly" = "%@/month after trial, billed monthly. Cancel anytime during trial.";
+
+"planTermsShort" = "You will be charged %@ (monthly plan) or %@ (annual plan) through your iTunes account. Your subscription automatically renews unless you turn it off in Account Settings 24+ hours before the end of the billing period. By joining, you agree to our privacy policy and terms of service.";
+"notifSaveStory" = "Save Story";
+"readMore" = "Read More";
+"share" = "Share";
+"shareUniversalLink" = "Share Universal Link";
+
+"notrialLongInfo" = "%@/mo, billed annually. Cancel anytime.";
+"timeLeft" = "%@ left";
+"annualPrice" = "%@/year";
+"paywallButtonTitle" = "Get Started";
+
+"following" = "Following";
+"commentFlagReason1" = "This comment is abusive or harmful";
+"commentFlagReason2" = "This comment is trolling or baiting";
+"commentFlagReason3"  = "This comment is spam";
+"createAnAccount" = "Create an Account";
+"createAccount" = "Create Account";
+"updateLocation" = "Update Location";
+"onboardingLeaguesSubtitle" = "Get top stories for your favorite leagues in your feed";
+"followLeagues" = "Follow Leagues";
+"followTeams" = "Follow Teams";
+"followingSectionPlaceholder" = "Follow at least one team or league.";
+
+"registerInfoTitle1" = "You’re almost done!";
+"alreadyASubscriber" = "Already a subscriber?";
+
+// MARK: Notifications
+
+"pleaseAllowNotifications" = "Allow Push Notifications to receive the latest updates on your followed teams, leagues, authors and podcasts.";
+"allow" = "Allow";
+
+"noNetworkAlert" = "Poor internet connection detected.";
+
+// MARK: - Region Settings
+
+"region" = "Region";
+"northAmerica" = "North America";
+"international" = "International";
+"regionSettingsFootnote" = "This affects suggested sports and teams based on the selected region. Your followed teams, leagues, and authors will not be affected.";
+
+// MARK: Podcasts
+"downloadedPodcasts" = "Saved Offline";
+"downloadedPodcasts2" = "View My Downloads";
+"nationalPodcasts" = "National";
+"titleEmptyPodcast" = "No Shows Yet?";
+"infoEmptyPodcast" = "Use the Discover tab to access our extensive library of insider podcasts and follow shows for your favorite teams and leagues";
+"actionEmptyPodcast" = "Discover Recommended Shows";
+"yourShows" = "Your Shows";
+"recommendedShows" = "Recommended Shows";
+"followPodcast" = "Follow Podcast";
+"unfollowPodcast" = "Unfollow Podcast";
+"podcastEpisodes" = "Podcast Episodes";
+"podcastNotificationsEmpty" = "Follow a podcast to set notifications";
+"seriesDetails" = "Series Details";
+
+"planTermsShortDiscounted" = "You will be charged %@ though your iTunes account for your first year. Your subscription automatically renews at %@ a year thereafter unless you turn it off in Account Settings 24+ hours before the end of the billing period. By joining, you agree to our privacy policy and terms of service.";
+
+"played" = "Played";
+"podcastUnknownAuthor" = "The Athletic";
+"downloadedPodcastsEmpty" = "You haven't saved any podcasts yet";
+"podcastPlaybackDisabled" = "Podcast Playback Disabled";
+"podcastDisabledForLiveRoomHosts" = "You are currently hosting a live audio room. Podcast playback is disabled for live room hosts.";
+"signupTermsPrivacy" = "By creating an account above, you agree to The Athletic's %@ and %@";
+
+"flag" = "Flag";
+"plansButtonContinue" = "Continue";
+"freeTrialTitle" = "7-Day Free Trial";
+"chooseYourPlan" = "Choose Your Plan";
+"onboardingPodcastsSubtitle" = "Get exclusive audio content about teams you love";
+"followPodcasts" = "Follow Podcasts";
+"failureCheckSubscriptionOffer" = "App failed to check for subscription offer eligibility (%@)";
+"subscriptionOfferNotEligible" = "Unfortunately you are not eligible for the subscription offer.";
+"retry" = "Retry";
+"home" = "Home";
+"offerIneligibleTitle" = "Offer Invalid";
+"offerIneligibleSubtitle" = "Because you have subscribed previously, you may be ineligible for this offer. Please review subscription price when confirming purchase.";
+"soccerNoLineupTitle" = "No Lineup";
+"soccerNoLineupSubtitle" = "The lineup for this team hasn’t been announced quite yet.";
+"soccerNoFormationTitle" = "No Formation";
+"soccerNoFormationSubtitle" = "The formation for this team hasn’t been announced yet.";
+"soccerLineupStarting" = "Starting";
+"soccerLineupSubstitutes" = "Substitutes";
+"soccerLineupManager" = "Manager";
+"soccerLineupImageLoadingFailed" = "Line-up image failed to load";
+"soccerCaptainAbbreviation" = "C";
+"soccerOwnGoalShortcut" = "OG";
+"close" = "Close";
+"soccerPenaltyAbbreviation" = "PEN";
+"onboardingTmobileTitle" = "Claim your free 6 month subscription.";
+"onboardingTmobileSubtitle" = "Unlock exclusive access to unrivaled sports coverage, free for T-Mobile customers.";
+"oiInfoTextAnnual" = "%@, billed annually";
+"oiInfoTextMonthly" = "%@, billed monthly upon subscribing.";
+"oiStartTrial" = "Start Free Trial";
+"oiPaymentInfoText" = "The yearly subscription is %@ and automatically renews unless auto-renew is turned off in Account Settings at least 24 hours before the end of the current period. Payment is charged to your iTunes account.";
+"oiPaymentInfoTextMonthly" = "The monthly subscription is %@ and automatically renews unless auto-renew is turned off in Account Settings at least 24 hours before the end of the current period. Payment is charged to your iTunes account.";
+"oiPaymentInfoTextTrial" = "After your free trial, the yearly subscription is %@ and automatically renews unless auto-renew is turned off in Account Settings at least 24 hours before the end of the current period. Payment is charged to your iTunes account.";
+"oiPaymentInfoTextMonthlyTrial" = "After your free trial, the monthly subscription is %@ and automatically renews unless auto-renew is turned off in Account Settings at least 24 hours before the end of the current period. Payment is charged to your iTunes account.";
+"oiHeadlineTextTrialRebrand" = "Read free for a week.";
+"oiSubheadline1" = "Get a week of unlimited access to content about your favorite teams and leagues.";
+"oiSubheadline2" = "Get unlimited access to content about your favorite teams and leagues.";
+"startScreenTitle" = "All the stories at the heart of the game.";
+
+"podcastSleepTimerTitle" = "Sleep Timer";
+"podcastSleepTimerOff" = "Off";
+"podcastSleepTimerMinutes" = "In %@ Minutes";
+"podcastSleepTimerHour" = "In One Hour";
+"podcastSleepTimerEpisode" = "When Current Episode Ends";
+"podcastQueueNowPlaying" = "Now Playing";
+"podcastQueueUpNext" = "Up Next";
+"podcastQueueAdd" = "Add Episode to Queue";
+"podcastMarkAsPlayed" = "Mark Episode as Played";
+"podcastMarkAsUnplayed" = "Mark Episode as Unplayed";
+"podcastEpisodeDownload" = "Download Episode";
+"podcastQueueTitle" = "Player Queue";
+
+"podcastsDeleteManually" = "Manually";
+"podcastsDeleteAfterCompletion" = "After Completion";
+"podcastDownloadOff" = "Off";
+"podcastDownloadWifi" = "Download on Wi-Fi";
+"podcastDownloadWifiCellular" = "Download on Wi-Fi or Cellular";
+
+// gift flow
+"thanksTitle" = "Thank You";
+"chooseGift" = "Gift The Athletic.";
+"giftRecipientTitle" = "Recipient";
+"confirmInfoTitle" = "Confirm Your Info";
+"confirmNamePlaceholder" = "Your Name";
+"confirmEmailPlaceholder" = "Your Email";
+"deliveryMethodTitle" = "Delivery Method:";
+"deliveryPrintTitle" = "Print at Home Only";
+"deliveryPrintDetail" = "We will email you a PDF to print and hand-deliver to the recipient. The PDF will include a one-time redemption code to enter on theathletic.com";
+"deliveryEmailTitle" = "Email and Print";
+"deliveryEmailDetail" = "We will provide both a PDF for you to print at home, and we will email the recipient on a date of your choosing";
+"recipientNamePlaceholder" = "Recipient Name";
+"recipientMsgPlaceholder" = "Add a Note (optional)";
+"recipientEmailPlaceholder" = "Recipient Email";
+"recipientEmailAction" = "Select a Recipient from Contacts";
+"recipientDateTitle" = "Select a Delivery Date:";
+"giftActionPay" = "Finish & Pay";
+"giftPlanHeaderTitle" = "Give the sports fan in your life the gift of smart, in-depth coverage of their favorite teams";
+"giftRecipientHeaderTitle" = "Let us know where we should send your subscription";
+"giftSenderHeaderTitle" = "We will send your purchase confirmation and gift PDF to the Email address connected to your The Athletic account, unless otherwise noted";
+"giftThankTitle" = "Thank you for giving the gift of The Athletic!";
+"giftThankRecipientTitle" = "Gift Recipient";
+"giftThankPlanTitle" = "Gift Plan";
+"giftThankDeliveryTitle" = "Delivery";
+"giftThankAnother" = "Give Another Gift";
+"giftFooterTerms" = "You will be charged a sum of %@ for a %@ gift. By clicking the button below, you hereby authorize The Athletic to charge you. For more information on our payment terms, [tap here](%@)";
+
+"removeDownload" = "Remove download";
+
+"details" = "Details";
+
+"pushTitle" = "You'll need to turn on Push";
+"pushSubtitle" = "In order to fully experience The Athletic, you'll need to turn on notifications.";
+"pushCancel" = "Not Now";
+
+"welcomeTrialTitle" = "Try The Athletic free for a week";
+
+"validatorErrorEmpty" = "is empty";
+"validatorErrorInvalid" = "is invalid";
+"validatorErrorMin" = "requires at least %@ characters";
+
+"downloadedWithColon" = "Downloaded:";
+
+"visitWebSettings" = "Go to settings";
+"manageSubscriptionWeb" = "Please visit theathletic.com/settings to manage your subscription.";
+
+"profileEmptyAdd" = "ADD";
+"profileSaveStory" = "Saved Stories";
+"profilePreference" = "Preferences and Alerts";
+"profileGiveGift" = "Give a Gift";
+"profileRateApp" = "Rate App";
+"profileFaq" = "FAQ";
+"profileSupport" = "Contact Support";
+"profileLogout2" = "Log Out";
+"profileInfoText1" = "Subscribed Member";
+"profileCommentReplies" = "Comment Replies";
+"profileTopSportsNewsTitle" = "Top Sports News";
+"profileTopSportsNewsDescription" = "All of the biggest stories in sports, regardless of which teams and leagues you follow";
+"profileMyPodcasts" = "My Podcasts";
+"profileAccountSettings" = "Account Settings";
+"profileEmailPreferences" = "Email Preferences";
+"profileTitle" = "Account";
+"profileAppSettings" = "App Settings";
+"profileAppIconStyle" = "App Icon Style";
+"profileDeleteAccountTitle" = "Delete My Account";
+"profilePrivacyChoicesTitle" = "Your Privacy Choices";
+"profileDisplay" = "Display";
+"profileHideScoresTicker" = "Hide Scores on Feeds";
+"profileHideFilterTitles" = "Hide Navigation Titles";
+"profileFeed" = "Feed";
+"profileTheme" = "Theme";
+"profileVoiceOverArticles" = "Show Article Text to Speech Controls";
+"profileKeepAppAwake" = "Keep App Awake When Reading";
+"profileHideArticleNavbarOnScroll" = "Hide Navbar on Scroll";
+"profileArticleSection" = "Article";
+"profileClearCache" = "Clear Cache";
+"profileMiscSection" = "Misc";
+
+"accountFbLinked" = "Account linked via Facebook";
+"accountLabelEmail" = "Email";
+"accountUserId" = "User ID";
+
+"noCurrentGame" = "No game information at the moment.";
+
+"referralsTitle" = "Share a 30-day guest pass with up to 5 friends";
+"referralsSubtitle" = "Give a friend unlimited access to The Athletic, free for 30 days.";
+"referralsSubtitleRedeemed" = "You're all out of guest passes. Request more and we'll let you know when they're available.";
+"referralsShare" = "I read The Athletic to keep up with my favorite teams. Here's a guest pass so you can check it out for 30 days for free:";
+"referralsGuestPass" = "30-Day Guest Pass";
+"referralsPassesRedeemed" = "passes redeemed";
+"of" = " of ";
+"referralsCta" = "Send Guest Pass";
+"referralsRequestMore" = "Request More Passes";
+"referralsRequestSent" = "Request Sent";
+"referralsEmailSubject" = "A gift for you";
+
+"searchTeams" = "Search teams";
+"searchLeagues" = "Search leagues";
+"discover" = "Discover";
+"podcastsBrowseCategories" = "Browse By Category";
+"podcastsLocal" = "Local";
+
+// NEWS
+"comments" = "Comments";
+
+// Updated Article Paywall
+"billedAnnually" = "Billed annually.";
+"billedAnnuallyTrial" = "Billed annually after trial.";
+"billedMonthly" = "Billed monthly.";
+"monthlyPeriodShort" = "/mo";
+"paywallHeroTitle" = "Save %@ on all access.";
+"localExpertise" = "Local expertise.\nLeague-wide perspective.";
+"yearlyPeriod" = "/year";
+"save25" = "Save 25%";
+
+// Interstitial tests
+"getUnrivaledCoverage" = "Get unrivaled coverage of your teams, clubs and leagues.";
+
+// Required app login
+"createAccountReason" = "Create an account to save your team, club and league preferences.";
+"dontHaveAccountSignup" = "Don't have an account? %@";
+"alreadyHaveAccount" = "Already have an account?";
+
+// Already Subscriber
+"alreadySubscriber" = "You are already subscribed to The Athletic";
+
+// Profile Admin
+"profileAdmin" = "Admin Settings";
+
+// Profile Feature Flags
+"featureFlagsTitle" = "Feature Flags";
+"featureFlagsStaleOverrideTitle" = "STALE";
+"featureFlagsListEnabledLabel" = "Enabled";
+"featureFlagsListDisabledLabel" = "Disabled";
+"featureFlagsClearOverridingButton" = "Clear";
+"featureFlagsOverridingLabel" = "Overriding";
+"featureFlagsDefaultValueLabel" = "Default:";
+"featureFlagsRemoteValueLabel" = "Remote:";
+"featureFlagsValueCopiedIndicator" = "Copied!";
+"featureFlagsDeleteElementButton" = "Delete";
+"featureFlagsAddElementButton" = "Add";
+"featureFlagsOverriddenTitle" = "Overriden Flags";
+"featureFlagsClearAllOverridingButton" = "Clear All";
+"featureFlagsOverriddenCountMessage" = "There are %d overriden feature flags.";
+"featureFlagsOverriddenCountMessageSingular" = "There is %d overriden feature flag.";
+
+// Live Room
+"liveRoom" = "Live Room";
+"leave" = "Leave";
+"roomYourself" = "You";
+"roomRoleSubscriber" = "Subscriber";
+"roomRequestPending" = "Your request is pending host approval";
+"roomRequestGranted" = "You’re now on stage";
+"roomRequestError" = "Your request cannot be granted";
+"roomRequestCanceled" = "Your request to speak has been canceled";
+"roomRemovedStage" = "The host has removed you from the stage";
+"roomMutedByHost" = "You’ve been muted by the host";
+"roomUserRemoved" = "User removed from the stage";
+"roomUserJoined" = "User has joined the stage";
+"roomRequestsOnStage" = "On Stage";
+"roomRequestsHost" = "Host";
+"endRoom" = "End Room";
+"endRoomConfirmation" = "Yes, end the room";
+"leaveRoomQuestion" = "Leaving the room will end the room. Are you sure you want to leave?";
+"endRoomUserTitle" = "This room has ended";
+"endRoomUserMessage" = "It looks like the host just ended this live audio room. Thank you for tuning in.";
+"microphoneDisabled" = "Microphone disabled";
+"microphoneMessage" = "You must enable you microphone to become a speaker.";
+"roomRecordingWarning" = "Please note that this room is being recorded";
+"roomRecordingConfirmation" = "I Understand";
+"roomNotStartedTitle" = "This room has not started yet";
+"roomNotStartedMessage" = "It looks like the host has not yet started this live audio room. Please check back again soon.";
+"roomOther" = "other";
+"roomOthers" = "others";
+"roomCreate" = "Create Live Room";
+"roomTitlePlaceholder" = "Room Title (%@ char limit)";
+"roomDescriptionPlaceholder" = "Description (%@ char limit)";
+"roomTagsPlaceholder" = "Add tags";
+"roomHostsPlaceholder" = "Add hosts";
+"roomTypesPlaceholder" = "Add room type (optional)";
+"roomRecordTitle" = "Record";
+"roomAddSelfAsHostTitle" = "Add self as host";
+"roomAddHosts" = "Add Hosts";
+"roomSelectTags" = "Select or enter a tag...";
+"roomSelectHosts" = "Select or enter a host...";
+"roomPreview" = "Room Preview";
+"roomCreateRoom" = "Create Live Room";
+"roomGoLive" = "Go Live";
+"roomFullTitle" = "Live Room is Full";
+"roomFullMessage" = "This live audio room is at max capacity. Please try again later.";
+"roomScheduled" = "Scheduled Live Rooms";
+"roomLinkCopied" = "Room link copied!";
+"roomFallbackTitle" = "Live Audio Room";
+"roomChatStart" = "Start the Conversation!";
+"roomChatStartDisabled" = "Hit 'Ask to Speak'!";
+"roomChatFansHear" = "Share your thoughts with other fans";
+"roomChatFansDisabled" = "Chat has been disabled for this Live Room.";
+"roomLiveRec" = "LIVE REC";
+"roomRemoveComment" = "Remove Comment";
+"roomLockUser" = "Lock User";
+"roomFlagComment" = "Flag Comment";
+"roomRemoveConfirm" = "Confirm";
+"roomRemoveFromStage" = "Remove From Stage";
+"roomUserLocked" = "You’ve been locked from speaking or commenting for violating The Athletic’s Code of Conduct";
+"roomDisableChatTitle" = "Disable Chat";
+"roomAutoSendPushTitle" = "Send push notification";
+"roomPushBannerTitle" = "Push notification sent!";
+"roomMuteUser" = "Mute User";
+"roomCreateRoomTitleWarning" = "Warning: soft %@ character limit has been reached";
+"roomListener" = "1 Listener";
+"roomListeners" = "%@ Listeners";
+"roomNewMessagesButton" = "New Messages";
+"roomEnableSpeakerForHost" = "Turn host speaker setting on";
+"roomDisableSpeakerForHost" = "Turn host speaker setting off";
+
+// Live Blogs
+"minFormat" = "%d min";
+
+// End of Feed
+"endOfFeed" = "You've reached the end of the list.";
+"backToTop" = "Back to top";
+
+// Privacy Policy Updates
+"updatedPolicies" = "Updated Policies";
+"newPolicies" = "New Policies";
+"clickHere" = "click here";
+"weveUpdatedOurTermsDefault" = "We have made some changes to our Terms of Service and Privacy Policy. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies";
+"weveUpdatedOurTermsCanadaAus" = "We have updated our Terms of Service and Privacy Policy to reflect the regulations in your country of residence. By clicking the button below, you acknowledge and consent to our updated policies. For more details and to see the full policies";
+"iAccept" = "I Accept";
+"privacyChoicesMessage" = "You have the right to opt-out of “sale,” “sharing,” and “targeting advertising” as defined under certain privacy laws. You can make your choices by making the appropriate selection below.\n\nThe Athletic does not currently process any of your sensitive personal information as defined under California law. If you would like to make a different privacy request, please use the form <a href=\"%@\">here</a>.\n\nTo find out more about our privacy practices, please review our <a href=\"%@\">Privacy Policy</a>.";
+"switchToggleOptOut" = "Switch toggle to opt out.";
+"successfullyOptedOut" = "You’ve been successfully opted out.";
+
+// Listen Tab
+"latestEpisodes" = "Latest Episodes";
+
+// Live Room v2
+"askToSpeak" = "Ask to speak";
+"cancelAsk" = "Cancel ask";
+"leaveStage" = "Leave stage";
+"micOn" =  "Tap to mute";
+"micOff" = "Tap to unmute";
+"stageQueue" = "Stage queue";
+"queue" = "Queue";
+"hosts" = "HOSTS";
+"tags" = "TAGS";
+
+// MARK: - Advertisement
+"adSlug" = "ADVERTISEMENT";
+
+// MARK: - Delete Account
+"deleteAccountConfirmationMessage" = "By selecting “Continue” you are requesting that your account, any associated subscription, and all personal data (subject to some exceptions as required or permitted by applicable law) be scheduled for deletion.\n\nAccount deletion is a permanent action. Once your account is deleted, your account and any associated subscription will no longer be available to you and cannot be restored. If you decide later that you would like to use our services, you will need to create a new account.\n\nPlease note that account deletion requests can take 30-45 days to process, depending on your jurisdiction. You will continue to be billed for any applicable subscriptions until the process is completed. If you want to avoid any auto-renew charges, you must cancel your subscription before continuing.";
+"deleteAccountSuccessTitle" = "Request Received";
+"deleteAccountSuccessMessage" = "We are in receipt of your request and will notify you of any updates to the status of your request via email. You will now be logged out of your account.";
+
+// MARK: - Notification Center Feature Tour
+"notificationCenterFeatureTourViewAllTitle" = "View all notifications";
+"notificationCenterFeatureTourViewAllSubtitle" = "Find all your notifications for breaking news, top stories, comment replies and more in the new Notification Center.";
+
+"notificationCenterFeatureTourAccountTabTitle" = "Accessible from Account tab";
+"notificationCenterFeatureTourAccountTabSubtitle" = "Easily access your Notification Center from the Account tab in the bottom menu.";
+
+"notificationCenterFeatureTourEverythingYouNeedTitle" = "Everything you need to see";
+"notificationCenterFeatureTourEverythingYouNeedSubtitle" = "Whether it's stories, breaking news, comment replies, live blogs, or podcasts, never miss another notification again.";
+"notificationCenterFeatureTourEverythingYouNeedAction" = "Go to Notification Center";
+
+"notificationCenterFeatureTourActivityTitle" = "View Community notifications in Activity";
+"notificationCenterFeatureTourActivitySubtitle" = "The Activity tab in your Notification Center displays comment replies and other community-related notifications.";
+
+"notificationCenterFeatureTourUpdatesTitle" = "Find other alerts in Updates";
+"notificationCenterFeatureTourUpdatesSubtitle" = "The Updates tab displays top articles, game results, live rooms, podcasts and more for the teams & leagues you care about.";
+
+"notificationCenterFeatureTourManageTitle" = "Easily manage notifications";
+"notificationCenterFeatureTourManageSubtitle" = "Access your notification settings from the gear icon at the top right of the Notification Center.";
+"notificationCenterFeatureTourManageAction" = "Close";
+
+"notificationCenterFeatureTourIntroTitle" = "Introducing the new Notification Center";
+"notificationCenterFeatureTourIntroSubtitle" = "Turn on Notifications in Settings to see notifications for news, stories, comments, and more now in the app, under Account.";
+"notificationCenterFeatureTourIntroAction" = "Go to Settings";
+
+"notificationCenterFeatureTourOnePlaceTitle" = "Notifications in one place";
+"notificationCenterFeatureTourOnePlaceSubtitle" = "Turn on Notifications in Settings to see all of your notifications for news, stories, comments, and more right here in the app.";
+"notificationCenterFeatureTourOnePlaceAction" = "Go to Settings";
+
+// MARK: - Sports News Notification Setting Feature Tour
+"sportsNewsNotificationSettingFeatureTourTitle" = "Get informed as important sports news breaks";
+"sportsNewsNotificationSettingFeatureTourDescription" = "Be the first to know when the biggest moments across all sports happen with Top Sports News alerts.";
+"sportsNewsNotificationSettingFeatureTourAction" = "Enable Top Sports News alerts";
+"sportsNewsNotificationSettingToastMessageSuccess1" = "You will now receive Top Sports News notifications. View ";
+"sportsNewsNotificationSettingToastMessageSuccess2" = "Notification Settings";
+"sportsNewsNotificationSettingToastMessageSuccess3" = " for more.";
+"sportsNewsNotificationSettingToastMessageFailure1" = "Failed to enable Top Sports News notifications. View ";
+"sportsNewsNotificationSettingToastMessageFailure2" = "Notification Settings";
+"sportsNewsNotificationSettingToastMessageFailure3" = " to try again.";

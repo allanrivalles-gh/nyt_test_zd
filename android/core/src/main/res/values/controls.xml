@@ -1,0 +1,57 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="fcm_channel" translatable="false">Push notifications</string>
+    <string name="local_channel" translatable="false">Local notifications</string>
+    <string name="podcast_player_channel" translatable="false">Podcasts player</string>
+    <string name="article_font_selector_character">A</string>
+
+    <string name="webview_mvp_base_html" translatable="false">&lt;html&gt;&lt;head&gt;&lt;meta name=\"viewport\"
+		content=\"initial-scale=1, user-scalable=no, width=device-width\" /&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_table.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_text_default.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/webview_mvp_theme_day.css\" &gt;&lt;/link&gt;
+		&lt;script src=\"file:///android_asset/javascript/article.js\"&gt;&lt;/script&gt;
+		&lt;script src=\"https://platform.twitter.com/widgets.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+		&lt;/head&gt;&lt;body class=\"%1$s\"&gt;%2$s&lt;/body&gt;&lt;/html&gt;</string>
+
+	<string name="webview_mvp_base_html_with_consent" translatable="false">&lt;html&gt;&lt;head&gt;&lt;meta name=\"viewport\"
+		content=\"initial-scale=1, user-scalable=no, width=device-width\" /&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_table.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_text_default.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/webview_mvp_theme_day.css\" &gt;&lt;/link&gt;
+		&lt;script src=\"file:///android_asset/javascript/article.js\"&gt;&lt;/script&gt;
+		&lt;script src=\"https://platform.twitter.com/widgets.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+        &lt;script src=\"%1$s\" type=\"text/javascript\"&gt;&lt;/script&gt;
+		&lt;/head&gt;&lt;body class=\"%2$s\"&gt;%3$s&lt;/body&gt;&lt;/html&gt;</string>
+
+	<string name="webview_mvp_base_html_with_ads" translatable="false">&lt;html&gt;&lt;head&gt;&lt;meta name=\"viewport\"
+		content=\"initial-scale=1, user-scalable=no, width=device-width\" /&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_table.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_text_default.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/webview_mvp_theme_day.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"https://theathletic.com/static/styles/web-ads.css?cache=%1$s\" &gt;&lt;/link&gt;
+        &lt;script src=\"file:///android_asset/javascript/article.js\"&gt;&lt;/script&gt;
+		&lt;script src=\"https://platform.twitter.com/widgets.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+        &lt;script src=\"file:///android_asset/javascript/adRequirements.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+        &lt;script src=\"https://theathletic.com/static/scripts/web-ads.js?cache=%1$s\" type=\"text/javascript\" async&gt;&lt;/script&gt;
+		&lt;/head&gt;&lt;body class=\"%2$s\"&gt;%3$s&lt;/body&gt;&lt;/html&gt;</string>
+
+    <string name="webview_mvp_base_html_with_ads_and_consent" translatable="false">&lt;html&gt;&lt;head&gt;&lt;meta name=\"viewport\"
+		content=\"initial-scale=1, user-scalable=no, width=device-width\" /&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_table.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/article_text_default.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"file:///android_asset/css/webview_mvp_theme_day.css\" &gt;&lt;/link&gt;
+		&lt;link rel=\"stylesheet\" type=\'text/css\' href=\"https://theathletic.com/static/styles/web-ads.css?cache=%1$s\" &gt;&lt;/link&gt;
+        &lt;script src=\"file:///android_asset/javascript/article.js\"&gt;&lt;/script&gt;
+		&lt;script src=\"https://platform.twitter.com/widgets.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+        &lt;script src=\"file:///android_asset/javascript/adRequirements.js\" type=\"text/javascript\" &gt;&lt;/script&gt;
+        &lt;script src=\"https://theathletic.com/static/scripts/web-ads.js?cache=%1$s\" type=\"text/javascript\" async&gt;&lt;/script&gt;
+        &lt;script src=\"%2$s\" type=\"text/javascript\"&gt;&lt;/script&gt;
+		&lt;/head&gt;&lt;body class=\"%3$s\"&gt;%4$s&lt;/body&gt;&lt;/html&gt;</string>
+
+    <string name="webview_mvp_bodyclass_day">native-mobile android ath-light-mode</string>
+    <string name="webview_mvp_bodyclass_night">native-mobile android ath-dark-mode</string>
+</resources>

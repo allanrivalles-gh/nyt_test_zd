@@ -1,0 +1,70 @@
+# QUERIES
+
+query GetBoxScoreFeed($gameId: ID!) {
+    boxScore(game_id: $gameId) {
+        id
+        sections {
+            id
+            type
+            modules {
+                ... BoxScoreLatestNews
+            }
+        }
+    }
+}
+
+# FRAGMENTS
+
+fragment BoxScoreLatestNews on BoxScoreLatestNewsModule {
+    id
+    header {
+        ... BoxScoreBasicHeader
+    }
+    blocks {
+        ... BoxScoreArticle
+        ... BoxScorePodcastEpisode
+    }
+}
+
+fragment BoxScoreBasicHeader on BoxScoreBasicModuleHeader {
+    id
+    title
+}
+
+fragment BoxScoreArticle on BoxScoreArticleBlock {
+    id
+    authors
+    comment_count
+    description
+    image_uri
+    permalink
+    title
+    article_id
+}
+
+fragment BoxScorePodcastEpisode on BoxScorePodcastEpisodeBlock {
+    id
+    description
+    duration
+    episode_id
+    finished
+    image_url
+    mp3_url
+    permalink
+    podcast_id
+    podcast_title
+    published_at
+    title
+    time_elapsed
+    comment_count
+    clips {
+        ... BoxScorePodcastEpisodeClip
+    }
+}
+
+fragment BoxScorePodcastEpisodeClip on BoxScorePodcastEpisodeClip {
+    id
+    title
+    start_position
+    end_position
+}

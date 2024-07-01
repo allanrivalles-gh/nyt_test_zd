@@ -1,0 +1,101 @@
+# QUERIES
+
+query GetTournament($league_code: LeagueCode!, $season_id: ID) {
+    getTournament(league_code: $league_code, season_id: $season_id) {
+        id
+        extra_stages {
+            ... TournamentStage
+        }
+        stages {
+            ... TournamentStage
+        }
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription TournamentGames($ids: [ID!]!) {
+    liveScoreUpdates(game_ids: $ids) {
+        ... TournamentGame
+    }
+}
+
+# MUTATIONS
+
+mutation ReplayGame($triggerReplayId: ID!) {
+    triggerReplay(id: $triggerReplayId) {
+        message
+        ok
+    }
+}
+
+# FRAGMENTS
+
+fragment TournamentTeam on GameTeam {
+    score
+    penalty_score
+    team {
+        id
+        alias
+        logos {
+            ... LogoFragment
+        }
+    }
+    ... on BasketballGameTeam {
+        seed
+        current_record
+    }
+}
+
+fragment TournamentPlaceholderTeam on TournamentPlaceholderGameTeam {
+    name
+}
+
+fragment TournamentGame on Gamev2 {
+    id
+    started_at
+    scheduled_at
+    status
+    match_time_display
+    time_tbd
+    home_team {
+        ... TournamentTeam
+    }
+    away_team {
+        ... TournamentTeam
+    }
+    venue {
+        name
+    }
+    ... on BasketballGame {
+        bracket {
+            name
+        }
+    }
+}
+
+fragment TournamentPlaceholderGame on TournamentPlaceholderGame {
+    id
+    conference
+    home_team_placeholder : home_team {
+        ... TournamentPlaceholderTeam
+    }
+    away_team_placeholder : away_team {
+        ... TournamentPlaceholderTeam
+    }
+}
+
+fragment TournamentStage on TournamentStage {
+    id
+    name
+    live
+    type
+    placeholder_game_teams {
+        home_team_name
+        away_team_name
+    }
+    bracket_games {
+        ... TournamentGame
+        ... TournamentPlaceholderGame
+    }
+}

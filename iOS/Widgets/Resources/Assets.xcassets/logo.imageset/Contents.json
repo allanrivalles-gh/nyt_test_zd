@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "The_Athletic_Logo_White_Small 1.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
+  }
+}

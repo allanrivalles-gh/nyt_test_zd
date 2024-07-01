@@ -1,0 +1,95 @@
+# QUERIES
+
+query UserByHashId($id: ID!) {
+    userByHashId(hash_id: $id) {
+        id
+        name
+        first_name
+        last_name
+        comment_sort_preference {
+            post
+            brief
+            discussion
+            game_v2
+            headline
+            podcast_episode
+            qanda
+        }
+
+        ... on Customer {
+            code_of_conduct_2022
+            notify_top_sports_news
+            following {
+                ... UserFollowingFragment
+            }
+        }
+        ... on Staff {
+            bio
+            twitter
+            avatar_uri
+            description
+            team_avatar_uri
+            league_avatar_uri
+            can_host_live_rooms
+            code_of_conduct_2022
+            role
+            following {
+                ... UserFollowingFragment
+            }
+        }
+    }
+}
+
+query GetUserContentEdition($fallbackEdition: UserContentEdition) {
+    getUserContentEdition(fallback_edition: $fallbackEdition)
+}
+
+query Me {
+    customer {
+        ... on Customer {
+            ...CustomerDetail
+        }
+    }
+}
+
+# MUTATIONS
+
+mutation SetUserContentEdition($edition: UserContentEdition!) {
+    setUserContentEdition(edition: $edition)
+}
+
+mutation AcceptChatCodeOfConduct($year: Int) {
+    acceptCodeOfConduct(year: $year) {
+        ... on Customer {
+            code_of_conduct_2022
+        }
+        ... on Staff {
+            code_of_conduct_2022
+        }
+    }
+}
+
+mutation UpdateUserSortPreference($contentType: ContentType!, $sortBy: CommentSortBy) {
+    updateUserSortPreference(content_type: $contentType, sort_by: $sortBy)
+}
+
+# FRAGMENTS
+
+fragment UserFollowingFragment on UserFollowing {
+    teams {
+        id
+        name
+        logos {
+            uri
+        }
+    }
+    leagues {
+        id
+        name
+    }
+    authors {
+        id
+        name
+        image_url
+    }
+}

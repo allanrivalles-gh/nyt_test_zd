@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+
+        <variable
+            name="data"
+            type="com.theathletic.rooms.create.ui.LiveRoomTaggingContract.ViewState"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.rooms.create.ui.LiveRoomTaggingContract.Presenter"
+            />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:elevation="0dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@{data.searchText}"
+                android:drawableStart="@drawable/ic_search"
+                android:drawableTint="@color/ath_grey_45"
+                android:drawablePadding="8dp"
+                android:hint="@string/rooms_create_add_tags_search_hint"
+                android:textColorHint="@color/ath_grey_45"
+                android:imeOptions="actionDone"
+                android:background="@color/ath_grey_60"
+                android:maxLines="1"
+                android:inputType="text"
+                app:onTextChanged="@{(text) -> interactor.onQueryChanged(text)}"
+                style="@style/TA.Ath.Body1" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center|end"
+                android:padding="8dp"
+                android:onClick="@{() -> interactor.onClearSearch()}"
+                android:background="@drawable/selector_clickable_item_bg"
+                android:tint="@color/ath_grey_10"
+                android:visibility="@{data.showClearButton}"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ic_close" />
+
+        </FrameLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/selected_tag_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:flexWrap="wrap"
+            app:alignItems="stretch"
+            app:alignContent="stretch"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/list_item_live_room_tag_search_result"
+            app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}" />
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="chat_flag_reasons">
+        <item>@string/chat_flag_reason_abuse</item>
+        <item>@string/chat_flag_reason_trolling</item>
+        <item>@string/chat_flag_reason_spam</item>
+    </array>
+
+    <array name="news_comments_flag_confirm_options">
+        <item>@string/comments_flag_dialog_text_abusive</item>
+        <item>@string/comments_flag_dialog_text_trolling</item>
+        <item>@string/comments_flag_dialog_text_spam</item>
+        <item>@string/comments_flag_dialog_text_report_user</item>
+    </array>
+</resources>

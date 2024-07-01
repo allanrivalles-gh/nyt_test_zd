@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.datetime.DateUtilityImpl" />
+        <variable
+            name="view" type="com.theathletic.ui.main.SearchView" />
+        <variable
+            name="data" type="com.theathletic.search.data.local.SearchPopularItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:foreground="?selectableItemBackground"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            style="@style/TextAppearance.Ath.Headline.ExtraSmall"
+            android:text="@{data.title}"
+            android:maxLines="3"
+            android:ellipsize="end"
+            tools:text="Some long article title that can take up to three lines. Lets hope it will be enough. Haha Warriors."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:paddingBottom="16dp"
+            android:text="@{data.author}"
+            android:gravity="top"
+            tools:text="Steward Mandel"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintEnd_toStartOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall"
+            android:maxLines="1"
+            android:text="@{DateUtilityImpl.formatTimeAgoFromGMT(data.date)}"
+            tools:text="1 hour ago"
+            app:layout_constraintStart_toEndOf="@+id/author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintBaseline_toBaselineOf="@+id/author" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/ath_grey_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

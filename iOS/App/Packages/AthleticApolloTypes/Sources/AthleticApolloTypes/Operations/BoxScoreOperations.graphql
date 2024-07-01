@@ -1,0 +1,5 @@
+query BoxScore($gameId: ID!) {
+    boxScore(game_id: $gameId) {
+        ...BoxScoreContent
+    }
+}

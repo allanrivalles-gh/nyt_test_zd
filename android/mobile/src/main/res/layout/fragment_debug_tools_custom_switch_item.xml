@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.theathletic.utility.LogoUtility" />
+
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="data" type="com.theathletic.debugtools.DebugToolsCustomSwitch" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_spacing_64"
+        android:background="@drawable/selector_clickable_item_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/switch_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center_vertical"
+                android:text="@{data.title}"
+                tools:text="Bay Area"
+                style="@style/TextAppearance.Athletic.Body1" />
+
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:checked="@={data.state}"
+                android:onClick="@{(customSwitch) -> view.onCustomSwitchChangedClick(customSwitch, data.setToOn, data.setToOff) }"
+                android:fontFamily="@font/avenir_regular"
+                app:theme="@style/Theme.Athletic.Controls" />
+
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

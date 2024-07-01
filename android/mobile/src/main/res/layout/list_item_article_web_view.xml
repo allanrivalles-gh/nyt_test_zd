@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticleContentModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticleContentModel.Interactor" />
+    </data>
+
+    <!-- minHeight required, as RecyclerView omits this layout if it wraps a "still loading" webview with no height -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="1dp">
+
+        <!-- We use this as the container view because it maintains the height after the view is removed. -->
+        <!-- This behavior allows maintaining the scroll offset for the new WebView. -->
+        <com.theathletic.article.ui.PreserveChildHeightLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/webviewContainer" />
+
+    </FrameLayout>
+
+</layout>

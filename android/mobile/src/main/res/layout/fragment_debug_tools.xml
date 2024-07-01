@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.theathletic.utility.RecyclerLayout" />
+        <import type="com.theathletic.utility.RecyclerDecoration" />
+        <variable
+            name="view" type="com.theathletic.debugtools.IDebugToolsView" />
+        <variable
+            name="viewModel" type="com.theathletic.debugtools.DebugToolsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/black">
+
+        <!-- Tt Small toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/Theme.Athletic.ActionBar.Main"
+            app:elevation="0dp"
+            style="@style/Widget.Athletic.Toolbar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_debug_tools"
+                android:gravity="center_vertical|start"
+                android:textStyle="bold"
+                android:fontFamily="@font/avenir_regular"
+                style="@style/TextAppearance.Athletic.Title.Toolbar" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.theathletic.widget.StatefulLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:state="@{viewModel.state}"
+            app:emptyLayout="@layout/placeholder_empty"
+            app:progressLayout="@layout/placeholder_progress"
+            app:offlineLayout="@layout/placeholder_offline">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/global_spacing_20"
+                android:orientation="vertical"
+                android:animateLayoutChanges="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/global_spacing_20"
+                    android:paddingBottom="@dimen/global_spacing_20"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/fragment_debug_tools_remoteconfig_item"
+                    app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+                    app:recyclerDecoration="@{RecyclerDecoration.LINEAR_DIVIDER}" />
+
+
+            </LinearLayout>
+        </com.theathletic.widget.StatefulLayout>
+    </LinearLayout>
+</layout>

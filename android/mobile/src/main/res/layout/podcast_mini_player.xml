@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.theathletic.manager.PodcastManager" />
+        <import type="android.support.v4.media.session.PlaybackStateCompat" />
+
+        <variable
+            name="playerVisible" type="androidx.databinding.ObservableBoolean" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/mini_player_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:visibility="@{playerVisible}">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="78dp"
+            android:layout_gravity="bottom|end"
+            app:cardCornerRadius="4dp"
+            app:cardBackgroundColor="#000">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/content" android:layout_width="64dp" android:layout_height="64dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@null"
+                    android:alpha="0.5"
+                    app:imageUrl="@{PodcastManager.INSTANCE.activeTrack.imageUrl}"
+                    app:centerCrop="@{true}"
+                    app:layout_constraintBottom_toTopOf="@id/play_progress"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/anim_mini_player_visualizer"
+                    app:animateDrawable="@{PodcastManager.INSTANCE.playbackState == PlaybackStateCompat.STATE_PLAYING}"
+                    app:layout_constraintBottom_toTopOf="@id/play_progress"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/play_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#862929"
+                    android:max="@{PodcastManager.INSTANCE.maxDuration}"
+                    android:progressDrawable="@drawable/shape_progress_bar_podcast_line"
+                    android:bindableProgress="@{PodcastManager.INSTANCE.currentProgress}"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

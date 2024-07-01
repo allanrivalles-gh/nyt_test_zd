@@ -1,0 +1,53 @@
+subscription ChatEvents($id: ID!) {
+    chatEvents(id: $id) {
+        ...ChatNodeDetails
+    }
+}
+
+query ChatRoomById($id: ID!) {
+    chatRoom(id: $id) {
+        ...ChatRoomDetails
+    }
+}
+
+query LastChatMessages($id: ID!, $limit: Int!, $returnDeleted: Boolean!) {
+    lastChatMessages(id: $id, limit: $limit, return_deleted: $returnDeleted) {
+        ...ChatMessageDetails
+    }
+}
+
+query PreviousChatMessages($id: ID!, $messageId: ID!, $limit: Int!, $returnDeleted: Boolean!) {
+    previousChatMessages(id: $id, message_id: $messageId, limit: $limit, return_deleted: $returnDeleted) {
+        ...ChatMessageDetails
+    }
+}
+
+mutation CreateMessage($id: ID!, $message: String!) {
+    createMessage(id: $id, message: $message)  {
+        ...ChatMessageDetails
+    }
+}
+
+mutation DeleteMessage($id: ID!, $messageId: ID!) {
+    deleteMessage(id: $id, message_id: $messageId) {
+        message_id
+    }
+}
+
+mutation ReportMessage($id: ID!, $messageId: ID!, $reason: ReportedReason!) {
+    reportMessage(id: $id, message_id: $messageId, reason: $reason) {
+        message_id
+        num_reports
+        created_by {
+            ...UserLiteWrapper
+        }
+    }
+}
+
+mutation BlockUserChatRoom($id: ID!, $userId: ID!) {
+    blockUserChatRoom(id: $id, user_id: $userId) {
+        user {
+            ...UserLiteWrapper
+        }
+    }
+}

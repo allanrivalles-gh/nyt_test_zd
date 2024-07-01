@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.FeedCuratedGroupedItem" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.FeedCuratedGroupedItem.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ath_grey_65"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> interactor.onCuratedItemClicked(data.id, data.type, data.analyticsPayload, data.title)}"
+        android:onLongClick="@{(v) -> interactor.onCuratedItemLongClicked(data.id, data.type)}" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginVertical="@dimen/feed_four_content_vertical_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:topAlignImage="@{@bool/tablet}"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageError="@{@drawable/ic_placeholder_offline_large}"
+            app:isBlackAndWhite="@{data.isRead}"
+            tools:background="@drawable/bg_welcome_title" />
+
+        <ImageView
+            android:id="@+id/read_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:src="@drawable/ic_feed_read"
+            android:visibility="@{data.isRead}"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:text="@{data.title}"
+            android:maxLines="4"
+            style="@style/TextAppearance.Ath.Headline.Tiny"
+            android:textColor="@{data.isRead ? @color/ath_grey_45 : @color/ath_grey_30}"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image"
+            tools:text="@tools:sample/lorem[10]" />
+
+        <ImageView
+            android:id="@+id/bookmark_icon"
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_feed_bookmark"
+            android:visibility="@{data.bookmarked}"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/byline"
+            app:layout_constraintEnd_toStartOf="@id/live_tag" />
+
+        <TextView
+            android:id="@+id/live_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:visibility="@{data.live}"
+            android:text="@string/game_feed_live_bullet_point"
+            android:textAllCaps="true"
+            android:textColor="@color/ath_red"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintBottom_toBottomOf="@id/byline"
+            app:layout_constraintStart_toEndOf="@+id/bookmark_icon"
+            app:layout_constraintTop_toTopOf="@id/byline" />
+
+        <TextView
+            android:id="@+id/byline"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:parameterizedString="@{data.byline}"
+            android:includeFontPadding="false"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintStart_toEndOf="@id/live_tag"
+            app:layout_constraintEnd_toStartOf="@id/commentIcon"
+            tools:text="@tools:sample/lorem[1]" />
+
+        <ImageView
+            android:id="@+id/commentIcon"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginStart="12dp"
+            android:visibility="@{data.showCommentCount}"
+            android:tint="@color/ath_grey_45"
+            app:srcCompat="@drawable/ic_news_comment"
+            app:layout_constraintStart_toEndOf="@+id/byline"
+            app:layout_constraintEnd_toStartOf="@id/commentCount"
+            app:layout_constraintTop_toTopOf="@+id/byline"
+            app:layout_constraintBottom_toBottomOf="@id/byline" />
+
+        <TextView
+            android:id="@+id/commentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{data.commentCount}"
+            android:visibility="@{data.showCommentCount}"
+            android:includeFontPadding="false"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall.Variant1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/commentIcon"
+            app:layout_constraintEnd_toEndOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/commentIcon"
+            app:layout_constraintBottom_toBottomOf="@id/commentIcon"
+            tools:text="21" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@color/ath_grey_60"
+            android:visibility="@{data.showDivider}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

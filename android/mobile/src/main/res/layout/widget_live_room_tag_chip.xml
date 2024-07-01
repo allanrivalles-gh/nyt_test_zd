@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.theathletic.R"/>
+        <variable
+            name="data"
+            type="com.theathletic.rooms.create.ui.LiveRoomTagSearchChipUiModel"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.rooms.create.ui.LiveRoomTagSearchChipUiModel.Interactor"
+            />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/ath_grey_60"
+        android:onClick="@{() -> interactor.onSearchChipClicked(data.id, data.type)}"
+        android:foreground="?attr/selectableItemBackground"
+        app:topMargin="@{R.dimen.global_spacing_4}"
+        app:endMargin="@{R.dimen.global_spacing_8}"
+        app:bottomMargin="@{R.dimen.global_spacing_4}"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="8dp"
+            android:text="@{data.title}"
+            android:textColor="@color/ath_grey_10"
+            android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            android:clickable="false"
+            tools:text="New York Yankees"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/ic_x"
+            android:layout_gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+</layout>

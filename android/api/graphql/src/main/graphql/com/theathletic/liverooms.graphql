@@ -1,0 +1,231 @@
+# QUERIES
+
+query GetLiveRoom($id: ID!) {
+    liveRoom(id: $id) {
+        ... LiveRoomFragment
+    }
+}
+
+query GetLiveRooms($filter: NodeFilterInput, $page: Int, $perPage: Int) {
+    liveRooms(filter: $filter, page: $page, perPage: $perPage) {
+        items {
+            ... LiveRoomFragment
+        }
+    }
+}
+
+query LiveRoomTags {
+    getTagsByType(types: [league, team]) {
+        ... on LeagueTag {
+            id
+            name
+            title
+            shortname
+        }
+        ... on TeamTag {
+            id
+            name
+            title
+            shortname
+        }
+    }
+}
+
+query LiveRoomHosts {
+    liveRoomHosts {
+        hosts {
+            id
+            name
+            image_url
+        }
+    }
+}
+
+# MUTATIONS
+
+mutation GenerateLiveRoomToken($input: LiveRoomTokenInput!) {
+    generateLiveRoomToken(input: $input) {
+        token
+    }
+}
+
+mutation CreateLiveRoom($input: CreateLiveRoomInput!) {
+    createLiveRoom(input: $input) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation UpdateLiveRoom($input: UpdateLiveRoomInput!) {
+    updateLiveRoom(input: $input) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation CreateSpeakingRequest(
+    $liveRoomId: ID!,
+    $userId: ID!,
+    $requestType: SpeakingRequestType!
+) {
+    createSpeakingRequest(
+        live_room_id: $liveRoomId,
+        user_id: $userId,
+        type: $requestType
+    ) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation DeleteSpeakingRequest(
+    $liveRoomId: ID!,
+    $userId: ID!,
+    $requestType: SpeakingRequestType!
+) {
+    deleteSpeakingRequest(
+        live_room_id: $liveRoomId,
+        user_id: $userId,
+        type: $requestType
+    ) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation UpdateSpeakingRequest(
+    $approved: Boolean!,
+    $liveRoomId: ID!,
+    $userId: ID!,
+    $requestType: SpeakingRequestType!
+) {
+    updateSpeakingRequest(
+        approved: $approved
+        live_room_id: $liveRoomId,
+        user_id: $userId,
+        type: $requestType
+    ) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation StartLiveRoom($id: ID!) {
+    startLiveRoom(id: $id) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation EndLiveRoom($id: ID!) {
+    endLiveRoom(id: $id) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation LockLiveRoomUser($live_room_id: ID!, $user_id: ID!) {
+    lockUser(live_room_id: $live_room_id, user_id: $user_id) {
+        ... LiveRoomFragment
+    }
+}
+
+mutation UnlockLiveRoomUser($live_room_id: ID!, $user_id: ID!) {
+    unlockUser(live_room_id: $live_room_id, user_id: $user_id) {
+        ... LiveRoomFragment
+    }
+}
+
+# SUBSCRIPTIONS
+
+subscription LiveRoomDetails($id: ID!) {
+    updatedLiveRoom(id: $id) {
+        ... LiveRoomFragment
+    }
+}
+
+# FRAGMENTS
+
+fragment LiveRoomFragment on LiveRoom {
+    id
+    title
+    subtitle
+    description
+    permalink
+    liveRoomStatus: status
+    created_at
+    started_at
+    ended_at
+    liveRoomUpdatedAt: updated_at
+    is_recorded
+    audience_total
+    room_limit
+    disable_chat
+    auto_push_enabled
+    auto_push_sent
+    live_room_types
+
+    tags {
+        id
+        type
+        title
+        name
+        shortname
+        deeplink_url
+        ... on TeamTag {
+            teamRef {
+                color_primary
+            }
+        }
+    }
+
+    images {
+        image_uri
+    }
+
+    hosts {
+        ... LiveRoomUserFragment
+    }
+    broadcasters {
+        ... LiveRoomUserFragment
+    }
+    audiences {
+        ... LiveRoomUserFragment
+    }
+    moderators {
+        id
+    }
+    locked_users {
+        id
+    }
+
+    recording {
+        recording_id
+    }
+    requests {
+        approved
+        completed
+        created_at
+        from {
+            id
+            ... LiveRoomUserFragment
+        }
+        id
+        type
+        updated_at
+    }
+
+    chat {
+        ... ChatRoomFragment
+    }
+}
+
+fragment LiveRoomUserFragment on User {
+    id
+    name
+    first_name
+    last_name
+
+    ... on Staff {
+        bio
+        twitter
+        avatar_uri
+        description
+        team_avatar_uri
+        league_avatar_uri
+        role
+    }
+}

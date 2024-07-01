@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view"
+            type="com.theathletic.ui.list.IBasicRowView" />
+
+        <variable
+            name="data"
+            type="com.theathletic.ui.list.BasicRowItem.Text" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:onClick="@{() -> view.onSimpleRowClicked(data)}"
+        android:background="@color/ath_grey_65"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/row_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Ath.Navigation"
+            android:text="@{data.text}"
+            android:layout_marginEnd="@dimen/global_spacing_24"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/global_spacing_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Row Title" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="@dimen/global_spacing_24"
+            android:src="@drawable/ic_chevron_right"
+            android:tint="@color/ath_grey_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/ath_grey_60"
+            app:startMargin="@{data.dividerStartPadding}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

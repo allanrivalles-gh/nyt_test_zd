@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="recyclerLayoutTag" type="id" />
+    <item name="volumeIndicatorAnimator" type="id" />
+    <item name="badgeReference" type="id" />
+</resources>

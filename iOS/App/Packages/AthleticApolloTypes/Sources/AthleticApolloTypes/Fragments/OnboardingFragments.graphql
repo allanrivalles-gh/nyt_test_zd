@@ -1,0 +1,14 @@
+fragment AttributionSurvey on AttributionSurvey {
+    cta_text
+    header_text
+    subheader_text
+    attribution_survey_options {
+        ...AttributionOption
+    }
+}
+
+fragment AttributionOption on AttributionOption {
+    display_name
+    display_order
+    value
+}

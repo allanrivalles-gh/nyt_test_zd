@@ -1,0 +1,41 @@
+query FollowableItem {
+    followableItems {
+        ...FollowingStuff
+    }
+}
+
+query UserFollowing {
+    getUserFollowing {
+        following {
+            ...UserFollowing
+        }
+    }
+}
+
+mutation AddUserFollow($input: UserFollow!) {
+    addUserFollow(input: $input) {
+        success
+        appNav {
+            ...AppNavItem
+        }
+        following {
+            ...UserFollowing
+        }
+    }
+}
+
+mutation RemoveUserFollow($input: UserFollow!) {
+    removeUserFollow(input: $input) {
+        success
+        appNav {
+        ...AppNavItem
+        }
+        following {
+            ...UserFollowing
+        }
+    }
+}
+
+mutation SaveUserFollows($input: [UserFollow!]!) {
+    saveUserFollows(input: $input)
+}

@@ -1,0 +1,16 @@
+/*
+  InfoPlist.strings
+  theathletic-ios
+
+  Created by Jan Remes on 06/03/2018.
+  Copyright © 2018 The Athletic. All rights reserved.
+*/
+
+
+shortcutTitleShare = "Share";
+shortcutTitleScores = "Scores";
+shortcutTitleStandings = "Standings";
+shortcutTitlePopular = "Most Popular";
+shortcutTitleSaved = "Saved Stories";
+
+CFBundleDisplayName = "The Athletic";

@@ -1,0 +1,151 @@
+fragment TeamHubHeader on Teamv2 {
+    current_standing
+}
+
+fragment StatLeadersTeam on Teamv2 {
+    color_primary
+    stat_leaders {
+        id
+        leaders {
+            id
+            player {
+                id
+                display_name
+                headshots {
+                    ...PlayerHeadshot
+                }
+                position
+            }
+            stats {
+                ...GameStat
+            }
+            stats_short_label
+        }
+        stats_category
+    }
+}
+
+fragment PlayerStatsTeam on Teamv2 {
+    sport
+    color_primary
+}
+
+fragment SeasonStatsPlayer on TeamMember {
+    id
+    display_name
+    headshots {
+        ...PlayerHeadshot
+    }
+    jersey_number
+    position
+    player_season_stats {
+        season_stats {
+            ...GameStat
+        }
+    }
+}
+
+fragment TeamRosterTeam on Teamv2 {
+    sport
+    color_primary
+    members {
+        ...TeamRosterPlayer
+    }
+}
+
+fragment TeamRosterPlayer on TeamMember {
+    id
+    birth_date
+    display_name
+    headshots {
+        ...PlayerHeadshot
+    }
+    height
+    jersey_number
+    position
+    sport
+    weight
+}
+
+fragment PlayerHubPlayer on TeamMember {
+    id
+    birth_date
+    display_name
+    first_name
+    last_name
+    headshots {
+        ...PlayerHeadshot
+    }
+    height
+    jersey_number
+    position
+    sport
+    weight
+    college
+    bat_hand
+    throw_hand
+    handedness
+    country
+    slug
+    role {
+        team {
+            color_primary
+            logos {
+                uri
+            }
+        }
+    }
+    player_season_stats {
+        season_stats {
+            ...PlayerSeasonGameStat
+        }
+        season {
+            ...SeasonStatsSeason
+        }
+        season_type {
+            ...SeasonStatsSeasonType
+        }
+    }
+}
+
+fragment PlayerSeasonGameStatBase on GameStat {
+    stat_category
+    stat_header_label
+    stat_label
+    stat_type
+}
+
+fragment PlayerSeasonGameStat on GameStat {
+    ... on DecimalGameStat {
+        ...PlayerSeasonGameStatBase
+        decimal_value
+        string_value
+    }
+    ... on FractionGameStat {
+        ...PlayerSeasonGameStatBase
+        denominator_value
+        numerator_value
+        string_value
+    }
+    ... on IntegerGameStat {
+        ...PlayerSeasonGameStatBase
+        int_value
+        string_value
+    }
+    ... on PercentageGameStat {
+        ...PlayerSeasonGameStatBase
+        decimal_value
+        string_value
+    }
+    ... on StringGameStat {
+        ...PlayerSeasonGameStatBase
+        string_value
+    }
+    ... on TimeGameStat {
+        ...PlayerSeasonGameStatBase
+        hours_value
+        minutes_value
+        seconds_value
+        string_value
+    }
+}

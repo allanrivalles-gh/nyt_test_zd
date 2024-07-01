@@ -1,0 +1,17 @@
+<resources>
+    <!-- TT PODCAST -->
+    <dimen name="podcast_detail_header_height">412dp</dimen>
+    <dimen name="podcast_detail_header_max_header_image_height">300dp</dimen>
+    <dimen name="podcast_episode_item_image_size">112dp</dimen>
+
+    <dimen name="global_list_gutter_padding">220dp</dimen>
+
+    <!-- TT Authentication -->
+    <dimen name="authentication_max_content_width">720dp</dimen>
+
+    <!-- TT Article -->
+    <dimen name="article_content_width">640dp</dimen>
+
+    <!-- Feed -->
+    <dimen name="feed_hero_carousel_end_padding">440dp</dimen>
+</resources>

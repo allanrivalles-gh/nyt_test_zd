@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="data"
+            type="com.theathletic.feed.ui.models.LiveRoomUiModel"
+            />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.feed.ui.models.LiveRoomUiModel.Interactor"
+            />
+
+        <variable
+            name="isInCarousel"
+            type="Boolean"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{isInCarousel ? @color/ath_grey_60 : @color/ath_grey_65}"
+        android:onClick="@{() -> interactor.onJoinRoomClicked(data.id, data.analyticsPayload)}"
+        android:foreground="?attr/selectableItemBackground"
+        android:clipChildren="false"
+        tools:background="@color/ath_grey_65"
+        >
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="@id/logo_container"
+            app:layout_constraintStart_toStartOf="@id/logo_container"
+            app:layout_constraintTop_toTopOf="@id/logo_container"
+            app:layout_constraintBottom_toBottomOf="@id/logo_container"
+            >
+
+            <ImageView
+                android:id="@+id/image_background"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:alpha="0.4"
+                android:src="@drawable/live_room_rings"
+                android:contentDescription="@null"
+                android:tint="@color/ath_grey_10"
+                />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/logo_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/logo_default"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerInside"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_athletic_a_logo"
+                android:tint="@color/ath_grey_10"
+                android:visibility="@{data.topicLogo1 == null}"
+                tools:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/logo_single"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:scaleType="centerInside"
+                android:contentDescription="@null"
+                imageUrl="@{data.topicLogo1}"
+                android:visibility="@{data.topicLogo1 != null &amp;&amp; data.topicLogo2 == null}"
+                tools:src="@tools:sample/avatars"
+                />
+
+            <ImageView
+                android:id="@+id/logo_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerInside"
+                android:contentDescription="@null"
+                android:visibility="@{data.topicLogo1 != null &amp;&amp; data.topicLogo2 != null}"
+                imageUrl="@{data.topicLogo1}"
+                tools:src="@tools:sample/avatars"
+                tools:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/logo_2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerInside"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@null"
+                android:visibility="@{data.topicLogo2 != null}"
+                imageUrl="@{data.topicLogo2}"
+                tools:src="@tools:sample/avatars"
+                tools:visibility="gone"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/live_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:text="@string/feed_live"
+            android:textColor="@color/live_room_text_on_red"
+            android:background="@drawable/background_live_indicator"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Ath.Headline.Sans.Medium.ExtraSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{data.title}"
+            app:layout_constraintEnd_toStartOf="@id/logo_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/live_indicator"
+            tools:text="Live Audio: NBA Finals Preview and Predictions: Suns vs. Bucks?"
+            />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_live_room_live_indicator"
+            android:tint="@color/ath_grey_10"
+            android:padding="2dp"
+            app:animateDrawable="@{true}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:srcCompat="@drawable/anim_mini_player_visualizer"
+            tools:ignore="ContentDescription"
+            />
+
+        <include
+            android:id="@+id/facepile"
+            app:data="@{data.hostImageUrls}"
+            app:darkerTint="@{true}"
+            app:layout_constraintStart_toStartOf="@id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            layout="@layout/widget_author_image_stack"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <TextView
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{data.subtitle}"
+            app:layout_constraintStart_toEndOf="@id/facepile"
+            app:layout_constraintEnd_toStartOf="@id/logo_container"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            tools:text="With Shams Charania"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

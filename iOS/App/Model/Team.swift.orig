@@ -1,0 +1,308 @@
+//
+//  Team.swift
+//  theathletic-ios
+//
+//  Created by Jan Remes on 29.08.16.
+//  Copyright © 2016 The Athletic. All rights reserved.
+//
+
+import Foundation
+import SwiftyJSON
+import Realm
+import RealmSwift
+import UIKit
+
+class Team: Object {
+
+    @objc dynamic var teamId: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var leagueId: String = ""
+    @objc dynamic var leagueName: String = ""
+    @objc dynamic var cityId: Int = 0
+    @objc dynamic var cityName: String = ""
+    @objc dynamic var isUserSubscribed: Bool = false
+    @objc dynamic var isAllTeams: Bool = false
+    @objc dynamic var isNotifStories: Bool = false
+    @objc dynamic var isNotifGames: Bool = false
+    @objc dynamic var colorString: String = ""
+    @objc dynamic var gradientColorString: String = ""
+    @objc dynamic var userId: Int = 0
+    @objc dynamic var searchText: String = ""
+    @objc dynamic var subtitle: String = ""
+    @objc dynamic var shortname: String = ""
+
+    @objc dynamic var standing: Standing?
+
+    @objc dynamic var evergreenArticlesCount: Int = 0
+    @objc dynamic var evergreenReadArticlesCount: Int = -1
+
+    @objc dynamic var evergreenData: EvergreenTeamData?
+
+    static func allTeamsPlaceholder() -> Team {
+        let t = Team()
+        t.teamId = -1
+        t.name = "My Feed".localized
+        t.isUserSubscribed = true
+        t.isAllTeams = true
+        t.colorString = "000000"
+        return t
+    }
+
+    var isEvergreenStoriesVisible: Bool {
+        return evergreenReadArticlesCount < evergreenArticlesCount
+    }
+
+    var sortString: String {
+        return name
+    }
+
+    var color: UIColor {
+        return UIColor(rgba: "#" + colorString)
+    }
+
+    var colorGradient: UIColor {
+        if gradientColorString.isEmpty {
+            return color.darker()
+        } else {
+            return UIColor(rgba: "#" + gradientColorString)
+        }
+    }
+
+
+
+    convenience init(json: JSON) {
+        self.init()
+
+        teamId = json["id"].intValue
+        name = json["name"].stringValue
+        leagueId = json["league_id"].stringValue
+        leagueName = json["league_name"].stringValue
+        cityId = json["city_id"].intValue
+        cityName = json["city_name"].stringValue
+        isUserSubscribed = json["user_subscribed"].intValue != 0
+        isNotifStories = json["notif_stories"].intValue != 0
+        isNotifGames = json["notif_games"].intValue != 0
+        colorString = json["color"].stringValue
+        subtitle = json["subtitle"].stringValue
+
+        searchText = json["search_text"].stringValue
+
+        if let subtitle = json["color_gradient"].string {
+            self.gradientColorString = subtitle
+        }
+
+        if let item = json["evergreen_posts"].intOrString {
+            self.evergreenArticlesCount = item
+        }
+
+    }
+
+    convenience init(onboardingJSON: JSON) {
+        self.init()
+
+        let json = onboardingJSON
+
+        teamId = json["id"].intValue
+        name = json["name"].stringValue
+        searchText = json["search_text"].stringValue
+        cityId = json["city_id"].intValue
+        leagueId = json["league_id"].stringValue
+
+        if let subtitle = json["color_gradient"].string {
+            self.gradientColorString = subtitle
+        }
+
+        if let item = json["evergreen_posts"].intOrString {
+            self.evergreenArticlesCount = item
+        }
+    }
+
+    class func createOrUpdate(json: JSON) -> Team? {
+
+        let objectId = json["id"].stringValue
+
+        guard !objectId.isEmpty, let intId = Int(objectId) else {
+            assert(false, "Trying to create team with empty id")
+            return nil
+        }
+
+        let realm = try! Realm()
+<<<<<<< HEAD
+
+        if let object = realm.object(ofType: Team.self, forPrimaryKey: intId) {
+            realm.safeSave {
+
+                if let name = json["name"].string {
+                    object.name = name
+                }
+
+                if let searchText = json["search_text"].string {
+                    object.searchText = searchText
+                }
+
+                if let cityId = json["city_id"].intOrString {
+                    object.cityId = cityId
+                }
+
+                if let leagueId = json["league_id"].string {
+                    object.leagueId = leagueId
+                }
+
+                if let isUserSubscribed = json["user_subscribed"].intOrString {
+                    object.isUserSubscribed = isUserSubscribed != 0
+                }
+
+                if let isNotifStories = json["notif_stories"].bool {
+                    object.isNotifStories = isNotifStories
+                }
+
+                if let isNotifGames = json["notif_games"].bool {
+                    object.isNotifGames = isNotifGames
+                }
+
+                if let colorString = json["color"].string {
+                    object.colorString = colorString
+                }
+
+                if let subtitle = json["subtitle"].string {
+                    object.subtitle = subtitle
+                }
+
+                if let subtitle = json["color_gradient"].string {
+                    object.gradientColorString = subtitle
+                }
+
+                if let item = json["evergreen_posts"].intOrString {
+                    object.evergreenArticlesCount = item
+                }
+
+                if let item = json["shortname"].string {
+                    object.shortname = item
+                }
+
+            }
+            return object
+        } else {
+
+            let object: Team = fromTopics ? Team(json: json) : Team(onboardingJSON: json)
+
+=======
+
+        var object: Team! = realm.object(ofType: Team.self, forPrimaryKey: intId)
+
+        if object == nil {
+            object = Team(json: json)
+            object?.teamId = intId
+>>>>>>> ac9e8e27be467ddb01874c06a4d23bae06f07470
+            realm.safeSave {
+                realm.add(object, update: true)
+            }
+        }
+
+        realm.safeSave {
+
+            if let name = json["name"].string {
+                object.name = name
+            }
+
+            if let searchText = json["search_text"].string {
+                object.searchText = searchText
+            }
+
+            if let cityId = json["city_id"].intOrString {
+                object.cityId = cityId
+            }
+
+            if let cityName = json["city_name"].string {
+                object.cityName = cityName
+            }
+
+            if let leagueId = json["league_id"].string {
+                object.leagueId = leagueId
+            }
+
+            if let leagueName = json["league_name"].string {
+                object.leagueName = leagueName
+            }
+
+            if let isUserSubscribed = json["user_subscribed"].intOrString {
+                object.isUserSubscribed = isUserSubscribed != 0
+            }
+
+            if let isNotifStories = json["notif_stories"].bool {
+                object.isNotifStories = isNotifStories
+            }
+
+            if let isNotifGames = json["notif_games"].bool {
+                object.isNotifGames = isNotifGames
+            }
+
+            if let colorString = json["color"].string {
+                object.colorString = colorString
+            }
+
+            if let subtitle = json["subtitle"].string {
+                object.subtitle = subtitle
+            }
+
+            if let subtitle = json["color_gradient"].string {
+                object.gradientColorString = subtitle
+            }
+
+            if let item = json["evergreen_posts"].intOrString {
+                object.evergreenArticlesCount = item
+            }
+
+        }
+
+        return object
+    }
+
+    override static func primaryKey() -> String? { return "teamId" }
+
+    override static func indexedProperties() -> [String] {
+        return ["leagueId", "cityId"]
+    }
+    // MARK: Queries
+    class var allTeams: Results<Team> {
+        let realm = try! Realm()
+        return realm.objects(Team.self)
+    }
+
+    class var allFollowingTeams: Results<Team> {
+        let realm = try! Realm()
+        return realm.objects(Team.self).filter("isUserSubscribed == %@", true)
+    }
+
+    class var evergreenStoriesTeams: [Team] {
+
+        var evergreenTeams: [Team] = []
+
+        let followingTeams = allFollowingTeams.sorted(byKeyPath: "name")
+
+        let allowedLeagues = LeagueId.evergreenLeagues.map({ $0.rawValue })
+
+        for t in followingTeams where allowedLeagues.contains(t.leagueId) {
+            evergreenTeams.append(t)
+        }
+
+        evergreenTeams.sort { (t1, t2) -> Bool in
+            let l1 = Int(t1.leagueId) ?? 0
+            let l2 = Int(t2.leagueId) ?? 0
+
+            return l1 < l2
+        }
+
+        return evergreenTeams
+    }
+
+    class func team(id: String) -> Team? {
+
+        guard let teamId = Int(id) else {
+            return nil
+        }
+
+        let realm = try! Realm()
+        return realm.object(ofType: Team.self, forPrimaryKey: teamId)
+    }
+}

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Athletic Design System Text Styles:
+    These are the approved, reusable styles for all text widgets.
+    Default colors are defined wrt background, but can be overridden depending on text placement.
+    -->
+
+    <style name="TextAppearance.Ath" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <!-- Slab -->
+
+    <!-- Slab root style -->
+    <style name="TextAppearance.Ath.Slab">
+        <item name="android:textSize">1sp</item>
+        <item name="android:fontFamily">@font/slab_regular_bold</item>
+        <item name="android:lineSpacingMultiplier">.94</item>
+        <item name="android:letterSpacing">-0.005</item>
+    </style>
+
+    <!-- Slab styles -->
+    <style name="TextAppearance.Ath.Slab.Large">
+        <item name="android:textSize">42sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Slab.Medium">
+        <item name="android:textSize">27sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Slab.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Tiempos Headline -->
+
+    <!-- Headline root styles -->
+    <style name="TextAppearance.Ath.Headline">
+        <item name="android:textSize">1sp</item>
+        <item name="android:fontFamily">@font/tiempos_headline_regular</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <!-- Headline styles -->
+    <style name="TextAppearance.Ath.Headline.ExtraLarge">
+        <item name="android:textSize">42sp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Large">
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Medium">
+        <item name="android:textSize">30sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Small">
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.ExtraSmall">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.XXS">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Tiny">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <!-- Tiempos Text -->
+
+    <!-- ContentBody root style -->
+    <style name="TextAppearance.Ath.ContentBody">
+        <item name="android:textSize">1sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- ContentBody styles -->
+    <style name="TextAppearance.Ath.ContentBody.Regular.Large">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">1.22</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Medium.Large" tools:ignore="UnusedResources">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">1.22</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Regular">
+        <item name="android:fontFamily">@font/tiempos_text_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Medium">
+        <item name="android:fontFamily">@font/tiempos_text_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Regular.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Medium.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <style name="TextAppearance.Ath.ContentBody.Medium.ExtraSmall" tools:ignore="UnusedResources">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <!-- Calibre-->
+
+    <!-- Headline.Sans root styles -->
+    <style name="TextAppearance.Ath.Headline.Sans">
+        <item name="android:textSize">1sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Sans.Semibold">
+        <item name="android:fontFamily">@font/calibre_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Sans.Medium">
+        <item name="android:fontFamily">@font/calibre_medium</item>
+    </style>
+
+    <!-- Headline.Sans styles -->
+    <style name="TextAppearance.Ath.Headline.Sans.Semibold.Medium">
+        <item name="android:textSize">36sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Sans.Semibold.Small">
+        <item name="android:textSize">28sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Sans.Semibold.ExtraSmall" tools:ignore="UnusedResources">
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Headline.Sans.Medium.ExtraSmall">
+        <item name="android:fontFamily">@font/calibre_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Utility root styles -->
+    <style name="TextAppearance.Ath.Utility">
+        <item name="android:textSize">1sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans" />
+
+    <style name="TextAppearance.Ath.Utility.Sans.Medium">
+        <item name="android:fontFamily">@font/calibre_medium</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Regular">
+        <item name="android:fontFamily">@font/calibre_regular</item>
+        <item name="android:letterSpacing">0.025</item>
+    </style>
+
+    <!-- TAGS root styles -->
+    <style name="TextAppearance.Ath.TAGS">
+        <item name="android:textSize">1sp</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Ath.TAGS.SANS" />
+
+    <style name="TextAppearance.Ath.TAGS.SANS.MEDIUM">
+        <item name="android:fontFamily">@font/calibre_medium</item>
+    </style>
+
+    <!-- Utility (and TAG) styles -->
+    <style name="TextAppearance.Ath.Utility.Sans.Medium.ExtraLarge">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Regular.ExtraLarge" tools:ignore="UnusedResources">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Regular.Large">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Medium.Large">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="android:letterSpacing">0.025</item>
+    </style>
+
+    <style name="TextAppearance.Ath.TAGS.SANS.MEDIUM.LARGE">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Regular.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Medium.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Regular.ExtraSmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Utility.Sans.Medium.ExtraSmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <!-- Sohne -->
+    <style name="TextAppearance.Ath.Data">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/sohne_buch</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Navigation">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/calibre_medium</item>
+    </style>
+
+
+    <!-- Section for reusable styles not specified in the design system -->
+    <style name="TextAppearance.Ath.ButtonDefault">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/calibre_medium</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Toolbar.Header" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/slab_regular_bold</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Profile.Footer" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/ath_grey_40</item>
+    </style>
+
+    <style name="TextAppearence.Ath.Article.Title" parent="TextAppearance.Ath">
+        <item name="android:textSize">29sp</item>
+        <item name="android:fontFamily">@font/tiempos_medium</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="TextAppearance.Ath.Slab.Medium.Inline">
+        <item name="android:fontFamily">@font/slab_regular_inline</item>
+    </style>
+
+</resources>

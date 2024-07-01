@@ -1,0 +1,17 @@
+fragment ScoresTopComment on Comment {
+    __typename
+    id
+    author_game_flairs {
+        name
+        icon_contrast_color
+    }
+    author_name
+    author_user_level
+    avatar_url
+    comment
+    comment_metadata
+    comment_permalink
+    commented_at
+    likes_count
+    parent_id
+}

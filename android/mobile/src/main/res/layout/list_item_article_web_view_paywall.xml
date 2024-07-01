@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticlePaywallContentModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticlePaywallContentModel.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.theathletic.widget.webview.VideoEnabledWebView
+            android:id="@+id/webview_paywall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/article_content_width"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/paywall_fade"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@id/webview_paywall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/gradient_grey_65_fade_down" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

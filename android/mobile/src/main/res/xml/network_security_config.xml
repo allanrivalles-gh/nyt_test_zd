@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">md-akc.med.nhl.com</domain>
+    </domain-config>
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates
+                overridePins="true"
+                src="user" />
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>

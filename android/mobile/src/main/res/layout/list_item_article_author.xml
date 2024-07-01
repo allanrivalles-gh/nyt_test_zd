@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.article.ArticleAuthorModel" />
+
+        <variable
+            name="interactor"
+            type="com.theathletic.article.ArticleAuthorModel.Interactor" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/author_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_feed_item_article_author_top_spacing"
+        android:layout_marginBottom="32dp"
+        android:paddingHorizontal="24dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="@{data.isAuthorClickable}"
+        android:onClick="@{() -> interactor.onAuthorClicked(data.authorId)}" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@null"
+            android:layout_marginEnd="8dp"
+            android:visibility="@{data.isImageVisible}"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageError="@{@drawable/ic_head_placeholder}"
+            app:imageCircular="@{true}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_head_placeholder"/>
+
+        <TextView
+            android:id="@+id/author_name"
+            style="@style/TextAppearance.Ath.Utility.Sans.Medium.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{data.name}"
+            android:textColor="@color/ath_grey_30"
+            android:maxLines="1"
+            app:layout_goneMarginStart="0dp"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/time_stamp"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/time_stamp"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.date}"
+            android:textColor="@color/ath_grey_45"
+            android:maxLines="1"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/author_name"
+            app:layout_constraintTop_toBottomOf="@id/author_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Fri, Sep 28" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

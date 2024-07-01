@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="data"
+            type="com.theathletic.rooms.ui.LiveRoomControlsOnStageHost"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        >
+
+        <View
+            android:id="@+id/bubble"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="@drawable/background_live_room_user_audience"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/initials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="90dp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:text="@{data.initials}"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="@id/bubble"
+            app:layout_constraintBottom_toBottomOf="@id/bubble"
+            app:layout_constraintStart_toStartOf="@id/bubble"
+            app:layout_constraintEnd_toEndOf="@id/bubble"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            tools:text="SC"
+            />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{data.imageUrl != null &amp;&amp; !data.imageUrl.isEmpty()}"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="@id/bubble"
+            app:layout_constraintBottom_toBottomOf="@id/bubble"
+            app:layout_constraintStart_toStartOf="@id/bubble"
+            app:layout_constraintEnd_toEndOf="@id/bubble"
+            app:imageUrl="@{data.imageUrl}"
+            app:imageCircular="@{true}"
+            tools:src="@tools:sample/avatars"
+            tools:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:ellipsize="end"
+            android:parameterizedString="@{data.name}"
+            android:textColor="@color/ath_grey_10"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bubble"
+            app:layout_constraintVertical_bias="0.15"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            tools:text="Shams Charania"
+            />
+
+        <ImageView
+            android:id="@+id/verified_check"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_verified_check"
+            android:tint="@color/ath_grey_10"
+            app:layout_constraintTop_toTopOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="@id/name"
+            app:layout_constraintStart_toEndOf="@id/name"
+            />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:ellipsize="end"
+            android:text="@string/rooms_host"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/ath_grey_45"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bubble"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.85"
+            style="@style/TextAppearance.Ath.Utility.Sans.Regular.Large"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

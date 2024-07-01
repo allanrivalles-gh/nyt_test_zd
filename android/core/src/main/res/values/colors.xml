@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Athletic Design System Common Palette:
+    These are the approved colors of The Athletic Design System
+    -->
+    <color name="ath_grey_80" tools:ignore="UnusedResources">#000000</color>
+    <color name="ath_grey_80_00">#00000000</color>
+    <color name="ath_grey_80_10">#1A000000</color>
+    <color name="ath_grey_70" tools:ignore="UnusedResources">#121212</color>
+    <color name="ath_theme_gray_700">#121212</color>
+    <color name="ath_grey_70_70" tools:ignore="UnusedResources">#B4121212</color>
+    <color name="ath_grey_65" tools:ignore="UnusedResources">#1A1A1A</color>
+    <color name="ath_grey_65_00">#001A1A1A</color>
+    <color name="ath_grey_62" tools:ignore="UnusedResources">#2B2B2B</color>
+    <color name="ath_grey_60" tools:ignore="UnusedResources">#323232</color>
+    <color name="ath_grey_50" tools:ignore="UnusedResources">#52524F</color>
+    <color name="ath_grey_45" tools:ignore="UnusedResources">#969693</color>
+    <color name="ath_grey_40" tools:ignore="UnusedResources">#C4C4C0</color>
+    <color name="ath_grey_30" tools:ignore="UnusedResources">#F0F0EE</color>
+    <color name="ath_grey_20" tools:ignore="UnusedResources">#F7F7F4</color>
+    <color name="ath_grey_10" tools:ignore="UnusedResources">#FFFFFF</color>
+    <color name="ath_grey_10_40" tools:ignore="UnusedResources">#66FFFFFF</color>
+
+    <color name="ath_maroon" tools:ignore="UnusedResources">#943848</color>
+    <color name="ath_red" tools:ignore="UnusedResources">#CB3939</color>
+    <color name="ath_orange" tools:ignore="UnusedResources">#E95F33</color>
+    <color name="ath_yellow" tools:ignore="UnusedResources">#F89A1E</color>
+    <color name="ath_bright_green" tools:ignore="UnusedResources">#4EAB75</color>
+    <color name="ath_green" tools:ignore="UnusedResources">#3C5634</color>
+    <color name="ath_turquoise" tools:ignore="UnusedResources">#105E5E</color>
+    <color name="ath_royal" tools:ignore="UnusedResources">#497AB8</color>
+    <color name="ath_navy" tools:ignore="UnusedResources">#1C3C64</color>
+    <color name="ath_purple" tools:ignore="UnusedResources">#403C5C</color>
+
+    <!-- Raw greys, which always adhere to the night palette regardless of phone settings -->
+    <color name="ath_grey_80_raw" tools:ignore="UnusedResources">#000000</color>
+    <color name="ath_grey_70_raw" tools:ignore="UnusedResources">#121212</color>
+    <color name="ath_grey_65_raw" tools:ignore="UnusedResources">#1A1A1A</color>
+    <color name="ath_grey_62_raw" tools:ignore="UnusedResources">#2B2B2B</color>
+    <color name="ath_grey_60_raw" tools:ignore="UnusedResources">#323232</color>
+    <color name="ath_grey_50_raw" tools:ignore="UnusedResources">#52524F</color>
+    <color name="ath_grey_45_raw" tools:ignore="UnusedResources">#969693</color>
+    <color name="ath_grey_40_raw" tools:ignore="UnusedResources">#C4C4C0</color>
+    <color name="ath_grey_30_raw" tools:ignore="UnusedResources">#F0F0EE</color>
+    <color name="ath_grey_20_raw" tools:ignore="UnusedResources">#F7F7F4</color>
+    <color name="ath_grey_10_raw" tools:ignore="UnusedResources">#FFFFFF</color>
+
+    <!-- One-off Colors:
+    The Section below may contain a limited number of one-off colors
+    -->
+
+    <!-- These colors are used for our custom Material Switch control scheme -->
+    <color name="switch_control_track">#969693</color>
+
+    <!-- Live Rooms one-offs -->
+    <color name="live_room_avatar_border">#3A3A3A</color>
+    <color name="live_room_text_on_red">@color/ath_grey_30</color>
+
+    <!-- Image Overlay -->
+    <color name="podcast_image_overlay">#66000000</color>
+    <color name="feed_spotlight_image_overlay">#26000000</color>
+
+    <color name="social_button_stroke_color">@android:color/transparent</color>
+</resources>

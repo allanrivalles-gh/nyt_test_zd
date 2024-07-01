@@ -1,0 +1,140 @@
+query GetComments($input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+}
+
+query CommentsForArticle($articleId: ID!, $input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+    articleById(id: $articleId) {
+        title
+        comment_count
+        lock_comments
+    }
+}
+
+query CommentsForDiscussion($articleId: ID!, $input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+    articleById(id: $articleId) {
+        author {
+            name
+        }
+        comment_count
+        lock_comments
+        team_ids
+        league_ids
+        published_at
+        title
+        excerpt
+        article_body
+        team_hex
+        inferred_league_ids
+    }
+}
+
+query CommentsForHeadline($headlineId: ID!, $input: QueryCommentsInput!) {
+    newsById(id: $headlineId) {
+        ... NewsItem
+    }
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+}
+
+query CommentsForPodcastEpisode($podcastEpisodeId: ID!, $input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+    podcastEpisodeById(id: $podcastEpisodeId) {
+        title
+        comment_count
+    }
+}
+
+query CommentsForQanda($articleId: ID!, $input: QueryCommentsInput!) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+        }
+    }
+    articleById(id: $articleId) {
+        author {
+            name
+        }
+        comment_count
+        lock_comments
+        team_ids
+        league_ids
+        published_at
+        title
+        excerpt_plaintext
+        article_body
+        team_hex
+        inferred_league_ids
+    }
+    qandaById(id: $articleId) {
+        started_at
+        ended_at
+    }
+}
+
+query CommentsForGame($input: QueryCommentsInput!, $teamId:ID) {
+    getComments(input: $input) {
+        comment_count
+        comments {
+            ... Comment
+            ... Flairs
+            replies {
+                id
+                ...Flairs
+            }
+        }
+    }
+}
+
+subscription CreatedQaComment($qandaId: ID!) {
+    createdQaComment(id: $qandaId) {
+        id
+        author_id
+        author_name
+        author_user_level
+        avatar_url
+        parent_id
+        parent_user_id
+    }
+}
+
+mutation AddNewComment($input: CommentInput!, $teamId: ID) {
+    addNewComment(input: $input) {
+        ... Comment
+        ... Flairs
+    }
+}
+
+fragment Flairs on Comment{
+    author_game_flairs(team_id: $teamId) {
+        id
+        name
+        icon_contrast_color
+    }
+}

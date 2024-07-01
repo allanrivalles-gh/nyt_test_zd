@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Ath.Rebrand"
+    android:animateLayoutChanges="true"
+    android:background="@color/ath_grey_65"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/appbar_container"
+        layout="@layout/toolbar_grey_65"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/login_scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <com.theathletic.widget.StatefulLayout
+            android:id="@+id/login_stateful_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:emptyLayout="@layout/placeholder_empty"
+            app:offlineLayout="@layout/placeholder_offline"
+            app:progressLayout="@layout/placeholder_progress">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="48dp"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <!-- TT Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:boxBackgroundColor="@color/ath_grey_80"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_max="@dimen/authentication_max_content_width">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:textColor="@color/ath_grey_20"
+                        android:textColorHint="@color/ath_grey_45"
+                        android:hint="@string/login_hint_email"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%*+-/=?^_`{|}~.@&amp;"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- TT Password -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:imeOptions="actionDone"
+                    app:boxBackgroundColor="@color/ath_grey_80"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_email"
+                    app:layout_constraintWidth_max="@dimen/authentication_max_content_width"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:padding="10dp"
+                        android:textColor="@color/ath_grey_20"
+                        android:textColorHint="@color/ath_grey_45"
+                        android:hint="@string/login_hint_password"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginTop="52dp"
+                    android:background="@drawable/selector_clickable_item_bg"
+                    android:padding="@dimen/global_spacing_8"
+                    android:text="@string/login_text_forgot_password"
+                    android:textAppearance="@style/TextAppearance.Ath.Utility.Sans.Medium.Large"
+                    android:textColor="@color/ath_grey_50"
+                    app:layout_constraintEnd_toEndOf="@id/input_password"
+                    app:layout_constraintTop_toTopOf="@id/input_password" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_login"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/login_button_login"
+                    android:enabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/forgot_password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_max="@dimen/authentication_max_content_width"
+                    tools:enabled="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.theathletic.widget.StatefulLayout>
+    </ScrollView>
+</LinearLayout>

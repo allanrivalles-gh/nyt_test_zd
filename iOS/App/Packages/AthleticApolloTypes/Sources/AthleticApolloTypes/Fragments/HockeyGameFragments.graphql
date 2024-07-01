@@ -1,0 +1,110 @@
+fragment HockeyScoring on HockeyGame {
+    __typename
+    home_team {
+        ...HockeyScoringTeam
+    }
+    away_team {
+        ...HockeyScoringTeam
+    }
+    scoring_plays {
+        ...HockeyPlay
+        ...HockeyShootoutPlay
+        ...HockeyTeamPlay
+    }
+}
+
+fragment HockeyScoringTeam on HockeyGameTeam {
+    __typename
+    scoring {
+        ...PeriodScore
+    }
+}
+
+fragment HockeyPlay on HockeyPlay {
+    id
+    type
+    period_id
+    occurred_at
+    occurred_at_str
+    game_time
+    header
+    description
+    away_shots_on_goal: away_sog
+    home_shots_on_goal: home_sog
+}
+
+fragment HockeyShootoutPlay on HockeyShootoutPlay {
+    id
+    period_id
+    occurred_at
+    occurred_at_str
+    header
+    description
+    team {
+        id
+        alias
+        color_primary
+    }
+    shooter {
+        display_name
+        headshots {
+            ...PlayerHeadshot
+        }
+    }
+    type
+}
+
+fragment HockeyTeamPlay on HockeyTeamPlay {
+    id
+    type
+    period_id
+    occurred_at
+    occurred_at_str
+    game_time
+    header
+    description
+    home_score
+    away_score
+    team {
+        id
+        color_accent
+        logos {
+            ...TeamLogo
+        }
+    }
+    away_shots_on_goal: away_sog
+    home_shots_on_goal: home_sog
+}
+
+fragment HockeyPowerPlay on HockeyGame {
+    __typename
+    home_team {
+        ...HockeyPowerPlayTeam
+    }
+    away_team {
+        ...HockeyPowerPlayTeam
+    }
+}
+
+fragment HockeyPowerPlayTeam on HockeyGameTeam {
+    __typename
+    team {
+        color_primary
+    }
+    strength
+}
+
+fragment HockeyRecentPlays on HockeyGame {
+    sport
+    away_team {
+        ...GameV2RecentPlaysTeam
+    }
+    home_team {
+        ...GameV2RecentPlaysTeam
+    }
+    hockey_recent_plays: recent_plays(size: 3) {
+        ...HockeyPlay
+        ...HockeyShootoutPlay
+        ...HockeyTeamPlay
+    }
+}
